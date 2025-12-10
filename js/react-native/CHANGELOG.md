@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.0.1 (Dec 10, 2025) with ChatSDK ^4.20.3
+
+
+### Fixes
+
+- Separate transform and overflow layers to fix iOS animation bug in FixedMessenger
+
+### Improvements
+
+- Make onSubmitCSAT callback async for better error handling
+
+
 ## v1.0.0 (Dec 04, 2025) with ChatSDK ^4.20.3
 
 
