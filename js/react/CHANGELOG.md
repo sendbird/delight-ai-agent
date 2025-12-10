@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.10.3 (Dec 10, 2025) with ChatSDK ^4.20.3
+
+
+### Fixes
+
+- Add PageChildrenContextProvider to DefaultMessenger
+
+### Improvements
+
+- Add accessibility improvements: proper aria-label attributes, list roles, and alt attributes for images
+- Make onSubmitCSAT callback async for better error handling
+
+
 ## v1.10.2 (Dec 04, 2025) with ChatSDK ^4.20.3
 
 
