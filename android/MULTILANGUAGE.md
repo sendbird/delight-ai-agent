@@ -2,15 +2,30 @@
 
 This guide explains how to localize the user-facing UI strings in the **Delight AI agent SDK for Android**, enabling support for multiple languages in your application.
 
-***
+This guide explains:
+<!-- TOC depthfrom:2 depthto:3 bulletcharacter:- -->
 
-### Overview
+- [Overview](#overview)
+- [Supported languages](#supported-languages)
+- [Default SDK Strings](#default-sdk-strings)
+- [Adding Translations](#adding-translations)
+    - [Open the Translations Editor](#open-the-translations-editor)
+    - [Add a New Language](#add-a-new-language)
+- [Overriding SDK Strings](#overriding-sdk-strings)
+
+<!-- /TOC -->
+
+---
+
+## Overview
 
 The Delight AI agent SDK includes a predefined set of UI string resources — including button labels, error messages, input hints, and system messages.
 
 To support internationalization, you can localize these strings using standard Android localization patterns with `strings.xml`.
 
-#### Supported languages
+---
+
+## Supported languages
 
 The SDK includes built-in localization support for the following languages:
 
@@ -27,9 +42,9 @@ The SDK includes built-in localization support for the following languages:
 
 If your target language is not listed above, you can add translations or override default strings.
 
-***
+---
 
-### Default SDK Strings
+## Default SDK Strings
 
 The SDK uses a fixed set of string keys for all user-facing text such as system messages, error messages, and UI labels.
 
@@ -38,26 +53,26 @@ You can download or view the full list of default string keys here:\
 
 Use this file as a reference when adding or overriding translations.
 
-***
+---
 
-### Adding Translations
+## Adding Translations
 
 To localize your app using Android Studio:
 
-#### 1. Open the Translations Editor
+### Open the Translations Editor
 
 * Navigate to `res/values/strings.xml`.
 * Right-click the file or click the 🌐 icon to open the **Translations Editor**.
 
-#### 2. Add a New Language
+### Add a New Language
 
 * In the Translations Editor, click the **Globe ➕ (Add Locale)** icon.
 * Select the language (e.g., Russian `ru`, Japanese `ja`, etc.) and click **OK**.
 * Android Studio will generate a corresponding directory, e.g., `res/values-ru/strings.xml`.
 
-***
+---
 
-### Overriding SDK Strings
+## Overriding SDK Strings
 
 To customize the SDK’s UI text, override the string resource by defining a new value using the **same string key** in your app’s localized `strings.xml`.
 
@@ -76,4 +91,3 @@ To customize the SDK’s UI text, override the string resource by defining a new
 
 The SDK will use your overridden strings in place of its internal defaults.
 
-\

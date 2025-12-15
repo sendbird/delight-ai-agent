@@ -3,25 +3,23 @@
 In Delight AI agent messenger, AI agent and users can exchange various types of messages to enable rich and interactive conversations, including text, images, files, and rich template-based messages. It allows users to have comprehensive and engaging conversations with AI agents across different use cases.
 
 This guide explains:
+<!-- TOC depthfrom:2 depthto:3 bulletcharacter:- -->
 
-* [Messages](messages.md#messages)
-  * [Types](messages.md#types)
-    * [Text Message](messages.md#text-message)
-    * [Image Message](messages.md#image-message)
-    * [File Message](messages.md#file-message)
-    * [Rich Message](messages.md#rich-message)
-      * [Call to Action (CTA) button](messages.md#call-to-action-cta-button)
-      * [Carousel](messages.md#carousel)
-      * [Suggested replies](messages.md#suggested-replies)
-      * [CSAT Message](messages.md#csat-message)
-      * [Product List](messages.md#product-list)
-  * [Key features](messages.md#key-features)
-    * [Read receipt](messages.md#read-receipt)
-    * [Citation](messages.md#citation)
-    * [Special notice](messages.md#special-notice)
-  * [API reference](messages.md#api-reference)
+- [Types](#types)
+    - [Text Message](#text-message)
+    - [Image Message](#image-message)
+    - [File Message](#file-message)
+    - [Rich Message](#rich-message)
+- [Key features](#key-features)
+    - [Read receipt](#read-receipt)
+    - [Citation](#citation)
+    - [Special notice](#special-notice)
+- [API reference](#api-reference)
+    - [ConversationConfig](#conversationconfig)
 
-***
+<!-- /TOC -->
+
+---
 
 ## Types
 
@@ -139,7 +137,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
   <figcaption></figcaption>
 </figure>
 
-***
+---
 
 ## Key features
 
@@ -184,7 +182,7 @@ AIAgentMessenger.config.conversation.list.enableMessageReceiptState = true
   <figcaption></figcaption>
 </figure>
 
-***
+---
 
 ## API reference
 
@@ -214,4 +212,8 @@ AIAgentMessenger.config.conversation.header.shouldShowProfile = true
 
 The following table lists the configuration options available in `AIAgentMessenger.config.conversation.list` besides read receipt. These options control how the conversation list and messages are displayed in the messenger UI.
 
-<table><thead><tr><th width="234.88671875">Property</th><th width="99.95703125">Type</th><th width="94.12890625">Default</th><th>Description</th></tr></thead><tbody><tr><td><code>enableMessageReceiptState</code></td><td>Boolean</td><td><code>true</code></td><td>Whether to display message receipt status.</td></tr><tr><td><code>shouldShowSenderProfile</code></td><td>Boolean</td><td><code>true</code></td><td>Whether to show sender's profile information.</td></tr><tr><td><code>shouldShowProfile</code></td><td>Boolean</td><td><code>true</code></td><td>Whether profile should be shown in header.</td></tr></tbody></table>
+| Property                     | Type     | Default | Description                                   |
+| ---------------------------- | -------- | ------- | --------------------------------------------- |
+| `enableMessageReceiptState`  | Boolean  | `true`  | Whether to display message receipt status.    |
+| `shouldShowSenderProfile`    | Boolean  | `true`  | Whether to show sender's profile information.    |
+| `shouldShowProfile`          | Boolean  | `true`  | Whether profile should be shown in header. |
