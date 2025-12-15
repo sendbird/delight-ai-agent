@@ -3,25 +3,18 @@
 Delight AI agent messenger provides various message types to enable rich and interactive conversations with AI Agents. The messenger supports diverse message formats including text, images, files, and rich template-based messages, allowing users to have comprehensive and engaging conversations with AI agents across different use cases.
 
 This guide explains:
+- [Types](#types)
+    - [Text message](#text-message)
+    - [Image message](#image-message)
+    - [File message](#file-message)
+    - [Rich message](#rich-message)
+- [Key features](#key-features)
+    - [Read receipt](#read-receipt)
+    - [Citation](#citation)
+    - [Special notice](#special-notice)
+- [API reference](#api-reference)
 
-* [Messages](messages.md#messages)
-  * [Types](messages.md#types)
-    * [Text message](messages.md#text-message)
-    * [Image message](messages.md#image-message)
-    * [File message](messages.md#file-message)
-    * [Rich message](messages.md#rich-message)
-      * [Call to Action (CTA) button](messages.md#call-to-action-cta-button)
-      * [Carousel](messages.md#carousel)
-      * [Suggested replies](messages.md#suggested-replies)
-      * [CSAT message](messages.md#csat-message)
-      * [Product list](messages.md#product-list)
-  * [Key features](messages.md#key-features)
-    * [Read receipt](messages.md#read-receipt)
-    * [Citation](messages.md#citation)
-    * [Special notice](messages.md#special-notice)
-  * [API reference](messages.md#api-reference)
-
-***
+---
 
 ## Types
 
@@ -139,7 +132,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
   <figcaption></figcaption>
 </figure>
 
-***
+---
 
 ## Key features
 
@@ -226,7 +219,7 @@ Special notices are configured through Delight AI dashboard and automatically di
 * At the bottom of the conversation view.
 * Dismisses automatically when user sends first message.
 
-***
+---
 
 ## API reference
 
@@ -234,10 +227,17 @@ Special notices are configured through Delight AI dashboard and automatically di
 
 The following table lists the configuration options that control how the conversation list and messages are displayed in the messenger UI.
 
-<table><thead><tr><th width="264.17578125">Property</th><th width="109.8203125">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>isMessageReceiptStateEnabled</code></td><td>Bool</td><td>Turns on and off message read receipts. (Default: <code>false</code>)</td></tr></tbody></table>
+| Property                     | Type | Description                                                   |
+| ---------------------------- | ---- | ------------------------------------------------------------- |
+| `isMessageReceiptStateEnabled` | `Bool` | Turns on and off message read receipts. (Default: `false`) |
 
 ### Message types
 
 The SDK automatically handles different message types without requiring explicit type checking in most cases.
 
-<table><thead><tr><th width="102.17578125">Type</th><th width="238.94140625">Class</th><th>Description</th></tr></thead><tbody><tr><td>Text</td><td>UserMessage</td><td>Plain text messages.</td></tr><tr><td>Image</td><td>FileMessage</td><td>Image files in <code>JPEG</code> and <code>PNG</code>.</td></tr><tr><td>File</td><td>FileMessage</td><td>Document files in <code>PDF</code>.</td></tr><tr><td>Rich</td><td>UserMessage with template</td><td>Template-based interactive messages.</td></tr></tbody></table>
+| Type  | Class                      | Description                                      |
+| ----- | -------------------------- | ------------------------------------------------ |
+| Text  | UserMessage              | Plain text messages.                             |
+| Image | FileMessage              | Image files in `JPEG` and `PNG`.                 |
+| File  | FileMessage              | Document files in `PDF`.                         |
+| Rich  | UserMessage with template | Template-based interactive messages.            |

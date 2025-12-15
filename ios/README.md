@@ -4,40 +4,29 @@
 
 The **Delight AI agent Messenger** allows seamless integration of chatbot features into your iOS application. Follow the steps below to initialize and utilize the SDK effectively.
 
-- [Delight AI agent Quickstart guide (iOS)](#delight-ai-agent-quickstart-guide-ios)
-  - [Requirements](#requirements)
-  - [Prerequisites](#prerequisites)
-  - [Getting Started](#getting-started)
+This guide explains:
+- [Requirements](#requirements)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
     - [Step 1. Create a new project](#step-1-create-a-new-project)
     - [Step 2. Install AI Agent SDK](#step-2-install-ai-agent-sdk)
     - [Step 3. Initialize AI Agent SDK](#step-3-initialize-ai-agent-sdk)
-  - [Running your application](#running-your-application)
+- [Running your application](#running-your-application)
     - [Manage user sessions](#manage-user-sessions)
-      - [Session Types](#session-types)
-      - [When to set the session information](#when-to-set-the-session-information)
     - [Handle session expiration](#handle-session-expiration)
-      - [Understanding SessionDelegate callbacks](#understanding-sessiondelegate-callbacks)
-      - [Implementation example](#implementation-example)
-      - [Setting up the SessionDelegate](#setting-up-the-sessiondelegate)
     - [Launch the messenger](#launch-the-messenger)
-      - [1. Using the launcher button](#1-using-the-launcher-button)
-      - [2. Opening the conversation channel in presentation mode](#2-opening-the-conversation-channel-in-presentation-mode)
-  - [Push Notifications](#push-notifications)
+- [Push Notifications](#push-notifications)
     - [Register for push notifications](#register-for-push-notifications)
     - [Unregister for push notifications](#unregister-for-push-notifications)
-  - [Advanced features](#advanced-features)
+- [Advanced features](#advanced-features)
     - [Customize launcher mode](#customize-launcher-mode)
     - [Entry Point Advanced Configuration Guide](#entry-point-advanced-configuration-guide)
-      - [Entry Point Types](#entry-point-types)
-      - [Launcher-based Entry Point Configuration](#launcher-based-entry-point-configuration)
-        - [Basic Setup](#basic-setup)
-      - [Direct ViewController Presentation](#direct-viewcontroller-presentation)
-        - [Present Conversation](#present-conversation)
-        - [Present Conversation List](#present-conversation-list)
     - [Update SDK Theme](#update-sdk-theme)
     - [Deauthenticate and clear session](#deauthenticate-and-clear-session)
     - [Passing context object to Agent](#passing-context-object-to-agent)
-    - [Custom Localization (Multi-language Support)](#custom-localization-multi-language-support)
+    - [Custom Localization Multi-language Support](#custom-localization-multi-language-support)
+
+---
 
 ## Requirements
 
@@ -45,6 +34,8 @@ The minimum requirements for AI Agent for iOS are the following.
 
 - Xcode 16.3 or later
 - Swift Package Manager (SPM) support
+
+---
 
 ## Prerequisites
 

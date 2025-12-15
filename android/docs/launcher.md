@@ -39,7 +39,7 @@ The core features of `MessengerLauncher` are:
 You can easily attach the launcher to any `FragmentActivity` screen with simple codes as shown below:
 
 ```kotlin
-val launcher = MessengerLauncher(this, "your-ai-agent-id")
+val launcher = MessengerLauncher(this, "YOUR_AI_AGENT_ID")
 launcher.attach()
 ```
 
@@ -51,7 +51,7 @@ launcher.attach()
 val launcherParams = LauncherSettingsParams(
     entryPoint = MessengerEntryPoint.CONVERSATION
 )
-val launcher = MessengerLauncher(this, "your-ai-agent-id", launcherParams)
+val launcher = MessengerLauncher(this, "YOUR_AI_AGENT_ID", launcherParams)
 launcher.attach()
 ```
 
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Initialize and attach launcher.
-        launcher = MessengerLauncher(this, "your-ai-agent-id")
+        launcher = MessengerLauncher(this, "YOUR_AI_AGENT_ID")
         launcher.attach()
     }
 
@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        launcher = MessengerLauncher(this, "your-ai-agent-id", launcherParams)
+        launcher = MessengerLauncher(this, "YOUR_AI_AGENT_ID", launcherParams)
         launcher.attach()
     }
 

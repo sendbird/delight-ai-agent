@@ -255,10 +255,10 @@ The following table lists the configuration options in `ConversationSettingsPara
 
 | Property                          | Type                  | Default       | Description                                           |
 | --------------------------------- | --------------------- | ------------- | ----------------------------------------------------- |
-| `language`                        | `String`              | System locale | Language setting following IETF BCP 47 format.        |
-| `country`                         | `String?`             | `null`        | Country code following ISO 3166 format.               |
-| `context`                         | `Map<String, String>` | Empty map     | Meta context map for additional AI agent information. |
-| `shouldUseCurrentActiveChannelUrl` | `Boolean`            | `true`        | Whether to use known channel URL if available.        |
+| `language`                        | String              | System locale | Language setting following IETF BCP 47 format.        |
+| `country`                         | String?             | null        | Country code following ISO 3166 format.               |
+| `context`                         | Map<String, String> | Empty map     | Meta context map for additional AI agent information. |
+| `shouldUseCurrentActiveChannelUrl` | Boolean            | true        | Whether to use known channel URL if available.        |
 
 ### ConversationCreateHandler
 
@@ -266,7 +266,7 @@ The following table lists the interface for handling conversation creation resul
 
 | Method     | Parameters                                         | Description                                                 |
 | ---------- | -------------------------------------------------- | ----------------------------------------------------------- |
-| `onResult` | channelUrl: String?, exception: SendbirdException? | Callback method called when conversation creation completes |
+| `onResult` | channelUrl: String?, exception: SendbirdException? | Callback method called when conversation creation completes. |
 
 ### AIAgentMessenger Methods
 
@@ -274,7 +274,7 @@ The following table lists the core conversation management methods in `AIAgentMe
 
 | Method               | Parameters                                                            | Return Type | Description                                          |
 | -------------------- | --------------------------------------------------------------------- | ----------- | ---------------------------------------------------- |
-| `createConversation` | params: ConversationCreateParams, handler: ConversationCreateHandler? | Unit        | Creates a new conversation with specified parameters |
+| `createConversation` | params: ConversationCreateParams, handler: ConversationCreateHandler? | Unit        | Creates a new conversation with specified parameters. |
 
 ### MessengerActivity Methods
 
@@ -282,5 +282,5 @@ The following table lists the static methods for creating intents to launch `Mes
 
 | Method                         | Parameters                                                                                                          | Description                                                                 |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `newIntentForConversation`     | `context: Context`, `aiAgentId: String`, `conversationChannelUrl: String?`, `conversationSettingsParams: ConversationSettingsParams` | Creates intent for opening specific conversation or starting new one. Return type is `intent`. |
-| `newIntentForConversationList` | `context: Context`, `aiAgentId: String`, `conversationSettingsParams: ConversationSettingsParams`                   | Creates intent for displaying conversation list. Return type is `intent`.   |
+| `newIntentForConversation`     | context: Context, aiAgentId: String, conversationChannelUrl: String?, conversationSettingsParams: ConversationSettingsParams | Creates intent for opening specific conversation or starting new one. Return type is `intent`. |
+| `newIntentForConversationList` | context: Context, aiAgentId: String, conversationSettingsParams: ConversationSettingsParams                   | Creates intent for displaying conversation list. Return type is `intent`.   |
