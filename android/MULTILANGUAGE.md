@@ -7,8 +7,8 @@ This guide explains:
 - [Supported languages](#supported-languages)
 - [Default SDK Strings](#default-sdk-strings)
 - [Adding Translations](#adding-translations)
-    - [Open the Translations Editor](#open-the-translations-editor)
-    - [Add a New Language](#add-a-new-language)
+    - [1. Open the Translations Editor](#1-open-the-translations-editor)
+    - [2. Add a New Language](#2-add-a-new-language)
 - [Overriding SDK Strings](#overriding-sdk-strings)
 
 ---
@@ -55,12 +55,12 @@ Use this file as a reference when adding or overriding translations.
 
 To localize your app using Android Studio:
 
-### Open the Translations Editor
+### 1. Open the Translations Editor
 
 * Navigate to `res/values/strings.xml`.
 * Right-click the file or click the 🌐 icon to open the **Translations Editor**.
 
-### Add a New Language
+### 2. Add a New Language
 
 * In the Translations Editor, click the **Globe ➕ (Add Locale)** icon.
 * Select the language (e.g., Russian `ru`, Japanese `ja`, etc.) and click **OK**.
