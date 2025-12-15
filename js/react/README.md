@@ -4,22 +4,22 @@
 
 The **Delight AI agent Messenger React** allows seamless integration of chatbot features into your React application.
 
-- [Delight AI agent Quickstart guide (React)](#delight-ai-agent-quickstart-guide-react)
-  - [Prerequisites](#prerequisites)
-  - [Getting Started](#getting-started)
+This guide explains:
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
     - [Step 1. Install AI Agent SDK](#step-1-install-ai-agent-sdk)
     - [Step 2. Initialize AI Agent SDK](#step-2-initialize-ai-agent-sdk)
-      - [Custom Host Configuration](#custom-host-configuration)
-  - [Component Overview](#component-overview)
+- [Component Overview](#component-overview)
     - [FixedMessenger vs AgentProviderContainer](#fixedmessenger-vs-agentprovidercontainer)
-  - [Running your application](#running-your-application)
+- [Running your application](#running-your-application)
     - [FixedMessenger styles](#fixedmessenger-styles)
     - [Manage user sessions](#manage-user-sessions)
-      - [Session types](#session-types)
-  - [Advanced Features](#advanced-features)
+- [Advanced Features](#advanced-features)
     - [Display messenger without launcher button](#display-messenger-without-launcher-button)
     - [Passing context object to Agent](#passing-context-object-to-agent)
     - [Localization and Language Support](#localization-and-language-support)
+
+***
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ You can find it under the **Channels** > **Messenger** menu on the Delight AI da
 - @sendbird/chat ^4.19.0
 - styled-components >=5.0.0
 
----
+***
 
 ## Getting Started
 
@@ -116,7 +116,7 @@ Similarly, when using `AgentProviderContainer`:
 
 Both properties are optional and only need to be configured if required.
 
----
+***
 
 ## Component Overview
 
@@ -137,7 +137,7 @@ Both properties are optional and only need to be configured if required.
 - Use when you need specific UI layouts or custom components
 - Must be combined with conversation components like `<Conversation />`
 
----
+***
 
 ## Running your application
 
@@ -233,7 +233,7 @@ function App() {
 }
 ```
 
----
+***
 
 ## Advanced Features
 

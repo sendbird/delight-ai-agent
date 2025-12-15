@@ -1,14 +1,26 @@
 # Multi-language support
 
-### Overview
-
 This guide explains how to localize the UI strings used in the **Delight AI agent SDK for JavaScript** to support multiple languages in your web application.
+
+This guide explains:
+- [Overview](#overview)
+    - [Supported languages](#supported-languages)
+- [Setting the language](#setting-the-language)
+- [Customizing strings](#customizing-strings)
+    - [Scenario 1: Customizing strings in supported languages](#scenario-1-customizing-strings-in-supported-languages)
+- [Default SDK strings](#default-sdk-strings)
+- [Implementation examples](#implementation-examples)
+    - [Best practice for initializing with custom strings:](#best-practice-for-initializing-with-custom-strings)
+    - [Switching between languages at runtime:](#switching-between-languages-at-runtime)
+    - [Dynamically loading language files:](#dynamically-loading-language-files)
+
+---
+
+## Overview
 
 The Delight AI agent SDK includes a predefined set of UI string resources — including button labels, error messages, input hints, and system messages.
 
 To support internationalization, you can set the language preference during initialization or update it later using the `updateConfig` method.
-
-***
 
 ### Supported languages
 
@@ -27,9 +39,9 @@ The SDK includes built-in localization support for the following languages:
 
 If your target language is not listed above, you can customize the SDK strings by providing a complete set of string values.
 
-***
+---
 
-### Setting the language
+## Setting the language
 
 You can set the language during SDK initialization:
 
@@ -60,15 +72,15 @@ messenger.updateConfig({
 });
 ```
 
-***
+---
 
-### Customizing strings
+## Customizing strings
 
 There are two scenarios where you might want to customize the strings used in the messenger UI:
 
-#### Scenario 1: Customizing strings in supported languages
+### Scenario 1: Customizing strings in supported languages
 
-You can override specific UI strings in a language that Delight already supports. This is useful when you want to change particular messages or labels to better match your application's terminology or tone.
+You can override specific UI strings in a language that Delight AI agent SDK already supports. This is useful when you want to change particular messages or labels to better match your application's terminology or tone.
 
 ```javascript
 // Example: Customize specific strings in Spanish
@@ -100,7 +112,7 @@ messenger.updateConfig({
 
 #### Scenario 2: Adding support for unsupported languages
 
-For languages not supported by Delight, you must provide a complete set of string values for all UI elements.
+For languages not supported by Delight AI agent SDK, you must provide a complete set of string values for all UI elements.
 
 Refer to the [Default SDK strings](#default-sdk-strings) section below for the full list of required string keys.
 
@@ -138,13 +150,13 @@ messenger.initialize({
 });
 ```
 
-***
+---
 
-### Default SDK strings
+## Default SDK strings
 
 Below is a list of the key string identifiers used in the SDK. You'll need to provide translations for all of these keys when adding support for a new language:
 
-```java
+```javascript
 // Channel - Common
 CHANNEL_FROZEN: 'Channel frozen',
 PLACE_HOLDER__WRONG: 'Something went wrong',
@@ -206,11 +218,11 @@ DATE_FORMAT__CONVERSATION_LIST__LIST_ITEM_TITLE: 'MM/dd/yyyy',
 DATE_FORMAT__CONVERSATION_LIST__LIST_ITEM_TITLE_CAPTION: 'h:mma',
 ```
 
-***
+---
 
-### Implementation examples
+## Implementation examples
 
-#### Best practice for initializing with custom strings:
+### Best practice for initializing with custom strings:
 
 For better code organization, you can define your string sets in separate files:
 
@@ -233,7 +245,7 @@ messenger.initialize({
 });
 ```
 
-#### Switching between languages at runtime:
+### Switching between languages at runtime:
 
 You can easily switch between different languages at runtime, allowing users to change the interface language without refreshing the page:
 
@@ -264,7 +276,7 @@ const switchToSpanish = () => {
 </div>
 ```
 
-#### Dynamically loading language files:
+### Dynamically loading language files:
 
 For better performance, we recommend dynamically loading only the language string set files that your users actually need. This approach reduces the initial bundle size and improves load times:
 

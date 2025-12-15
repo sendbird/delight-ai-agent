@@ -1,12 +1,27 @@
 # Multi-language support
 
-### Overview
+This guide explains how to localize the UI strings used in the **Delight AI agent SDK for React** to support multiple languages in your web application.
+
+This guide explains:
+- [Overview](#overview)
+    - [Supported languages](#supported-languages)
+- [Setting the language](#setting-the-language)
+- [Customizing strings](#customizing-strings)
+    - [Scenario 1: Customizing strings in supported languages](#scenario-1-customizing-strings-in-supported-languages)
+    - [Scenario 2: Adding support for unsupported languages](#scenario-2-adding-support-for-unsupported-languages)
+- [Language switching with React](#language-switching-with-react)
+- [Organizing and loading language files](#organizing-and-loading-language-files)
+    - [Dynamic loading implementation Recommended:](#dynamic-loading-implementation-recommended)
+    - [Alternative: Static import Not recommended for multiple languages:](#alternative-static-import-not-recommended-for-multiple-languages)
+- [Default SDK strings](#default-sdk-strings)
+
+---
+
+## Overview
 
 **Delight AI agent SDK for React** includes a default set of user-facing strings such as button labels, error messages, input hints, and system texts. To support internationalization, you can set the language preference during component initialization or update it later using the `FixedMessenger` props.
 
 The language setting influences both the UI text displayed in the messenger and potentially the AI Agent's responses.
-
-***
 
 ### Supported languages
 
@@ -25,9 +40,9 @@ The SDK currently provides built-in localization for the following languages:
 
 If you need support for a language that is not listed above, you can customize the SDK strings by providing a complete set of string values.
 
-***
+---
 
-### Setting the language
+## Setting the language
 
 You can set the language during component initialization:
 
@@ -46,11 +61,11 @@ function App() {
 }
 ```
 
-***
+---
 
-### Customizing strings
+## Customizing strings
 
-#### Scenario 1: Customizing strings in supported languages
+### Scenario 1: Customizing strings in supported languages
 
 ```tsx
 <FixedMessenger
@@ -65,7 +80,7 @@ function App() {
 />
 ```
 
-#### Scenario 2: Adding support for unsupported languages
+### Scenario 2: Adding support for unsupported languages
 
 ```tsx
 <FixedMessenger
@@ -100,9 +115,9 @@ function App() {
 />
 ```
 
-***
+---
 
-### Language switching with React
+## Language switching with React
 
 ```tsx
 function App() {
@@ -134,9 +149,9 @@ function App() {
 }
 ```
 
-***
+---
 
-### Organizing and loading language files
+## Organizing and loading language files
 
 ```tsx
 // languages/zh.ts
@@ -158,7 +173,7 @@ export default {
 };
 ```
 
-**Dynamic loading implementation (Recommended):**
+### Dynamic loading implementation (Recommended):
 
 ```tsx
 function App() {
@@ -198,7 +213,7 @@ function App() {
 }
 ```
 
-**Alternative: Static import (Not recommended for multiple languages):**
+### Alternative: Static import (Not recommended for multiple languages):
 
 ```tsx
 // Only use this approach if you need just one additional language
@@ -216,8 +231,8 @@ function App() {
 }
 ```
 
-***
+---
 
-### Default SDK strings
+## Default SDK strings
 
-The string keys remain the same as the JavaScript version. Please refer to the [JavaScript version's string keys ](../javascript-cdn/multi-language-support.md#default-sdk-strings)for the complete list.
+The string keys remain the same as the JavaScript version. Please refer to the [JavaScript version's string keys ](../cdn/MULTILANGUAGE.md#default-sdk-strings)for the complete list.

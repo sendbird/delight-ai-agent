@@ -1,40 +1,27 @@
 # Template-Based Layout Component Customization Guide
 
----
+This guide explains how to customize Delight AI agent Messenger’s UI by replacing or hiding layout components using React Context.
 
-## Table of Contents
-
-- [Template-Based Layout Component Customization Guide](#template-based-layout-component-customization-guide)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
+This guide explains:
+- [Overview](#overview)
     - [How Template Components Work](#how-template-components-work)
-  - [Available Layout Components](#available-layout-components)
-  - [Component Hierarchy and Customization](#component-hierarchy-and-customization)
+- [Available Layout Components](#available-layout-components)
+- [Component Hierarchy and Customization](#component-hierarchy-and-customization)
     - [IncomingMessageLayout](#incomingmessagelayout)
-      - [Basic Customization Example](#basic-customization-example)
-      - [Advanced Customization - Hiding Components](#advanced-customization---hiding-components)
     - [OutgoingMessageLayout](#outgoingmessagelayout)
-      - [Customization Example](#customization-example)
     - [SystemMessageLayout](#systemmessagelayout)
-      - [Customization Example](#customization-example-1)
     - [ConversationLayout](#conversationlayout)
-      - [Customization Example](#customization-example-2)
     - [ConversationHeaderLayout](#conversationheaderlayout)
-      - [Customization Example - Updating Title](#customization-example---updating-title)
-      - [Customization Example - Updating Start/End Items](#customization-example---updating-startend-items)
     - [ConversationListHeaderLayout](#conversationlistheaderlayout)
-      - [Customization Example - Updating Title](#customization-example---updating-title-1)
-      - [Customization Example - Updating Start/End Items](#customization-example---updating-startend-items-1)
     - [PlaceholderLayout](#placeholderlayout)
-      - [Customization Example](#customization-example-3)
-  - [Putting It All Together](#putting-it-all-together)
-  - [Best Practices](#best-practices)
+- [Putting It All Together](#putting-it-all-together)
+- [Best Practices](#best-practices)
 
 ---
 
 ## Overview
 
-The Delight AI agent Messenger React SDK provides a powerful template-based layout system that allows for deep customization of UI components while maintaining the core functionality. This system uses a composition pattern where each layout component exposes a template and sub-components that can be individually customized or replaced.
+**Delight AI agent Messenger React SDK** provides a powerful template-based layout system that allows for deep customization of UI components while maintaining the core functionality. This system uses a composition pattern where each layout component exposes a template and sub-components that can be individually customized or replaced.
 
 ### How Template Components Work
 

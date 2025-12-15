@@ -12,22 +12,15 @@ When the launcher is clicked, a user can be led to either their conversation lis
 > **Note**: Whichever conversation mode you choose, if there is no active conversation, a new conversation is automatically created and the user can start a dialogue with your AI agent. This provides seamless user experience without requiring manual conversation setup.
 
 This guide explains:
+- [Start a conversation](#start-a-conversation)
+    - [With Messenger](#with-messenger)
+    - [With custom main component](#with-custom-main-component)
+- [Advanced configuration](#advanced-configuration)
+    - [Context object for personalized conversation](#context-object-for-personalized-conversation)
+    - [Managing messenger lifecycle](#managing-messenger-lifecycle)
+- [API Reference](#api-reference)
 
-* [Conversations](conversations.md#conversations)
-  * [Start a conversation](conversations.md#start-a-conversation)
-    * [With Messenger](conversations.md#with-messenger)
-      * [Launch a conversation](conversations.md#launch-a-conversation)
-      * [Launch a conversation list](conversations.md#launch-a-conversation-list)
-      * [Without Shadow DOM](conversations.md#without-shadowdom)
-      * [Set the launcher layout (position, margin)](conversations.md#set-the-launcher-layout)
-      * [Customize the launcher appearance](conversations.md#customize-the-launcher-appearance)
-    * [With custom main component](conversations.md#with-custom-main-component)
-  * [Advanced configuration](conversations.md#advanced-configuration)
-    * [Context object for personalized conversation](conversations.md#context-object-for-personalized-conversation)
-    * [Managing messenger lifecycle](conversations.md#managing-messenger-lifecycle)
-  * [API Reference](conversations.md#api-reference)
-
-***
+---
 
 ## Start a conversation
 
@@ -153,7 +146,7 @@ The launcher's icon and color can be configured through the [Delight AI dashboar
   <figcaption></figcaption>
 </figure>
 
-***
+---
 
 ### With custom main component
 
@@ -187,7 +180,7 @@ messenger.initialize({
 });
 ```
 
-***
+---
 
 ## Advanced configuration
 
@@ -295,7 +288,7 @@ You can also completely remove the messenger instance using `destroy()`.
 messenger.destroy();
 ```
 
-***
+---
 
 ## API Reference
 
@@ -307,7 +300,10 @@ Loads the AI Agent Messenger module. It returns `Promise<Messenger>`.
 await loadMessenger(config)
 ```
 
-<table><thead><tr><th width="201.9296875">Parameter</th><th width="118.0234375">Type</th><th width="104.63671875">Default</th><th>Description</th></tr></thead><tbody><tr><td><code>useShadowDOM</code></td><td>boolean</td><td>true</td><td>Use Shadow DOM for style encapsulation (set to <code>false</code> to disable)</td></tr><tr><td><code>customMainComponent</code></td><td>function</td><td>-</td><td>Custom main component function for advanced customization</td></tr></tbody></table>
+| Parameter            | Type     | Default | Description                                                               |
+| -------------------- | -------- | ------- | ------------------------------------------------------------------------- |
+| `useShadowDOM`       | boolean  | true    | Use Shadow DOM for style encapsulation (set to `false` to disable)        |
+| `customMainComponent` | function | -       | Custom main component function for advanced customization                 |
 
 ### messenger.initialize()
 
@@ -382,4 +378,7 @@ new messenger.AnonymousSessionInfo()
 
 Parameters for `setPosition()` method:
 
-<table><thead><tr><th width="130.2421875">Parameter</th><th width="264.66796875">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>position</code></td><td>'start-top' | 'start-bottom' | 'end-top' | 'end-bottom'</td><td>Position of the launcher button. (Default: -)</td></tr><tr><td><code>margin</code></td><td>Partial&#x3C;{ top: number; bottom: number; start: number; end: number }></td><td>Margin around the launcher in pixels.  (Default: -)</td></tr></tbody></table>
+| Parameter | Type                                                | Description                                         |
+| --------- | --------------------------------------------------- | --------------------------------------------------- |
+| `position` | 'start-top' \| 'start-bottom' \| 'end-top' \| 'end-bottom' | Position of the launcher button. (Default: -)       |
+| `margin`   | Partial<{ top: number; bottom: number; start: number; end: number }> | Margin around the launcher in pixels. (Default: -) |
