@@ -3,8 +3,6 @@
 In Delight AI agent messenger, AI agent and users can exchange various types of messages to enable rich and interactive conversations, including text, images, files, and rich template-based messages. It allows users to have comprehensive and engaging conversations with AI agents across different use cases.
 
 This guide explains:
-<!-- TOC depthfrom:2 depthto:3 bulletcharacter:- -->
-
 - [Types](#types)
     - [Text Message](#text-message)
     - [Image Message](#image-message)
@@ -15,9 +13,6 @@ This guide explains:
     - [Citation](#citation)
     - [Special notice](#special-notice)
 - [API reference](#api-reference)
-    - [ConversationConfig](#conversationconfig)
-
-<!-- /TOC -->
 
 ---
 

@@ -3,8 +3,6 @@
 This guide explains how to localize the user-facing UI strings in the **Delight AI agent SDK for Android**, enabling support for multiple languages in your application.
 
 This guide explains:
-<!-- TOC depthfrom:2 depthto:3 bulletcharacter:- -->
-
 - [Overview](#overview)
 - [Supported languages](#supported-languages)
 - [Default SDK Strings](#default-sdk-strings)
@@ -12,8 +10,6 @@ This guide explains:
     - [Open the Translations Editor](#open-the-translations-editor)
     - [Add a New Language](#add-a-new-language)
 - [Overriding SDK Strings](#overriding-sdk-strings)
-
-<!-- /TOC -->
 
 ---
 

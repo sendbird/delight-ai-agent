@@ -10,8 +10,6 @@ The launcher's appearance such as an icon, its color and size can be customized 
 </figure>
 
 This guide explains the following features of the launcher:
-<!-- TOC depthfrom:2 depthto:3 bulletcharacter:- -->
-
 - [Key features](#key-features)
     - [How to attach](#how-to-attach)
     - [Start a conversation and customize the entry point](#start-a-conversation-and-customize-the-entry-point)
@@ -24,8 +22,6 @@ This guide explains the following features of the launcher:
     - [More configuration options](#more-configuration-options)
 - [LaunchMode](#launchmode)
 - [API References](#api-references)
-
-<!-- /TOC -->
 
 ---
 

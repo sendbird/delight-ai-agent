@@ -5,8 +5,6 @@
 The **Delight AI agent Messenger** allows seamless integration of chatbot features into your Android application. Follow the steps below to initialize and utilize the SDK effectively.
 
 This guide explains:
-<!-- TOC depthfrom:2 depthto:3 bulletcharacter:- -->
-
 - [Requirements](#requirements)
 - [Prerequisites](#prerequisites)
 - [Getting started](#getting-started)
@@ -22,8 +20,6 @@ This guide explains:
     - [Update SDK theme](#update-sdk-theme)
     - [Deauthenticate and clear session](#deauthenticate-and-clear-session)
     - [Passing context object to Agent](#passing-context-object-to-agent)
-
-<!-- /TOC -->
 
 ## Requirements
 
