@@ -21,7 +21,7 @@ This guide explains the following features of the launcher:
     - [Custom click handler](#custom-click-handler)
     - [More configuration options](#more-configuration-options)
 - [LaunchMode](#launchmode)
-- [API References](#api-references)
+- [API references](#api-references)
 
 ---
 
@@ -308,7 +308,7 @@ val customMargin = LauncherMargin(
 
 ---
 
-## API References
+## API references
 
 | Method Name          | Parameters                 | Description                                                                                                         | Return Type |
 | -------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------- |
