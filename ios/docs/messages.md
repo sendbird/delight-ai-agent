@@ -229,7 +229,7 @@ The following table lists the configuration options that control how the convers
 
 | Property                     | Type | Description                                                   |
 | ---------------------------- | ---- | ------------------------------------------------------------- |
-| `isMessageReceiptStateEnabled` | `Bool` | Turns on and off message read receipts. (Default: `false`) |
+| `isMessageReceiptStateEnabled` | Bool | Turns on and off message read receipts. (Default: `false`) |
 
 ### Message types
 
