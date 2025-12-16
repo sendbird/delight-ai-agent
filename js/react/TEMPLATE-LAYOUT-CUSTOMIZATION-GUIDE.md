@@ -4,9 +4,9 @@ This guide explains how to customize Delight AI agent Messenger’s UI by replac
 
 This guide explains:
 - [Overview](#overview)
-    - [How Template Components Work](#how-template-components-work)
-- [Available Layout Components](#available-layout-components)
-- [Component Hierarchy and Customization](#component-hierarchy-and-customization)
+    - [How template components work](#how-template-components-work)
+- [Available layout components](#available-layout-components)
+- [Component hierarchy and customization](#component-hierarchy-and-customization)
     - [IncomingMessageLayout](#incomingmessagelayout)
     - [OutgoingMessageLayout](#outgoingmessagelayout)
     - [SystemMessageLayout](#systemmessagelayout)
@@ -14,8 +14,8 @@ This guide explains:
     - [ConversationHeaderLayout](#conversationheaderlayout)
     - [ConversationListHeaderLayout](#conversationlistheaderlayout)
     - [PlaceholderLayout](#placeholderlayout)
-- [Putting It All Together](#putting-it-all-together)
-- [Best Practices](#best-practices)
+- [Putting it all together](#putting-it-all-together)
+- [Best practices](#best-practices)
 
 ---
 
@@ -23,7 +23,7 @@ This guide explains:
 
 **Delight AI agent Messenger React SDK** provides a powerful template-based layout system that allows for deep customization of UI components while maintaining the core functionality. This system uses a composition pattern where each layout component exposes a template and sub-components that can be individually customized or replaced.
 
-### How Template Components Work
+### How template components work
 
 Each layout component in the SDK follows a consistent pattern:
 
@@ -40,7 +40,7 @@ The template system uses React Context to inject custom components, allowing you
 
 ---
 
-## Available Layout Components
+## Available layout components
 
 The SDK provides several main layout categories for customization:
 
@@ -55,7 +55,7 @@ The SDK provides several main layout categories for customization:
 
 ---
 
-## Component Hierarchy and Customization
+## Component hierarchy and customization
 
 ### IncomingMessageLayout
 
@@ -77,7 +77,7 @@ IncomingMessageLayout.components = {
 }
 ```
 
-#### Basic Customization Example
+#### Basic customization example
 
 You can customize individual components by providing custom implementations:
 
@@ -128,7 +128,7 @@ export const CustomIncomingMessage = () => {
 };
 ```
 
-#### Advanced Customization - Hiding Components
+#### Advanced customization - hiding components
 
 ```tsx
 // Define an empty component to hide unwanted UI elements
@@ -158,7 +158,7 @@ OutgoingMessageLayout.components = {
 }
 ```
 
-#### Customization Example
+#### Customization example
 
 You can create a custom template to completely control the layout structure:
 
@@ -195,7 +195,7 @@ SystemMessageLayout.components = {
 }
 ```
 
-#### Customization Example
+#### Customization example
 
 ```tsx
 import { SystemMessageLayout, SystemMessageProps } from '@sendbird/ai-agent-messenger-react';
@@ -243,7 +243,7 @@ ConversationLayout.components = {
 }
 ```
 
-#### Customization Example
+#### Customization example
 
 ```tsx
 import { ConversationLayout } from '@sendbird/ai-agent-messenger-react';
@@ -300,7 +300,7 @@ interface ConversationHeaderTemplateProps {
 }
 ```
 
-#### Customization Example - Updating Title
+#### Customization example - updating title
 
 You can customize the title area and adjust title alignment using the default template:
 
@@ -329,7 +329,7 @@ export const CustomConversationHeader = () => {
 };
 ```
 
-#### Customization Example - Updating Start/End Items
+#### Customization example - updating start/end items
 
 You can hide specific buttons or customize the start/end areas:
 
@@ -382,7 +382,7 @@ interface ConversationListHeaderTemplateProps {
 }
 ```
 
-#### Customization Example - Updating Title
+#### Customization example - updating title
 
 ```tsx
 import { ConversationListHeaderLayout } from '@sendbird/ai-agent-messenger-react';
@@ -408,7 +408,7 @@ export const CustomConversationListHeader = () => {
 };
 ```
 
-#### Customization Example - Updating Start/End Items
+#### Customization example - updating start/end items
 
 ```tsx
 import { ConversationListHeaderLayout } from '@sendbird/ai-agent-messenger-react';
@@ -446,7 +446,7 @@ PlaceholderLayout.components = {
 }
 ```
 
-#### Customization Example
+#### Customization example
 
 ```tsx
 import { PlaceholderLayout, PlaceholderLoadingProps, PlaceholderErrorProps } from '@sendbird/ai-agent-messenger-react';
@@ -477,7 +477,7 @@ export const CustomPlaceholders = () => {
 
 ---
 
-## Putting It All Together
+## Putting it all together
 
 After defining your custom components, you need to provide them to the SDK. All layout customizations should be wrapped within `AgentProviderContainer`:
 
@@ -532,7 +532,7 @@ export const MyCustomMessenger = () => {
 
 ---
 
-## Best Practices
+## Best practices
 
 1. **Maintain Prop Compatibility**: When creating custom components, ensure they accept and handle the same props as the default components.
 
