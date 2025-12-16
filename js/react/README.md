@@ -6,30 +6,30 @@ The **Delight AI agent Messenger React** allows seamless integration of chatbot 
 
 This guide explains:
 - [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-    - [Step 1. Install AI Agent SDK](#step-1-install-ai-agent-sdk)
-    - [Step 2. Initialize AI Agent SDK](#step-2-initialize-ai-agent-sdk)
-- [Component Overview](#component-overview)
+- [Getting started](#getting-started)
+    - [Step 1. Install AI agent SDK](#step-1-install-ai-agent-sdk)
+    - [Step 2. Initialize AI agent SDK](#step-2-initialize-ai-agent-sdk)
+- [Component overview](#component-overview)
     - [FixedMessenger vs AgentProviderContainer](#fixedmessenger-vs-agentprovidercontainer)
 - [Running your application](#running-your-application)
     - [FixedMessenger styles](#fixedmessenger-styles)
     - [Manage user sessions](#manage-user-sessions)
-- [Advanced Features](#advanced-features)
+- [Advanced features](#advanced-features)
     - [Display messenger without launcher button](#display-messenger-without-launcher-button)
-    - [Passing context object to Agent](#passing-context-object-to-agent)
-    - [Localization and Language Support](#localization-and-language-support)
+    - [Passing context object to agent](#passing-context-object-to-agent)
+    - [Localization and language support](#localization-and-language-support)
 
 ***
 
 ## Prerequisites
 
-Before you start, you'll need your **Application ID** and **AI Agent ID**.
+Before you start, you'll need your **Application ID** and **AI agent ID**.
 <br><br/>
 You can find it under the **Channels** > **Messenger** menu on the Delight AI dashboard.
 
 ![ai-agent-app-id-agent-id](https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/aa-messenger-basic-information.png)
 
-**System Requirements:**
+**System requirements:**
 
 - React >=18.0.0
 - React DOM >=18.0.0
@@ -38,11 +38,11 @@ You can find it under the **Channels** > **Messenger** menu on the Delight AI da
 
 ***
 
-## Getting Started
+## Getting started
 
-Quickly install and initialize the AI Agent SDK by following the steps below.
+Quickly install and initialize the AI agent SDK by following the steps below.
 
-### Step 1. Install AI Agent SDK
+### Step 1. Install AI agent SDK
 
 Install the package with its peer dependencies using npm or yarn:
 
@@ -54,7 +54,7 @@ yarn add @sendbird/ai-agent-messenger-react @sendbird/chat styled-components
 
 > **Note:** Modern npm versions automatically install peer dependencies, but explicitly installing them ensures compatibility and avoids potential version conflicts.
 
-### Step 2. Initialize AI Agent SDK
+### Step 2. Initialize AI agent SDK
 
 The React SDK provides two main approaches for integration:
 
@@ -141,7 +141,7 @@ Both properties are optional and only need to be configured if required.
 
 ## Running your application
 
-Now that you have installed and initialized the AI Agent SDK, follow the steps below to run your application.
+Now that you have installed and initialized the AI agent SDK, follow the steps below to run your application.
 
 To launch and display the messenger, implement the code below:
 
@@ -177,11 +177,11 @@ function App() {
 
 ### Manage user sessions
 
-The SDK supports two types of user sessions: **Manual Session** for authenticated users and **Anonymous Session** for temporary users.
+The SDK supports two types of user sessions: **Manual session** for authenticated users and **Anonymous session** for temporary users.
 
 #### Session types
 
-**1. Manual Session (ManualSessionInfo):**
+**1. Manual session (ManualSessionInfo):**
 Use this when you have an authenticated user with a specific user ID and session token.
 
 ```tsx
@@ -210,7 +210,7 @@ import { ManualSessionInfo } from '@sendbird/ai-agent-messenger-react';
 />
 ```
 
-**2. Anonymous Session (AnonymousSessionInfo):**
+**2. Anonymous session (AnonymousSessionInfo):**
 Use this when you don't have user authentication or want to allow guest access. The server will automatically create a temporary user.
 
 ```tsx
@@ -257,9 +257,9 @@ function App() {
 }
 ```
 
-### Passing context object to Agent
+### Passing context object to agent
 
-You can predefine customer-specific information such as country, language, or other custom context data to guide the AI Agent in providing faster and more accurate responses.
+You can predefine customer-specific information such as country, language, or other custom context data to guide the AI agent in providing faster and more accurate responses.
 
 This allows for a more personalized and context-aware interaction experience.
 
@@ -274,7 +274,7 @@ This allows for a more personalized and context-aware interaction experience.
   language="en-US"
   // Country code setting (ISO 3166 format)
   countryCode="US"
-  // Context object for the AI Agent
+  // Context object for the AI agent
   context={{
     userPreference: 'technical',
     customerTier: 'premium',
@@ -282,7 +282,7 @@ This allows for a more personalized and context-aware interaction experience.
 />
 ```
 
-### Localization and Language Support
+### Localization and language support
 
 The SDK supports multiple languages and allows you to customize UI strings. You can:
 
