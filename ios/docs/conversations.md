@@ -284,9 +284,9 @@ AIAgentMessenger.createConversation(
 
 | Method                   | Parameters                         | Description                          | Usage case                                                      |
 | ------------------------ | ---------------------------------- | ------------------------------------ | ---------------------------------------------------------------- |
-| `presentConversation`    | `aiAgentId`, `channelURL?`, `paramsBuilder?` | Presents a conversation screen.      | Use when you want to show a specific or new conversation.       |
-| `presentConversationList` | `aiAgentId`, `paramsBuilder?`      | Presents the conversation list screen. | Use when you want to show all conversations to let user choose. |
-| `attachLauncher`         | `aiAgentId`, `channelURL?`, `paramsBuilder?` | Attaches the launcher button to screen. | Use when you want a persistent floating button.                 |
+| `presentConversation`    | aiAgentId, channelURL?, paramsBuilder? | Presents a conversation screen.      | Use when you want to show a specific or new conversation.       |
+| `presentConversationList` | aiAgentId, paramsBuilder?      | Presents the conversation list screen. | Use when you want to show all conversations to let user choose. |
+| `attachLauncher`         | aiAgentId, channelURL?, paramsBuilder? | Attaches the launcher button to screen. | Use when you want a persistent floating button.                 |
 
 #### Full code for integration
 
@@ -445,11 +445,11 @@ Configuration parameters for conversation and conversation list screens.
 
 | Property            | Type                      | Description                              | Default     |
 | ------------------- | ------------------------- | ---------------------------------------- | ----------- |
-| `parent`            | `UIViewController?`       | Parent view controller for presentation. | `nil`       |
-| `presentationStyle` | `UIModalPresentationStyle` | Modal presentation style.                | `.fullScreen` |
-| `language`          | `String?`                 | Language code (IETF BCP 47).             | `nil`       |
-| `countryCode`       | `String?`                 | Country code (ISO 3166).                 | `nil`       |
-| `context`           | `[String: String]`        | Additional metadata for AI agent.        | `[:]`       |
+| `parent`            | UIViewController?       | Parent view controller for presentation. | nil       |
+| `presentationStyle` | UIModalPresentationStyle | Modal presentation style.                | .fullScreen |
+| `language`          | String?                 | Language code (IETF BCP 47).             | nil       |
+| `countryCode`       | String?                 | Country code (ISO 3166).                 | nil       |
+| `context`           | \[String: String]        | Additional metadata for AI agent.        | \[:]       |
 
 ### ConversationCreateParams
 
