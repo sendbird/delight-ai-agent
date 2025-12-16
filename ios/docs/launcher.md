@@ -20,7 +20,7 @@ This guide explains the following features of the launcher:
     - [Advanced](#advanced)
     - [Remove the launcher](#remove-the-launcher)
     - [More configuration options](#more-configuration-options)
-- [API References](#api-references)
+- [API references](#api-references)
 
 ---
 
@@ -488,7 +488,7 @@ let updatedMargin = margin.update(
 
 ---
 
-## API References
+## API references
 
 ### AIAgentMessenger Launcher Methods
 
