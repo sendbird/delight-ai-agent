@@ -243,11 +243,11 @@ The following table lists the configuration options in `ConversationCreateParams
 
 | Property                          | Type                   | Default       | Description                                           |
 | --------------------------------- | ---------------------- | ------------- | ----------------------------------------------------- |
-| `aiAgentId`                       | `String`               | Required      | AI agent identifier for conversation target.          |
-| `language`                        | `String`               | System locale | Language setting following IETF BCP 47 format.        |
-| `country`                         | `String?`              | `null`        | Country code following ISO 3166 format.               |
-| `context`                         | `Map<String, String>`  | Empty map     | Meta context map for additional AI agent information. |
-| `shouldUseCurrentActiveChannelUrl` | `Boolean`             | `true`        | Whether to use known channel URL if available.        |
+| `aiAgentId`                       | String               | Required      | AI agent identifier for conversation target.          |
+| `language`                        | String               | System locale | Language setting following IETF BCP 47 format.        |
+| `country`                         | String?              | null        | Country code following ISO 3166 format.               |
+| `context`                         | Map<String, String>  | Empty map     | Meta context map for additional AI agent information. |
+| `shouldUseCurrentActiveChannelUrl` | Boolean             | true        | Whether to use known channel URL if available.        |
 
 ### ConversationSettingsParams
 
