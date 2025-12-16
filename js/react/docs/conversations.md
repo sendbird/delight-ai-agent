@@ -18,7 +18,7 @@ This guide explains:
 - [Advanced configuration](#advanced-configuration)
     - [Opening a specific conversation with channel URL](#opening-a-specific-conversation-with-channel-url)
     - [Start a conversation in multiple conversation mode](#start-a-conversation-in-multiple-conversation-mode)
-- [API Reference](#api-reference)
+- [API references](#api-references)
 
 ---
 
@@ -279,7 +279,7 @@ function CreateConversationButton() {
 
 ---
 
-## API Reference
+## API references
 
 ### FixedMessenger Props
 
