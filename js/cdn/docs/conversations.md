@@ -119,7 +119,7 @@ messenger.setPosition({
 });
 ```
 
-* Position
+- Position
 
 | Position         | Description                                 |
 | ---------------- | ------------------------------------------- |
@@ -128,7 +128,7 @@ messenger.setPosition({
 | `'end-top'`      | Top-right corner of the screen              |
 | `'end-bottom'`   | Bottom-right corner of the screen (default) |
 
-* Margin
+- Margin
 
 | Property | Type   | Default | Description                                        |
 | -------- | ------ | ------- | -------------------------------------------------- |
@@ -154,10 +154,10 @@ For advanced use cases where you need direct control over the conversation view 
 
 This approach is recommended when:
 
-* You want to embed the conversation in a specific part of your UI.
-* You need custom navigation or layout control.
-* You want to build a full-page conversation experience.
-* You need to open a specific conversation programmatically with its `channelUrl`.
+- You want to embed the conversation in a specific part of your UI.
+- You need custom navigation or layout control.
+- You want to build a full-page conversation experience.
+- You need to open a specific conversation programmatically with its `channelUrl`.
 
 The following snippet demonstrates how to load the messenger with a custom main component that renders `AgentProviderContainer` and a `Conversation` view.
 
@@ -329,7 +329,7 @@ messenger.initialize(config)
 
 ### Messenger methods
 
-* Lifecycle methods
+#### Lifecycle methods
 
 | Method      | Parameters | Description                              |
 | ----------- | ---------- | ---------------------------------------- |
@@ -337,7 +337,7 @@ messenger.initialize(config)
 | `close()`   | -          | Close the messenger                      |
 | `destroy()` | -          | Completely remove the messenger instance |
 
-* Configuration methods
+#### Configuration methods
 
 | Method                       | Parameters                                         | Description                       |
 | ---------------------------- | -------------------------------------------------- | --------------------------------- |
@@ -345,7 +345,7 @@ messenger.initialize(config)
 | `updateUserSession(session)` | session: ManualSessionInfo \| AnonymousSessionInfo | Update user session information   |
 | `setPosition(params)`        | params: { position?, margin? }                     | Set launcher position and margins |
 
-* Session methods
+#### Session methods
 
 | Method             | Description              |
 | ------------------ | ------------------------ |
@@ -353,7 +353,7 @@ messenger.initialize(config)
 
 ### Session info classes
 
-* ManualSessionInfo
+#### ManualSessionInfo
 
 ```javascript
 new messenger.ManualSessionInfo({
@@ -368,7 +368,7 @@ new messenger.ManualSessionInfo({
 })
 ```
 
-* AnonymousSessionInfo
+#### AnonymousSessionInfo
 
 ```javascript
 new messenger.AnonymousSessionInfo()
