@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.5.1 (Dec 5, 2025) with Chat SDK `v4.32.0`
+- Fixed an issue where events in Markdown syntax were not working properly.
+
+---
+
 ## v1.5.0 (Dec 3, 2025) with Chat SDK `v4.32.0`
 
 ### Features
