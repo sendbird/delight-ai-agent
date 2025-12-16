@@ -1,6 +1,6 @@
 # Conversations
 
-In Delight AI agent, a conversation refers to a channel where an AI Agent communicates with a user. Depending on your service requirements, you can allow users to maintain a single active conversation or multiple. Delight AI agent supports two different conversation modes: Single active conversation and Multiple active conversation mode, which is the default.
+In Delight AI agent, a conversation refers to a channel where an AI agent communicates with a user. Depending on your service requirements, you can allow users to maintain a single active conversation or multiple. Delight AI agent supports two different conversation modes: Single active conversation and Multiple active conversation mode, which is the default.
 
 When the launcher is clicked, a user can be led to either their conversation list or a conversation depending on your choice of the conversation mode.
 
@@ -18,7 +18,7 @@ This guide explains:
 - [Advanced configuration](#advanced-configuration)
     - [Context object for personalized conversation](#context-object-for-personalized-conversation)
     - [Managing messenger lifecycle](#managing-messenger-lifecycle)
-- [API Reference](#api-reference)
+- [API references](#api-references)
 
 ---
 
@@ -290,7 +290,7 @@ messenger.destroy();
 
 ---
 
-## API Reference
+## API references
 
 ### loadMessenger()
 
@@ -327,9 +327,9 @@ messenger.initialize(config)
 | `stringSet`       | Partial                                   | -                  | Localization string set for the messenger                              |
 | `logLevel`        | LogLevel                                  | -                  | Log level for the AI agent client                                      |
 
-### Messenger Methods
+### Messenger methods
 
-* Lifecycle Methods
+* Lifecycle methods
 
 | Method      | Parameters | Description                              |
 | ----------- | ---------- | ---------------------------------------- |
@@ -337,7 +337,7 @@ messenger.initialize(config)
 | `close()`   | -          | Close the messenger                      |
 | `destroy()` | -          | Completely remove the messenger instance |
 
-* Configuration Methods
+* Configuration methods
 
 | Method                       | Parameters                                         | Description                       |
 | ---------------------------- | -------------------------------------------------- | --------------------------------- |
@@ -345,13 +345,13 @@ messenger.initialize(config)
 | `updateUserSession(session)` | session: ManualSessionInfo \| AnonymousSessionInfo | Update user session information   |
 | `setPosition(params)`        | params: { position?, margin? }                     | Set launcher position and margins |
 
-* Session Methods
+* Session methods
 
 | Method             | Description              |
 | ------------------ | ------------------------ |
 | `deauthenticate()` | Log out the current user |
 
-### Session Info Classes
+### Session info classes
 
 * ManualSessionInfo
 
