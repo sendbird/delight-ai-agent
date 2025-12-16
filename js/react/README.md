@@ -19,7 +19,7 @@ This guide explains:
     - [Passing context object to agent](#passing-context-object-to-agent)
     - [Localization and language support](#localization-and-language-support)
 
-***
+---
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ You can find it under the **Channels** > **Messenger** menu on the Delight AI da
 - @sendbird/chat ^4.19.0
 - styled-components >=5.0.0
 
-***
+---
 
 ## Getting started
 
@@ -58,7 +58,7 @@ yarn add @sendbird/ai-agent-messenger-react @sendbird/chat styled-components
 
 The React SDK provides two main approaches for integration:
 
-**Option 1: FixedMessenger (Recommended for quick setup)**
+**Option 1: FixedMessenger (recommended for quick setup)**
 
 FixedMessenger provides a predefined UI toolkit with launcher and messenger at fixed position (bottom-right):
 
@@ -71,7 +71,7 @@ function App() {
 }
 ```
 
-**Option 2: AgentProviderContainer (For custom UI implementations)**
+**Option 2: AgentProviderContainer (for custom UI implementations)**
 
 AgentProviderContainer allows for custom UI implementations and component-level integration:
 
@@ -88,7 +88,7 @@ function App() {
 }
 ```
 
-#### Custom Host Configuration
+#### Custom host configuration
 
 If needed, you can specify custom API and WebSocket hosts:
 
@@ -116,9 +116,9 @@ Similarly, when using `AgentProviderContainer`:
 
 Both properties are optional and only need to be configured if required.
 
-***
+---
 
-## Component Overview
+## Component overview
 
 ### FixedMessenger vs AgentProviderContainer
 
@@ -137,7 +137,7 @@ Both properties are optional and only need to be configured if required.
 - Use when you need specific UI layouts or custom components
 - Must be combined with conversation components like `<Conversation />`
 
-***
+---
 
 ## Running your application
 
@@ -233,9 +233,9 @@ function App() {
 }
 ```
 
-***
+---
 
-## Advanced Features
+## Advanced features
 
 The following are available advanced features.
 
