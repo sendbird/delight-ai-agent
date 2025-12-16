@@ -12,7 +12,7 @@ This guide explains:
     - [Read receipt](#read-receipt)
     - [Citation](#citation)
     - [Special notice](#special-notice)
-- [API reference](#api-reference)
+- [API references](#api-references)
 
 ---
 
@@ -221,7 +221,7 @@ Special notices are configured through Delight AI dashboard and automatically di
 
 ---
 
-## API reference
+## API references
 
 ### SBAConfig.Conversation.List
 
