@@ -4,7 +4,7 @@
 
 The launcher's appearance such as an icon, its color and size can be customized via the Delight AI dashboard as shown below.
 
-<img width="441" height="737" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-launcher2.png" />
+<img width="441" height="737" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-launcher.png" />
 
 This guide explains the following features of the launcher:
 

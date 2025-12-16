@@ -51,7 +51,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 - Use case: Sharing visual content.
 - Display: Optimized image rendering with proper scaling.
 
-<img width="362" height="641" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-image-message2.png" />
+<img width="362" height="641" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-image-message.png" />
 
 >__Note__: However, once handed off to a human agent, users can send image files in any format.
 
@@ -63,7 +63,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 - Use case: Document sharing and file-based communication.
 - Display: File preview with download capabilities.
 
-<img width="363" height="645" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-file-message2.png" />
+<img width="363" height="645" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-file-message.png" />
 
 ### Rich Message
 
@@ -77,7 +77,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 - Use case: Action-oriented user interactions.
 - Configuration: Available through dashboard template configuration.
 
-<img width="363" height="641" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-cta2.png" />
+<img width="363" height="641" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-cta.png" />
 
 #### Carousel
 
@@ -87,7 +87,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 - Content: Multiple items with individual interactions.
 - Use case: Product showcases, option selection, content browsing.
 
-<img width="361" height="641" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-carousel2.png" />
+<img width="361" height="641" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-carousel.png" />
 
 #### Suggested replies
 
@@ -97,7 +97,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 - Use case: Streamlined user interactions and faster response times.
 - Display: Accessible quick reply buttons.
 
-<img width="360" height="639" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-suggested-replies2.png" />
+<img width="360" height="639" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-suggested-replies.png" />
 
 #### CSAT Message
 
@@ -107,7 +107,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 - Components: Rating systems and feedback collection.
 - Use case: Service quality assessment and user experience evaluation.
 
-<img width="361" height="642" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-csat2.png" />
+<img width="361" height="642" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-csat.png" />
 
 #### Product List
 
@@ -117,7 +117,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 - Content: Product information and details.
 - Use case: E-commerce integration, product showcases, inventory display.
 
-<img width="360" height="639" alt="cascade" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-product-list2.png" />
+<img width="360" height="639" alt="cascade" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-product-list.png" />
 
 ---
 
@@ -146,7 +146,7 @@ AIAgentMessenger.config.conversation.list.enableMessageReceiptState = true
 - Configuration: Requires dashboard configuration to be displayed.
 - Activation settings: Adjustable through dashboard configuration values.
 
-<img width="359" height="643" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-citation2.png" />
+<img width="359" height="643" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-citation.png" />
 
 ### Special notice
 
@@ -156,7 +156,7 @@ AIAgentMessenger.config.conversation.list.enableMessageReceiptState = true
 - Behavior: Automatically disappears when a conversation starts.
 - Configuration: Available through dashboard configuration.
 
-<img width="359" height="799" alt="special_notice" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-special-notice2.png" />
+<img width="359" height="799" alt="special_notice" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-special-notice.png" />
 
 ---
 
