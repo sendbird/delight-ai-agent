@@ -12,7 +12,7 @@ This guide explains:
     - [Read receipt](#read-receipt)
     - [Citation](#citation)
     - [Special notice](#special-notice)
-- [API reference](#api-reference)
+- [API references](#api-references)
 
 ---
 
@@ -179,7 +179,7 @@ AIAgentMessenger.config.conversation.list.enableMessageReceiptState = true
 
 ---
 
-## API reference
+## API references
 
 The following table provides comprehensive API reference information for message-related functionality:
 
