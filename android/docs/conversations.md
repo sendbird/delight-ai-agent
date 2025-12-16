@@ -19,7 +19,7 @@ This guide explains:
     - [Context object for personalized conversation](#context-object-for-personalized-conversation)
     - [Opening a specific conversation with channel URL](#opening-a-specific-conversation-with-channel-url)
     - [Start a conversation in multiple conversation mode](#start-a-conversation-in-multiple-conversation-mode)
-- [API Reference](#api-reference)
+- [API references](#api-references)
 
 ---
 
@@ -235,7 +235,7 @@ AIAgentMessenger.createConversation(params) { channelUrl, error ->
 
 ---
 
-## API Reference
+## API references
 
 ### ConversationCreateParams
 
