@@ -1,6 +1,6 @@
-# Custom Localization Guide (Multi-language Support)
+# Multi-language support
 
-This guide walks you through adding a `Localizable.strings` file to your Xcode project and configuring it to support multiple languages such as English and Bangla.
+This guide walks you through adding a `Localizable.strings` file to your Xcode project and configuring it to support multiple languages.
 
 ---
 

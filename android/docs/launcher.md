@@ -4,21 +4,24 @@
 
 The launcher's appearance such as an icon, its color and size can be customized via the Delight AI dashboard as shown below.
 
-<img width="441" height="737" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-launcher2.png" />
+<figure>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-launcher2.png" alt="" width="375">
+  <figcaption></figcaption>
+</figure>
 
 This guide explains the following features of the launcher:
-
 - [Key features](#key-features)
     - [How to attach](#how-to-attach)
     - [Start a conversation and customize the entry point](#start-a-conversation-and-customize-the-entry-point)
     - [Set the launcher position](#set-the-launcher-position)
-    - [Customize the launcher appearance](#customize-the-launchers-appearance)
+    - [Customize the launcher's appearance](#customize-the-launchers-appearance)
 - [Usage](#usage)
     - [Basic](#basic)
     - [Advanced](#advanced)
     - [Custom click handler](#custom-click-handler)
     - [More configuration options](#more-configuration-options)
-- [API reference](#api-references)
+- [LaunchMode](#launchmode)
+- [API references](#api-references)
 
 ---
 
@@ -26,17 +29,17 @@ This guide explains the following features of the launcher:
 
 The core features of `MessengerLauncher` are:
 
-- [Automatic Attachment](#how-to-attach)
-- [Start a conversation and customize the entry point](#start-a-conversation-and-customize-the-entry-point)
-- [Set the launcher position](#set-the-launcher-position)
-- [Customize the launcher appearance](#customize-the-launchers-appearance)
+* [Automatic Attachment](launcher.md#how-to-attach)
+* [Start a conversation and customize the entry point](launcher.md#start-a-conversation-and-customize-the-entry-point)
+* [Set the launcher position](launcher.md#set-the-launcher-position)
+* [Customize the launcher appearance](launcher.md#customize-the-launchers-appearance)
 
 ### How to attach
 
 You can easily attach the launcher to any `FragmentActivity` screen with simple codes as shown below:
 
 ```kotlin
-val launcher = MessengerLauncher(this, "your-ai-agent-id")
+val launcher = MessengerLauncher(this, "YOUR_AI_AGENT_ID")
 launcher.attach()
 ```
 
@@ -48,11 +51,11 @@ launcher.attach()
 val launcherParams = LauncherSettingsParams(
     entryPoint = MessengerEntryPoint.CONVERSATION
 )
-val launcher = MessengerLauncher(this, "your-ai-agent-id", launcherParams)
+val launcher = MessengerLauncher(this, "YOUR_AI_AGENT_ID", launcherParams)
 launcher.attach()
 ```
 
-If you wish to display a conversation list first when the user clicks on the launcher, set the `entryPoint` to `CONVERSATION_LIST`. 
+If you wish to display a conversation list first when the user clicks on the launcher, set the `entryPoint` to `CONVERSATION_LIST`.
 
 ```kotlin
 // Direct conversation entry.
@@ -80,10 +83,12 @@ val launcherParams = LauncherSettingsParams(layoutParams = layoutParams)
 
 ### Customize the launcher's appearance
 
-Launcher appearance, such as its icon and color, can be configured through [Delight AI dashboard](https://dashboard.delight.ai) - no code changes required.
-Simply go to **[Build > Channels > Messenger](https://dashboard.delight.ai/ai-agent/{application-id}/channels/messenger/?active_tab=Appearance)** in the dashboard and click on the **Appearance** tab to customize your launcher.
+Launcher appearance, such as its icon and color, can be configured through [Delight AI dashboard](https://dashboard.delight.ai) - no code changes required. Simply go to [**Build > Channels > Messenger**](https://dashboard.delight.ai/ai-agent/%7Bapplication-id%7D/channels/messenger/?active_tab=Appearance) in the dashboard and click on the **Appearance** tab to customize your launcher.
 
-<img width="821" height="909" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-messenger-appearance.png">
+<figure>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-messenger-appearance.png" alt="" width="375">
+  <figcaption></figcaption>
+</figure>
 
 ---
 
@@ -104,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Initialize and attach launcher.
-        launcher = MessengerLauncher(this, "your-ai-agent-id")
+        launcher = MessengerLauncher(this, "YOUR_AI_AGENT_ID")
         launcher.attach()
     }
 
@@ -117,11 +122,11 @@ class MainActivity : AppCompatActivity() {
 
 ### Advanced
 
-Once the basic setup is complete, you can move onto customizing the launcher position and entry point. 
+Once the basic setup is complete, you can move onto customizing the launcher position and entry point.
 
 The following snippet demonstrates how to customize your launcher using all the configuration options together, including its position, entry mode, language, and context metadata.
 
->__Note__: To see the full list of parameters, go to the [More configuration options](#more-configuration-options) section.
+> **Note**: To see the full list of parameters, go to the [More configuration options](launcher.md#more-configuration-options) section.
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
@@ -148,7 +153,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        launcher = MessengerLauncher(this, "your-ai-agent-id", launcherParams)
+        launcher = MessengerLauncher(this, "YOUR_AI_AGENT_ID", launcherParams)
         launcher.attach()
     }
 
@@ -181,14 +186,14 @@ This section describes how to configure the parameters and enums that control la
 
 The following table lists the configuration options in `LauncherSettingsParams`, which can be used when initializing the messenger launcher.
 
-| Property | Type | Description | 
-|----------|------|-------------|
-| `entryPoint` | `MessengerEntryPoint` | Determines which screen to show first when the launcher is clicked. Acceptable values are `CONVERSATION` and `CONVERSATION_LIST`. (Default: `CONVERSATION`) |
-| `layoutParams` | `LauncherLayoutParams` | Configures the layout of the launcher, such as its margin and mode.  |
-| `language` | `String` | Sets the language spoken by the user in conversations, in IETF BCP 47 format. (Default: Device language) |
-| `country` | `String?` | Sets the user's country code in ISO 3166 format. |             |
-| `context` | `Map<String, String>` | Contains an additional metadata on the user for more personalized support by AI agent. (Default: empty)    |
-| `shouldUseCurrentActiveChannelUrl` | `Boolean` | Determines whether to use a known channel URL when opening a conversation. (Default: `true`)|
+| Property                         | Type                    | Description                                                                                                                                       |
+| -------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `entryPoint`                     | `MessengerEntryPoint`   | Determines which screen to show first when the launcher is clicked. Acceptable values are `CONVERSATION` and `CONVERSATION_LIST`. (Default: `CONVERSATION`) |
+| `layoutParams`                   | `LauncherLayoutParams`  | Configures the layout of the launcher, such as its margin and mode.                                                                               |
+| `language`                       | `String`                | Sets the language spoken by the user in conversations, in IETF BCP 47 format. (Default: Device language)                                         |
+| `country`                        | `String?`               | Sets the user's country code in ISO 3166 format.                                                                                                  |
+| `context`                        | `Map<String, String>`   | Contains additional metadata on the user for more personalized support by AI agent. (Default: empty)                                             |
+| `shouldUseCurrentActiveChannelUrl` | `Boolean`             | Determines whether to use a known channel URL when opening a conversation. (Default: `true`)                                                      |
 
 ```kotlin
 val params = LauncherSettingsParams(
@@ -206,12 +211,12 @@ val params = LauncherSettingsParams(
 
 #### MessengerEntryPoint
 
-The following table lists the configuration options in `MessengerEntryPoint`, which can be used when launching the messenger. 
+The following table lists the configuration options in `MessengerEntryPoint`, which can be used when launching the messenger.
 
-| Value | Description |
-|-------|-------------|
-| `CONVERSATION` | Opens a conversation directly after a click on the launcher. |
-| `CONVERSATION_LIST` | Shows the user's conversation list first after a click on the launcher. |
+| Value               | Description                                                   |
+| ------------------- | ------------------------------------------------------------- |
+| `CONVERSATION`      | Opens a conversation directly after a click on the launcher.  |
+| `CONVERSATION_LIST` | Shows the user's conversation list first after a click on the launcher.|
 
 ```kotlin
 // Launch directly into conversation.
@@ -225,11 +230,11 @@ MessengerEntryPoint.CONVERSATION_LIST
 
 The following table lists the configuration options in `LauncherLayoutParams`, which can be used when setting the visual layout and positioning of the launcher.
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `location` | [`LauncherLocation`](#launcherlocation) | Sets the position of the launcher in a screen. |
-| `margin` | [`LauncherMargin`](#launchermargin) | Sets its margins from edges. |
-| `launchMode` | [`LaunchMode`](#launchmode) | Sets the messenger behavior following the launcher click. Acceptable values are `EXPANDED` and `ANCHORED`.  |
+| Property     | Type                                               | Description                                                                                                |
+| ------------ | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `location`   | [`LauncherLocation`](launcher.md#launcherlocation) | Sets the position of the launcher in a screen.                                                             |
+| `margin`     | [`LauncherMargin`](launcher.md#launchermargin)     | Sets its margins from edges.                                                                               |
+| `launchMode` | [`LaunchMode`](launcher.md#launchmode)             | Sets the messenger behavior following the launcher click. Acceptable values are `EXPANDED` and `ANCHORED`. |
 
 ```kotlin
 val layoutParams = LauncherLayoutParams(
@@ -243,12 +248,12 @@ val layoutParams = LauncherLayoutParams(
 
 The following table lists the configuration options in `LauncherLocation`, which can be used when setting where the launcher appears on the screen.
 
-| Value | Description |
-|-------|-------------|
-| `TOP_START` | Top-left corner of screen. |
-| `TOP_END` | Top-right corner of screen. |
-| `BOTTOM_START` | Bottom-left corner of screen. |
-| `BOTTOM_END` | Bottom-right corner of screen. |
+| Value           | Description                 |
+| --------------- | --------------------------- |
+| `TOP_START`     | Top-left corner of screen.  |
+| `TOP_END`       | Top-right corner of screen. |
+| `BOTTOM_START`  | Bottom-left corner of screen. |
+| `BOTTOM_END`    | Bottom-right corner of screen. |
 
 ```kotlin
 // Position at bottom-right corner
@@ -258,14 +263,16 @@ LauncherLocation.BOTTOM_END
 LauncherLocation.TOP_START
 ```
 
+---
+
 ## LaunchMode
 
 The following table lists the configuration options in `LaunchMode`, which can be used when determining how the conversation screen appears.
 
-| Value | Description |
-|-------|-------------|
-| `EXPANDED` | The messenger opens full-screen. |
-| `ANCHORED` | The messenger opens like an anchored box near the launcher. |
+| Value      | Description                                                   |
+| ---------- | ------------------------------------------------------------- |
+| `EXPANDED` | The messenger opens full-screen.                              |
+| `ANCHORED` | The messenger opens like an anchored box near the launcher.   |
 
 ```kotlin
 // Full screen mode
@@ -279,12 +286,12 @@ LaunchMode.ANCHORED
 
 The following table lists the configuration options in `LauncherMargin`, which can be used to set the spacing around the launcher.
 
-| Property | Type | Description              |
-|----------|------|--------------------------|
-| `start` | `Int` | Start margin in `dp` units. |
-| `top` | `Int` | Top margin in `dp` units.   |
-| `end` | `Int` | End margin in `dp` units.     |
-| `bottom` | `Int` | Bottom margin in `dp` units.  |
+| Property | Type  | Description                  |
+| -------- | ----- | ---------------------------- |
+| `start`  | `Int` | Start margin in `dp` units.  |
+| `top`    | `Int` | Top margin in `dp` units.    |
+| `end`    | `Int` | End margin in `dp` units.    |
+| `bottom` | `Int` | Bottom margin in `dp` units. |
 
 ```kotlin
 // 16dp margins on all sides.
@@ -301,12 +308,12 @@ val customMargin = LauncherMargin(
 
 ---
 
-## API References
+## API references
 
-| Method Name | Parameters | Description | Return Type |
-|-------------|------------|-------------|-------------|
-| `attach` | None | Attaches the `MessengerLauncher` to the current `FragmentActivity`. This must be called from the main thread. | `Unit` |
-| `detach` | None | Removes the launcher from the current activity. This can be called multiple times.| `Unit` |
-| `openConversation` | `channelUrl: String? = null` | Opens a specific conversation with its channel URL. If `channelUrl` is null, it opens the default channel. | `Unit` |
-| `openConversationList` | None | Opens the conversation list view, showing all user conversations. | `Unit` |
-| `closeMessenger` | None | Closes any open messenger screens and returns to the previous screen. | `Unit` |
+| Method Name          | Parameters                 | Description                                                                                                         | Return Type |
+| -------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `attach`             | None                       | Attaches the `MessengerLauncher` to the current `FragmentActivity`. This must be called from the main thread.                 | `Unit`      |
+| `detach`             | None                       | Removes the launcher from the current activity. This can be called multiple times.                                        | `Unit`      |
+| `openConversation`   | `channelUrl: String? = null` | Opens a specific conversation with its channel URL. If `channelUrl` is null, it opens the default channel.          | `Unit`      |
+| `openConversationList` | None                     | Opens the conversation list view, showing all user conversations.                                                   | `Unit`      |
+| `closeMessenger`     | None                       | Closes any open messenger screens and returns to the previous screen.                                               | `Unit`      |

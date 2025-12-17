@@ -4,6 +4,7 @@
 
 The **Delight AI agent Messenger** allows seamless integration of chatbot features into your Web. Follow the steps below to initialize and utilize the SDK effectively.
 
+This guide explains:
 - [Delight AI agent Quickstart guide (JS)](#delight-ai-agent-quickstart-guide-js)
   - [Prerequisites](#prerequisites)
   - [Getting Started](#getting-started)
@@ -50,7 +51,7 @@ Add the AI Agent SDK to your web page by importing it as a module.
 const messenger = await loadMessenger();
 messenger.initialize({
   appId: 'YOUR_APP_ID',
-  aiAgentId: 'YOUR_BOT_ID',
+  aiAgentId: 'YOUR_AI_AGENT_ID',
   userSessionInfo: new messenger.AnonymousSessionInfo(),
 });
 ```
@@ -271,7 +272,7 @@ This allows for a more personalized and context-aware interaction experience.
 const messenger = await loadMessenger();
 messenger.initialize({
   appId: 'YOUR_APP_ID',
-  aiAgentId: 'YOUR_BOT_ID',
+  aiAgentId: 'YOUR_AI_AGENT_ID',
   userSessionInfo: new messenger.AnonymousSessionInfo(),
   // Language setting (IETF BCP 47 format)
   // default: navigator.language

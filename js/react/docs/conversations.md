@@ -12,20 +12,13 @@ When the launcher is clicked, a user can be led to either their conversation lis
 >__Note__: Whichever conversation mode you choose, if there is no active conversation, a new conversation is automatically created and the user can start a dialogue with your AI agent. This provides seamless user experience without requiring manual conversation setup.
 
 This guide explains:
-
-- [Conversations](#conversations)
-  - [Start a conversation](#start-a-conversation)
-    - [With `FixedMessenger`](#with-fixedmessenger)
-      - [Launch a conversation](#launch-a-conversation)
-      - [Launch a conversation list](#launch-a-conversation-list)
-      - [Set the launcher layout (position, margin, size)](#set-the-launcher-layout)
-      - [Customize the launcher appearance](#customize-the-launcher-appearance)
+- [Start a conversation](#start-a-conversation)
+    - [With FixedMessenger](#with-fixedmessenger)
     - [With direct presentation](#with-direct-presentation)
-  - [Advanced configuration](#advanced-configuration)
-    - [Context object for personalized conversation](#context-object-for-personalized-conversation)
+- [Advanced configuration](#advanced-configuration)
     - [Opening a specific conversation with channel URL](#opening-a-specific-conversation-with-channel-url)
     - [Start a conversation in multiple conversation mode](#start-a-conversation-in-multiple-conversation-mode)
-  - [API Reference](#api-reference)
+- [API references](#api-references)
 
 ---
 
@@ -77,7 +70,10 @@ You can configure the messenger to show the conversation list first:
 
 You can customize the launcher's position, margin, and size using the `FixedMessenger.Style` component.
 
-<img width="441" height="737" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-web-launcher.png" />
+<figure>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-web-launcher.png" alt="" width="375">
+  <figcaption></figcaption>
+</figure>
 
 >__Note__: On mobile devices, the messenger automatically opens in full-screen mode. On desktop, it displays as a floating mini-window anchored near the launcher.
 
@@ -137,7 +133,10 @@ Customize the launcher button size in pixels using the `launcherSize` prop. The 
 
 The launcher's icon and color can be configured through the [Delight AI dashboard](https://dashboard.delight.ai) - no code changes required. Simply go to **[Build > Channels > Messenger](https://dashboard.delight.ai/ai-agent/{application-id}/channels/messenger/?active_tab=Appearance)** in the dashboard and click on the **Appearance** tab to customize your launcher.
 
-<img width="821" height="909" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-messenger-appearance.png">
+<figure>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-messenger-appearance.png" alt="" width="375">
+  <figcaption></figcaption>
+</figure>
 
 ### With direct presentation
 
@@ -280,7 +279,7 @@ function CreateConversationButton() {
 
 ---
 
-## API Reference
+## API references
 
 ### FixedMessenger Props
 

@@ -4,32 +4,22 @@
 
 The **Delight AI agent Messenger** allows seamless integration of chatbot features into your Android application. Follow the steps below to initialize and utilize the SDK effectively.
 
-- [Delight AI agent Quickstart guide (Android)](#delight-ai-agent-quickstart-guide-android)
-  - [Requirements](#requirements)
-  - [Prerequisites](#prerequisites)
-  - [Getting started](#getting-started)
+This guide explains:
+- [Requirements](#requirements)
+- [Prerequisites](#prerequisites)
+- [Getting started](#getting-started)
     - [Step 1. Create a new project](#step-1-create-a-new-project)
     - [Step 2. Install AI Agent SDK](#step-2-install-ai-agent-sdk)
-      - [Configuring repository](#configuring-repository)
-      - [Adding dependency](#adding-dependency)
     - [Step 3. Initialize AI Agent SDK](#step-3-initialize-ai-agent-sdk)
-      - [How to create the Application file](#how-to-create-the-application-file)
-  - [Running your application](#running-your-application)
+- [Running your application](#running-your-application)
     - [Manage user sessions](#manage-user-sessions)
-      - [When to set the session information:](#when-to-set-the-session-information)
     - [Handle session expiration](#handle-session-expiration)
-      - [How to handle session expiration:](#how-to-handle-session-expiration)
     - [Launch the messenger](#launch-the-messenger)
-      - [Before You Start](#before-you-start)
-      - [1. Using the launcher button](#1-using-the-launcher-button)
-      - [2. Opening the conversation channel in full-screen mode](#2-opening-the-conversation-channel-in-full-screen-mode)
     - [Push notifications for Android](#push-notifications-for-android)
-  - [Advanced features](#advanced-features)
+- [Advanced features](#advanced-features)
     - [Update SDK theme](#update-sdk-theme)
     - [Deauthenticate and clear session](#deauthenticate-and-clear-session)
     - [Passing context object to Agent](#passing-context-object-to-agent)
-      - [1. Applying settings data through MessengerLauncher](#1-applying-settings-data-through-messengerlauncher)
-      - [2. Applying settings data through full-screen conversation](#2-applying-settings-data-through-full-screen-conversation)
 
 ## Requirements
 
@@ -355,7 +345,7 @@ There are two ways to display the messenger:
 1. Using the launcher button
 2. Opening the conversation channel in full-screen mode
 
->__Note__: Replace `your_ai_agent_id` with your AI agent ID which you can obtain from the Delight AI dashboard. To learn how do to so, refer to the [prerequisites](#prerequisites) section.
+>__Note__: Replace `YOUR_AI_AGENT_ID` with your AI agent ID which you can obtain from the Delight AI dashboard. To learn how do to so, refer to the [prerequisites](#prerequisites) section.
 
 #### 1. Using the launcher button
 
@@ -369,14 +359,14 @@ However, if you’re using a custom or legacy activity, verify that it inherits 
 To add the MessengerLauncher to your screen, simply call the `attach()` function of `MessengerLauncher`, specifying the AI agent ID and configuration parameters:
 
 ```kotlin
-MessengerLauncher(context, "your_ai_agent_id").attach()
+MessengerLauncher(context, "YOUR_AI_AGENT_ID").attach()
 ```
 
 - **`entryPoint`**: Controls which screen is displayed first when the MessengerLauncher is clicked:
 
 ```kotlin
 val entryPoint = MessengerEntryPoint.CONVERSATION // or MessengerEntryPoint.CONVERSATION_LIST
-MessengerLauncher(this, "your_ai_agent_id", LauncherSettingsParams(entryPoint = entryPoint)).attach()
+MessengerLauncher(this, "YOUR_AI_AGENT_ID", LauncherSettingsParams(entryPoint = entryPoint)).attach()
 ```
 
 Available options:
@@ -405,7 +395,7 @@ Use `CONVERSATION` for single AI agent conversations, or `CONVERSATION_LIST` whe
 You can open a full-screen conversation by starting an `Activity`.
 
 ```kotlin
-startActivity(MessengerActivity.newIntentForConversation(context, "your_ai_agent_id"))
+startActivity(MessengerActivity.newIntentForConversation(context, "YOUR_AI_AGENT_ID"))
 ```
 
 ---
