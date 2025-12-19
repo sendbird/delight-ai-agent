@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.4.3 (Dec 19, 2025) with Chat SDK v4.35.0
+
+### Changes
+- Updated dependency SDK versions to the latest stable releases
+- SendbirdChatSDK: v4.35.0
+- SendbirdMessageTemplate: v3.33.0
+
+### New Features
+- **User Input Blocking System**: Implemented server-driven user input disabling
 ## v1.4.2 (Dec 03, 2025) with Chat SDK v4.34.1
 
 ### Improvements
