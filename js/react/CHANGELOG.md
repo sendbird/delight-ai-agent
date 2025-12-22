@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.11.0 (Dec 22, 2025) with ChatSDK ^4.20.4
+
+
+### Minor Changes
+
+- Add newMessageIndicatorEnabled config option
+- Implement new messages button with localization support
+- Improve connection state handling by adding support for the new `onConnectionLost` callback from `@sendbird/chat` 4.20.4. The messenger now displays a more accurate "reconnecting" state when the connection is lost, providing better feedback to users during network interruptions.
+- Add `data` field to `BaseMessageProps` to allow passing custom data to message components
+
+### Patch Changes
+
+- Fixed auto-scroll not updating during streaming text animation
+
+
 ## v1.10.3 (Dec 10, 2025) with ChatSDK ^4.20.3
 
 
