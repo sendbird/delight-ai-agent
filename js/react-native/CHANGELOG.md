@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2.0 (Dec 24, 2025) with ChatSDK ^4.20.4
+
+
+### Minor Changes
+
+- Add configuration flags to control avatar visibility: `config.conversation.header.avatarEnabled` for header avatar and `config.conversation.senderAvatarEnabled` for message sender avatars (both default to true for backward compatibility)
+
+
 ## v1.1.0 (Dec 22, 2025) with ChatSDK ^4.20.4
 
 
