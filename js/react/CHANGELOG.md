@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.12.0 (Dec 24, 2025) with ChatSDK ^4.20.4
+
+
+### Minor Changes
+
+- Add configuration flags to control avatar visibility: `config.conversation.header.avatarEnabled` for header avatar and `config.conversation.senderAvatarEnabled` for message sender avatars (both default to true for backward compatibility)
+
+### Patch Changes
+
+- Fixed file download functionality in FileViewer by adding download attribute to anchor tag
+
+
 ## v1.11.0 (Dec 22, 2025) with ChatSDK ^4.20.4
 
 
