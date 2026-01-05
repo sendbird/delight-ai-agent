@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.12.1 (Jan 05, 2026) with ChatSDK ^4.20.4
+
+
+### Patch Changes
+
+- Add downloadEnabled config for FileViewer
+- Fix FileViewer image overflow and modal dir inheritance
+
+
 ## v1.12.0 (Dec 24, 2025) with ChatSDK ^4.20.4
 
 
