@@ -1,4 +1,4 @@
-[![iOS](https://img.shields.io/badge/iOS-007AFF?style=flat-square&logo=apple&logoColor=white)![Version](https://img.shields.io/badge/0.9.5-grey.svg?style=flat-square)](https://github.com/sendbird/ai-agent-messenger-ios/releases)
+[![iOS](https://img.shields.io/badge/iOS-007AFF?style=flat-square&logo=apple&logoColor=white)![Version](https://img.shields.io/badge/0.9.5-grey.svg?style=flat-square)](https://github.com/sendbird/delight-ai-agent-messenger-ios/releases)
 
 #### Customizing Link Tap Action in Message
 

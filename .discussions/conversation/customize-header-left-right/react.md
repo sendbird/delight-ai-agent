@@ -1,4 +1,4 @@
-[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![Version](https://img.shields.io/badge/1.10.0-grey.svg?style=flat-square)](https://github.com/sendbird/ai-agent-messenger-react/releases)
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.10.0-grey.svg?style=flat-square)]()
 
 #### How to Customize the Left/Right Areas in the Conversation HeaderView
 
