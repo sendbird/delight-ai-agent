@@ -20,32 +20,15 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-// Regex pattern to match version badge (linked or standalone)
-// Matches: [![...](...)![...](...)](#) or ![...](...)
-const VERSION_BADGE_PATTERN = /^(\[!\[.*?\]\(.*?\)!\[.*?\]\(.*?\)\]\(.*?\)|!\[.*?\]\(.*?\))\s*\n*/;
-
-/**
- * Extract version badge from the beginning of content
- * Returns { badge: string|null, content: string }
- */
-function extractVersionBadge(content) {
-  const trimmed = content.trim();
-  const match = trimmed.match(VERSION_BADGE_PATTERN);
-
-  if (match) {
-    return {
-      badge: match[1].trim(),
-      content: trimmed.substring(match[0].length).trim()
-    };
-  }
-
-  return { badge: null, content: trimmed };
-}
+const {
+  DISCUSSIONS_DIR,
+  loadConfig,
+  extractVersionBadge
+} = require('./utils');
 
 // Configuration
 const REPO_OWNER = 'sendbird';
 const REPO_NAME = 'delight-ai-agent';
-const DISCUSSIONS_DIR = path.join(__dirname, '..');
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -87,10 +70,6 @@ async function graphql(query, variables = {}, retries = 3) {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
-        console.log('--- API Response ---');
-        console.log('Status: ', res.statusCode);
-        console.log('Body: ', data.substring(0, 500));
-        console.log('--------------------');
         try {
           const json = JSON.parse(data);
           if (json.errors) {
@@ -131,12 +110,6 @@ async function graphql(query, variables = {}, retries = 3) {
     }
   }
   throw lastError;
-}
-
-// Load local config
-function loadConfig() {
-  const configPath = path.join(DISCUSSIONS_DIR, '_config.json');
-  return JSON.parse(fs.readFileSync(configPath, 'utf-8'));
 }
 
 // Get repository and category IDs
@@ -611,13 +584,16 @@ async function sync() {
             );
 
             // Update labels if changed
-            if (labelsChanged && wantedLabelIds.length > 0) {
-              // Remove existing labels first, then add new ones
+            if (labelsChanged) {
+              // Remove existing labels first
               const existingLabelIds = (existingDiscussion.labels?.nodes || []).map(l => l.id);
               if (existingLabelIds.length > 0) {
                 await removeLabelsFromDiscussion(existingDiscussion.id, existingLabelIds);
               }
-              await addLabelsToDiscussion(existingDiscussion.id, wantedLabelIds);
+              // Add new labels if any
+              if (wantedLabelIds.length > 0) {
+                await addLabelsToDiscussion(existingDiscussion.id, wantedLabelIds);
+              }
             }
 
             console.log(`✅ ${path}: Updated #${result.number} - ${result.url}`);

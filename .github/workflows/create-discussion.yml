@@ -135,33 +135,34 @@ jobs:
             *) EMOJI="📄"; DISPLAY_NAME="$CATEGORY" ;;
           esac
 
-          # Build labels array
-          LABELS_JSON="\"${EMOJI} ${DISPLAY_NAME}\""
+          # Build labels array using jq for proper JSON escaping
+          LABELS='[]'
+          LABELS=$(echo "$LABELS" | jq --arg l "${EMOJI} ${DISPLAY_NAME}" '. + [$l]')
 
           # Add checkbox labels
           if [ "$INPUT_LABEL_HEADER" == "true" ]; then
-            LABELS_JSON="$LABELS_JSON, \"🎨 Header\""
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Header"]')
           fi
           if [ "$INPUT_LABEL_INPUT" == "true" ]; then
-            LABELS_JSON="$LABELS_JSON, \"🎨 Input\""
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Input"]')
           fi
           if [ "$INPUT_LABEL_MESSAGE" == "true" ]; then
-            LABELS_JSON="$LABELS_JSON, \"🎨 Message\""
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Message"]')
           fi
           if [ "$INPUT_LABEL_LIST" == "true" ]; then
-            LABELS_JSON="$LABELS_JSON, \"🎨 List\""
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 List"]')
           fi
           if [ "$INPUT_LABEL_ANDROID" == "true" ]; then
-            LABELS_JSON="$LABELS_JSON, \"🎨 Android\""
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Android"]')
           fi
           if [ "$INPUT_LABEL_IOS" == "true" ]; then
-            LABELS_JSON="$LABELS_JSON, \"🎨 iOS\""
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 iOS"]')
           fi
           if [ "$INPUT_LABEL_REACT" == "true" ]; then
-            LABELS_JSON="$LABELS_JSON, \"🎨 React\""
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 React"]')
           fi
           if [ "$INPUT_LABEL_REACT_NATIVE" == "true" ]; then
-            LABELS_JSON="$LABELS_JSON, \"🎨 React-Native\""
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 React-Native"]')
           fi
 
           # Add custom labels
@@ -169,24 +170,16 @@ jobs:
             IFS=',' read -ra LABEL_ARRAY <<< "$INPUT_CUSTOM_LABELS"
             for label in "${LABEL_ARRAY[@]}"; do
               trimmed=$(echo "$label" | xargs)
-              LABELS_JSON="$LABELS_JSON, \"$trimmed\""
+              LABELS=$(echo "$LABELS" | jq --arg l "$trimmed" '. + [$l]')
             done
           fi
 
-          # Create meta.json
-          cat > "$DISCUSSION_PATH/meta.json" << EOF
-          {
-            "title": "${TITLE}",
-            "labels": [
-              ${LABELS_JSON}
-            ],
-            "platforms": [],
-            "order": []
-          }
-          EOF
-
-          # Format meta.json properly (remove leading spaces)
-          sed -i 's/^          //' "$DISCUSSION_PATH/meta.json"
+          # Create meta.json using jq for proper JSON formatting
+          jq -n \
+            --arg title "$TITLE" \
+            --argjson labels "$LABELS" \
+            '{title: $title, labels: $labels, platforms: [], order: []}' \
+            > "$DISCUSSION_PATH/meta.json"
 
           # Create _index.md with user inputs
           SUMMARY="$INPUT_SUMMARY"
@@ -244,16 +237,29 @@ jobs:
           FOLDER_NAME="$INPUT_FOLDER_NAME"
           TITLE="$INPUT_TITLE"
 
+          PR_TITLE="feat: create new discussion ${CATEGORY}/${FOLDER_NAME}"
+          PR_BODY="## Summary
+          Create new discussion structure for **${TITLE}**
+
+          ## Files Created
+          - \`.discussions/${CATEGORY}/${FOLDER_NAME}/meta.json\`
+          - \`.discussions/${CATEGORY}/${FOLDER_NAME}/_index.md\`
+
+          ---
+
+          🤖 This PR was automatically created by the create-discussion workflow."
+
+          jq -n \
+            --arg title "$PR_TITLE" \
+            --arg head "$BRANCH_NAME" \
+            --arg base "main" \
+            --arg body "$PR_BODY" \
+            '{title: $title, head: $head, base: $base, body: $body}' | \
           curl -X POST \
             -H "Authorization: token $BOT_TOKEN" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${REPO}/pulls" \
-            -d '{
-              "title": "feat: create new discussion '"${CATEGORY}/${FOLDER_NAME}"'",
-              "head": "'"$BRANCH_NAME"'",
-              "base": "main",
-              "body": "## Summary\nCreate new discussion structure for **'"${TITLE}"'**\n\n## Files Created\n- `.discussions/'"${CATEGORY}/${FOLDER_NAME}"'/meta.json`\n- `.discussions/'"${CATEGORY}/${FOLDER_NAME}"'/_index.md`\n\n---\n\n🤖 This PR was automatically created by the create-discussion workflow."
-            }' > pr_response.json
+            -d @- > pr_response.json
 
           PR_NUMBER=$(jq -r '.number' pr_response.json)
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV

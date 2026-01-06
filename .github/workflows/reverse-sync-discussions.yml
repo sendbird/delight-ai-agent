@@ -22,7 +22,11 @@ jobs:
     # Skip if discussion was edited by a bot (to prevent infinite loops)
     if: |
       github.event_name == 'workflow_dispatch' ||
-      (!contains(github.actor, '[bot]') && github.actor != 'sendbird-sdk-deployment')
+      (
+        !endsWith(github.actor, '[bot]') &&
+        github.actor != 'sendbird-sdk-deployment' &&
+        github.actor != 'github-actions'
+      )
     runs-on: ubuntu-latest
     permissions:
       contents: write

@@ -17,10 +17,14 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
+const {
+  DISCUSSIONS_DIR,
+  loadConfig
+} = require('./utils');
+
 // Configuration
 const REPO_OWNER = 'sendbird';
 const REPO_NAME = 'delight-ai-agent';
-const DISCUSSIONS_DIR = path.join(__dirname, '..');
 
 if (!process.env.GITHUB_TOKEN) {
   console.error('Error: GITHUB_TOKEN environment variable is required');
@@ -38,12 +42,6 @@ if (!DISCUSSION_NUMBER || isNaN(DISCUSSION_NUMBER)) {
   console.error('Error: Discussion number is required');
   console.error('Usage: node scripts/reverse-sync.js <discussion_number>');
   process.exit(1);
-}
-
-// Load local config
-function loadConfig() {
-  const configPath = path.join(DISCUSSIONS_DIR, '_config.json');
-  return JSON.parse(fs.readFileSync(configPath, 'utf-8'));
 }
 
 // GraphQL helper
