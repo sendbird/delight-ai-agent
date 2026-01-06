@@ -1,0 +1,21 @@
+{
+  "title": "How to customize the background color of the Conversation List footer area",
+  "discussion_number": 82,
+  "labels": [
+    "🎨 Conversation List",
+    "🎨 iOS",
+    "🎨 Android"
+  ],
+  "platforms": [
+    "ios",
+    "android",
+    "react"
+  ],
+  "order": [
+    "_index",
+    "ios",
+    "android",
+    "react"
+  ],
+  "html_url": "https://github.com/sendbird/delight-ai-agent/discussions/82"
+}

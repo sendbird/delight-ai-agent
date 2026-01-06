@@ -1,0 +1,26 @@
+{
+  "default_platforms": ["android", "ios", "react", "react-native"],
+  "platform_display_names": {
+    "android": "Android",
+    "ios": "iOS",
+    "react": "React",
+    "react-native": "React Native"
+  },
+  "categories": {
+    "launcher": {
+      "id": 0,
+      "name": "Launcher",
+      "emoji": "📙"
+    },
+    "conversation": {
+      "id": 1,
+      "name": "Conversation",
+      "emoji": "📕"
+    },
+    "conversation-list": {
+      "id": 2,
+      "name": "Conversation List",
+      "emoji": "📗"
+    }
+  }
+}

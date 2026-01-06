@@ -1,0 +1,23 @@
+{
+  "title": "How to customize the user name color in the conversation message",
+  "discussion_number": 137,
+  "labels": [
+    "🎨 Conversation",
+    "🎨 List",
+    "🎨 iOS",
+    "🎨 Android",
+    "🎨 Message"
+  ],
+  "platforms": [
+    "ios",
+    "android",
+    "react"
+  ],
+  "order": [
+    "_index",
+    "ios",
+    "android",
+    "react"
+  ],
+  "html_url": "https://github.com/sendbird/delight-ai-agent/discussions/137"
+}

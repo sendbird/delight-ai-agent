@@ -1,0 +1,21 @@
+{
+  "title": "How to insert a custom view into the Conversation List",
+  "discussion_number": 86,
+  "labels": [
+    "🎨 Conversation List",
+    "🎨 iOS",
+    "🎨 Android"
+  ],
+  "platforms": [
+    "ios",
+    "android",
+    "react"
+  ],
+  "order": [
+    "_index",
+    "ios",
+    "android",
+    "react"
+  ],
+  "html_url": "https://github.com/sendbird/delight-ai-agent/discussions/86"
+}

@@ -1,0 +1,21 @@
+{
+  "title": "How to Customize the List Item View in the Conversation List",
+  "discussion_number": 97,
+  "labels": [
+    "🎨 Conversation List",
+    "🎨 iOS",
+    "🎨 Android"
+  ],
+  "platforms": [
+    "ios",
+    "android",
+    "react"
+  ],
+  "order": [
+    "_index",
+    "ios",
+    "android",
+    "react"
+  ],
+  "html_url": "https://github.com/sendbird/delight-ai-agent/discussions/97"
+}

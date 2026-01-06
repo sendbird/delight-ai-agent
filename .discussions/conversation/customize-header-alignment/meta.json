@@ -1,0 +1,23 @@
+{
+  "title": "How to change the alignment of the center content Areas in the Conversation HeaderView",
+  "discussion_number": 134,
+  "labels": [
+    "🎨 Conversation",
+    "🎨 Header",
+    "🎨 iOS",
+    "🎨 Android",
+    "🎨 React"
+  ],
+  "platforms": [
+    "ios",
+    "android",
+    "react"
+  ],
+  "order": [
+    "_index",
+    "ios",
+    "android",
+    "react"
+  ],
+  "html_url": "https://github.com/sendbird/delight-ai-agent/discussions/134"
+}

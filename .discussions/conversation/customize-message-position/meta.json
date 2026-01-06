@@ -1,0 +1,22 @@
+{
+  "title": "How to customize the position of senderName, sentTime, and senderAvatar in message bubbles",
+  "discussion_number": 92,
+  "labels": [
+    "🎨 Conversation",
+    "🎨 iOS",
+    "🎨 Android",
+    "🎨 React"
+  ],
+  "platforms": [
+    "ios",
+    "android",
+    "react"
+  ],
+  "order": [
+    "_index",
+    "ios",
+    "android",
+    "react"
+  ],
+  "html_url": "https://github.com/sendbird/delight-ai-agent/discussions/92"
+}

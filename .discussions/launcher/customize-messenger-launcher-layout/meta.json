@@ -1,0 +1,25 @@
+{
+  "title": "How to customize the MessengerLauncher layout",
+  "discussion_number": 81,
+  "labels": [
+    "🎨 Launcher",
+    "🎨 iOS",
+    "🎨 Android",
+    "🎨 React",
+    "🎨 React-Native"
+  ],
+  "platforms": [
+    "ios",
+    "android",
+    "react",
+    "react-native"
+  ],
+  "order": [
+    "_index",
+    "ios",
+    "android",
+    "react",
+    "react-native"
+  ],
+  "html_url": "https://github.com/sendbird/delight-ai-agent/discussions/81"
+}
