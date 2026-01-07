@@ -1,3 +1,5 @@
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![Version](https://img.shields.io/badge/1..0-grey.svg?style=flat-square)](https://github.com/sendbird/ai-agent-messenger-react/releases)
+
 ## How to customize the user name color in the conversation message
 
 You can customize the sender name color by creating a custom `SenderName` component and replacing it using `IncomingMessageLayout`.
