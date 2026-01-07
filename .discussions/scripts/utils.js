@@ -71,7 +71,7 @@ function buildDiscussionContent(categoryName, discussionName) {
   const meta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
   // Use default_platforms if order is empty or not set
   const platformOrder = (meta.order && meta.order.length > 0)
-    ? meta.order.filter(p => p !== '_index')
+    ? meta.order
     : config.default_platforms;
 
   let content = '';

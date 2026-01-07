@@ -15,7 +15,6 @@
     "react-native"
   ],
   "order": [
-    "_index",
     "ios",
     "android",
     "react",

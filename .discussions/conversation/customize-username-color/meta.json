@@ -15,7 +15,6 @@
     "react"
   ],
   "order": [
-    "_index",
     "ios",
     "android",
     "react"
