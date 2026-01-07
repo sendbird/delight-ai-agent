@@ -1,5 +1,21 @@
 #!/usr/bin/env node
 
+/**
+ * Discussion Build Script
+ *
+ * Builds discussion content from local .discussions files into compiled markdown.
+ * Each discussion is assembled from _index.md and platform-specific files (ios.md, android.md, etc.)
+ * into a single markdown file with collapsible platform sections.
+ *
+ * Usage:
+ *   node scripts/build.js
+ *
+ * Output:
+ *   .discussions/_output/
+ *   ├── {category}--{slug}.md     # Compiled discussion content
+ *   └── manifest.json              # Index of all built discussions
+ */
+
 const fs = require('fs');
 const path = require('path');
 
