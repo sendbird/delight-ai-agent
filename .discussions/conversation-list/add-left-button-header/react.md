@@ -1,6 +1,6 @@
 [![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.10.0-grey.svg?style=flat-square)]()
 
-#### How to Add a Left Button to the Conversation List Header
+## How to Add a Left Button to the Conversation List Header
 
 - Description
 

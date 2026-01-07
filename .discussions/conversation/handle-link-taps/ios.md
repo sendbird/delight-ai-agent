@@ -1,6 +1,6 @@
 [![iOS](https://img.shields.io/badge/iOS-007AFF?style=flat-square&logo=apple&logoColor=white)![Version](https://img.shields.io/badge/0.9.5-grey.svg?style=flat-square)](https://github.com/sendbird/delight-ai-agent-messenger-ios/releases)
 
-#### Customizing Link Tap Action in Message
+## Customizing Link Tap Action in Message
 
 - You can override the default action when a link inside a message is tapped by subclassing `SBAConversationViewController` and handling the `.didTapMessageLink` event.
 

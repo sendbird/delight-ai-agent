@@ -1,6 +1,6 @@
 [![iOS Languages](https://img.shields.io/badge/iOS-007AFF?style=flat-square&logo=apple&logoColor=white)![iOS Version](https://img.shields.io/badge/1.3.0-grey.svg?style=flat-square)](https://github.com/sendbird/delight-ai-agent-messenger-ios/releases)
 
-#### How to Show and Customize the Divider Between Message List and Input Field
+## How to Show and Customize the Divider Between Message List and Input Field
 
 The SDK's `SBAMessageInputView` includes a divider at the top, but it's hidden by default. You can show and customize it by subclassing `SBAMessageInputView`.
 

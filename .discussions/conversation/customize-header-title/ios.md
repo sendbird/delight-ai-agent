@@ -1,6 +1,6 @@
 [![iOS Languages](https://img.shields.io/badge/iOS-007AFF?style=flat-square&logo=apple&logoColor=white)![iOS Version](https://img.shields.io/badge/1.0.0-grey.svg?style=flat-square)](https://github.com/sendbird/delight-ai-agent-messenger-ios/releases)
 
-#### How to Customize the HeaderView title in the Conversation
+## How to Customize the HeaderView title in the Conversation
 
 This guide shows how to change the title text of the Conversation Header TitleView.
 

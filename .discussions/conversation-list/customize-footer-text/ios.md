@@ -1,6 +1,6 @@
 [![iOS Languages](https://img.shields.io/badge/iOS-007AFF?style=flat-square&logo=apple&logoColor=white)![iOS Version](https://img.shields.io/badge/1.3.0-grey.svg?style=flat-square)](https://github.com/sendbird/delight-ai-agent-messenger-ios/releases)
 
-#### How to Customize the Footer Text
+## How to Customize the Footer Text
 
 You can customize the footer button text by subclassing `SBAConversationListBottomView` and overriding `setupStyles()`.
 

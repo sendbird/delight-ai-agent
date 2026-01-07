@@ -1,6 +1,6 @@
 [![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.0.0-grey.svg?style=flat-square)]()
 
-# Customizing IncomingMessage SenderName Font Styles
+## Customizing IncomingMessage SenderName Font Styles
 
 This guide explains how to customize the font style of sender names displayed in IncomingMessage components in the Delight AI Agent React SDK.
 

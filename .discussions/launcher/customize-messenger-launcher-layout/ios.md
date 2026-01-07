@@ -47,14 +47,14 @@ AIAgentMessenger.attachLauncher(
 
 ### Display Style Options
 
-#### Overlay Style
+## Overlay Style
 
 | Property          | Type      | Description                                    | Default | Notes                                                 |
 | ----------------- | --------- | ---------------------------------------------- | ------- | ----------------------------------------------------- |
 | `spacing`         | `CGFloat` | Spacing between launcher and conversation view | `12`    | Distance in points                                    |
 | `overlayLauncher` | `Bool`    | Whether to overlay the launcher button         | `false` | When `true`, launcher stays visible over conversation |
 
-#### Fullscreen Style
+## Fullscreen Style
 
 | Property            | Type                       | Description              | Default       | Available Options                                            |
 | ------------------- | -------------------------- | ------------------------ | ------------- | ------------------------------------------------------------ |
