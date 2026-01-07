@@ -4,7 +4,7 @@
 
 This guide explains how to customize the visibility of the profile view in the **Conversation Header** and the **Message Sender Profile** in the conversation message list.
 
-#### 1. Customizing the Profile View in the Conversation Header
+## 1. Customizing the Profile View in the Conversation Header
 
 - You can show or hide the conversation header profile using the `shouldShowProfile` property in the AIAgentMessenger.config.conversation.header.
 
@@ -18,7 +18,7 @@ Explanation:
 - `shouldShowProfile` = false → Hides the profile view in the header.
 
 ⸻
-#### 2. Customizing the Sender Profile in the Message List
+## 2. Customizing the Sender Profile in the Message List
 
 - You can show or hide the sender's profile in the conversation message list using the `showSenderProfile` property in the AIAgentMessenger.config.conversation.list.
 

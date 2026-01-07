@@ -34,7 +34,7 @@ You can modify the position, size, and arrangement of views in these layouts:
 
 ### Important Requirements
 
-#### 1. Keep Required View IDs
+## 1. Keep Required View IDs
 
 All views must maintain their original IDs for SDK functionality:
 
@@ -47,7 +47,7 @@ All views must maintain their original IDs for SDK functionality:
 - `messageTemplateView`: Message template view (OtherMessage only)
 - `suggestedRepliesViewStub`: Suggested replies view stub (OtherMessage only)
 
-#### 2. Don't Remove Views
+## 2. Don't Remove Views
 
 **Never remove views from the layout XML**. If you want to hide a view, use the Container class methods to control visibility:
 

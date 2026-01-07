@@ -1,6 +1,6 @@
 [![iOS Languages](https://img.shields.io/badge/iOS-007AFF?style=flat-square&logo=apple&logoColor=white)![iOS Version](https://img.shields.io/badge/1.3.0-grey.svg?style=flat-square)](https://github.com/sendbird/delight-ai-agent-messenger-ios/releases)
 
-#### How to Insert a Custom View into the Conversation List
+## How to Insert a Custom View into the Conversation List
 
 You can insert a custom view (like a banner) between the header and list by subclassing `SBAConversationListModule.Header` and overriding `layoutBody()`.
 

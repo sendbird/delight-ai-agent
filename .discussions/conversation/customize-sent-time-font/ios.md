@@ -1,6 +1,6 @@
 [![iOS Languages](https://img.shields.io/badge/iOS-007AFF?style=flat-square&logo=apple&logoColor=white)![iOS Version](https://img.shields.io/badge/1.3.0-grey.svg?style=flat-square)](https://github.com/sendbird/delight-ai-agent-messenger-ios/releases)
 
-#### How to Customize the Sent Time Font Style
+## How to Customize the Sent Time Font Style
 
 This guide shows how to customize the font style of sent time (timestamp) displayed in message bubbles.
 

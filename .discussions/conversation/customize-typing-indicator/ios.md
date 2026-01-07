@@ -1,6 +1,6 @@
 [![iOS Languages](https://img.shields.io/badge/iOS-007AFF?style=flat-square&logo=apple&logoColor=white)![iOS Version](https://img.shields.io/badge/1.3.0-grey.svg?style=flat-square)](https://github.com/sendbird/delight-ai-agent-messenger-ios/releases)
 
-#### How to Customize the Typing Indicator Dot Color
+## How to Customize the Typing Indicator Dot Color
 
 This guide shows how to customize the typing indicator appearance by changing the dot color displayed when the AI agent or user is typing.
 

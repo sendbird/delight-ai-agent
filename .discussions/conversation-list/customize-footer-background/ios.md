@@ -1,6 +1,6 @@
 [![iOS Languages](https://img.shields.io/badge/iOS-007AFF?style=flat-square&logo=apple&logoColor=white)![iOS Version](https://img.shields.io/badge/1.3.0-grey.svg?style=flat-square)](https://github.com/sendbird/delight-ai-agent-messenger-ios/releases)
 
-#### How to Customize the Background Color of the Footer Area
+## How to Customize the Background Color of the Footer Area
 
 You can customize the footer button's background color by subclassing `SBAConversationListBottomView` and overriding `setupStyles()`.
 

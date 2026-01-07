@@ -1,3 +1,5 @@
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.12.0-grey.svg?style=flat-square)]()
+
 ## How to customize the time label color in the conversation message
 
 You can customize the time label color by creating a custom `SentTime` component and replacing the default component using the `IncomingMessageLayout` or `OutgoingMessageLayout`.

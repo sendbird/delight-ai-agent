@@ -1,3 +1,5 @@
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.12.0-grey.svg?style=flat-square)]()
+
 ## How to customize the date separator label color in the conversation
 
 Currently, the date separator color customization is not directly supported through component replacement. However, you can customize it using CSS variables through the theme provider.
