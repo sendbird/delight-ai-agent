@@ -1,0 +1,156 @@
+name: Reverse Sync Discussions
+
+on:
+  discussion:
+    types: [edited, labeled, unlabeled]
+
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      discussion_number:
+        description: 'Discussion number to sync (e.g., 15)'
+        required: true
+        type: number
+      dry_run:
+        description: 'Dry run (preview only)'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  reverse-sync:
+    # Skip if discussion was edited by a bot (to prevent infinite loops)
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (
+        !endsWith(github.actor, '[bot]') &&
+        github.actor != 'sendbird-sdk-deployment' &&
+        github.actor != 'github-actions'
+      )
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      discussions: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Get discussion number
+        id: get-number
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_DISCUSSION_NUMBER: ${{ github.event.inputs.discussion_number }}
+          DISCUSSION_NUMBER: ${{ github.event.discussion.number }}
+        run: |
+          if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
+            echo "number=$INPUT_DISCUSSION_NUMBER" >> $GITHUB_OUTPUT
+          else
+            echo "number=$DISCUSSION_NUMBER" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Reverse sync discussion
+        id: reverse-sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+          DISCUSSION_NUMBER: ${{ steps.get-number.outputs.number }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          cd .discussions
+
+          ARGS="$DISCUSSION_NUMBER"
+          if [ "$DRY_RUN" == "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+
+          node scripts/reverse-sync.js $ARGS
+
+      - name: Create Pull Request
+        if: github.event.inputs.dry_run != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+          DISCUSSION_NUMBER: ${{ steps.get-number.outputs.number }}
+          DISCUSSION_URL: ${{ github.event.discussion.html_url }}
+          REPO_NAME: ${{ github.repository }}
+        run: |
+          # Check if there are changes
+          if git diff --quiet .discussions/; then
+            echo "No changes detected"
+            exit 0
+          fi
+
+          # Configure git
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Create branch
+          BRANCH_NAME="reverse-sync/discussion-${DISCUSSION_NUMBER}-$(date +%Y%m%d%H%M%S)"
+          git checkout -b "$BRANCH_NAME"
+
+          # Commit changes
+          git add .discussions/
+          git commit -m "chore: reverse sync discussion #${DISCUSSION_NUMBER}
+
+          Synced changes from GitHub Discussion back to local files.
+
+          🤖 Generated with GitHub Actions"
+
+          # Push branch
+          git push origin "$BRANCH_NAME"
+
+          # Build discussion URL
+          if [ -n "$DISCUSSION_URL" ]; then
+            FULL_DISCUSSION_URL="$DISCUSSION_URL"
+          else
+            FULL_DISCUSSION_URL="https://github.com/${REPO_NAME}/discussions/${DISCUSSION_NUMBER}"
+          fi
+
+          # Create PR
+          PR_URL=$(gh pr create \
+            --title "Reverse sync: Discussion #${DISCUSSION_NUMBER}" \
+            --body "## Summary
+
+          This PR syncs changes from GitHub Discussion #${DISCUSSION_NUMBER} back to local files.
+
+          ### Changes
+          - Updated local markdown files to match the Discussion content
+
+          ### Source
+          - Discussion URL: ${FULL_DISCUSSION_URL}
+
+          ---
+          🤖 Generated with GitHub Actions" \
+            --base main \
+            --head "$BRANCH_NAME")
+
+          echo "Created PR: $PR_URL"
+          echo "PR_URL=$PR_URL" >> $GITHUB_ENV
+
+          # Extract PR number
+          PR_NUMBER=$(echo "$PR_URL" | grep -oE '[0-9]+$')
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Approve and merge PR
+        if: github.event.inputs.dry_run != 'true' && env.PR_NUMBER != ''
+        env:
+          GH_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: |
+          # Approve PR
+          gh pr review "$PR_NUMBER" --approve
+
+          # Wait for CI checks
+          echo "Waiting for CI checks..."
+          sleep 30
+
+          # Merge PR
+          gh pr merge "$PR_NUMBER" --merge --delete-branch
+
+          echo "✅ PR #$PR_NUMBER merged and branch deleted"

@@ -1,0 +1,407 @@
+name: Create New Discussion
+
+on:
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'Category'
+        required: true
+        type: choice
+        options:
+          - conversation
+          - launcher
+          - conversation-list
+      folder-name:
+        description: 'Folder name (e.g., customize-new-feature)'
+        required: true
+        type: string
+      title:
+        description: 'Title (e.g., How to customize the new feature)'
+        required: true
+        type: string
+      summary:
+        description: 'Summary (brief description of the customization)'
+        required: false
+        default: '_No response_'
+        type: string
+      reference:
+        description: 'Reference (links, docs, etc.)'
+        required: false
+        default: '_No response_'
+        type: string
+      screenshots:
+        description: 'Screenshots (image URLs or descriptions)'
+        required: false
+        default: '_No response_'
+        type: string
+      label-header:
+        description: '🎨 Header'
+        type: boolean
+        default: false
+      label-input:
+        description: '🎨 Input'
+        type: boolean
+        default: false
+      label-message:
+        description: '🎨 Message'
+        type: boolean
+        default: false
+      label-list:
+        description: '🎨 List'
+        type: boolean
+        default: false
+      label-android:
+        description: '🎨 Android'
+        type: boolean
+        default: false
+      label-ios:
+        description: '🎨 iOS'
+        type: boolean
+        default: false
+      label-react:
+        description: '🎨 React'
+        type: boolean
+        default: false
+      label-react-native:
+        description: '🎨 React-Native'
+        type: boolean
+        default: false
+      custom-labels:
+        description: 'Custom labels (comma-separated, e.g., "🔧 New Label")'
+        required: false
+        type: string
+
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    env:
+      INPUT_CATEGORY: ${{ github.event.inputs.category }}
+      INPUT_FOLDER_NAME: ${{ github.event.inputs.folder-name }}
+      INPUT_TITLE: ${{ github.event.inputs.title }}
+      INPUT_SUMMARY: ${{ github.event.inputs.summary }}
+      INPUT_REFERENCE: ${{ github.event.inputs.reference }}
+      INPUT_SCREENSHOTS: ${{ github.event.inputs.screenshots }}
+      INPUT_LABEL_HEADER: ${{ github.event.inputs.label-header }}
+      INPUT_LABEL_INPUT: ${{ github.event.inputs.label-input }}
+      INPUT_LABEL_MESSAGE: ${{ github.event.inputs.label-message }}
+      INPUT_LABEL_LIST: ${{ github.event.inputs.label-list }}
+      INPUT_LABEL_ANDROID: ${{ github.event.inputs.label-android }}
+      INPUT_LABEL_IOS: ${{ github.event.inputs.label-ios }}
+      INPUT_LABEL_REACT: ${{ github.event.inputs.label-react }}
+      INPUT_LABEL_REACT_NATIVE: ${{ github.event.inputs.label-react-native }}
+      INPUT_CUSTOM_LABELS: ${{ github.event.inputs.custom-labels }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+
+      - name: Validate folder name format
+        run: |
+          if [[ ! "$INPUT_FOLDER_NAME" =~ ^[a-z0-9-]+$ ]]; then
+            echo "❌ Invalid folder name format. Use lowercase letters, numbers, and hyphens only."
+            exit 1
+          fi
+
+      - name: Check if discussion already exists
+        run: |
+          DISCUSSION_PATH=".discussions/${INPUT_CATEGORY}/${INPUT_FOLDER_NAME}"
+          if [ -d "$DISCUSSION_PATH" ]; then
+            echo "❌ Discussion already exists at $DISCUSSION_PATH"
+            exit 1
+          fi
+
+      - name: Set Git identity
+        run: |
+          git config --global user.name "sendbird-sdk-deployment"
+          git config --global user.email "sha.sdk_deployment@sendbird.com"
+
+      - name: Create discussion files
+        run: |
+          CATEGORY="$INPUT_CATEGORY"
+          FOLDER_NAME="$INPUT_FOLDER_NAME"
+          TITLE="$INPUT_TITLE"
+          DISCUSSION_PATH=".discussions/${CATEGORY}/${FOLDER_NAME}"
+
+          # Create directory
+          mkdir -p "$DISCUSSION_PATH"
+
+          # Get category emoji and display name
+          case "$CATEGORY" in
+            "launcher") EMOJI="📙"; DISPLAY_NAME="Launcher" ;;
+            "conversation") EMOJI="📕"; DISPLAY_NAME="Conversation" ;;
+            "conversation-list") EMOJI="📗"; DISPLAY_NAME="Conversation List" ;;
+            *) EMOJI="📄"; DISPLAY_NAME="$CATEGORY" ;;
+          esac
+
+          # Build labels array using jq for proper JSON escaping
+          LABELS='[]'
+          LABELS=$(echo "$LABELS" | jq --arg l "${EMOJI} ${DISPLAY_NAME}" '. + [$l]')
+
+          # Add checkbox labels
+          if [ "$INPUT_LABEL_HEADER" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Header"]')
+          fi
+          if [ "$INPUT_LABEL_INPUT" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Input"]')
+          fi
+          if [ "$INPUT_LABEL_MESSAGE" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Message"]')
+          fi
+          if [ "$INPUT_LABEL_LIST" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 List"]')
+          fi
+          if [ "$INPUT_LABEL_ANDROID" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Android"]')
+          fi
+          if [ "$INPUT_LABEL_IOS" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 iOS"]')
+          fi
+          if [ "$INPUT_LABEL_REACT" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 React"]')
+          fi
+          if [ "$INPUT_LABEL_REACT_NATIVE" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 React-Native"]')
+          fi
+
+          # Add custom labels
+          if [ -n "$INPUT_CUSTOM_LABELS" ]; then
+            IFS=',' read -ra LABEL_ARRAY <<< "$INPUT_CUSTOM_LABELS"
+            for label in "${LABEL_ARRAY[@]}"; do
+              trimmed=$(echo "$label" | xargs)
+              LABELS=$(echo "$LABELS" | jq --arg l "$trimmed" '. + [$l]')
+            done
+          fi
+
+          # Create meta.json using jq for proper JSON formatting
+          jq -n \
+            --arg title "$TITLE" \
+            --argjson labels "$LABELS" \
+            '{title: $title, labels: $labels, platforms: []}' \
+            > "$DISCUSSION_PATH/meta.json"
+
+          # Create _index.md with user inputs
+          SUMMARY="$INPUT_SUMMARY"
+          REFERENCE="$INPUT_REFERENCE"
+          SCREENSHOTS="$INPUT_SCREENSHOTS"
+
+          cat > "$DISCUSSION_PATH/_index.md" << EOF
+          ### Summary
+
+          ${SUMMARY}
+
+          ### Guide & Snippet
+
+
+          ### Reference
+
+          ${REFERENCE}
+
+          ### Screenshots
+
+          ${SCREENSHOTS}
+          EOF
+
+          # Format _index.md properly (remove leading spaces)
+          sed -i 's/^          //' "$DISCUSSION_PATH/_index.md"
+
+          echo "✅ Created discussion at $DISCUSSION_PATH"
+          echo "DISCUSSION_PATH=$DISCUSSION_PATH" >> $GITHUB_ENV
+
+      - name: Create branch and push
+        run: |
+          CATEGORY="$INPUT_CATEGORY"
+          FOLDER_NAME="$INPUT_FOLDER_NAME"
+          BRANCH_NAME="create-discussion/${CATEGORY}/${FOLDER_NAME}"
+
+          # Delete remote branch if it exists
+          git push origin --delete "$BRANCH_NAME" 2>/dev/null || true
+
+          git checkout -b "$BRANCH_NAME"
+          git add ".discussions/${CATEGORY}/${FOLDER_NAME}"
+          git commit -m "feat: create new discussion ${CATEGORY}/${FOLDER_NAME}
+
+          🤖 Generated with GitHub Actions"
+          git push -u origin "$BRANCH_NAME"
+
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          REPO: ${{ github.repository }}
+          BRANCH_NAME: ${{ env.BRANCH_NAME }}
+        run: |
+          CATEGORY="$INPUT_CATEGORY"
+          FOLDER_NAME="$INPUT_FOLDER_NAME"
+          TITLE="$INPUT_TITLE"
+
+          PR_TITLE="feat: create new discussion ${CATEGORY}/${FOLDER_NAME}"
+          PR_BODY="## Summary
+          Create new discussion structure for **${TITLE}**
+
+          ## Files Created
+          - \`.discussions/${CATEGORY}/${FOLDER_NAME}/meta.json\`
+          - \`.discussions/${CATEGORY}/${FOLDER_NAME}/_index.md\`
+
+          ---
+
+          🤖 This PR was automatically created by the create-discussion workflow."
+
+          jq -n \
+            --arg title "$PR_TITLE" \
+            --arg head "$BRANCH_NAME" \
+            --arg base "main" \
+            --arg body "$PR_BODY" \
+            '{title: $title, head: $head, base: $base, body: $body}' | \
+          curl -X POST \
+            -H "Authorization: token $BOT_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pulls" \
+            -d @- > pr_response.json
+
+          PR_NUMBER=$(jq -r '.number' pr_response.json)
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+          echo "Created PR #$PR_NUMBER"
+
+      - name: Approve Pull Request
+        env:
+          APPROVE_BOT_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: |
+          curl -X POST \
+            -H "Authorization: token $APPROVE_BOT_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}/reviews" \
+            -d '{"event": "APPROVE"}'
+
+          echo "PR #$PR_NUMBER approved"
+
+      - name: Wait for PR to be ready
+        env:
+          APPROVE_BOT_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: |
+          echo "Waiting for PR to be ready to merge..."
+          sleep 30
+
+          MAX_WAIT=180
+          WAIT_INTERVAL=15
+          ELAPSED=0
+
+          while [ $ELAPSED -lt $MAX_WAIT ]; do
+            PR_DATA=$(curl -s \
+              -H "Authorization: token $APPROVE_BOT_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}")
+
+            MERGEABLE=$(echo "$PR_DATA" | jq -r '.mergeable')
+            MERGEABLE_STATE=$(echo "$PR_DATA" | jq -r '.mergeable_state')
+
+            echo "Mergeable: $MERGEABLE, State: $MERGEABLE_STATE"
+
+            if [ "$MERGEABLE" = "true" ]; then
+              echo "PR is ready to merge!"
+              break
+            fi
+
+            if [ "$MERGEABLE" = "false" ]; then
+              echo "::error::PR is not mergeable: $MERGEABLE_STATE"
+              exit 1
+            fi
+
+            sleep $WAIT_INTERVAL
+            ELAPSED=$((ELAPSED + WAIT_INTERVAL))
+          done
+
+      - name: Merge Pull Request
+        env:
+          APPROVE_BOT_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: |
+          MERGE_RESPONSE=$(curl -X PUT \
+            -H "Authorization: token $APPROVE_BOT_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}/merge" \
+            -d '{"merge_method": "merge"}')
+
+          echo "Merge API Response: $MERGE_RESPONSE"
+
+          if echo "$MERGE_RESPONSE" | jq -e '.merged' > /dev/null; then
+            echo "PR #$PR_NUMBER merged successfully"
+          else
+            echo "::error::Failed to merge PR #$PR_NUMBER"
+            echo "Response: $MERGE_RESPONSE"
+            exit 1
+          fi
+
+      - name: Delete merged branch
+        env:
+          BRANCH_NAME: ${{ env.BRANCH_NAME }}
+        run: |
+          git push origin --delete "$BRANCH_NAME"
+          echo "Deleted branch $BRANCH_NAME"
+
+      - name: Notify Slack
+        if: success()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: ${{ vars.SLACK_DISCUSSION_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "<!here> *New Discussion Created*"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Category:*\n${{ env.INPUT_CATEGORY }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Folder:*\n${{ env.INPUT_FOLDER_NAME }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Title:*\n${{ env.INPUT_TITLE }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":book: <https://sendbird.atlassian.net/wiki/spaces/AA/pages/3592159296/Discussion+Platform-Specific+File+Writing+Guide|Discussion Platform-Specific File Writing Guide>"
+                  }
+                }
+              ]
+            }
+
+      - name: Summary
+        run: |
+          CATEGORY="$INPUT_CATEGORY"
+          FOLDER_NAME="$INPUT_FOLDER_NAME"
+          echo "## ✅ Discussion Created" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Path:** \`.discussions/${CATEGORY}/${FOLDER_NAME}/\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Files created:**" >> $GITHUB_STEP_SUMMARY
+          echo "- \`meta.json\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`_index.md\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Next steps:**" >> $GITHUB_STEP_SUMMARY
+          echo "1. Add platform files from private repos" >> $GITHUB_STEP_SUMMARY
+          echo "2. Update \`meta.json\` with platforms and labels" >> $GITHUB_STEP_SUMMARY

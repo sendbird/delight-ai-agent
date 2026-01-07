@@ -1,0 +1,167 @@
+name: Sync Discussions
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+    paths:
+      - '.discussions/**'
+
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Specific discussion to sync (e.g., conversation/customize-typing-indicator)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Dry run (preview only)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  sync:
+    # Only run if PR was merged (not just closed) or manually triggered
+    # Skip PRs from reverse-sync/ or sync/ branches to prevent infinite loops
+    if: |
+      (github.event.pull_request.merged == true &&
+       !startsWith(github.head_ref, 'reverse-sync/') &&
+       !startsWith(github.head_ref, 'sync/')) ||
+      github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      discussions: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Get changed discussions
+        id: changed
+        env:
+          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TARGET: ${{ github.event.inputs.target }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
+            # Manual trigger - use provided target or empty for all
+            echo "targets=$INPUT_TARGET" >> $GITHUB_OUTPUT
+            echo "Manual trigger: target=$INPUT_TARGET"
+          else
+            # PR merge - get changed files from PR
+            echo "Getting changed files from PR #$PR_NUMBER..."
+
+            # Get changed files and extract unique discussion paths
+            TARGETS=$(gh pr view "$PR_NUMBER" --json files -q '.files[].path' | \
+              grep "^\.discussions/" | \
+              grep -v "^\.discussions/_" | \
+              grep -v "^\.discussions/scripts/" | \
+              sed 's|^\.discussions/\([^/]*/[^/]*\)/.*|\1|' | \
+              sort -u | \
+              tr '\n' ' ')
+
+            echo "targets=$TARGETS" >> $GITHUB_OUTPUT
+            echo "Changed discussions: $TARGETS"
+          fi
+
+      - name: Sync discussions
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+          TARGETS: ${{ steps.changed.outputs.targets }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          cd .discussions
+
+          # Build base arguments
+          ARGS=""
+          if [ "$DRY_RUN" == "true" ]; then
+            ARGS="--dry-run"
+          fi
+
+          if [ -z "$TARGETS" ]; then
+            # No specific targets - sync all (manual trigger without target)
+            echo "Syncing all discussions..."
+            node scripts/sync.js $ARGS
+          else
+            # Sync only changed discussions
+            for TARGET in $TARGETS; do
+              echo "Syncing: $TARGET"
+              node scripts/sync.js $ARGS "$TARGET"
+            done
+          fi
+
+      - name: Create PR for meta file updates
+        if: github.event.inputs.dry_run != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          # Check if there are changes
+          if git diff --quiet .discussions/; then
+            echo "No meta.json updates to commit"
+            exit 0
+          fi
+
+          # Configure git
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Create branch
+          BRANCH_NAME="sync/update-meta-$(date +%Y%m%d%H%M%S)"
+          git checkout -b "$BRANCH_NAME"
+
+          # Commit changes
+          git add .discussions/
+          git commit -m "chore: update discussion numbers after sync
+
+          🤖 Generated with GitHub Actions"
+
+          # Push branch
+          git push origin "$BRANCH_NAME"
+
+          # Create PR
+          PR_URL=$(gh pr create \
+            --title "chore: update discussion numbers after sync" \
+            --body "## Summary
+
+          Auto-generated PR to update \`meta.json\` files with discussion numbers after sync.
+
+          ---
+          🤖 Generated with GitHub Actions" \
+            --base main \
+            --head "$BRANCH_NAME")
+
+          echo "Created PR: $PR_URL"
+          echo "PR_URL=$PR_URL" >> $GITHUB_ENV
+
+          # Extract PR number
+          PR_NUMBER=$(echo "$PR_URL" | grep -oE '[0-9]+$')
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Approve and merge PR
+        if: github.event.inputs.dry_run != 'true' && env.PR_NUMBER != ''
+        env:
+          GH_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: |
+          # Approve PR
+          gh pr review "$PR_NUMBER" --approve
+
+          # Wait for CI checks
+          echo "Waiting for CI checks..."
+          sleep 30
+
+          # Merge PR
+          gh pr merge "$PR_NUMBER" --merge --delete-branch
+
+          echo "✅ PR #$PR_NUMBER merged and branch deleted"
