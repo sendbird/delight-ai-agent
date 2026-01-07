@@ -355,8 +355,8 @@ async function reverseSync() {
 
   // Platform files
   const config = loadConfig();
-  const platforms = local.meta.order
-    ? local.meta.order
+  const platforms = local.meta.platforms
+    ? local.meta.platforms
     : config.default_platforms;
 
   for (const platform of platforms) {

@@ -14,11 +14,5 @@
     "react",
     "react-native"
   ],
-  "order": [
-    "ios",
-    "android",
-    "react",
-    "react-native"
-  ],
   "html_url": "https://github.com/sendbird/delight-ai-agent/discussions/81"
 }

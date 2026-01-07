@@ -69,9 +69,9 @@ function buildDiscussionContent(categoryName, discussionName) {
   }
 
   const meta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
-  // Use default_platforms if order is empty or not set
-  const platformOrder = (meta.order && meta.order.length > 0)
-    ? meta.order
+  // Use default_platforms if platforms is empty or not set
+  const platformOrder = (meta.platforms && meta.platforms.length > 0)
+    ? meta.platforms
     : config.default_platforms;
 
   let content = '';
