@@ -178,7 +178,7 @@ jobs:
           jq -n \
             --arg title "$TITLE" \
             --argjson labels "$LABELS" \
-            '{title: $title, labels: $labels, platforms: [], order: []}' \
+            '{title: $title, labels: $labels, platforms: []}' \
             > "$DISCUSSION_PATH/meta.json"
 
           # Create _index.md with user inputs
