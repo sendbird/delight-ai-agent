@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.12.2 (Jan 09, 2026) with ChatSDK ^4.20.4
+
+
+### Patch Changes
+
+- Fix chatParams prop to be partial for flexible configuration
+- Prevent chatParams from being overridden by props spread
+- Fixed unwanted bottom spacing in closed conversations with fixed scroll mode by resetting bottomSpace and disconnecting MutationObserver
+
+
 ## v1.12.1 (Jan 05, 2026) with ChatSDK ^4.20.4
 
 
