@@ -1,0 +1,221 @@
+name: Sync Labels to Create Discussion Workflow
+
+on:
+  label:
+    types: [created, edited, deleted]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+
+      - name: Fetch all labels from repository
+        id: fetch-labels
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Fetch all labels from the repository
+          LABELS=$(curl -s \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/labels?per_page=100" | \
+            jq -r '.[].name' | sort)
+
+          echo "Found labels:"
+          echo "$LABELS"
+
+          # Save labels to file for processing
+          echo "$LABELS" > /tmp/labels.txt
+
+      - name: Generate new label sections
+        run: |
+          chmod +x .github/scripts/generate-label-sections.sh
+          .github/scripts/generate-label-sections.sh
+
+      - name: Update create-discussion.yml
+        id: update-workflow
+        run: |
+          WORKFLOW_FILE=".github/workflows/create-discussion.yml"
+
+          # Backup original
+          cp "$WORKFLOW_FILE" "$WORKFLOW_FILE.bak"
+
+          # Replace LABEL_INPUTS section
+          awk '
+            /# --- LABEL_INPUTS_START ---/ {
+              while ((getline line < "/tmp/label_inputs.txt") > 0) print line
+              skip = 1
+              next
+            }
+            /# --- LABEL_INPUTS_END ---/ { skip = 0; next }
+            !skip { print }
+          ' "$WORKFLOW_FILE.bak" > "$WORKFLOW_FILE.tmp1"
+
+          # Replace LABEL_ENV section
+          awk '
+            /# --- LABEL_ENV_START ---/ {
+              while ((getline line < "/tmp/label_env.txt") > 0) print line
+              skip = 1
+              next
+            }
+            /# --- LABEL_ENV_END ---/ { skip = 0; next }
+            !skip { print }
+          ' "$WORKFLOW_FILE.tmp1" > "$WORKFLOW_FILE.tmp2"
+
+          # Replace LABEL_CHECK section
+          awk '
+            /# --- LABEL_CHECK_START ---/ {
+              while ((getline line < "/tmp/label_check.txt") > 0) print line
+              skip = 1
+              next
+            }
+            /# --- LABEL_CHECK_END ---/ { skip = 0; next }
+            !skip { print }
+          ' "$WORKFLOW_FILE.tmp2" > "$WORKFLOW_FILE"
+
+          rm -f "$WORKFLOW_FILE.tmp1" "$WORKFLOW_FILE.tmp2"
+
+          # Check if file was modified
+          if diff -q "$WORKFLOW_FILE" "$WORKFLOW_FILE.bak" > /dev/null 2>&1; then
+            echo "No changes detected"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected:"
+            diff "$WORKFLOW_FILE.bak" "$WORKFLOW_FILE" || true
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+          rm "$WORKFLOW_FILE.bak"
+
+      - name: Create Pull Request
+        if: steps.update-workflow.outputs.changed == 'true'
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          BRANCH_NAME="sync/update-labels-$(date +%Y%m%d%H%M%S)"
+
+          git config --global user.name "sendbird-sdk-deployment"
+          git config --global user.email "sha.sdk_deployment@sendbird.com"
+
+          git push origin --delete "$BRANCH_NAME" 2>/dev/null || true
+
+          git checkout -b "$BRANCH_NAME"
+          git add .github/workflows/create-discussion.yml
+          git commit -m "chore: sync labels to create-discussion workflow
+
+          🤖 Generated with GitHub Actions"
+          git push -u origin "$BRANCH_NAME"
+
+          PR_TITLE="chore: sync labels to create-discussion workflow"
+          PR_BODY="## Summary
+          Automatically sync repository labels to create-discussion workflow inputs.
+
+          This PR was triggered by a label change event.
+
+          ---
+
+          🤖 This PR was automatically created by the sync-labels workflow."
+
+          jq -n \
+            --arg title "$PR_TITLE" \
+            --arg head "$BRANCH_NAME" \
+            --arg base "main" \
+            --arg body "$PR_BODY" \
+            '{title: $title, head: $head, base: $base, body: $body}' | \
+          curl -X POST \
+            -H "Authorization: token $BOT_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pulls" \
+            -d @- > pr_response.json
+
+          PR_NUMBER=$(jq -r '.number' pr_response.json)
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+          echo "Created PR #$PR_NUMBER"
+
+      - name: Approve Pull Request
+        if: steps.update-workflow.outputs.changed == 'true'
+        env:
+          APPROVE_BOT_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: |
+          curl -X POST \
+            -H "Authorization: token $APPROVE_BOT_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}/reviews" \
+            -d '{"event": "APPROVE"}'
+
+          echo "PR #$PR_NUMBER approved"
+
+      - name: Wait and Merge Pull Request
+        if: steps.update-workflow.outputs.changed == 'true'
+        env:
+          APPROVE_BOT_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: |
+          echo "Waiting for PR to be ready..."
+          sleep 30
+
+          MAX_WAIT=180
+          WAIT_INTERVAL=15
+          ELAPSED=0
+
+          while [ $ELAPSED -lt $MAX_WAIT ]; do
+            PR_DATA=$(curl -s \
+              -H "Authorization: token $APPROVE_BOT_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}")
+
+            MERGEABLE=$(echo "$PR_DATA" | jq -r '.mergeable')
+
+            if [ "$MERGEABLE" = "true" ]; then
+              echo "PR is ready to merge!"
+              break
+            fi
+
+            if [ "$MERGEABLE" = "false" ]; then
+              echo "::error::PR is not mergeable"
+              exit 1
+            fi
+
+            sleep $WAIT_INTERVAL
+            ELAPSED=$((ELAPSED + WAIT_INTERVAL))
+          done
+
+          MERGE_RESPONSE=$(curl -X PUT \
+            -H "Authorization: token $APPROVE_BOT_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}/merge" \
+            -d '{"merge_method": "merge"}')
+
+          if echo "$MERGE_RESPONSE" | jq -e '.merged' > /dev/null; then
+            echo "PR #$PR_NUMBER merged successfully"
+          else
+            echo "::error::Failed to merge PR"
+            exit 1
+          fi
+
+      - name: Summary
+        env:
+          CHANGED: ${{ steps.update-workflow.outputs.changed }}
+        run: |
+          echo "## Labels Sync Result" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "$CHANGED" == "true" ]; then
+            echo "Updated \`create-discussion.yml\` with current repository labels." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No changes needed - labels are already in sync." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Current Labels:**" >> $GITHUB_STEP_SUMMARY
+          cat /tmp/labels.txt | while read label; do
+            [ -n "$label" ] && echo "- $label" >> $GITHUB_STEP_SUMMARY
+          done

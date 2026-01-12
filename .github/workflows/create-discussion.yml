@@ -34,28 +34,49 @@ on:
         required: false
         default: '_No response_'
         type: string
+      # --- LABEL_INPUTS_START ---
+      label-android:
+        description: '🎨 Android'
+        type: boolean
+        default: false
+      label-common:
+        description: '🎨 Common'
+        type: boolean
+        default: false
+      label-conversation:
+        description: '🎨 Conversation'
+        type: boolean
+        default: false
+      label-conversation-list:
+        description: '🎨 Conversation List'
+        type: boolean
+        default: false
       label-header:
         description: '🎨 Header'
+        type: boolean
+        default: false
+      label-initial-route:
+        description: '🎨 Initial route'
         type: boolean
         default: false
       label-input:
         description: '🎨 Input'
         type: boolean
         default: false
-      label-message:
-        description: '🎨 Message'
+      label-ios:
+        description: '🎨 iOS'
+        type: boolean
+        default: false
+      label-launcher:
+        description: '🎨 Launcher'
         type: boolean
         default: false
       label-list:
         description: '🎨 List'
         type: boolean
         default: false
-      label-android:
-        description: '🎨 Android'
-        type: boolean
-        default: false
-      label-ios:
-        description: '🎨 iOS'
+      label-message:
+        description: '🎨 Message'
         type: boolean
         default: false
       label-react:
@@ -66,6 +87,7 @@ on:
         description: '🎨 React-Native'
         type: boolean
         default: false
+      # --- LABEL_INPUTS_END ---
       custom-labels:
         description: 'Custom labels (comma-separated, e.g., "🔧 New Label")'
         required: false
@@ -81,14 +103,21 @@ jobs:
       INPUT_SUMMARY: ${{ github.event.inputs.summary }}
       INPUT_REFERENCE: ${{ github.event.inputs.reference }}
       INPUT_SCREENSHOTS: ${{ github.event.inputs.screenshots }}
-      INPUT_LABEL_HEADER: ${{ github.event.inputs.label-header }}
-      INPUT_LABEL_INPUT: ${{ github.event.inputs.label-input }}
-      INPUT_LABEL_MESSAGE: ${{ github.event.inputs.label-message }}
-      INPUT_LABEL_LIST: ${{ github.event.inputs.label-list }}
+      # --- LABEL_ENV_START ---
       INPUT_LABEL_ANDROID: ${{ github.event.inputs.label-android }}
+      INPUT_LABEL_COMMON: ${{ github.event.inputs.label-common }}
+      INPUT_LABEL_CONVERSATION: ${{ github.event.inputs.label-conversation }}
+      INPUT_LABEL_CONVERSATION_LIST: ${{ github.event.inputs.label-conversation-list }}
+      INPUT_LABEL_HEADER: ${{ github.event.inputs.label-header }}
+      INPUT_LABEL_INITIAL_ROUTE: ${{ github.event.inputs.label-initial-route }}
+      INPUT_LABEL_INPUT: ${{ github.event.inputs.label-input }}
       INPUT_LABEL_IOS: ${{ github.event.inputs.label-ios }}
+      INPUT_LABEL_LAUNCHER: ${{ github.event.inputs.label-launcher }}
+      INPUT_LABEL_LIST: ${{ github.event.inputs.label-list }}
+      INPUT_LABEL_MESSAGE: ${{ github.event.inputs.label-message }}
       INPUT_LABEL_REACT: ${{ github.event.inputs.label-react }}
       INPUT_LABEL_REACT_NATIVE: ${{ github.event.inputs.label-react-native }}
+      # --- LABEL_ENV_END ---
       INPUT_CUSTOM_LABELS: ${{ github.event.inputs.custom-labels }}
 
     steps:
@@ -140,23 +169,39 @@ jobs:
           LABELS=$(echo "$LABELS" | jq --arg l "${EMOJI} ${DISPLAY_NAME}" '. + [$l]')
 
           # Add checkbox labels
+          # --- LABEL_CHECK_START ---
+          if [ "$INPUT_LABEL_ANDROID" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Android"]')
+          fi
+          if [ "$INPUT_LABEL_COMMON" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Common"]')
+          fi
+          if [ "$INPUT_LABEL_CONVERSATION" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Conversation"]')
+          fi
+          if [ "$INPUT_LABEL_CONVERSATION_LIST" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Conversation List"]')
+          fi
           if [ "$INPUT_LABEL_HEADER" == "true" ]; then
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 Header"]')
+          fi
+          if [ "$INPUT_LABEL_INITIAL_ROUTE" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Initial route"]')
           fi
           if [ "$INPUT_LABEL_INPUT" == "true" ]; then
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 Input"]')
           fi
-          if [ "$INPUT_LABEL_MESSAGE" == "true" ]; then
-            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Message"]')
+          if [ "$INPUT_LABEL_IOS" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 iOS"]')
+          fi
+          if [ "$INPUT_LABEL_LAUNCHER" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Launcher"]')
           fi
           if [ "$INPUT_LABEL_LIST" == "true" ]; then
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 List"]')
           fi
-          if [ "$INPUT_LABEL_ANDROID" == "true" ]; then
-            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Android"]')
-          fi
-          if [ "$INPUT_LABEL_IOS" == "true" ]; then
-            LABELS=$(echo "$LABELS" | jq '. + ["🎨 iOS"]')
+          if [ "$INPUT_LABEL_MESSAGE" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Message"]')
           fi
           if [ "$INPUT_LABEL_REACT" == "true" ]; then
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 React"]')
@@ -164,6 +209,7 @@ jobs:
           if [ "$INPUT_LABEL_REACT_NATIVE" == "true" ]; then
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 React-Native"]')
           fi
+          # --- LABEL_CHECK_END ---
 
           # Add custom labels
           if [ -n "$INPUT_CUSTOM_LABELS" ]; then
