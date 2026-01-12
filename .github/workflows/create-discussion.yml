@@ -63,10 +63,6 @@ on:
         description: '🎨 Input'
         type: boolean
         default: false
-      label-ios:
-        description: '🎨 iOS'
-        type: boolean
-        default: false
       label-launcher:
         description: '🎨 Launcher'
         type: boolean
@@ -85,6 +81,14 @@ on:
         default: false
       label-react-native:
         description: '🎨 React-Native'
+        type: boolean
+        default: false
+      label-screen:
+        description: '🎨 Screen'
+        type: boolean
+        default: false
+      label-ios:
+        description: '🎨 iOS'
         type: boolean
         default: false
       # --- LABEL_INPUTS_END ---
@@ -111,12 +115,13 @@ jobs:
       INPUT_LABEL_HEADER: ${{ github.event.inputs.label-header }}
       INPUT_LABEL_INITIAL_ROUTE: ${{ github.event.inputs.label-initial-route }}
       INPUT_LABEL_INPUT: ${{ github.event.inputs.label-input }}
-      INPUT_LABEL_IOS: ${{ github.event.inputs.label-ios }}
       INPUT_LABEL_LAUNCHER: ${{ github.event.inputs.label-launcher }}
       INPUT_LABEL_LIST: ${{ github.event.inputs.label-list }}
       INPUT_LABEL_MESSAGE: ${{ github.event.inputs.label-message }}
       INPUT_LABEL_REACT: ${{ github.event.inputs.label-react }}
       INPUT_LABEL_REACT_NATIVE: ${{ github.event.inputs.label-react-native }}
+      INPUT_LABEL_SCREEN: ${{ github.event.inputs.label-screen }}
+      INPUT_LABEL_IOS: ${{ github.event.inputs.label-ios }}
       # --- LABEL_ENV_END ---
       INPUT_CUSTOM_LABELS: ${{ github.event.inputs.custom-labels }}
 
@@ -191,9 +196,6 @@ jobs:
           if [ "$INPUT_LABEL_INPUT" == "true" ]; then
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 Input"]')
           fi
-          if [ "$INPUT_LABEL_IOS" == "true" ]; then
-            LABELS=$(echo "$LABELS" | jq '. + ["🎨 iOS"]')
-          fi
           if [ "$INPUT_LABEL_LAUNCHER" == "true" ]; then
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 Launcher"]')
           fi
@@ -208,6 +210,12 @@ jobs:
           fi
           if [ "$INPUT_LABEL_REACT_NATIVE" == "true" ]; then
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 React-Native"]')
+          fi
+          if [ "$INPUT_LABEL_SCREEN" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Screen"]')
+          fi
+          if [ "$INPUT_LABEL_IOS" == "true" ]; then
+            LABELS=$(echo "$LABELS" | jq '. + ["🎨 iOS"]')
           fi
           # --- LABEL_CHECK_END ---
 
