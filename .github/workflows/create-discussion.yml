@@ -83,10 +83,6 @@ on:
         description: '🎨 React-Native'
         type: boolean
         default: false
-      label-screen:
-        description: '🎨 Screen'
-        type: boolean
-        default: false
       label-ios:
         description: '🎨 iOS'
         type: boolean
@@ -120,7 +116,6 @@ jobs:
       INPUT_LABEL_MESSAGE: ${{ github.event.inputs.label-message }}
       INPUT_LABEL_REACT: ${{ github.event.inputs.label-react }}
       INPUT_LABEL_REACT_NATIVE: ${{ github.event.inputs.label-react-native }}
-      INPUT_LABEL_SCREEN: ${{ github.event.inputs.label-screen }}
       INPUT_LABEL_IOS: ${{ github.event.inputs.label-ios }}
       # --- LABEL_ENV_END ---
       INPUT_CUSTOM_LABELS: ${{ github.event.inputs.custom-labels }}
@@ -210,9 +205,6 @@ jobs:
           fi
           if [ "$INPUT_LABEL_REACT_NATIVE" == "true" ]; then
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 React-Native"]')
-          fi
-          if [ "$INPUT_LABEL_SCREEN" == "true" ]; then
-            LABELS=$(echo "$LABELS" | jq '. + ["🎨 Screen"]')
           fi
           if [ "$INPUT_LABEL_IOS" == "true" ]; then
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 iOS"]')
