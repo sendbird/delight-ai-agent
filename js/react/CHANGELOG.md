@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.13.0 (Jan 13, 2026) with ChatSDK ^4.20.4
+
+
+### Minor Changes
+
+- Add CustomMessageTemplate component to IncomingMessageLayout
+
+### Patch Changes
+
+- Fix auto-scroll behavior when typing indicator appears in `scrollMode: auto`. The scroll now correctly maintains position at bottom when new typing indicators are added.
+
+
 ## v1.12.2 (Jan 09, 2026) with ChatSDK ^4.20.4
 
 
