@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.3.0 (Jan 13, 2026) with ChatSDK ^4.20.4
+
+
+### Minor Changes
+
+- Add CustomMessageTemplate component to IncomingMessageLayout
+
+
 ## v1.2.0 (Dec 24, 2025) with ChatSDK ^4.20.4
 
 
