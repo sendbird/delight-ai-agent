@@ -6,6 +6,7 @@
  * Syncs local .discussions files to GitHub Discussions using GraphQL API.
  * - Creates new discussions if no discussion_number exists in meta.json
  * - Updates existing discussions if discussion_number exists
+ * - Deletes GitHub discussions that no longer exist locally
  *
  * Usage:
  *   GITHUB_TOKEN=xxx node scripts/sync.js [--dry-run] [category/slug]
@@ -334,6 +335,102 @@ async function removeLabelsFromDiscussion(discussionId, labelIds) {
   await graphql(mutation, { labelableId: discussionId, labelIds });
 }
 
+// Delete a discussion
+async function deleteDiscussion(discussionId) {
+  const mutation = `
+    mutation($discussionId: ID!) {
+      deleteDiscussion(input: {
+        id: $discussionId
+      }) {
+        discussion {
+          id
+        }
+      }
+    }
+  `;
+
+  await graphql(mutation, { discussionId });
+}
+
+// Get all discussions from GitHub repository
+async function getAllGitHubDiscussions() {
+  const discussions = [];
+  let hasNextPage = true;
+  let cursor = null;
+
+  while (hasNextPage) {
+    const query = `
+      query($owner: String!, $name: String!, $cursor: String) {
+        repository(owner: $owner, name: $name) {
+          discussions(first: 100, after: $cursor) {
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
+            nodes {
+              id
+              number
+              title
+              category {
+                slug
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const data = await graphql(query, {
+      owner: REPO_OWNER,
+      name: REPO_NAME,
+      cursor
+    });
+
+    discussions.push(...data.repository.discussions.nodes);
+    hasNextPage = data.repository.discussions.pageInfo.hasNextPage;
+    cursor = data.repository.discussions.pageInfo.endCursor;
+  }
+
+  return discussions;
+}
+
+// Get all local discussion numbers
+function getLocalDiscussionNumbers() {
+  const config = loadConfig();
+  const categories = Object.keys(config.categories);
+  const localNumbers = new Map(); // discussion_number -> { category, slug }
+
+  categories.forEach(categoryName => {
+    const categoryDir = path.join(DISCUSSIONS_DIR, categoryName);
+
+    if (!fs.existsSync(categoryDir) || !fs.statSync(categoryDir).isDirectory()) {
+      return;
+    }
+
+    const items = fs.readdirSync(categoryDir, { withFileTypes: true });
+    items
+      .filter(item => item.isDirectory() && !item.name.startsWith('_'))
+      .forEach(item => {
+        const metaPath = path.join(categoryDir, item.name, 'meta.json');
+        if (fs.existsSync(metaPath)) {
+          try {
+            const meta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+            if (meta.discussion_number) {
+              localNumbers.set(meta.discussion_number, {
+                category: categoryName,
+                slug: item.name
+              });
+            }
+          } catch (err) {
+            // Skip invalid meta.json
+          }
+        }
+      });
+  });
+
+  return localNumbers;
+}
+
 // Update existing discussion
 async function updateDiscussion(discussionId, title, body, categoryId) {
   const mutation = `
@@ -422,10 +519,56 @@ async function sync() {
   let created = 0;
   let updated = 0;
   let skipped = 0;
+  let deleted = 0;
   let errors = 0;
 
   // Track missing categories to show summary
   const missingCategories = new Set();
+
+  // --- Delete discussions that no longer exist locally ---
+  if (!TARGET_PATH) {
+    console.log('Checking for deleted discussions...\n');
+    const githubDiscussions = await getAllGitHubDiscussions();
+    const localNumbers = getLocalDiscussionNumbers();
+
+    // Map local category names to GitHub category slugs
+    const config = loadConfig();
+    const localCategorySlugs = new Set();
+    for (const [localCat, catConfig] of Object.entries(config.categories)) {
+      // GitHub category slug is typically lowercase of the name
+      localCategorySlugs.add(catConfig.name.toLowerCase().replace(/\s+/g, '-'));
+    }
+
+    for (const ghDiscussion of githubDiscussions) {
+      // Only consider discussions in categories we manage
+      if (!localCategorySlugs.has(ghDiscussion.category.slug)) {
+        continue;
+      }
+
+      if (!localNumbers.has(ghDiscussion.number)) {
+        // This discussion exists on GitHub but not locally - delete it
+        try {
+          if (DRY_RUN) {
+            console.log(`🗑️  Would delete #${ghDiscussion.number}: "${ghDiscussion.title}"`);
+          } else {
+            await deleteDiscussion(ghDiscussion.id);
+            console.log(`🗑️  Deleted #${ghDiscussion.number}: "${ghDiscussion.title}"`);
+          }
+          deleted++;
+        } catch (err) {
+          console.error(`❌ Failed to delete #${ghDiscussion.number}: ${err.message}`);
+          errors++;
+        }
+        await delay(200);
+      }
+    }
+
+    if (deleted === 0) {
+      console.log('No discussions to delete.\n');
+    } else {
+      console.log('');
+    }
+  }
 
   for (const discussion of discussions) {
     const path = `${discussion.category}/${discussion.slug}`;
@@ -547,6 +690,7 @@ async function sync() {
   console.log('\n--- Summary ---');
   console.log(`Created: ${created}`);
   console.log(`Updated: ${updated}`);
+  console.log(`Deleted: ${deleted}`);
   console.log(`Skipped: ${skipped}`);
   console.log(`Errors: ${errors}`);
 

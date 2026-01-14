@@ -2,7 +2,7 @@ name: Reverse Sync Discussions
 
 on:
   discussion:
-    types: [edited, labeled, unlabeled]
+    types: [edited, labeled, unlabeled, deleted]
 
   # Allow manual trigger
   workflow_dispatch:
