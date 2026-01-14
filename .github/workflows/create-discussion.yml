@@ -88,10 +88,6 @@ on:
         type: boolean
         default: false
       # --- LABEL_INPUTS_END ---
-      custom-labels:
-        description: 'Custom labels (comma-separated, e.g., "🔧 New Label")'
-        required: false
-        type: string
 
 jobs:
   create:
@@ -118,7 +114,6 @@ jobs:
       INPUT_LABEL_REACT_NATIVE: ${{ github.event.inputs.label-react-native }}
       INPUT_LABEL_IOS: ${{ github.event.inputs.label-ios }}
       # --- LABEL_ENV_END ---
-      INPUT_CUSTOM_LABELS: ${{ github.event.inputs.custom-labels }}
 
     steps:
       - name: Checkout repository
@@ -210,15 +205,6 @@ jobs:
             LABELS=$(echo "$LABELS" | jq '. + ["🎨 iOS"]')
           fi
           # --- LABEL_CHECK_END ---
-
-          # Add custom labels
-          if [ -n "$INPUT_CUSTOM_LABELS" ]; then
-            IFS=',' read -ra LABEL_ARRAY <<< "$INPUT_CUSTOM_LABELS"
-            for label in "${LABEL_ARRAY[@]}"; do
-              trimmed=$(echo "$label" | xargs)
-              LABELS=$(echo "$LABELS" | jq --arg l "$trimmed" '. + [$l]')
-            done
-          fi
 
           # Create meta.json using jq for proper JSON formatting
           jq -n \
