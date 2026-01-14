@@ -5,12 +5,15 @@
  *
  * Syncs GitHub Discussions back to local .discussions files.
  * Parses the compiled discussion body and splits it back into individual platform files.
+ * - If discussion exists on GitHub: syncs content back to local files
+ * - If discussion was deleted from GitHub: deletes local files
  *
  * Usage:
- *   GITHUB_TOKEN=xxx node scripts/reverse-sync.js <discussion_number>
+ *   GITHUB_TOKEN=xxx node scripts/reverse-sync.js [--dry-run] <discussion_number>
  *
  * Examples:
- *   node scripts/reverse-sync.js 15    # Sync discussion #15 back to local files
+ *   node scripts/reverse-sync.js 15           # Sync discussion #15 back to local files
+ *   node scripts/reverse-sync.js --dry-run 15 # Preview without making changes
  */
 
 const https = require('https');
@@ -312,8 +315,33 @@ async function reverseSync() {
   const discussion = await getDiscussion(DISCUSSION_NUMBER);
 
   if (!discussion) {
-    console.error(`Error: Discussion #${DISCUSSION_NUMBER} not found`);
-    process.exit(1);
+    console.log(`Discussion #${DISCUSSION_NUMBER} not found on GitHub.`);
+
+    // Find and delete local files if they exist
+    const local = findLocalDiscussion(DISCUSSION_NUMBER);
+    if (local) {
+      console.log(`Found local files at: ${local.category}/${local.slug}`);
+
+      if (DRY_RUN) {
+        console.log(`🗑️  Would delete local directory: ${local.dir}`);
+      } else {
+        // Delete the directory recursively
+        fs.rmSync(local.dir, { recursive: true, force: true });
+        console.log(`🗑️  Deleted local directory: ${local.dir}`);
+      }
+
+      console.log('\n--- Summary ---');
+      console.log(`Discussion #${DISCUSSION_NUMBER} was deleted from GitHub.`);
+      console.log(`Local files have been ${DRY_RUN ? 'marked for deletion' : 'deleted'}.`);
+
+      if (DRY_RUN) {
+        console.log('\n[DRY RUN] No changes were made. Run without --dry-run to apply changes.');
+      }
+    } else {
+      console.log('No local files found for this discussion number.');
+    }
+
+    process.exit(0);
   }
 
   console.log(`Found: "${discussion.title}" (${discussion.category.name})`);
