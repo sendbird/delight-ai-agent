@@ -115,13 +115,20 @@ async function getDiscussion(number) {
     }
   `;
 
-  const data = await graphql(query, {
-    owner: REPO_OWNER,
-    name: REPO_NAME,
-    number
-  });
-
-  return data.repository.discussion;
+  try {
+    const data = await graphql(query, {
+      owner: REPO_OWNER,
+      name: REPO_NAME,
+      number
+    });
+    return data.repository.discussion;
+  } catch (err) {
+    // NOT_FOUND is expected when discussion was deleted
+    if (err.message.includes('Could not resolve to a Discussion')) {
+      return null;
+    }
+    throw err;
+  }
 }
 
 /**
