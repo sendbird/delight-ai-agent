@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.13.1 (Jan 20, 2026) with ChatSDK ^4.20.6
+
+
+### Patch Changes
+
+- Export `CustomMessageTemplateData` type for custom message template usage
+
+
 ## v1.13.0 (Jan 13, 2026) with ChatSDK ^4.20.4
 
 

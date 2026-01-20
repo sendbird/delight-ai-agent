@@ -131,6 +131,227 @@ Delight AI agent messenger supports various message types to provide comprehensi
   <figcaption></figcaption>
 </figure>
 
+#### Custom message template
+
+Custom message templates enable Delight AI agent server to send structured data that clients can render with their own UI components. Unlike pre-defined message templates, clients must implement and register components beforehand, enabling business-specific UIs such as coupons, product lists, and reservations.
+
+##### How it works
+
+**Raw response delivery**
+
+- Templates are delivered as raw responses as `custom_message_templates`.
+- Client app is responsible for [rendering the UI](#register-custom-component).
+- Provides flexibility for business-specific interfaces.
+
+**Multiple templates support**
+
+- `custom_message_templates` is an **array** - a single message can include multiple templates separated by commas.
+- Each template can represent different UI components.
+
+**Backward compatibility**
+
+- Client app must [register the custom template](#register-custom-component) as a message component in advance.
+- If client app receives unregistered template ID, [display a fallback UI](#a-fallback-ui-for-unregistered-template).
+- This ensures app doesn't break with unknown templates.
+
+##### Data structure
+
+The interface for `custom_message_templates` is defined as `CustomMessageTemplateData`.
+
+```typescript
+interface CustomMessageTemplateData {
+  id: string;
+  response: {
+    status: number;
+    content: string | null;
+  };
+  error: string | null;
+}
+interface ExtendedMessagePayload {
+  // ... other fields
+  custom_message_templates: CustomMessageTemplateData[];
+}
+```
+
+| Property | Type | Description |
+|----------|------|-------------|
+| id | string | Specifies the unique ID of the custom message template. Make sure it is an exact match with the ID you've set in Delight AI agent dashboard. |
+| response.status | number | Indicates the HTTP request status. |
+| response.content | JSON string | Specifies the content of the message. |
+| error | string | Specifies the reason why the request failed if it failed. |
+
+**Sample JSON payload**
+
+The client app will receive a JSON payload of `custom_message_templates` like below:
+
+```json
+{
+  "custom_message_templates": [
+    {
+      "id": "coupon",
+      "response": {
+        "status": 200,
+        "content": "{\"title\": \"20% Off\", \"code\": \"SAVE20\"}"
+      },
+      "error": null
+    },
+    {
+      "id": "product-list",
+      "response": {
+        "status": 404,
+        "content": null
+      },
+      "error": "Failed to fetch products"
+    }
+  ]
+}
+```
+
+##### How to implement {#register-custom-component}
+
+To render a custom message template, you must:
+
+1) understand message component layout;
+
+2) register a custom component;
+
+3) process the template data.
+
+**1) Message component layout**
+
+Custom templates are rendered in a dedicated slot within the message structure. Understanding a message layout helps you see where your custom component will appear:
+
+```xml
+<MessageBubble>
+  <Message />
+  <CTAButton />
+  <Citation />
+</MessageBubble>
+
+<MessageTemplate />
+
+<!-- Place CustomMessageTemplate here -->
+<CustomMessageTemplateSlot />
+
+<Feedback />
+<SuggestedReplies />
+```
+
+**2) Register a custom message template**
+
+Register your custom message template as `IncomingMessageLayout.MessageTemplate` under `AgentProviderContainer`. In the following snippet, you'll register `MyCustomMessageTemplate` as a component.
+
+{% hint style="info" %}
+If you don't register a custom component, this template slot renders nothing by default.
+{% endhint %}
+
+```typescript
+import { AgentProviderContainer, IncomingMessageLayout } from '@sendbird/ai-agent-messenger-react';
+
+<AgentProviderContainer {...props}>
+  <IncomingMessageLayout.CustomMessageTemplate component={MyCustomMessageTemplate} />
+</AgentProviderContainer>;
+```
+
+**3) Render with `CustomMessageTemplateData`**
+
+Your custom component receives `extendedMessagePayload` which contains the `custom_message_templates` array. You can retrieve the data to render the message. Here's how to access and render it:
+
+```typescript
+type Props = {
+  extendedMessagePayload?: {
+    custom_message_templates?: CustomMessageTemplateData[];
+  };
+};
+function MyCustomMessageTemplate({ extendedMessagePayload }: Props) {
+  const template = extendedMessagePayload?.custom_message_templates?.[0];
+
+  if (!template) return null;
+
+  const data = JSON.parse(template.response.content ?? '{}');
+  return <div>{data.title}</div>;
+}
+```
+
+##### How to handle a fallback and an error {#a-fallback-ui-for-unregistered-template}
+
+Refer to the snippets in the tabs in the case of exceptions such as:
+
+- Fallback
+- API request fail
+- Runtime error
+
+{% tabs %}
+{% tab title="a) Fallback UI" %}
+**a) Fallback UI for unregistered template**
+
+The following snippet demonstrates how to render a fallback UI when an unregistered template ID is passed through. In the SDK for JavaScript, an "Unsupported template" UI will appear against a yellow background.
+
+```typescript
+function MyCustomMessageTemplate({ extendedMessagePayload }) {
+  const template = extendedMessagePayload?.custom_message_templates?.[0];
+
+  if (!template) return null;
+
+  switch (template.id) {
+    case 'coupon_template':
+      return <CouponCards data={JSON.parse(template.response.content)} />;
+    default:
+      return <FallbackUI />;
+  }
+}
+
+const FallbackUI = () => <div>Unsupported template type</div>;
+```
+{% endtab %}
+
+{% tab title="b) API fail" %}
+**b) Error UI - API call failed**
+
+The following snippet demonstrates how to handle when an API request for a custom template failed.
+
+```typescript
+function MyCustomMessageTemplate({ extendedMessagePayload }) {
+  const template = extendedMessagePayload?.custom_message_templates?.[0];
+
+  if (!template) return null;
+
+  if (template.error) {
+    return <RequestErrorUI />;
+  }
+
+  return <CouponCards data={JSON.parse(template.response.content)} />;
+}
+
+const RequestErrorUI = () => <div>Please retry later</div>;
+```
+{% endtab %}
+
+{% tab title="c) Runtime error" %}
+**c) Error Boundary - Runtime error**
+
+The following snippet demonstrates how to handle when a runtime error occurs due to unexpected causes such as an API response change.
+
+```typescript
+import { ErrorBoundary } from './ErrorBoundary';
+
+function MyCustomMessageTemplate({ extendedMessagePayload }) {
+  const template = extendedMessagePayload?.custom_message_templates?.[0];
+
+  if (!template) return null;
+
+  return (
+    <ErrorBoundary fallback={<ComponentErrorUI />}>
+      <CouponCards data={JSON.parse(template.response.content)} />
+    </ErrorBoundary>
+  );
+}
+
+const ComponentErrorUI = () => <div>Sorry, please contact Admin</div>;
+```
+{% endtab %}
+{% endtabs %}
+
 ---
 
 ## Key features
