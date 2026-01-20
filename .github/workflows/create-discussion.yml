@@ -119,7 +119,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
+          token: ${{ secrets.SDK_GH_BOT1_TOKEN }}
 
       - name: Validate folder name format
         run: |
@@ -261,7 +261,7 @@ jobs:
 
       - name: Create Pull Request
         env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          SDK_GH_BOT1_TOKEN: ${{ secrets.SDK_GH_BOT1_TOKEN }}
           REPO: ${{ github.repository }}
           BRANCH_NAME: ${{ env.BRANCH_NAME }}
         run: |
@@ -288,7 +288,7 @@ jobs:
             --arg body "$PR_BODY" \
             '{title: $title, head: $head, base: $base, body: $body}' | \
           curl -X POST \
-            -H "Authorization: token $BOT_TOKEN" \
+            -H "Authorization: token $SDK_GH_BOT1_TOKEN" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${REPO}/pulls" \
             -d @- > pr_response.json
@@ -299,12 +299,12 @@ jobs:
 
       - name: Approve Pull Request
         env:
-          APPROVE_BOT_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          SDK_GH_BOT2_TOKEN: ${{ secrets.SDK_GH_BOT2_TOKEN }}
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ env.PR_NUMBER }}
         run: |
           curl -X POST \
-            -H "Authorization: token $APPROVE_BOT_TOKEN" \
+            -H "Authorization: token $SDK_GH_BOT2_TOKEN" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}/reviews" \
             -d '{"event": "APPROVE"}'
@@ -313,7 +313,7 @@ jobs:
 
       - name: Wait for PR to be ready
         env:
-          APPROVE_BOT_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          SDK_GH_BOT2_TOKEN: ${{ secrets.SDK_GH_BOT2_TOKEN }}
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ env.PR_NUMBER }}
         run: |
@@ -326,7 +326,7 @@ jobs:
 
           while [ $ELAPSED -lt $MAX_WAIT ]; do
             PR_DATA=$(curl -s \
-              -H "Authorization: token $APPROVE_BOT_TOKEN" \
+              -H "Authorization: token $SDK_GH_BOT2_TOKEN" \
               -H "Accept: application/vnd.github+json" \
               "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}")
 
@@ -351,12 +351,12 @@ jobs:
 
       - name: Merge Pull Request
         env:
-          APPROVE_BOT_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          SDK_GH_BOT2_TOKEN: ${{ secrets.SDK_GH_BOT2_TOKEN }}
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ env.PR_NUMBER }}
         run: |
           MERGE_RESPONSE=$(curl -X PUT \
-            -H "Authorization: token $APPROVE_BOT_TOKEN" \
+            -H "Authorization: token $SDK_GH_BOT2_TOKEN" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${REPO}/pulls/${PR_NUMBER}/merge" \
             -d '{"merge_method": "merge"}')

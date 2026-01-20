@@ -48,7 +48,7 @@ jobs:
       - name: Get changed discussions
         id: changed
         env:
-          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.SDK_GH_BOT1_TOKEN }}
           EVENT_NAME: ${{ github.event_name }}
           INPUT_TARGET: ${{ github.event.inputs.target }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -76,7 +76,7 @@ jobs:
 
       - name: Sync discussions
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SDK_GH_BOT1_TOKEN }}
           TARGETS: ${{ steps.changed.outputs.targets }}
           DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: |
@@ -103,7 +103,7 @@ jobs:
       - name: Create PR for meta file updates
         if: github.event.inputs.dry_run != 'true'
         env:
-          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.SDK_GH_BOT1_TOKEN }}
         run: |
           # Check if there are changes
           if git diff --quiet .discussions/; then
@@ -151,7 +151,7 @@ jobs:
       - name: Approve and merge PR
         if: github.event.inputs.dry_run != 'true' && env.PR_NUMBER != ''
         env:
-          GH_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.SDK_GH_BOT2_TOKEN }}
           PR_NUMBER: ${{ env.PR_NUMBER }}
         run: |
           # Approve PR
