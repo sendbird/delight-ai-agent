@@ -1,6 +1,6 @@
 ### Summary
 
-This guide explains how to disable the Powered by message that appears in the conversation when using the AI Agent Messenger SDK.
+This guide explains how to disable the "Powered by" message displayed in the conversation when using the AI Agent Messenger SDK.
 
 ### Guide & Snippet
 
