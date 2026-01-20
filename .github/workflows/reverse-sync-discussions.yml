@@ -58,7 +58,7 @@ jobs:
       - name: Reverse sync discussion
         id: reverse-sync
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SDK_GH_BOT1_TOKEN }}
           DISCUSSION_NUMBER: ${{ steps.get-number.outputs.number }}
           DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: |
@@ -74,7 +74,7 @@ jobs:
       - name: Create Pull Request
         if: github.event.inputs.dry_run != 'true'
         env:
-          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.SDK_GH_BOT1_TOKEN }}
           DISCUSSION_NUMBER: ${{ steps.get-number.outputs.number }}
           DISCUSSION_URL: ${{ github.event.discussion.html_url }}
           REPO_NAME: ${{ github.repository }}
@@ -140,7 +140,7 @@ jobs:
       - name: Approve and merge PR
         if: github.event.inputs.dry_run != 'true' && env.PR_NUMBER != ''
         env:
-          GH_TOKEN: ${{ secrets.APPROVE_BOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.SDK_GH_BOT2_TOKEN }}
           PR_NUMBER: ${{ env.PR_NUMBER }}
         run: |
           # Approve PR
