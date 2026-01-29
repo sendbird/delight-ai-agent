@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.3.2 (Jan 29, 2026) with ChatSDK ^4.20.6
+
+
+### Patch Changes
+
+- Add `always_visible` option to CSAT follow-up items, allowing follow-up questions to be displayed regardless of the selected CSAT score
+- Only disconnect WebSocket when connectionState is OPEN to prevent request cancellation
+
+
 ## v1.3.1 (Jan 20, 2026) with ChatSDK ^4.20.6
 
 
