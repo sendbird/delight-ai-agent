@@ -323,7 +323,7 @@ Configuration options for the `Conversation` component.
 | `channelUrl` | string | - | Channel URL to open. If not provided, uses active channel from context. |
 | `onClearChannelUrl` | () => void | - | Callback when channel URL should be cleared. |
 | `onNavigateToConversationList` | () => void | - | Callback to navigate to conversation list. |
-| `shouldMarkAsRead` | boolean | false | Whether to mark messages as read when viewed. |
+| `shouldMarkAsRead` | boolean | true | Whether to mark messages as read when viewed. |
 
 ### useMessengerSessionContext Hook
 
