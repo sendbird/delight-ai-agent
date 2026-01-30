@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.14.1 (Jan 30, 2026) with ChatSDK ^4.21.0
+
+
+### Patch Changes
+
+- Updated dependencies
+  - @sendbird/ai-agent-messenger-react@1.14.1
+
+
 ## v1.14.0 (Jan 30, 2026) with ChatSDK ^4.21.0
 
 
