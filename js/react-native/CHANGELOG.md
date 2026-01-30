@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.4.1 (Jan 30, 2026) with ChatSDK ^4.21.0
+
+
+### Patch Changes
+
+- Fix `searchConversation` to correctly pass `aiAgentId` via params instead of closure reference
+
+
 ## v1.4.0 (Jan 30, 2026) with ChatSDK ^4.21.0
 
 
