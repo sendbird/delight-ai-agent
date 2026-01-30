@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.14.0 (Jan 30, 2026) with ChatSDK ^4.21.0
+
+
+### Minor Changes
+
+- Add searchConversation API to find conversations by context
+- Add style prop to Conversation and ConversationList components
+- Use theme.colors.messageInput for MessageInput styles
+- Remove unused colors.metadata property
+
+### Patch Changes
+
+- Fixed an issue where `chatParams` would be overridden with `undefined` values when `customApiHost` or `customWebSocketHost` props are not provided
+
+
 ## v1.13.2 (Jan 29, 2026) with ChatSDK ^4.20.6
 
 
