@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.4.0 (Jan 30, 2026) with ChatSDK ^4.21.0
+
+
+### Minor Changes
+
+- Add searchConversation API to find conversations by context
+
+
 ## v1.3.2 (Jan 29, 2026) with ChatSDK ^4.20.6
 
 
