@@ -70,7 +70,7 @@ struct SampleConfiguration {
     /// The log level for Delight AI Agent Messenger SDK.
     /// This controls the verbosity of logs output by the SDK.
     #if INTERNAL_TEST
-    static var logLevel: SBALogType = .all
+    static var logLevel: SBALogType = .none
     #else
     static var logLevel: SBALogType = .error
     #endif

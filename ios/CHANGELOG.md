@@ -1,5 +1,67 @@
 # Changelog
 
+## v1.5.0 (Feb 03, 2026) with Chat SDK v4.35.0
+
+### New Features
+
+- Scroll Mode: Added ChatGPT-style fixed scroll mode for conversation list
+  - New `SBAScrollMode` enum with `.auto` (default) and `.fixed` options
+  - Configure via `AIAgentMessenger.config.conversation.list.scrollMode`
+  - In `.fixed` mode, sent messages stay positioned at the top of the collection view
+- New Message Indicator: Added floating indicator for new incoming messages
+  - Shows count of unread messages when scrolled away from bottom
+  - Tap to scroll to the latest message
+  - Enable/disable via `AIAgentMessenger.config.conversation.list.isNewMessageIndicatorEnabled` (default: true)
+- Custom Message Template: Added support for custom message template rendering
+  - New `SBACustomMessageTemplateData` model for template data structure
+  - New `SBACustomMessageTemplateView` base class for custom template UI
+  - Event handling system for custom template interactions via `sendEvent(name:data:)`
+  - Register custom views via `SBAModuleSet.ConversationModule.List.Cell.CustomMessageTemplateView`
+- CSAT Always Visible Option: Added `always_visible` support for CSAT follow-up questions
+  - Follow-up questions can now be displayed without requiring CSAT score selection
+  - New `alwaysVisible` property in `SBAMessageCSATData.FollowUp`
+
+### Public API Changes
+
+- New enum: `SBAScrollMode`
+
+```swift
+public enum SBAScrollMode {
+    case auto   // Default scroll behavior
+    case fixed  // Fixed message positioning (ChatGPT-style)
+}
+```
+
+- New configuration properties in `SBAConfig.Conversation.List`:
+  - `isNewMessageIndicatorEnabled`: Bool - Controls new message indicator visibility
+  - `scrollMode`: SBAScrollMode - Sets the conversation scroll behavior
+- New localization class: `SBALocalization.Conversation.NewMessageView`
+  - title: String - Customizable title for the new message indicator
+- New struct: `SBACustomMessageTemplateData`
+
+```swift
+public struct SBACustomMessageTemplateData: Codable {
+    public let templateId: String
+    public let response: Response
+    public let error: String?
+
+    public struct Response: Codable {
+        public let status: Int
+        public let content: String?
+    }
+}
+```
+
+- New class: `SBACustomMessageTemplateView` - Base class for custom template UI rendering
+- New delegate event: `SBAConversationModule.List.DelegateEvent.didReceiveCustomMessageTemplateAction(name:data:message:)`
+- New property in `SBAMessageCSATData.FollowUp`:
+  - `alwaysVisible`: Bool? - Controls whether follow-up is shown without CSAT score selection
+
+### Improvements
+
+- Renamed SBANewMessageInfo to SBANewMessageView with enhanced functionality
+- Improved collection view reload handling with context-based approach
+
 ## v1.4.3 (Dec 19, 2025) with Chat SDK v4.35.0
 
 ### Changes

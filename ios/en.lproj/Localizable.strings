@@ -30,6 +30,9 @@
 "SBA_Common_Alert_allowPhotoLibraryAccess" = "Please Allow PhotoLibrary Access";
 "SBA_Common_Alert_allowPhotoLibraryAccessMessage" = "PhotoLibrary access required to get your photos and videos";
 "SBA_Common_Alert_allowMicrophoneAccess" = "Please allow microphone usage from settings";
+"SBA_Common_Alert_exceededSizeLimit" = "The maximum size per file is  %dMB.";
+"SBA_Common_Alert_noSupportedFileTypes" = "No supported file types available.";
+"SBA_Common_Alert_notSupportedImageType" = "Unsupported image file type.";
 "SBA_Common_Error_exceededSizeLimit" = "The maximum size per file is %dMB.";
 
 // MARK: - COMMON DATE FORMAT
@@ -42,6 +45,8 @@
 "SBA_Conversation_Input_Placeholder_normal" = "Ask a question";
 "SBA_Conversation_Input_Placeholder_streaming" = "Waiting for the agent's reply...";
 "SBA_Conversation_Input_Placeholder_closeConversation" = "Chat is unavailable in this channel";
+"SBA_Conversation_Input_Placeholder_suggestedReplies" = "Select an option to continue";
+"SBA_Conversation_Input_Placeholder_chatUnavailable" = "Chat is unavailable in this channel";
 
 // MARK: - CONVERSATION LIST
 "SBA_Conversation_List_UnknownMessage_title" = "(Unknown message type)";
@@ -60,9 +65,7 @@
 
 // MARK: - CONVERSATION CLOSED
 "SBA_Conversation_List_Closed_title" = "Your conversation has ended.";
-"SBA_Conversation_List_Closed_actionTitle" = "💬 Start a new conversation";
-"SBA_Conversation_List_Closed_actionInactiveTitle" = "💬 Return to conversation";
-"SBA_Conversation_List_Closed_talkToAgent" = "Talk to agent";
+"SBA_Conversation_List_Closed_talkToAgent" = "Start a conversation";
 
 // MARK: - CSAT
 "SBA_Conversation_List_CSAT_topTitleNormal" = "Your feedback matters to us";
@@ -76,6 +79,22 @@
 "SBA_Conversation_List_CSAT_followUpOptionalTitle" = "(optional)";
 "SBA_Conversation_List_CSAT_followUpFreeTextErrorTitle" = "This field is required.";
 "SBA_Conversation_List_CSAT_followUpSingleChoiceErrorTitle" = "This question is required";
+"SBA_Conversation_List_CSAT_optionalTitle" = "(optional)";
+
+// MARK: - FEEDBACK
+"SBA_Conversation_List_Feedback_good" = "Good";
+"SBA_Conversation_List_Feedback_bad" = "Bad";
+"SBA_Conversation_List_Feedback_Alert_title" = "Submit feedback";
+"SBA_Conversation_List_Feedback_Alert_submit" = "Submit";
+"SBA_Conversation_List_Feedback_Alert_cancel" = "Cancel";
+"SBA_Conversation_List_Feedback_Alert_commentTitle" = "Comment (optional)";
+"SBA_Conversation_List_Feedback_Alert_commentPlaceHolder" = "Leave a comment";
+"SBA_Conversation_List_Feedback_edit" = "Edit feedback";
+"SBA_Conversation_List_Feedback_remove" = "Remove feedback";
+
+// MARK: - FAILED MESSAGE
+"SBA_Conversation_List_FailedMessage_retry" = "Retry";
+"SBA_Conversation_List_FailedMessage_delete" = "Delete";
 
 // MARK: - CONVERSATION LIST
 "SBA_ConversationList_Header_headerTitle" = "Conversations";
@@ -84,6 +103,13 @@
 "SBA_ConversationList_List_dateJustNow" = "Just now";
 "SBA_ConversationList_List_dateMinuteFormat" = "%d minutes ago";
 "SBA_ConversationList_List_dateHourFormat" = "%d hours ago";
-"SBA_ConversationList_Footer_actionTitle" = "💬 Start a new conversation";
-"SBA_ConversationList_Footer_actionInactiveTitle" = "💬 Return to conversation";
-"SBA_ConversationList_Footer_talkToAgent" = "Talk to agent";
+"SBA_ConversationList_Footer_talkToAgent" = "Start a conversation";
+
+// MARK: - CITATION
+"SBA_Conversation_List_Citation_title" = "Source";
+
+// MARK: - NEW MESSAGE
+"SBA_Conversation_List_NewMessageView_title" = "New Message";
+
+
+// https://docs.google.com/spreadsheets/d/14JHjaM3Y9sNITSc3ej1QZT39tUGehuCKhSoL9_4GF6I/edit?gid=0#gid=0
