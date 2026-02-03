@@ -128,9 +128,179 @@ Delight AI agent messenger supports various message types to provide comprehensi
 * Use case: E-commerce integration, product showcases, inventory display.
 
 <figure>
-  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-product-list2.png" alt="cascade" width="375">
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/aa-sdk-mobile-message-product-list.png" alt="cascade" width="375">
   <figcaption></figcaption>
 </figure>
+
+#### Custom message template
+
+**Custom message template** enables implementation of business-specific UI components beyond pre-defined templates. The Delight AI agent server sends structured data that clients render with their own custom UI components.
+
+**Core Features**
+
+- **Data Delivery**: Templates arrive as `custom_message_templates` array in the message's `extendedMessagePayload`. Clients handle UI rendering.
+- **Multiple Templates**: A single message can include multiple templates, each representing different UI elements.
+- **Backward Compatibility**: Unregistered template IDs trigger fallback UI, preventing application breakage.
+
+**Data Structure**
+
+The `CustomMessageTemplateData` interface structure:
+
+```kotlin
+data class CustomMessageTemplateData(
+    val id: String,              // Unique template identifier matching dashboard configuration
+    val response: Response,
+    val error: String?           // Failure reason, if applicable
+) {
+    data class Response(
+        val status: Int,         // HTTP request status code
+        val content: String?     // Message content payload (JSON string)
+    )
+}
+```
+
+**Implementation Steps**
+
+**1. Understand the message layout**
+
+Custom templates render in a dedicated slot within the message structure, appearing below the standard message content.
+```
+┌──────────────────────────────────────────────────────────┐
+│                      <MessageBubble>                     │
+│   ┌──────────────────────────────────────────────────┐   │
+│   │                    <Message>                     │   │
+│   └──────────────────────────────────────────────────┘   │
+│   ┌──────────────────────────────────────────────────┐   │
+│   │                  <CTAButton>                     │   │
+│   └──────────────────────────────────────────────────┘   │
+│   ┌──────────────────────────────────────────────────┐   │
+│   │                  <Citation>                      │   │
+│   └──────────────────────────────────────────────────┘   │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                   <MessageTemplate>                      │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│            <CustomMessageTemplateSlot>                   │
+│        (Place CustomMessageTemplate here)                │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                      <Feedback>                          │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                 <SuggestedReplies>                       │
+└──────────────────────────────────────────────────────────┘
+```
+
+**2. Register custom handler**
+
+Implement `CustomMessageTemplateViewHandler` and set it in `ConversationMessageListUIParams`:
+
+```kotlin
+class MyCustomTemplateHandler : CustomMessageTemplateViewHandler {
+    override fun onCreateCustomMessageTemplateView(
+        context: Context,
+        message: BaseMessage,
+        data: List<CustomMessageTemplateData>,
+        callback: CustomMessageTemplateViewCallback
+    ) {
+        val view = when (data.firstOrNull()?.id) {
+            "product_card" -> createProductCard(context, data.first())
+            else -> createFallbackView(context)
+        }
+        callback.onViewReady(view)
+    }
+
+    private fun createProductCard(context: Context, data: CustomMessageTemplateData): View {
+        val content = data.response.content ?: return createFallbackView(context)
+        return LayoutInflater.from(context).inflate(R.layout.custom_product_card, null).apply {
+            // Populate view with data from JSON content
+        }
+    }
+
+    private fun createFallbackView(context: Context): View {
+        return TextView(context).apply {
+            text = "Template not available"
+            setPadding(16, 16, 16, 16)
+        }
+    }
+}
+
+// Register handler
+AIAgentAdapterProviders.conversation =
+    ConversationAdapterProvider { channel, uiParams, containerGenerator ->
+        uiParams.customMessageTemplateViewHandler = MyCustomTemplateHandler()
+        ConversationMessageListAdapter(
+            channel,
+            uiParams,
+            containerGenerator
+        )
+    }
+```
+
+**3. Process template data**
+
+Access custom template data from the message:
+
+```kotlin
+val customTemplates = message.extendedMessagePayload["custom_message_templates"]
+// SDK automatically parses this to List<CustomMessageTemplateData>
+```
+
+**4. Handle exceptions**
+
+Implement error handling for various failure scenarios:
+
+```kotlin
+override fun onCreateCustomMessageTemplateView(
+    context: Context,
+    message: BaseMessage,
+    data: List<CustomMessageTemplateData>,
+    callback: CustomMessageTemplateViewCallback
+) {
+    try {
+        // Check for errors in data
+        val templateData = data.firstOrNull()
+        if (templateData?.error != null) {
+            callback.onViewReady(createErrorView(context, templateData.error))
+            return
+        }
+
+        // Validate response status
+        when (templateData?.response?.status) {
+            200 -> callback.onViewReady(createTemplateView(context, templateData))
+            else -> callback.onViewReady(createErrorView(context, "Failed to load template"))
+        }
+    } catch (e: Exception) {
+        callback.onViewReady(createErrorView(context, "Template error"))
+    }
+}
+```
+
+**Error Handling Patterns**
+
+**Unregistered templates**: Return fallback UI for unknown template IDs
+```kotlin
+when (templateData.id) {
+    "known_template" -> createKnownTemplate(context, data)
+    else -> createFallbackView(context)
+}
+```
+
+**API failures**: Check response status and error field
+```kotlin
+if (data.error != null) return createErrorView(context, data.error)
+if (data.response.status != 200) return createErrorView(context, "API error")
+```
+
+**Runtime errors**: Wrap handler logic in try-catch; SDK also wraps calls to prevent crashes
+```kotlin
+try {
+    callback.onViewReady(createView(context, data))
+} catch (e: Exception) {
+    callback.onViewReady(createFallbackView(context))
+}
+```
 
 ---
 
@@ -203,12 +373,41 @@ AIAgentMessenger.config.conversation.header.shouldShowProfile = false
 AIAgentMessenger.config.conversation.header.shouldShowProfile = true
 ```
 
-#### Configuration properties
+#### ConversationConfig.List
 
 The following table lists the configuration options available in `AIAgentMessenger.config.conversation.list` besides read receipt. These options control how the conversation list and messages are displayed in the messenger UI.
 
-| Property                     | Type     | Default | Description                                   |
-| ---------------------------- | -------- | ------- | --------------------------------------------- |
-| `enableMessageReceiptState`  | Boolean  | `true`  | Whether to display message receipt status.    |
-| `shouldShowSenderProfile`    | Boolean  | `true`  | Whether to show sender's profile information.    |
-| `shouldShowProfile`          | Boolean  | `true`  | Whether profile should be shown in header. |
+| Property                      | Type       | Default           | Description                                                                                                                     |
+|-------------------------------|------------|-------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| `enableMessageReceiptState`   | Boolean    | `false`           | Whether to display message receipt status.                                                                                      |
+| `shouldShowSenderProfile`     | Boolean    | `true`            | Whether to show sender's profile information.                                                                                   |
+| `scrollMode`                  | ScrollMode | `ScrollMode.AUTO` | Scroll behavior of the message list. `AUTO` for normal scroll, `FIX` to keep user message fixed at the top during bot responses |
+| `shouldShowMessageFooterView` | Boolean    | `true`            | Whether the "Start new conversation" view is shown when conversation has ended                                                  |
+| `enableNewMessageIndicator`   | Boolean    | `true`            | Whether the the new message indicator is enabled                                                                                |
+
+```kotlin
+// Configure conversation list settings
+AIAgentMessenger.config.conversation.list.enableMessageReceiptState = true
+AIAgentMessenger.config.conversation.list.shouldShowSenderProfile = false
+AIAgentMessenger.config.conversation.list.scrollMode = ScrollMode.FIX
+AIAgentMessenger.config.conversation.list.shouldShowMessageFooterView = false
+AIAgentMessenger.config.conversation.list.enableNewMessageIndicator = false
+```
+
+#### ConversationConfig.Input
+
+The following table lists the configuration options available in `AIAgentMessenger.config.conversation.input`.
+These options control the message input component and attachment capabilities.
+
+| Property               | Type      | Default | Description                                     |
+|------------------------|-----------|---------|-------------------------------------------------|
+| `camera.enablePhoto`   | Boolean   | `true` | Whether photo capture from camera is enabled    |
+| `gallery.enablePhoto`  | Boolean   | `true` | Whether photo selection from gallery is enabled |
+| `enableFile`           | Boolean   | `true` | Whether file attachment is enabled              |
+
+```kotlin
+// Configure input settings
+AIAgentMessenger.config.conversation.input.camera.enablePhoto = false
+AIAgentMessenger.config.conversation.input.gallery.enablePhoto = false
+AIAgentMessenger.config.conversation.input.enableFile = false
+```
