@@ -1,0 +1,77 @@
+[![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)![Version](https://img.shields.io/badge/1.3.0-grey.svg?style=flat-square)](https://github.com/sendbird/ai-agent-messenger-android/releases)
+
+# Customizing the Font Style or Color
+
+This guide explains how to customize the appearance and layout of message bubbles in the Delight AI Agent Android SDK, including sender name styling.
+
+## Overview
+
+The AI Agent SDK provides message containers that handle by message alignments:
+
+- **OtherMessageContainer**: Messages from other members (left-aligned)
+
+The container provides overridable methods to customize individual UI components.
+
+## Message Container Types
+
+**Step 1: OtherMessageContainer (Left-aligned)**
+Used for messages from other participants in the conversation.
+
+**Available customization methods:**
+- `drawNickname(textView: TextView, message: BaseMessage, messageUIParams: MessageUIParams)`
+
+## Implementation Guide
+
+**Step 1: Create Custom Message Container**
+
+Create a custom container class that extends the appropriate base container:
+
+```kotlin
+class CustomOtherMessageContainer(context: Context) : OtherMessageContainer(context) {
+    private val appContext = context
+
+    override fun drawNickname(textView: TextView, message: BaseMessage, messageUIParams: MessageUIParams) {
+        super.drawNickname(textView, message, messageUIParams)
+
+        // Apply custom font
+        val customFont = ResourcesCompat.getFont(appContext, R.font.custom_korean)
+        textView.typeface = customFont
+
+        // Set custom text color
+        textView.setTextColor(Color.RED)
+    }
+}
+```
+
+**Step 2: Create Custom Message Container Generator**
+
+Implement a custom generator to use your custom containers:
+
+```kotlin
+class CustomMessageContainerGenerator(
+    private val generator: MessageContainerGenerator
+) : MessageContainerGenerator {
+
+    override fun generate(context: Context, containerType: MessageContainerType): MessageContainerContract {
+        return when (containerType) {
+            MessageContainerType.LEFT -> CustomOtherMessageContainer(context)
+            else -> generator.generate(context, containerType)
+        }
+    }
+}
+```
+
+**Step 3: Apply Custom Generator**
+
+Apply your custom generator to the conversation adapter:
+
+```kotlin
+// In your activity or fragment
+AIAgentAdapterProviders.conversation = ConversationAdapterProvider { channel, uiParams, generator ->
+    ConversationMessageListAdapter(
+        channel,
+        uiParams,
+        CustomMessageContainerGenerator(generator)
+    )
+}
+```

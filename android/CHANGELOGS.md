@@ -1,5 +1,101 @@
 # Changelog
 
+## v1.6.0 (Feb 3, 2026) with Chat SDK `v4.32.0`
+
+### Features
+
+- Added support for custom message templates
+    - Added `CustomMessageTemplateViewHandler` interface for creating custom template views
+    - Added `CustomMessageTemplateViewCallback` interface for delivering created views to the SDK
+    - Added `CustomMessageTemplateData` data class for representing custom template data
+        - Contains `id`, `response` (with `status` and `content`), and `error` properties
+    - Added `customMessageTemplateViewHandler` property in `ConversationMessageListUIParams`
+    - Added `drawCustomMessageTemplate(ViewGroup, BaseMessage, ConversationMessageListUIParams)` method in `OtherMessageContainer`
+```kotlin
+// Example: Set custom message template handler
+class MyCustomTemplateHandler : CustomMessageTemplateViewHandler {
+    override fun onCreateCustomMessageTemplateView(
+        context: Context,
+        message: BaseMessage,
+        data: List<CustomMessageTemplateData>,
+        callback: CustomMessageTemplateViewCallback
+    ) {
+        val view = when (data.firstOrNull()?.id) {
+            "product_card" -> createProductCard(context, data.first())
+            else -> createFallbackView(context)
+        }
+        callback.onViewReady(view)
+    }
+
+    private fun createProductCard(context: Context, data: CustomMessageTemplateData): View {
+        val content = data.response.content ?: return createFallbackView(context)
+        return LayoutInflater.from(context).inflate(R.layout.custom_product_card, null).apply {
+            // Populate view with data from JSON content
+        }
+    }
+
+    private fun createFallbackView(context: Context): View {
+        return TextView(context).apply {
+            text = "Template not available"
+            setPadding(16, 16, 16, 16)
+        }
+    }
+}
+
+// Register handler
+AIAgentAdapterProviders.conversation =
+    ConversationAdapterProvider { channel, uiParams, containerGenerator ->
+        uiParams.customMessageTemplateViewHandler = MyCustomTemplateHandler()
+        ConversationMessageListAdapter(
+            channel,
+            uiParams,
+            containerGenerator
+        )
+    }
+```
+
+- Added new configuration options for conversation list settings
+    - Added `shouldShowMessageFooterView` property in `ConversationConfig.List` - Controls visibility of "Start new conversation" view when conversation ends (default: `true`)
+    - Added `enableNewMessageIndicator` property in `ConversationConfig.List` - Controls visibility of new message indicator (default: `true`)
+    - Added `enableNewMessageIndicator` property in `MessageListComponent.Params`
+```kotlin
+// Example: Configure message footer and new message indicator
+AIAgentMessenger.config.conversation.list.shouldShowMessageFooterView = false
+AIAgentMessenger.config.conversation.list.enableNewMessageIndicator = false
+```
+
+- Added option selection required state for suggested replies
+    - Added `fun notifyOptionSelectionRequired(Boolean)` in `MessageInputComponent`
+    - Added `val optionSelectionRequired: Flow<Boolean>` in `ConversationViewModel`
+    - Input is disabled when suggested replies require user selection before continuing
+
+- Added always visible option for CSAT follow-up questions
+    - Added `alwaysVisible` property in `FollowUp` data class - Controls whether follow-up question is always shown regardless of score (default: `false`)
+
+### Improvements
+
+- Improved image rendering in markdown messages
+    - Implemented `MarkwonGlideImagePlugin` for better image loading and caching
+    - Reduced image flickering when loading markdown content multiple times
+    - Added LruCache for drawable caching in markdown image rendering
+
+- Improved custom message template drawing logic
+    - Enhanced view recycling to prevent unnecessary redraws
+    - Added message ID tracking to optimize template view updates
+    - Improved exception handling when creating custom template views
+
+- Improved URI handling for file messages using `toUri()` extension function for better compatibility
+
+### Bug Fixes
+
+- Fixed permission dialog button color
+    - Changed positive button text color from secondary to primary color
+
+- Fixed enum values for `DisableState` to ensure proper state handling
+    - Updated state flags: `MESSAGE_SENDING(0)`, `OPTION_SELECTION_REQUIRED(1)`, `BOT_SENDING(2)`, `CONVERSATION_CLOSED(3)`
+
+---
+
 ## v1.5.1 (Dec 5, 2025) with Chat SDK `v4.32.0`
 - Fixed an issue where events in Markdown syntax were not working properly.
 
