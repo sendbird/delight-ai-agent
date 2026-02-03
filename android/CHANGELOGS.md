@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.6.0 (Feb 3, 2026) with Chat SDK `v4.32.0`
+## v1.6.0 (Feb 3, 2026) with Chat SDK `v4.32.4`
 
 ### Features
 
