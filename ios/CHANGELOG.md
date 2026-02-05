@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.5.1 (Feb 05, 2026) with Chat SDK v4.35.0
+
+### Improvements
+
+- Optimized layout update cycle in conversation message list to prevent redundant UI refresh calls
+
 ## v1.5.0 (Feb 03, 2026) with Chat SDK v4.35.0
 
 ### New Features
