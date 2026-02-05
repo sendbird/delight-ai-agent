@@ -25,14 +25,11 @@ let layoutOptions = SBALauncherOptions(
     displayStyle: .overlay()
 )
 
-let params = LauncherSettingsParams(
-    options: layoutOptions
-)
-
 AIAgentMessenger.attachLauncher(
-    aiAgentId: "your_agent_id",
-    params: params
-)
+    aiAgentId: "your_agent_id"
+) { params in
+    params.options = layoutOptions
+}
 ```
 
 ### Configuration Options
@@ -90,13 +87,10 @@ let fullscreenOptions = SBALauncherOptions(
     )
 )
 
-// Usage with LauncherSettingsParams
-let params = LauncherSettingsParams(
-    options: overlayOptions // or fullscreenOptions
-)
-
+// Usage with paramsBuilder
 AIAgentMessenger.attachLauncher(
-    aiAgentId: "your_agent_id",
-    params: params
-)
+    aiAgentId: "your_agent_id"
+) { params in
+    params.options = overlayOptions // or fullscreenOptions
+}
 ```
