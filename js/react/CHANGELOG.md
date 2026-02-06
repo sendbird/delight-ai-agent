@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.15.0 (Feb 06, 2026) with ChatSDK ^4.21.1
+
+
+### Minor Changes
+
+- Add DateSeparatorLayout for customizable date separators in conversation view
+- Add AI event handler for external authentication token expiration events with `onExternalAuthTokenExpired` callback
+- Add overloads to `updateContext` and `patchContext` to support specific conversations by aiAgentId and channelUrl
+
+### Patch Changes
+
+- Fix scroll behavior when `messageStackDirection` is set to `'bottom'` by treating it as auto scroll mode
+- Improve `createLayout` type inference by reordering type parameters for better TypeScript inference
+- Add explicit `ReactNode` return type annotations to all layout template and registered components
+- Add `MessageListUILayout` to group date separator and scroll-to-bottom button components
+- Simplify `DateSeparator` component props by moving locale and format string handling to internal logic
+
+
 ## v1.14.1 (Jan 30, 2026) with ChatSDK ^4.21.0
 
 
