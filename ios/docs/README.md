@@ -1,60 +1,57 @@
-# Quickstart guide (Messenger)
-
 **iOS** / [Android](https://github.com/sendbird/delight-ai-agent/blob/main/android/README.md) / [JS](https://github.com/sendbird/delight-ai-agent/blob/main/js/)
 
-## Delight AI agent Quickstart guide (iOS)
+# Delight AI agent Quickstart guide (iOS)
 
 The **Delight AI agent Messenger** allows seamless integration of chatbot features into your iOS application. Follow the steps below to initialize and utilize the SDK effectively.
 
 This guide explains:
+- [Requirements](#requirements)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+  - [Step 1. Create a new project](#step-1-create-a-new-project)
+  - [Step 2. Install AI Agent SDK](#step-2-install-ai-agent-sdk)
+  - [Step 3. Initialize AI Agent SDK](#step-3-initialize-ai-agent-sdk)
+- [Running your application](#running-your-application)
+  - [Manage user sessions](#manage-user-sessions)
+  - [Handle session expiration](#handle-session-expiration)
+  - [Launch the messenger](#launch-the-messenger)
+- [Push Notifications](#push-notifications)
+  - [Register for push notifications](#register-for-push-notifications)
+  - [Unregister for push notifications](#unregister-for-push-notifications)
+- [Advanced features](#advanced-features)
+  - [Customize launcher mode](#customize-launcher-mode)
+  - [Entry Point Advanced Configuration Guide](#entry-point-advanced-configuration-guide)
+  - [Update SDK Theme](#update-sdk-theme)
+  - [Deauthenticate and clear session](#deauthenticate-and-clear-session)
+  - [Passing context object to Agent](#passing-context-object-to-agent)
+  - [Custom Localization Multi-language Support](#custom-localization-multi-language-support)
 
-* [Requirements](quickstart-guide-messenger.md#requirements)
-* [Prerequisites](quickstart-guide-messenger.md#prerequisites)
-* [Getting Started](quickstart-guide-messenger.md#getting-started)
-  * [Step 1. Create a new project](quickstart-guide-messenger.md#step-1-create-a-new-project)
-  * [Step 2. Install AI Agent SDK](quickstart-guide-messenger.md#step-2-install-ai-agent-sdk)
-  * [Step 3. Initialize AI Agent SDK](quickstart-guide-messenger.md#step-3-initialize-ai-agent-sdk)
-* [Running your application](quickstart-guide-messenger.md#running-your-application)
-  * [Manage user sessions](quickstart-guide-messenger.md#manage-user-sessions)
-  * [Handle session expiration](quickstart-guide-messenger.md#handle-session-expiration)
-  * [Launch the messenger](quickstart-guide-messenger.md#launch-the-messenger)
-* [Push Notifications](quickstart-guide-messenger.md#push-notifications)
-  * [Register for push notifications](quickstart-guide-messenger.md#register-for-push-notifications)
-  * [Unregister for push notifications](quickstart-guide-messenger.md#unregister-for-push-notifications)
-* [Advanced features](quickstart-guide-messenger.md#advanced-features)
-  * [Customize launcher mode](quickstart-guide-messenger.md#customize-launcher-mode)
-  * [Entry Point Advanced Configuration Guide](quickstart-guide-messenger.md#entry-point-advanced-configuration-guide)
-  * [Update SDK Theme](quickstart-guide-messenger.md#update-sdk-theme)
-  * [Deauthenticate and clear session](quickstart-guide-messenger.md#deauthenticate-and-clear-session)
-  * [Passing context object to Agent](quickstart-guide-messenger.md#passing-context-object-to-agent)
-  * [Custom Localization Multi-language Support](quickstart-guide-messenger.md#custom-localization-multi-language-support)
+---
 
-***
-
-### Requirements
+## Requirements
 
 The minimum requirements for AI Agent for iOS are the following.
 
-* Xcode 16.3 or later
-* Swift Package Manager (SPM) support
+- Xcode 16.3 or later
+- Swift Package Manager (SPM) support
 
-***
+---
 
-### Prerequisites
+## Prerequisites
 
-Before you start, you'll need your Delight AI **Application ID** and **AI Agent ID**.\
-\
+Before you start, you'll need your Delight AI **Application ID** and **AI Agent ID**.
+<br><br/>
 You can find it under the **Channels** > **Messenger** menu on the Delight AI dashboard.
 
 ![ai-agent-app-id-agent-id](https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/aa-messenger-basic-information.png)
 
-***
+---
 
-### Getting Started
+## Getting Started
 
 Quickly install and initialize the AI Agent SDK by following the steps below.
 
-#### Step 1. Create a new project
+### Step 1. Create a new project
 
 1. Open Xcode.
 2. Choose **File > New > Projec**.
@@ -64,17 +61,18 @@ Quickly install and initialize the AI Agent SDK by following the steps below.
 
 ![aiagent-ios-project-options](https://github.com/user-attachments/assets/13f7b8c9-396b-4cc1-ba49-0339db2ddfc9)
 
-#### Step 2. Install AI Agent SDK
+### Step 2. Install AI Agent SDK
 
 1. In **Xcode**, select **File > Add Package Dependencies**.
-2.  Add **SendbirdAIAgentMessenger** into your package repository using the following URL:
+2. Add **SendbirdAIAgentMessenger** into your package repository using the following URL:
 
-    ```
-    https://github.com/sendbird/delight-ai-agent-messenger-ios.git
-    ```
+   ```
+   https://github.com/sendbird/delight-ai-agent-messenger-ios.git
+   ```
+
 3. Set the **Dependency Rule** to **Branch** and use the provided branch name.
 
-#### Step 3. Initialize AI Agent SDK
+### Step 3. Initialize AI Agent SDK
 
 Initialize the SDK by providing the **appId** (generated via Dashboard) and configuration parameters:
 
@@ -100,29 +98,28 @@ AIAgentMessenger.initialize(
 }
 ```
 
-***
+---
 
-### Running your application
+## Running your application
 
 Now that you have installed and initialized the AI Agent SDK, follow the steps below to run your application.
 
 > Note: Make sure to perform the following steps after the SDK has been successfully initialized. Once initialization is complete, set up the user session and launch the messenger.
 
-#### Manage user sessions
+### Manage user sessions
 
 To use the SDK, session information is required. The SDK supports two types of user sessions depending on your authentication requirements:
 
-**Session Types**
+#### Session Types
 
 The SDK provides two session types: **Manual Session** for authenticated users and **Anonymous Session** for temporary users.
 
 **1. Manual Session (ManualSessionInfo) - For Authenticated Users**
 
 Use Manual Session when you have an existing user authentication system and want to:
-
-* Maintain persistent conversation history across app sessions
-* Associate conversations with specific user accounts
-* Track user activity and provide personalized experiences
+- Maintain persistent conversation history across app sessions
+- Associate conversations with specific user accounts
+- Track user activity and provide personalized experiences
 
 ```swift
 AIAgentMessenger.updateSessionInfo(
@@ -134,15 +131,14 @@ AIAgentMessenger.updateSessionInfo(
 )
 ```
 
-> **Important:** When using Manual Session, you **must** implement a `SessionDelegate` to handle session expiration and token refresh. See the [Handle session expiration](quickstart-guide-messenger.md#handle-session-expiration) section below for implementation details.
+> **Important:** When using Manual Session, you **must** implement a `SessionDelegate` to handle session expiration and token refresh. See the [Handle session expiration](#handle-session-expiration) section below for implementation details.
 
 **2. Anonymous Session (AnonymousSessionInfo) - For Temporary Users**
 
 Use Anonymous Session when you want to:
-
-* Provide instant access without requiring user registration
-* Offer guest or trial experiences
-* Support users who prefer not to create accounts
+- Provide instant access without requiring user registration
+- Offer guest or trial experiences
+- Support users who prefer not to create accounts
 
 The server automatically creates a temporary user identity - no authentication required.
 
@@ -151,17 +147,17 @@ AIAgentMessenger.updateSessionInfo(with: .anonymous())
 ```
 
 > **Important Note for Anonymous Sessions:**
->
-> * Anonymous users are temporary and generated by the server
-> * Conversation history may **not persist** across different app sessions
-> * Users cannot see their previous conversations if cached session information is removed (e.g., app reinstall) or the session expires
-> * Session expiration handling is **not required** (no SessionDelegate needed)
+> - Anonymous users are temporary and generated by the server
+> - Conversation history may **not persist** across different app sessions
+> - Users cannot see their previous conversations if cached session information is removed (e.g., app reinstall) or the session expires
+> - Session expiration handling is **not required** (no SessionDelegate needed)
 
-**When to set the session information**
+#### When to set the session information
 
 The timing of session setup depends on your app's authentication flow:
 
-**1. Upon initial login (Manual Session):** When a user logs in for the first time or after logging out, set the session immediately after successful authentication.
+**1. Upon initial login (Manual Session):**
+When a user logs in for the first time or after logging out, set the session immediately after successful authentication.
 
 ```swift
 func onLoginSuccess(userId: String, sessionToken: String) {
@@ -182,7 +178,8 @@ func onLoginSuccess(userId: String, sessionToken: String) {
 }
 ```
 
-**2. For already logged-in users (Manual Session):** If the user is already logged in (credentials stored), register the session immediately after SDK initialization.
+**2. For already logged-in users (Manual Session):**
+If the user is already logged in (credentials stored), register the session immediately after SDK initialization.
 
 ```swift
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -215,7 +212,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-**3. For guest users (Anonymous Session):** Set up anonymous session immediately after SDK initialization or when starting a guest experience.
+**3. For guest users (Anonymous Session):**
+Set up anonymous session immediately after SDK initialization or when starting a guest experience.
 
 ```swift
 // No authentication required - set up immediately
@@ -229,7 +227,7 @@ AIAgentMessenger.initialize(appId: appId) { result in
 }
 ```
 
-#### Handle session expiration
+### Handle session expiration
 
 **This section is only required when using Manual Session (ManualSessionInfo).**
 
@@ -237,34 +235,31 @@ When using `ManualSessionInfo`, session tokens can expire over time due to secur
 
 > **Note:** Session expiration handling is **only applicable** when using `ManualSessionInfo`. `AnonymousSessionInfo` does not require session token management or a session delegate.
 
-**Understanding SessionDelegate callbacks**
+#### Understanding SessionDelegate callbacks
 
 The `SessionDelegate` provides three important callbacks:
 
 **1. `sessionWasClosed()`**
-
-* The session has been completely closed.
-* Client apps should guide the user to a login page to log in again.
+- The session has been completely closed.
+- Client apps should guide the user to a login page to log in again.
 
 **Action:** Redirect the user to the login screen to re-authenticate.
 
 **2. `sessionTokenDidRequire(successCompletion:failCompletion:)`**
-
-* Called when the SDK requires a new session token to refresh the session.
-* Refresh the session token from your authentication server and pass it to the SDK through `successCompletion(newToken)`.
-* When `successCompletion` is called with the new token, the SDK internally calls `updateSessionInfo`, which automatically updates the session token - you don't need to call `updateSessionInfo` manually.
-* If you do not want to refresh the session, pass a `nil` value through `successCompletion(nil)`.
-* If any error occurred while refreshing the token, let the SDK know about it through `failCompletion()`.
+- Called when the SDK requires a new session token to refresh the session.
+- Refresh the session token from your authentication server and pass it to the SDK through `successCompletion(newToken)`.
+- When `successCompletion` is called with the new token, the SDK internally calls `updateSessionInfo`, which automatically updates the session token - you don't need to call `updateSessionInfo` manually.
+- If you do not want to refresh the session, pass a `nil` value through `successCompletion(nil)`.
+- If any error occurred while refreshing the token, let the SDK know about it through `failCompletion()`.
 
 **Action:** Request a new token from your authentication server and provide it to the SDK.
 
 **3. `sessionDidHaveError(_ error: SBError)`** (Optional)
-
-* Called when a session error occurs.
+- Called when a session error occurs.
 
 **Action:** Handle session-related errors appropriately.
 
-**Implementation example**
+#### Implementation example
 
 Here's how to implement a SessionDelegate:
 
@@ -312,7 +307,7 @@ class SessionManager: SessionDelegate {
 }
 ```
 
-**Setting up the SessionDelegate**
+#### Setting up the SessionDelegate
 
 Pass your SessionDelegate when creating the ManualSessionInfo:
 
@@ -326,7 +321,7 @@ AIAgentMessenger.updateSessionInfo(
 )
 ```
 
-#### Launch the messenger
+### Launch the messenger
 
 Once the authentication information has been successfully registered, you can launch the messenger to start a conversation with the ai agent.
 
@@ -335,9 +330,9 @@ There are two ways to display the chat view:
 1. Using the launcher button
 2. Opening the conversation channel in presentation mode
 
-**1. Using the launcher button**
+#### 1. Using the launcher button
 
-![](https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-launcher2.png)
+<img width="361" height="642" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-launcher2.png" />
 
 Display a floating launcher button:
 
@@ -353,9 +348,9 @@ To hide the launcher:
 AIAgentMessenger.detachLauncher(aiAgentId: {AIAgentId})
 ```
 
-**2. Opening the conversation channel in presentation mode**
+#### 2. Opening the conversation channel in presentation mode
 
-![](https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-suggested-replies2.png)
+<img width="361" height="642" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-suggested-replies2.png" />
 
 Present the chat view as a modal:
 
@@ -365,11 +360,11 @@ AIAgentMessenger.presentConversation(
 )
 ```
 
-***
+---
 
-### Push Notifications
+## Push Notifications
 
-#### Register for push notifications
+### Register for push notifications
 
 [Push notifications](https://sendbird.com/docs/chat/sdk/v4/ios/push-notifications/overview-push-notifications) are a type of notification sent to your user's device when a client app is running in the background. Push notifications for the client app will contain a payload created by Delight AI and be delivered through APNs. Delight AI server will communicate with APNs whenever needed and APNs will send a push notification to the client app on iOS devices. In order to use this feature, you need to register the user's device token to Delight AI server through the AppDelegate.
 
@@ -383,7 +378,7 @@ func application(_ application: UIApplication, didRegisterForRemoteNotifications
 }
 ```
 
-#### Unregister for push notifications
+### Unregister for push notifications
 
 You should unregister a user's device token from Delight AI server if you don’t want to send [push notifications](https://sendbird.com/docs/chat/sdk/v4/ios/push-notifications/overview-push-notifications) to the user.
 
@@ -399,13 +394,13 @@ AIAgentMessenger.unregisterAllPushToken { (success) in
 }
 ```
 
-***
+---
 
-### Advanced features
+## Advanced features
 
 The following are available advanced features.
 
-#### Customize launcher mode
+### Customize launcher mode
 
 You can modify the floating launcher button’s behavior and appearance as shown below.
 
@@ -428,11 +423,11 @@ AIAgentMessenger.attachLauncher(
 }
 ```
 
-#### Entry Point Advanced Configuration Guide
+### Entry Point Advanced Configuration Guide
 
 This guide covers advanced entry point configuration options for the Delight AI agent iOS SDK.
 
-**Entry Point Types**
+#### Entry Point Types
 
 The SDK supports two entry point types:
 
@@ -443,12 +438,12 @@ public enum SBAEntryPoint {
 }
 ```
 
-* **`.conversation`**: Opens directly to the chat conversation interface
-* **`.conversationList`**: Shows a list of existing conversations first
+- **`.conversation`**: Opens directly to the chat conversation interface
+- **`.conversationList`**: Shows a list of existing conversations first
 
-**Launcher-based Entry Point Configuration**
+#### Launcher-based Entry Point Configuration
 
-**Basic Setup**
+##### Basic Setup
 
 Configure entry point through launcher options:
 
@@ -464,9 +459,9 @@ AIAgentMessenger.attachLauncher(
 }
 ```
 
-**Direct ViewController Presentation**
+#### Direct ViewController Presentation
 
-**Present Conversation**
+##### Present Conversation
 
 Use `presentConversation()` when you want to show the chat interface directly:
 
@@ -479,7 +474,7 @@ AIAgentMessenger.presentConversation(
 }
 ```
 
-**Present Conversation List**
+##### Present Conversation List
 
 Use `presentConversationList()` to show the conversation list:
 
@@ -492,7 +487,7 @@ AIAgentMessenger.presentConversationList(
 }
 ```
 
-#### Update SDK Theme
+### Update SDK Theme
 
 You can customize the SDK’s color scheme to match your app's theme as shown below.
 
@@ -502,7 +497,7 @@ AIAgentMessenger.update(colorScheme: .light) // Options: .dark, .light
 
 Since apps may allow users to switch themes manually or follow device settings, theme updates need to be explicitly called.
 
-#### Deauthenticate and clear session
+### Deauthenticate and clear session
 
 When a user logs out, de-authenticate the SDK to clear session data and disconnect.
 
@@ -512,7 +507,7 @@ AIAgentMessenger.deauthenticate { [weak self] in
 }
 ```
 
-#### Passing context object to Agent
+### Passing context object to Agent
 
 You can predefine customer-specific information, such as country, language, or other custom context data, to guide the AI Agent in providing faster and more accurate responses.
 
@@ -542,12 +537,14 @@ AIAgentMessenger.presentConversation(
 }
 ```
 
-> * `language` value should follow the **IETF BCP 47** format.
->   * For example, it might be "ko-KR" for Korean in South Korea or "en-US" for English in the United States.
->   * See also: [List of common primary language subtags](https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags)
-> * `countryCode` value should follow the **ISO 3166** format.
->   * For example, it might be "KR" for South Korea or "US" for the United States.
+> - `language` value should follow the **IETF BCP 47** format.
+    >   - For example, it might be "ko-KR" for Korean in South Korea or "en-US" for English in the United States.
+>   - See also: [List of common primary language subtags](https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags)
+> - `countryCode` value should follow the **ISO 3166** format.
+    >   - For example, it might be "KR" for South Korea or "US" for the United States.
 
-#### Custom Localization (Multi-language Support)
+### Custom Localization (Multi-language Support)
 
-AIAgent supports adding and customizing multi languages. For more information, see [this detail page](https://github.com/sendbird/delight-ai-docs/blob/katherine/guide/donna/sdk-docs/ios/MULTILANGUAGE.md).
+AIAgent supports adding and customizing multi languages. For more information, see [this detail page](MULTILANGUAGE.md).
+
+[def]: #prerequisites

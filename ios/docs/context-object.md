@@ -64,7 +64,7 @@ The following methods can be used to add or update context objects after initial
 
 <table><thead><tr><th width="186.49609375">Method</th><th>Description</th></tr></thead><tbody><tr><td><code>updateContext</code></td><td>Overwrites the entire context object. Keys not included will be removed. </td></tr><tr><td><code>patchContext</code></td><td>Merges the provided keys into the existing context. Other keys remain unchanged.</td></tr><tr><td><code>getContextObject</code></td><td>Retrieves the current context object.</td></tr></tbody></table>
 
-> For details on setting context at initialization, refer to the [iOS messenger quickstart guide](../android/quickstart-guide-messenger.md#passing-context-object-to-ai-agent).
+> For details on setting context at initialization, refer to the [iOS messenger quickstart guide](README.md#passing-context-object-to-agent).
 
 ***
 
