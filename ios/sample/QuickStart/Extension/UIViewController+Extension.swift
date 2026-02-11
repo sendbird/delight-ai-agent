@@ -14,7 +14,7 @@ extension UIViewController {
         let coreVersion: String = SendbirdChat.getSDKVersion()
         var aiagentVersion: String {
             switch AIAgentMessenger.shortVersion {
-            case "[NEXT_VERSION]":
+            case "1.6.0":
                 let bundle = Bundle(identifier: "com.sendbird.aiagent.sample")
                 return "\(bundle?.infoDictionary?["CFBundleShortVersionString"] ?? "")"
             case "0.0.0":

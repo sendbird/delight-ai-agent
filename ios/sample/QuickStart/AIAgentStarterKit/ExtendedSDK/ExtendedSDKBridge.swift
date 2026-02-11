@@ -21,32 +21,6 @@ class ExtendedSDKBridge {
 extension ExtendedSDKBridge {
     /// A closure type for handling errors.
     typealias ErrorHandler = (Error?) -> Void
-
-    #if INTERNAL_TEST
-    /// Updates the host for the SendbirdChat connection.
-    ///
-    /// - Parameter target: The target server identifier.
-    /// - Throws: An error if the connection or disconnection process fails.
-    /// - Note: Only used for internal testing purposes, not needed for production.
-    static func updateHost(_ target: String) async throws {
-        return try await withCheckedThrowingContinuation { continutation in
-            let userId = SampleConfiguration.sessionInfoType == .manual ? SampleConfiguration.userId : UUID().uuidString
-
-            SendbirdChat.connect(
-                userId: userId,
-                authToken: SampleConfiguration.sessionToken,
-                apiHost: "https://api-\(target).sendbirdtest.com",
-                wsHost: "wss://ws-\(target).sendbirdtest.com") { user, error in
-                    if let error = error {
-                        debugPrint("[ExtendedSDK] ❌ Target change failed - \(error.localizedDescription)")
-                    }
-                    SendbirdChat.disconnect {
-                        continutation.resume()
-                    }
-                }
-        }
-    }
-    #endif
 }
 
 // MARK: - ExtendedSDKBaseTaskable

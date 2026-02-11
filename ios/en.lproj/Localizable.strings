@@ -45,6 +45,7 @@
 "SBA_Conversation_Input_Placeholder_normal" = "Ask a question";
 "SBA_Conversation_Input_Placeholder_streaming" = "Waiting for the agent's reply...";
 "SBA_Conversation_Input_Placeholder_closeConversation" = "Chat is unavailable in this channel";
+"SBA_Conversation_Input_Placeholder_noConversation" = "Waiting for the agent's reply...";
 "SBA_Conversation_Input_Placeholder_suggestedReplies" = "Select an option to continue";
 "SBA_Conversation_Input_Placeholder_chatUnavailable" = "Chat is unavailable in this channel";
 
