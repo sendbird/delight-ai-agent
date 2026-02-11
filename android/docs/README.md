@@ -1,6 +1,4 @@
-[iOS](https://github.com/sendbird/delight-ai-agent/blob/main/ios/README.md) / **Android** / [JS](https://github.com/sendbird/sendbird-ai-agent/blob/main/js/)
-
-# Delight AI agent Quickstart guide (Android)
+# Android
 
 The **Delight AI agent Messenger** allows seamless integration of chatbot features into your Android application. Follow the steps below to initialize and utilize the SDK effectively.
 
@@ -351,10 +349,10 @@ There are two ways to display the messenger:
 
 <img width="361" height="642" src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-launcher2.png" />
 
-The SDK provides the MessengerLauncher view, which can be easily attached to your application’s root view programmatically without directly adding it to XML layouts.
+The SDK provides the MessengerLauncher view, which can be easily attached to your application's root view programmatically without directly adding it to XML layouts.
 
-> Since the SDK utilizes Fragments, make sure the context you pass to the MessengerLauncher is an instance of FragmentActivity. If you’re using standard Android components such as AppCompatActivity, there’s no need to worry, as it already inherits from FragmentActivity.
-However, if you’re using a custom or legacy activity, verify that it inherits from FragmentActivity to avoid runtime issues.
+> Since the SDK utilizes Fragments, make sure the context you pass to the MessengerLauncher is an instance of FragmentActivity. If you're using standard Android components such as AppCompatActivity, there's no need to worry, as it already inherits from FragmentActivity.
+However, if you're using a custom or legacy activity, verify that it inherits from FragmentActivity to avoid runtime issues.
 
 To add the MessengerLauncher to your screen, simply call the `attach()` function of `MessengerLauncher`, specifying the AI agent ID and configuration parameters:
 
@@ -406,7 +404,7 @@ For more details, refer to the [Push notifications](https://sendbird.com/docs/ch
 
 #### Register for push notifications
 
-To receive push notifications from Delight AI server, register the device token by setting up a custom `FirebaseMessagingService`.  
+To receive push notifications from Delight AI server, register the device token by setting up a custom `FirebaseMessagingService`.
 Call the following method after login:
 
 ```kotlin
@@ -434,7 +432,7 @@ override fun onMessageReceived(context: Context, remoteMessage: RemoteMessage) {
     val sendbird = JSONObject(jsonStr)
     val message = sendbird.getString("message")
     val channelUrl = sendbird.getJSONObject("channel").getString("channel_url")
-    
+
     // Show local notification and route user to the correct screen
 }
 ```

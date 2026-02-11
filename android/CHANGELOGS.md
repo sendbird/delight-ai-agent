@@ -1,6 +1,65 @@
 # Changelog
 
-## v1.6.0 (Feb 3, 2026) with Chat SDK `v4.32.4`
+## v1.7.0 (Feb 11, 2026) with Chat SDK `v4.33.0`
+
+### Features
+
+- Added conversation search functionality
+    - Added `fun searchConversation(SearchConversationParams, ChannelUrlsHandler?)` in `AIAgentMessenger`
+    - Added `SearchConversationParams` data class with `aiAgentId` and `context` properties
+    - Added `ChannelUrlsHandler` interface for handling search results
+    - Searches for conversations by exact context match (case-sensitive)
+```kotlin
+// Example: Search conversations by context
+val params = SearchConversationParams(
+    aiAgentId = "YOUR_AI_AGENT_ID",
+    context = mapOf(
+        "userId" to "user123",
+        "department" to "support"
+    )
+)
+
+AIAgentMessenger.searchConversation(params) { channelUrls, error ->
+    if (error != null) {
+        // Handle error
+    } else {
+        // Use matching channel URLs
+        channelUrls?.forEach { url ->
+            // Process each matching conversation
+        }
+    }
+}
+```
+
+- Added conversation initialization control
+    - Added `suspend fun awaitInitConversation(InitConversationParams)` in `ConversationRepository`
+
+- Added channel refresh capability
+    - Added `fun refreshChannel(CompletionHandler?)` in `ConversationRepository`
+    - Allows manual refresh of channel data without full screen reload
+
+### Deprecations
+
+- Deprecated `fun refresh()` in `ConversationRepository`
+    - Use `refreshChannel(CompletionHandler?)` instead for better async handling and error reporting
+    - Migration example:
+```kotlin
+// Before (deprecated)
+repository.refresh()
+
+// After (recommended)
+repository.refreshChannel { error ->
+    if (error != null) {
+        // Handle error
+    } else {
+        // Channel refreshed successfully
+    }
+}
+```
+
+---
+
+## v1.6.0 (Feb 3, 2026) with Chat SDK `v4.32.0`
 
 ### Features
 
