@@ -70,9 +70,7 @@ extension AIAgentStarterKit {
                 AIAgentStarterKit.status = .initialized
 
                 #if INTERNAL_TEST
-                if let target = SampleConfiguration.productionServer {
-                    try await ExtendedSDKBridge.updateHost(target)
-                }
+                InternalTestManager.updateHost(SampleConfiguration.productionServer)
                 #endif
 
                 Thread.executeOnMain {
@@ -144,12 +142,13 @@ extension AIAgentStarterKit {
             do {
                 self.isConnected = true
 
-                // Connection priority: UIKit, AIAgent
-                // INFO: This is only necessary when using extended SDKs(e,g,. UIKit, DeskSDK).
-                try await ExtendedSDKBridge.connectIfNeeded()
-
+                // Connection priority: AIAgent, UIKit
+                
                 // Note: If you only use AIAgent, there is no need to use this function because connect is handled internally when necessary.
                 try await self.connect()
+
+                // INFO: This is only necessary when using extended SDKs(e,g,. UIKit, DeskSDK).
+                try await ExtendedSDKBridge.connectIfNeeded()
 
                 Thread.executeOnMain {
                     completion?(nil)

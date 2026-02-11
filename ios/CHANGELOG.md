@@ -1,5 +1,38 @@
 # Changelog
 
+## v1.6.0 (Feb 11, 2026) with Chat SDK v4.36.0
+
+### New Features
+
+- **Context-Based Conversation Search**
+
+  Added `AIAgentMessenger.searchConversation(params:completionHandler:)` to find existing conversations that match specific context criteria. This allows you to look up conversations associated with particular attributes (e.g., order ID, page URL) without manually tracking channel URLs.
+  - Searches only open conversations for the specified AI Agent
+  - Context matching uses AND condition — all provided key-value pairs must match
+  - Returns an array of matching channel URLs
+
+  ```swift
+  let params = AIAgentMessenger.SearchConversationParams(
+      aiAgentId: "AI_AGENT_ID",
+      context: ["key": "value"]
+  )
+
+  AIAgentMessenger.searchConversation(params: params) { result in
+      switch result {
+      case .success(let channelURLs):
+          // Use channelURLs to open or manage matched conversations
+      case .failure(let error):
+          // Handle error
+      }
+  }
+  ```
+
+### Improvements
+- **Offline Mode Support**: Automatically fallback to cached settings when Messenger Settings API fails
+
+### Deprecations
+- Deprecated `MessageForm.isValidVersion`, `MessageFormItem.LayoutType.keyboardType`, `MessageFormItem.LayoutType.returnKeyType`, `MessageFormItem.ResultCount.isUpdatable()`
+
 ## v1.5.1 (Feb 05, 2026) with Chat SDK v4.35.0
 
 ### Improvements
