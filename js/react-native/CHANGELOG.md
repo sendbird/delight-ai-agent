@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.6.0 (Feb 11, 2026) with ChatSDK ^4.21.1
+
+
+### Minor Changes
+
+- Implement FYC (first your conversation) with automatic conversation initialization for AI Agent channels
+- Add `conversationStatus` field to `ActiveChannel` interface, decouple from `ConversationStatus` enum
+- Improve StatefulFlatList with `empty` and `stackDirection` props
+- Add stateful props to message list components
+
+
 ## v1.5.0 (Feb 06, 2026) with ChatSDK ^4.21.1
 
 
