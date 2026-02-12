@@ -4,15 +4,15 @@ This guide explains how to localize the UI strings used in the **Delight AI agen
 
 This guide explains:
 - [Overview](#overview)
-    - [Supported languages](#supported-languages)
+  - [Supported languages](#supported-languages)
 - [Setting the language](#setting-the-language)
 - [Customizing strings](#customizing-strings)
-    - [Scenario 1: Customizing strings in supported languages](#scenario-1-customizing-strings-in-supported-languages)
+  - [Scenario 1: Customizing strings in supported languages](#scenario-1-customizing-strings-in-supported-languages)
 - [Default SDK strings](#default-sdk-strings)
 - [Implementation examples](#implementation-examples)
-    - [Best practice for initializing with custom strings:](#best-practice-for-initializing-with-custom-strings)
-    - [Switching between languages at runtime:](#switching-between-languages-at-runtime)
-    - [Dynamically loading language files:](#dynamically-loading-language-files)
+  - [Best practice for initializing with custom strings:](#best-practice-for-initializing-with-custom-strings)
+  - [Switching between languages at runtime:](#switching-between-languages-at-runtime)
+  - [Dynamically loading language files:](#dynamically-loading-language-files)
 
 ---
 
