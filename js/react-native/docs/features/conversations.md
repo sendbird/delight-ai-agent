@@ -98,7 +98,6 @@ The launcher's appearance can be customized via the dashboard. For positioning a
 >__Note__: `FixedMessenger` must be used within an `AIAgentProviderContainer` which handles initialization, authentication, and configuration.
 
 ```tsx
-import { useState } from 'react';
 import {
   AIAgentProviderContainer,
   FixedMessenger,
@@ -237,7 +236,6 @@ You can customize the launcher's position, margin, size and spacing between the 
 The following example demonstrates all customization options together:
 
 ```tsx
-import { useState } from 'react';
 import {
   AIAgentProviderContainer,
   FixedMessenger,
@@ -377,7 +375,6 @@ Also, you can open a specific conversation channel by passing its URL, or manual
 The `context` object allows you to provide user's information to AI agents for more personalized service, such as their country code and language preference. This context can be set when creating conversations to enhance the user experience. You can configure these settings at the provider level using the `AIAgentProviderContainer` component props.
 
 ```tsx
-import { useState } from 'react';
 import {
   AIAgentProviderContainer,
   FixedMessenger,
@@ -417,7 +414,6 @@ const App = () => {
 You can open a specific conversation by passing its channel URL to the `Conversation` component. This is useful when you want to display a specific conversation directly without using the launcher.
 
 ```tsx
-import { useState } from 'react';
 import {
   AIAgentProviderContainer,
   Conversation,
@@ -431,7 +427,7 @@ const mmkv = createMMKV();
 
 // Using Conversation component directly to open specific conversation
 function CustomMessengerView() {
-  const [channelUrl] = useState('sendbird_group_channel_12345');
+  const channelUrl = 'sendbird_group_channel_12345';
 
   return (
     <AIAgentProviderContainer
@@ -457,7 +453,6 @@ Multiple active conversation mode allows users to simultaneously communicate wit
 >__Note__: In single conversation mode, a new conversation can't be created if there is an active conversation.
 
 ```tsx
-import { useState } from 'react';
 import { Button } from 'react-native';
 import { useMessengerSessionContext } from '@sendbird/ai-agent-messenger-react-native';
 
@@ -521,7 +516,7 @@ Configuration options for the `AIAgentProviderContainer` component. This compone
 | `aiAgentId` | string | Required | AI agent identifier for conversation target |
 | `userSessionInfo` | ManualSessionInfo \| AnonymousSessionInfo | Required | User session information for authentication |
 | `nativeModules` | NativeAdapterConfig | Required | Native modules configuration (mmkv, imagePicker, documentPicker) |
-| `chatParams` | Partial<SendbirdChatParams> | - | Custom parameters for initializing the chat SDK |
+| `chatParams` | Partial<SendbirdChatParams<[GroupChannelModule, AIAgentModule]>> | - | Custom parameters for initializing the chat SDK |
 | `theme` | object | - | Theme customization including mode, palette and typography |
 | `logLevel` | LogLevel | LogLevel.WARN | Log level for the AI agent client |
 | `language` | string | System default | Language setting following IETF BCP 47 format (e.g., "en-US", "ko-KR") |

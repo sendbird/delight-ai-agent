@@ -14,7 +14,6 @@ This guide explains:
       - [Carousel](#carousel)
       - [Suggested replies](#suggested-replies)
       - [CSAT Message](#csat-message)
-      - [Product List](#product-list)
   - [Key features](#key-features)
     - [Citation](#citation)
     - [Special notice](#special-notice)
