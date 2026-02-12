@@ -1,6 +1,8 @@
+---
+
 # Template-Based Layout Component Customization Guide
 
-This guide explains how to customize Delight AI agent Messenger’s UI by replacing or hiding layout components using React Context.
+This guide explains how to customize Delight AI agent Messenger's UI by replacing or hiding layout components using React Context.
 
 This guide explains:
 - [Overview](#overview)
@@ -36,7 +38,7 @@ The template system uses React Context to inject custom components, allowing you
 - Hide unwanted components by returning `<></>` (or `null`)
 - Maintain the original layout structure while changing specific behaviors
 
-**Note**: All layout customizations must be wrapped within `AgentProviderContainer` along with the `Conversation` component to function properly. The examples below show individual component customizations, but see the [Putting It All Together](#putting-it-all-together) section for the complete integration pattern.
+> **Note:** All layout customizations must be wrapped within `AgentProviderContainer` along with the `Conversation` component to function properly. The examples below show individual component customizations, but see the [Putting It All Together](#putting-it-all-together) section for the complete integration pattern.
 
 ---
 
@@ -543,3 +545,5 @@ export const MyCustomMessenger = () => {
 4. **Style Consistently**: Maintain visual consistency with your application's design system while customizing components.
 
 5. **Handle All Message Types**: Ensure custom message body components handle different message types (text, file, image, etc.).
+
+---
