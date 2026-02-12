@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.7.0 (Feb 12, 2026) with ChatSDK ^4.21.2
+
+
+### Minor Changes
+
+- Add `presentMethod` prop for stats tracking support
+
+
 ## v1.6.0 (Feb 11, 2026) with ChatSDK ^4.21.1
 
 
