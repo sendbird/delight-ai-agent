@@ -1,14 +1,14 @@
 # Context object
 
-Context object is a key–value store that sends customer-specific information to the AI agent. This enables more personalized and context-aware responses.&#x20;
+Context object is a key–value store that sends customer-specific information to the AI agent. This enables more personalized and context-aware responses.
 
-***
+---
 
-### Use case examples
+## Use case examples
 
 The following examples show how context objects can be utilized.
 
-#### User profile and preferences
+### User profile and preferences
 
 The AI agent can greet the user by name, adjust its tone for premium mebmers, and display times in the correct time zone.
 
@@ -21,7 +21,7 @@ The AI agent can greet the user by name, adjust its tone for premium mebmers, an
 }
 ```
 
-#### E-commerce checkout flow
+### E-commerce checkout flow
 
 The AI agent can help finalize the order, apply the discount, and offer relevant product recommendations.
 
@@ -34,7 +34,7 @@ The AI agent can help finalize the order, apply the discount, and offer relevant
 }
 ```
 
-#### Travel booking
+### Travel booking
 
 The AI agent can look up booking details, or suggest upgrades.
 
@@ -47,28 +47,32 @@ The AI agent can look up booking details, or suggest upgrades.
 }
 ```
 
-***
+---
 
-### When to set context
+## When to set context
 
 You can set the context object:
 
 * **At initialization**: To pass initial user or environment information.
 * **After initialization (at runtime)**: To update or add information after the messenger is running, or mid-conversation.
 
-***
+---
 
-### Methods
+## Methods
 
 The following methods can be used to add or update context objects after initialization.
 
-<table><thead><tr><th width="186.49609375">Method</th><th>Description</th></tr></thead><tbody><tr><td><code>updateContext</code></td><td>Overwrites the entire context object. Keys not included will be removed. </td></tr><tr><td><code>patchContext</code></td><td>Merges the provided keys into the existing context. Other keys remain unchanged.</td></tr><tr><td><code>getContextObject</code></td><td>Retrieves the current context object.</td></tr></tbody></table>
+| Method | Description |
+|--------|-------------|
+| `updateContext` | Overwrites the entire context object. Keys not included will be removed. |
+| `patchContext` | Merges the provided keys into the existing context. Other keys remain unchanged. |
+| `getContextObject` | Retrieves the current context object. |
 
 > For details on setting context at initialization, refer to the [iOS messenger quickstart guide](README.md#passing-context-object-to-agent).
 
-***
+---
 
-### Update context object
+## Update context object
 
 ```swift
 let updatedContext: [String: String] = [
@@ -87,9 +91,9 @@ conversationViewModel.updateContext(updatedContext) { result in
 }
 ```
 
-***
+---
 
-### Patch context object
+## Patch context object
 
 ```swift
 let patchData: [String: String] = [
@@ -107,9 +111,9 @@ conversationViewModel.patchContext(patchData) { result in
 }
 ```
 
-***
+---
 
-### Get context object
+## Get context object
 
 ```swift
 viewModel.getContextObject { result in

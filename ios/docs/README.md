@@ -8,23 +8,23 @@ This guide explains:
 - [Requirements](#requirements)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
-  - [Step 1. Create a new project](#step-1-create-a-new-project)
-  - [Step 2. Install AI Agent SDK](#step-2-install-ai-agent-sdk)
-  - [Step 3. Initialize AI Agent SDK](#step-3-initialize-ai-agent-sdk)
+    - [Step 1. Create a new project](#step-1-create-a-new-project)
+    - [Step 2. Install AI Agent SDK](#step-2-install-ai-agent-sdk)
+    - [Step 3. Initialize AI Agent SDK](#step-3-initialize-ai-agent-sdk)
 - [Running your application](#running-your-application)
-  - [Manage user sessions](#manage-user-sessions)
-  - [Handle session expiration](#handle-session-expiration)
-  - [Launch the messenger](#launch-the-messenger)
+    - [Manage user sessions](#manage-user-sessions)
+    - [Handle session expiration](#handle-session-expiration)
+    - [Launch the messenger](#launch-the-messenger)
 - [Push Notifications](#push-notifications)
-  - [Register for push notifications](#register-for-push-notifications)
-  - [Unregister for push notifications](#unregister-for-push-notifications)
+    - [Register for push notifications](#register-for-push-notifications)
+    - [Unregister for push notifications](#unregister-for-push-notifications)
 - [Advanced features](#advanced-features)
-  - [Customize launcher mode](#customize-launcher-mode)
-  - [Entry Point Advanced Configuration Guide](#entry-point-advanced-configuration-guide)
-  - [Update SDK Theme](#update-sdk-theme)
-  - [Deauthenticate and clear session](#deauthenticate-and-clear-session)
-  - [Passing context object to Agent](#passing-context-object-to-agent)
-  - [Custom Localization Multi-language Support](#custom-localization-multi-language-support)
+    - [Customize launcher mode](#customize-launcher-mode)
+    - [Entry Point Advanced Configuration Guide](#entry-point-advanced-configuration-guide)
+    - [Update SDK Theme](#update-sdk-theme)
+    - [Deauthenticate and clear session](#deauthenticate-and-clear-session)
+    - [Passing context object to Agent](#passing-context-object-to-agent)
+    - [Custom Localization Multi-language Support](#custom-localization-multi-language-support)
 
 ---
 
@@ -538,10 +538,10 @@ AIAgentMessenger.presentConversation(
 ```
 
 > - `language` value should follow the **IETF BCP 47** format.
-    >   - For example, it might be "ko-KR" for Korean in South Korea or "en-US" for English in the United States.
+>   - For example, it might be "ko-KR" for Korean in South Korea or "en-US" for English in the United States.
 >   - See also: [List of common primary language subtags](https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags)
 > - `countryCode` value should follow the **ISO 3166** format.
-    >   - For example, it might be "KR" for South Korea or "US" for the United States.
+>   - For example, it might be "KR" for South Korea or "US" for the United States.
 
 ### Custom Localization (Multi-language Support)
 
