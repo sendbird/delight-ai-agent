@@ -12,6 +12,6 @@ This guide explains how to change the alignment of the titleView in the **Conver
 AIAgentMessenger.config.conversation.header.contentAlignment = .center
 ```
 Explanation:
-- `contentAlignment` = .leading → Right-aligns the titleView in the header (default).
+- `contentAlignment` = .leading → Leading-aligns the titleView in the header (default).
 - `contentAlignment` = .center → Center-aligns the titleView in the header.
 - `contentAlignment` = .trailing → Trailing-aligns the titleView in the header.

@@ -140,13 +140,12 @@ Register the custom ViewController and List component in your AppDelegate.
 import SendbirdAIAgentMessenger
 
 @main
-class AppDelegate: AppDelegate {
-    override func setupCustomizations() {
-        // Register Custom ViewController (data injection)
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         SBAViewControllerSet.LauncherConversationListViewController = CustomConversationListViewController.self
-
-        // Register Custom List Component (cell type selection)
         SBAModuleSet.ConversationListModule.ListComponent = CustomConversationList.self
+        return true
     }
 }
 ```

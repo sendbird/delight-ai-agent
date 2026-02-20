@@ -37,7 +37,7 @@ class CustomMessageInputView: SBAMessageInputView {
 **Step 2: Register the Custom Input View**
 
 ```swift
-SBAModuleSet.ConversationModule.InputComponent = CustomMessageInputView.self
+SBAModuleSet.ConversationModule.Input.MessageInputView = CustomMessageInputView.self
 ```
 
 **Notes:**
