@@ -4,7 +4,7 @@
 
 This guide shows how to customize the typing indicator appearance by changing the dot color displayed when the AI agent or user is typing.
 
-You can customize the typing indicator by subclassing `SBATypingIndicatorMessageCell` and overriding the `setupStyles()` method.
+You can customize the typing indicator by subclassing `SBATypingIndicatorMessageCell` and overriding the `layoutContents(with:)` method.
 
 **Step 1: Create a Custom Typing Indicator Cell**
 
@@ -70,10 +70,10 @@ extension UIColor {
 Register your custom cell before presenting the conversation view:
 
 ```swift
-SBAModuleSet.ConversationModule.TypingIndicatorMessageCell = CustomTypingIndicatorMessageCell.self
+SBAModuleSet.ConversationModule.List.TypingIndicatorMessageCell = CustomTypingIndicatorMessageCell.self
 ```
 
 **Notes:**
-- The `setupStyles()` method is called when the cell is configured
-- `typingBubbleView.dotColor` property controls the animated dots color
+- The `layoutContents(with:)` method is called when the cell's layout is configured
+- Override `layoutContents(with:)` to replace the default typing bubble with a custom view
 - The typing indicator appears at the bottom of the conversation when someone is typing

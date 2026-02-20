@@ -40,7 +40,7 @@ class CustomConversationCell: SBAConversationCell {
 **Step 2: Register the Custom Cell**
 
 ```swift
-SBAModuleSet.ConversationListModule.ListItemView = CustomConversationCell.self
+SBAModuleSet.ConversationListModule.List.ConversationCell = CustomConversationCell.self
 ```
 
 **Notes:**

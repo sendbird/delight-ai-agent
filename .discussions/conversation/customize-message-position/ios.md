@@ -86,7 +86,7 @@ class CustomUserMessageCell: SBAUserMessageCell {
 Register your custom cell before presenting the conversation view:
 
 ```swift
-SBAModuleSet.ConversationModule.UserMessageCell = CustomUserMessageCell.self
+SBAModuleSet.ConversationModule.List.UserMessageCell = CustomUserMessageCell.self
 ```
 
 **Notes:**
