@@ -1,0 +1,124 @@
+// MARK: - COMMON
+"SBA_Common_ok" = "OK";
+"SBA_Common_cancel" = "Cancel";
+"SBA_Common_retry" = "Retry";
+"SBA_Common_save" = "Save";
+"SBA_Common_delete" = "Delete";
+"SBA_Common_settings" = "Settings";
+"SBA_Common_submit" = "Submit";
+"SBA_Common_confirm" = "Confirm";
+
+// MARK: - COMMON PHOTO
+"SBA_Common_Photo_camera" = "Camera";
+"SBA_Common_Photo_photoLibrary" = "Photo library";
+"SBA_Common_Photo_document" = "Files";
+"SBA_Common_Photo_viewLibrary" = "View library";
+"SBA_Common_Photo_gifNotSupported" = "GIF format is not supported.";
+
+// MARK: - COMMON TOAST
+"SBA_Common_Toast_successDownloadFile" = "File saved.";
+"SBA_Common_Toast_failureDownloadFile" = "Couldn’t download file.";
+"SBA_Common_Toast_failureOpenFile" = "Couldn’t open file.";
+
+// MARK: - COMMON EMPTY
+"SBA_Common_Empty_conversation" = "No conversation yet";
+"SBA_Common_Empty_messages" = "No messages";
+"SBA_Common_Empty_error" = "Something went wrong";
+
+// MARK: - COMMON ALERT
+"SBA_Common_Alert_delete" = "Are you sure you want to delete?";
+"SBA_Common_Alert_allowCameraAccess" = "Please allow camera usage from settings";
+"SBA_Common_Alert_allowPhotoLibraryAccess" = "Please Allow PhotoLibrary Access";
+"SBA_Common_Alert_allowPhotoLibraryAccessMessage" = "PhotoLibrary access required to get your photos and videos";
+"SBA_Common_Alert_allowMicrophoneAccess" = "Please allow microphone usage from settings";
+"SBA_Common_Alert_exceededSizeLimit" = "The maximum size per file is  %dMB.";
+"SBA_Common_Alert_noSupportedFileTypes" = "No supported file types available.";
+"SBA_Common_Alert_notSupportedImageType" = "Unsupported image file type.";
+"SBA_Common_Alert_maxImageSelection" = "Select up to %d photos.";
+"SBA_Common_Alert_someFilesExcluded" = "Some files were excluded due to upload restrictions. Please add them one at a time.";
+"SBA_Common_Error_exceededSizeLimit" = "The maximum size per file is %dMB.";
+
+// MARK: - COMMON DATE FORMAT
+"SBA_Common_DateFormat_yesterday" = "Yesterday";
+
+// MARK: - CONVERSATION HEADER
+"SBA_Conversation_Header_noMembers" = "(No members)";
+
+// MARK: - CONVERSATION INPUT PLACEHOLDER
+"SBA_Conversation_Input_Placeholder_normal" = "Ask a question";
+"SBA_Conversation_Input_Placeholder_streaming" = "Waiting for the agent's reply...";
+"SBA_Conversation_Input_Placeholder_closeConversation" = "Chat is unavailable in this channel";
+"SBA_Conversation_Input_Placeholder_noConversation" = "Waiting for the agent's reply...";
+"SBA_Conversation_Input_Placeholder_suggestedReplies" = "Select an option to continue";
+"SBA_Conversation_Input_Placeholder_chatUnavailable" = "Chat is unavailable in this channel";
+
+// MARK: - CONVERSATION LIST
+"SBA_Conversation_List_UnknownMessage_title" = "(Unknown message type)";
+"SBA_Conversation_List_UnknownMessage_description" = "Can't read this message.";
+"SBA_Conversation_List_PoweredByMessage_title" = "Powered by Sendbird";
+
+// MARK: - MESSAGE TEMPLATE
+"SBA_Conversation_List_MessageTemplate_errorTitle" = "(Template error)";
+"SBA_Conversation_List_MessageTemplate_errorSubtitle" = "Can't read this message template.";
+"SBA_Conversation_List_NewMessageInfo_countFormatTitle" = "%d new message";
+"SBA_Conversation_List_NewMessageInfo_maxCountFormatTitle" = "%d+ new message";
+
+// MARK: - USER
+"SBA_Conversation_List_User_me" = "(You)";
+"SBA_Conversation_List_User_noName" = "(No name)";
+
+// MARK: - CONVERSATION CLOSED
+"SBA_Conversation_List_Closed_title" = "Your conversation has ended.";
+"SBA_Conversation_List_Closed_talkToAgent" = "Start a conversation";
+
+// MARK: - CSAT
+"SBA_Conversation_List_CSAT_topTitleNormal" = "Your feedback matters to us";
+"SBA_Conversation_List_CSAT_topTitleSubmitted" = "Successfully submitted.";
+"SBA_Conversation_List_CSAT_resolutionTitle" = "Was your issue resolved?";
+"SBA_Conversation_List_CSAT_resolutionYes" = "Yes, thank you! 👍";
+"SBA_Conversation_List_CSAT_resolutionNo" = "No, that didn’t help.";
+"SBA_Conversation_List_CSAT_satisfactionTitle" = "How would you rate your experience?";
+"SBA_Conversation_List_CSAT_satisfactionInputPlaceholder" = "Share your feedback";
+"SBA_Conversation_List_CSAT_expiredTitle" = "We're sorry, the survey period has ended.";
+"SBA_Conversation_List_CSAT_followUpOptionalTitle" = "(optional)";
+"SBA_Conversation_List_CSAT_followUpFreeTextErrorTitle" = "This field is required.";
+"SBA_Conversation_List_CSAT_followUpSingleChoiceErrorTitle" = "This question is required";
+"SBA_Conversation_List_CSAT_optionalTitle" = "(optional)";
+
+// MARK: - FEEDBACK
+"SBA_Conversation_List_Feedback_good" = "Good";
+"SBA_Conversation_List_Feedback_bad" = "Bad";
+"SBA_Conversation_List_Feedback_Alert_title" = "Submit feedback";
+"SBA_Conversation_List_Feedback_Alert_submit" = "Submit";
+"SBA_Conversation_List_Feedback_Alert_cancel" = "Cancel";
+"SBA_Conversation_List_Feedback_Alert_commentTitle" = "Comment (optional)";
+"SBA_Conversation_List_Feedback_Alert_commentPlaceHolder" = "Leave a comment";
+"SBA_Conversation_List_Feedback_edit" = "Edit feedback";
+"SBA_Conversation_List_Feedback_remove" = "Remove feedback";
+
+// MARK: - FAILED MESSAGE
+"SBA_Conversation_List_FailedMessage_retry" = "Retry";
+"SBA_Conversation_List_FailedMessage_delete" = "Delete";
+"SBA_Conversation_List_AttachmentIndicator_fileAttachedFormat" = "%d file attached";
+"SBA_Conversation_List_AttachmentIndicator_filesAttachedFormat" = "%d files attached";
+
+// MARK: - CONVERSATION LIST
+"SBA_ConversationList_Header_headerTitle" = "Conversations";
+"SBA_ConversationList_List_defaultTopic" = "No category";
+"SBA_ConversationList_List_closeStatus" = "Ended";
+"SBA_ConversationList_List_dateJustNow" = "Just now";
+"SBA_ConversationList_List_dateMinuteFormat" = "%d minutes ago";
+"SBA_ConversationList_List_dateHourFormat" = "%d hours ago";
+"SBA_ConversationList_List_lastMessageFile" = "File";
+"SBA_ConversationList_List_lastMessagePhotosFormat" = "%d photos";
+"SBA_ConversationList_List_lastMessageFilesFormat" = "%d files";
+"SBA_ConversationList_Footer_talkToAgent" = "Start a conversation";
+
+// MARK: - CITATION
+"SBA_Conversation_List_Citation_title" = "Source";
+
+// MARK: - NEW MESSAGE
+"SBA_Conversation_List_NewMessageView_title" = "New Message";
+
+
+// https://docs.google.com/spreadsheets/d/14JHjaM3Y9sNITSc3ej1QZT39tUGehuCKhSoL9_4GF6I/edit?gid=0#gid=0
