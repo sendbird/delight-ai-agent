@@ -19,17 +19,18 @@ googleService = "4.4.2"
 firebaseMessagingKtx = "24.1.1"
 
 sdkSendbirdKtx = "4.33.0"
-sdkSendbirdChat = "4.33.0"
-sdkSendbirdAuth = "1.0.18"
+sdkSendbirdChat = "4.33.1"
+sdkSendbirdAuth = "1.0.19"
 sdkSendbirdMessageTemplate = "1.2.0"
 kotlinSerializationJson = "1.3.2"
 activity = "1.6.1"
 constraintlayout = "2.2.0"
 recyclerview = "1.3.2"
+viewpager2 = "1.0.0"
 markwon = "4.6.2"
 kotlinBom = "1.8.0"
 sdkUikit = "3.23.0"
-sdkAiAgentMessenger = "1.7.0"
+sdkAiAgentMessenger = "1.8.0"
 sdkDesk = "1.1.6"
 sdkMockk = "1.13.4"
 sdkKotest ="5.6.0"
@@ -67,6 +68,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerializationJson" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
 firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
 kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlinBom" }
 sdk-mockk = { group = "io.mockk", name = "mockk", version.ref = "sdkMockk" }

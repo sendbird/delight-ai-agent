@@ -8,6 +8,7 @@
     <string name="aa_text_error_not_found_aiagent_id">Conversation information is not founded. AI-Agent ID is missing</string>
     <string name="aa_text_error_invalid_parameter">Invalid request: Some required parameters are missing or incorrect.</string>
     <string name="aa_text_error_file_upload_size_limit">The maximum size per file is %s.</string>
+    <string name="aa_text_error_multiple_file_upload_limitation">Some files were excluded due to limits. Select individually.</string>
     <string name="aa_text_error_no_supported_file_types">No supported file types available.</string>
     <string name="aa_text_yesterday">Yesterday</string>
     <string name="aa_text_no_members">(No members)</string>
@@ -78,4 +79,6 @@
     <string name="aa_text_feedback_cancel">Cancel</string>
     <string name="aa_text_feedback_submit">Submit</string>
     <string name="aa_text_new_message">New message</string>
+    <string name="aa_text_max_upload_file_count_limit_exceeded">Select up to %d photos</string>
+    <string name="aa_text_multiple_files_count">%d photos</string>
 </resources>
