@@ -1,5 +1,35 @@
 # Changelog
 
+## v1.8.0 (Feb 20, 2026) with Chat SDK `v4.33.1`
+
+### Features
+
+- Added support for sending and displaying multiple image files in a single message
+    - Added `VIEW_TYPE_MULTIPLE_IMAGES_ME(12)` in `MessageType` enum for multiple images sent by the user
+    - Added `VIEW_TYPE_MULTIPLE_IMAGES_OTHER(13)` in `MessageType` enum for multiple images received from others
+    - Added `fun sendMultipleFilesMessage(MultipleFilesMessageCreateParams, FileUploadHandler?, MultipleFilesMessageHandler?)` in `ConversationViewModel`
+    - Added `fun resendMultipleFilesMessage(MultipleFilesMessage, FileUploadHandler?, MultipleFilesMessageHandler?)` in `ConversationViewModel`
+    - Added `fun sendMultipleFilesMessage(MultipleFilesMessageCreateParams, FileUploadHandler?, MultipleFilesMessageHandler?)` in `ConversationRepository`
+    - Added `fun resendMultipleFilesMessage(MultipleFilesMessage, FileUploadHandler?, MultipleFilesMessageHandler?): MultipleFilesMessage?` in `ConversationRepository`
+    - Added `fun toMultipleFilesParams(List<FileInfo>): MultipleFilesMessageCreateParams` companion function in `FileInfo`
+    - Added `attachments: List<FileInfo>` property in `MessageInputComponent` to support multiple file attachments
+
+### Deprecations
+
+- Deprecated `attachment: FileInfo?` property in `MessageInputComponent`
+    - Use `attachments: List<FileInfo>` instead to support multiple file attachments
+    - Migration example:
+```kotlin
+// Before (deprecated)
+val singleAttachment = messageInputComponent.attachment
+
+// After (recommended)
+val allAttachments = messageInputComponent.attachments
+val firstAttachment = messageInputComponent.attachments.firstOrNull()
+```
+
+---
+
 ## v1.7.0 (Feb 11, 2026) with Chat SDK `v4.33.0`
 
 ### Features

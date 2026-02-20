@@ -1,6 +1,6 @@
 # Messages
 
-In Delight AI agent, users and AI agents can exchange various types of messages to enable rich and interactive conversations, including text, images, files, and rich template-based messages. This allows users to have comprehensive and engaging conversations with AI agents across different use cases.
+In Delight AI agent, users and AI agents can exchange various types of messages including text, images, files, and rich template-based messages. This enables interactive conversations across different use cases.
 
 This guide covers:
 - [Types](#types)
@@ -44,11 +44,10 @@ Image message enables sharing of image files within conversations. This message 
 - Display: Optimized image rendering with proper scaling.
 
 <figure>
-  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-image-message2.png" alt="" width="375">
-  <figcaption></figcaption>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-image-message2.png" alt="Image message in a conversation" width="375">
 </figure>
 
-> __Note__: Once handed off to a human agent, users can send image files in any format.
+> **Note**: Once handed off to a human agent, users can send image files in any format.
 
 ### File message
 
@@ -59,8 +58,7 @@ File message allows sharing of various file formats within conversations, enabli
 - Display: File preview with download capabilities.
 
 <figure>
-  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-file-message2.png" alt="" width="375">
-  <figcaption></figcaption>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-file-message2.png" alt="File message in a conversation" width="375">
 </figure>
 
 ### Rich message
@@ -76,8 +74,7 @@ CTA messages contain a button that allows users to take specific actions directl
 - Configuration: Available through dashboard template configuration.
 
 <figure>
-  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-cta2.png" alt="" width="375">
-  <figcaption></figcaption>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-cta2.png" alt="CTA button message in a conversation" width="375">
 </figure>
 
 #### Carousel
@@ -89,8 +86,7 @@ Carousel messages present multiple items that can be horizontally scrolled. This
 - Use case: Product showcases, option selection, content browsing.
 
 <figure>
-  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-carousel2.png" alt="" width="375">
-  <figcaption></figcaption>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-carousel2.png" alt="Carousel message in a conversation" width="375">
 </figure>
 
 #### Suggested replies
@@ -102,21 +98,19 @@ Suggested replies provide predefined quick responses for users, enabling faster 
 - Display: Accessible quick reply buttons.
 
 <figure>
-  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-suggested-replies2.png" alt="" width="375">
-  <figcaption></figcaption>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-suggested-replies2.png" alt="Suggested replies in a conversation" width="375">
 </figure>
 
 #### CSAT message
 
-CSAT message is designed to collect user feedback through a customer satisfaction (CSAT) survey within conversations.
+A **CSAT message** collects user feedback through a customer satisfaction (CSAT) survey within conversations.
 
 - Purpose: Customer satisfaction measurement.
 - Components: Rating systems and feedback collection.
 - Use case: Service quality assessment and user experience evaluation.
 
 <figure>
-  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-csat2.png" alt="" width="375">
-  <figcaption></figcaption>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-csat2.png" alt="CSAT survey message in a conversation" width="375">
 </figure>
 
 #### Product list
@@ -128,8 +122,7 @@ Product list messages display product information in a vertical scrolling format
 - Use case: E-commerce integration, product showcases, inventory display.
 
 <figure>
-  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/aa-sdk-mobile-message-product-list.png" alt="cascade" width="375">
-  <figcaption></figcaption>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/aa-sdk-mobile-message-product-list.png" alt="Product list message displaying items in a vertical format" width="375">
 </figure>
 
 #### Custom message template
@@ -138,9 +131,9 @@ Custom message template enables implementation of business-specific UI component
 
 ##### Core features
 
-- **Data Delivery**: Templates arrive as `custom_message_templates` array in the message's `extendedMessagePayload`. Clients handle UI rendering.
-- **Multiple Templates**: A single message can include multiple templates, each representing different UI elements.
-- **Backward Compatibility**: Unregistered template IDs trigger fallback UI, preventing application breakage.
+- **Data delivery**: Templates arrive as `custom_message_templates` array in the message's `extendedMessagePayload`. Clients handle UI rendering.
+- **Multiple templates**: A single message can include multiple templates, each representing different UI elements.
+- **Backward compatibility**: Unregistered template IDs trigger fallback UI, preventing application breakage.
 
 ##### Data structure
 
@@ -199,20 +192,32 @@ The client receives a JSON payload of `custom_message_templates` like below:
 
 Custom templates render in a dedicated slot within the message structure, appearing below the standard message content.
 
-```xml
-<MessageBubble>
-  <Message />
-  <CTAButton />
-  <Citation />
-</MessageBubble>
-
-<MessageTemplate />
-
-<!-- Place CustomMessageTemplate here -->
-<CustomMessageTemplateSlot />
-
-<Feedback />
-<SuggestedReplies />
+```
+┌──────────────────────────────────────────────────────────┐
+│                      <MessageBubble>                     │
+│   ┌──────────────────────────────────────────────────┐   │
+│   │                    <Message>                     │   │
+│   └──────────────────────────────────────────────────┘   │
+│   ┌──────────────────────────────────────────────────┐   │
+│   │                  <CTAButton>                     │   │
+│   └──────────────────────────────────────────────────┘   │
+│   ┌──────────────────────────────────────────────────┐   │
+│   │                  <Citation>                      │   │
+│   └──────────────────────────────────────────────────┘   │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                   <MessageTemplate>                      │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│            <CustomMessageTemplateSlot>                   │
+│        (Place CustomMessageTemplate here)                │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                      <Feedback>                          │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                 <SuggestedReplies>                       │
+└──────────────────────────────────────────────────────────┘
 ```
 
 **2. Register custom handler**
@@ -302,8 +307,6 @@ override fun onCreateCustomMessageTemplateView(
 
 ##### Error handling patterns
 
-{% tabs %}
-{% tab title="Fallback UI" %}
 **Fallback UI for unregistered template**
 
 Return fallback UI for unknown template IDs:
@@ -314,8 +317,7 @@ when (templateData.id) {
     else -> createFallbackView(context)
 }
 ```
-{% endtab %}
-{% tab title="API fail" %}
+
 **Error UI - API call failed**
 
 Check response status and error field:
@@ -324,8 +326,7 @@ Check response status and error field:
 if (data.error != null) return createErrorView(context, data.error)
 if (data.response.status != 200) return createErrorView(context, "API error")
 ```
-{% endtab %}
-{% tab title="Runtime error" %}
+
 **Error Boundary - Runtime error**
 
 Wrap handler logic in try-catch. SDK also wraps calls to prevent crashes:
@@ -337,8 +338,6 @@ try {
     callback.onViewReady(createFallbackView(context))
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ---
 
@@ -375,8 +374,7 @@ The citation feature displays source information of AI agent responses, allowing
 When enabled, citations are automatically rendered by the SDK. They appear as clickable elements that expand to show source details such as document titles, URL references, and knowledge base articles.
 
 <figure>
-  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-citation2.png" alt="" width="375">
-  <figcaption></figcaption>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-citation2.png" alt="Citation displayed below an AI agent response" width="375">
 </figure>
 
 ### Special notice
@@ -384,25 +382,22 @@ When enabled, citations are automatically rendered by the SDK. They appear as cl
 Special notice displays important information to users before conversation starts. This feature helps communicate important guidelines, terms, or instructions to users at the beginning of their interaction.
 
 - Display location: Bottom of the screen.
-- Behavior: Automatically disappears when a conversation starts.
+- Behavior: Automatically disappears when the user sends their first message.
 - Configuration: Available through dashboard configuration.
 
 Special notices are configured through Delight AI dashboard and automatically displayed by the SDK. The notice appears when the conversation screen is first opened, before any messages are sent. It dismisses automatically when the user sends their first message.
 
 <figure>
-  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-special-notice2.png" alt="special_notice" width="375">
-  <figcaption></figcaption>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-special-notice2.png" alt="Special notice displayed at the bottom of the conversation screen" width="375">
 </figure>
 
 ---
 
 ## API references
 
-The following sections provide API reference information for message-related functionality.
-
 ### ConversationConfig
 
-The `ConversationConfig` class provides configuration options for the conversation screen, organized into two sub-configurations: `header` and `list`.
+The `ConversationConfig` class provides configuration options for the conversation screen, organized into three sub-configurations: `header`, `list`, and `input`.
 
 #### ConversationConfig.Header
 
@@ -410,7 +405,7 @@ The following table lists the configuration options for the conversation header 
 
 | Property name | Type | Description |
 |---------------|------|-------------|
-| `shouldShowProfile` | Boolean | Whether to show the profile in the conversation header. (Default: `true`) |
+| `shouldShowProfile` | Boolean | Determines whether to show the profile in the conversation header. (Default: `true`) |
 
 ```kotlin
 // Hide profile in conversation header
@@ -422,15 +417,15 @@ AIAgentMessenger.config.conversation.header.shouldShowProfile = true
 
 #### ConversationConfig.List
 
-The following table lists the configuration options available in `AIAgentMessenger.config.conversation.list` besides read receipt. These options control how the conversation list and messages are displayed in the messenger UI.
+The following table lists the configuration options available in `AIAgentMessenger.config.conversation.list`. For the `enableMessageReceiptState` property, see [Read receipt](#read-receipt).
 
 | Property name | Type | Description |
 |---------------|------|-------------|
-| `enableMessageReceiptState` | Boolean | Whether to display message receipt status. (Default: `false`) |
-| `shouldShowSenderProfile` | Boolean | Whether to show sender's profile information. (Default: `true`) |
-| `scrollMode` | ScrollMode | Scroll behavior of the message list. `AUTO` for normal scroll, `FIX` to keep user message fixed at the top during bot responses. (Default: `ScrollMode.AUTO`) |
-| `shouldShowMessageFooterView` | Boolean | Whether the **Start new conversation** view is shown when conversation has ended. (Default: `true`) |
-| `enableNewMessageIndicator` | Boolean | Whether the new message indicator is enabled. (Default: `true`) |
+| `enableMessageReceiptState` | Boolean | Determines whether to display message receipt status. (Default: `false`) |
+| `shouldShowSenderProfile` | Boolean | Determines whether to show sender's profile information. (Default: `true`) |
+| `scrollMode` | ScrollMode | Scroll behavior of the message list. Acceptable values are `AUTO` for normal scroll and `FIX` to keep user message fixed at the top during AI agent responses. (Default: `ScrollMode.AUTO`) |
+| `shouldShowMessageFooterView` | Boolean | Determines whether the **Start new conversation** view is shown when conversation has ended. (Default: `true`) |
+| `enableNewMessageIndicator` | Boolean | Determines whether the new message indicator is enabled. (Default: `true`) |
 
 ```kotlin
 // Configure conversation list settings
@@ -443,14 +438,13 @@ AIAgentMessenger.config.conversation.list.enableNewMessageIndicator = false
 
 #### ConversationConfig.Input
 
-The following table lists the configuration options available in `AIAgentMessenger.config.conversation.input`.
-These options control the message input component and attachment capabilities.
+The following table lists the configuration options available in `AIAgentMessenger.config.conversation.input` for the message input component and attachment capabilities.
 
 | Property name | Type | Description |
 |---------------|------|-------------|
-| `camera.enablePhoto` | Boolean | Whether photo capture from camera is enabled. (Default: `true`) |
-| `gallery.enablePhoto` | Boolean | Whether photo selection from gallery is enabled. (Default: `true`) |
-| `enableFile` | Boolean | Whether file attachment is enabled. (Default: `true`) |
+| `camera.enablePhoto` | Boolean | Determines whether photo capture from camera is enabled. (Default: `true`) |
+| `gallery.enablePhoto` | Boolean | Determines whether photo selection from gallery is enabled. (Default: `true`) |
+| `enableFile` | Boolean | Determines whether file attachment is enabled. (Default: `true`) |
 
 ```kotlin
 // Configure input settings
