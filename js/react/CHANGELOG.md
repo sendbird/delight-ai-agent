@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.18.0 (Feb 20, 2026) with ChatSDK ^4.21.2
+
+
+### Minor Changes
+
+- **Multi-file attachment support**: Users can now send and receive multiple files in a single message. Photos and documents are selectable via a bottom sheet UI, received images display in a responsive grid layout, and all file types (images, videos, documents) can be browsed through a unified media viewer with navigation.
+- **Customizable message body layout**: Individual message body sub-components are now overridable through the layout context for fine-grained UI customization.
+- Fix: File count limit validation now correctly rejects file selections exceeding the configured maximum.
+- Deprecation: `CSAT5_RATING_SCORE_*` localization keys removed; rating labels now come from the server payload.
+- Removal: `FILE_UPLOAD_NOTIFICATION__FILES_REMOVED_OVER_COUNT_LIMIT` localization key removed (previously deprecated).
+
+
 ## v1.17.0 (Feb 12, 2026) with ChatSDK ^4.21.2
 
 

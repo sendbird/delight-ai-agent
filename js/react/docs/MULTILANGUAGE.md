@@ -1,5 +1,3 @@
----
-
 # Multi-language support
 
 This guide explains how to localize the UI strings used in the **Delight AI agent SDK for React** to support multiple languages in your web application.
@@ -238,4 +236,4 @@ function App() {
 
 ## Default SDK strings
 
-The string keys remain the same as the JavaScript version. Please refer to the [JavaScript version's string keys ](https://github.com/sendbird/delight-ai-docs/blob/katherine/guide/donna/sdk-docs/cdn/MULTILANGUAGE.md#default-sdk-strings)for the complete list.
+The string keys remain the same as the JavaScript version. Please refer to the [JavaScript version's string keys](https://docs.delight.ai/sdk-docs/javascript-cdn/multilanguage#default-sdk-strings) for the complete list.
