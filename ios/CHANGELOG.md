@@ -1,5 +1,39 @@
 # Changelog
 
+## v1.7.0 (Feb 20, 2026) with Chat SDK v4.37.1
+
+### New Features
+
+- **Multiple Files Message (MFM) support**
+  - Users can now select and send multiple images at once as a `MultipleFilesMessage`
+  - Documents are restricted to single-file sending only; only images support multi-selection
+  - Add button is automatically disabled when a document is attached or the image limit is reached
+
+- **`SBAMultipleFilesMessageCell`** — new cell for rendering `MultipleFilesMessage`
+  - Customizable via `SBAConversationModule.List.MultipleFilesMessageCell`
+
+- **`SBAQueryParamsSet.Conversation`** — now `public`
+  - `multipleFilesMessageParamsSendBuilder`: a static builder closure to pre-configure `MultipleFilesMessageCreateParams` before sending
+
+### Improvements
+
+- **Conversation list last message display** — `MultipleFilesMessage` now correctly renders last message previews:
+  - Shows message text if present
+  - Otherwise shows photo count (e.g., "3 photos") or file count (e.g., "2 files")
+
+- **Debounced table view reload** in `SBAConversationListViewController` to prevent excessive UI updates during multi-file uploads
+
+- **`SBA_Conversation_Input_Placeholder_noConversation`** localization key added
+
+### Localization
+
+- Added new strings across 11 languages (en, ko, ja, de, es, fr, hi, it, nl, pt-PT, tr):
+  - `SBA_Common_ok`
+  - `SBA_Common_Alert_maxImageSelection` — shown when photo picker limit is reached
+  - `SBA_Common_Alert_someFilesExcluded` — shown when files are excluded due to upload restrictions
+  - `SBA_Conversation_List_AttachmentIndicator_fileAttachedFormat` / `filesAttachedFormat`
+  - `SBA_ConversationList_List_lastMessageFile` / `lastMessagePhotosFormat` / `lastMessageFilesFormat`
+
 ## v1.6.0 (Feb 11, 2026) with Chat SDK v4.36.0
 
 ### New Features
