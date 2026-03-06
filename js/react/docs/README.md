@@ -154,7 +154,7 @@ function App() {
 
 ### FixedMessenger styles
 
-When using the fixed messenger, `FixedMssenger.Style` allows you to customize its appearance and positioning:
+When using the fixed messenger, `FixedMessenger.Style` allows you to customize its appearance and positioning:
 
 * `margin`: Defines the margin around the fixed messenger and its launcher.
 * `launcherSize`: Defines the size of the launcher button in pixels (width and height are equal).
@@ -163,7 +163,7 @@ When using the fixed messenger, `FixedMssenger.Style` allows you to customize it
 ```tsx
 function App() {
   return (
-    <FixedMessenger>
+    <FixedMessenger appId={'YOUR_APP_ID'} aiAgentId={'YOUR_AI_AGENT_ID'}>
       <FixedMessenger.Style
         position={'start-bottom'}
         launcherSize={32}

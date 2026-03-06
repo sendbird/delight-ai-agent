@@ -91,7 +91,6 @@ function App() {
   // All stringSet keys for unsupported languages must be provided
   stringSet={{
     // Channel - Common
-    CHANNEL_FROZEN: '频道已冻结',
     PLACE_HOLDER__WRONG: '出现问题',
     PLACE_HOLDER__NO_MESSAGES: '没有消息',
     UNKNOWN__UNKNOWN_MESSAGE_TYPE: '(未知消息类型)',
@@ -106,9 +105,6 @@ function App() {
 
     // Common UI
     BUTTON__CANCEL: '取消',
-    BUTTON__SAVE: '保存',
-    BUTTON__OK: '确定',
-    NO_NAME: '(无名)',
     RETRY: '重试',
 
     // ... other string key-value pairs
@@ -157,7 +153,6 @@ function App() {
 ```tsx
 // languages/zh.ts
 export default {
-  CHANNEL_FROZEN: '频道已冻结',
   PLACE_HOLDER__WRONG: '出现问题',
   PLACE_HOLDER__NO_MESSAGES: '没有消息',
   UNKNOWN__UNKNOWN_MESSAGE_TYPE: '(未知消息类型)',
@@ -166,9 +161,6 @@ export default {
   MESSAGE_INPUT__PLACE_HOLDER__WAIT_AI_AGENT_RESPONSE: '等待回复中...',
   MESSAGE_INPUT__PLACE_HOLDER__DISABLED: '此频道不可用',
   BUTTON__CANCEL: '取消',
-  BUTTON__SAVE: '保存',
-  BUTTON__OK: '确定',
-  NO_NAME: '(无名)',
   RETRY: '重试',
   // ... other string key-value pairs
 };

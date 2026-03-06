@@ -77,7 +77,7 @@ The following methods can be used to add or update context objects after initial
 ### Manage context object
 
 ```tsx
-import { FixedMessenger, type MessengerSessionRef } from '@sendbird/ai-messenger';
+import { FixedMessenger, type MessengerSessionRef } from '@sendbird/ai-agent-messenger-react';
 import { useRef } from 'react';
 
 function App() {
