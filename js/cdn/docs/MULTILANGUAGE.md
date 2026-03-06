@@ -89,7 +89,7 @@ const customLanguageConfig = {
   stringSet: {
     // Override only specific keys
     MESSAGE_INPUT__PLACE_HOLDER: '¡Pregúntame cualquier cosa!', // original: 'Hacer una pregunta'
-    CONVERSATION_LIST__HEADER_TITLE: 'Lista de conversaciones anteriores' // original: 'Historial de conversaciones'
+    CONVERSATION_LIST__HEADER_TITLE: 'Lista de conversaciones'
   }
 };
 
@@ -125,7 +125,6 @@ messenger.initialize({
   // Must provide all stringSet keys for unsupported languages
   stringSet: {
     // Channel - Common
-    CHANNEL_FROZEN: '频道已冻结',
     PLACE_HOLDER__WRONG: '出现问题',
     PLACE_HOLDER__NO_MESSAGES: '没有消息',
     UNKNOWN__UNKNOWN_MESSAGE_TYPE: '(未知消息类型)',
@@ -140,9 +139,6 @@ messenger.initialize({
 
     // Common UI
     BUTTON__CANCEL: '取消',
-    BUTTON__SAVE: '保存',
-    BUTTON__OK: '确定',
-    NO_NAME: '(无名)',
     RETRY: '重试',
 
     // ... and all other required strings
@@ -158,7 +154,6 @@ Below is a list of the key string identifiers used in the SDK. You'll need to pr
 
 ```javascript
 // Channel - Common
-CHANNEL_FROZEN: 'Channel frozen',
 PLACE_HOLDER__WRONG: 'Something went wrong',
 PLACE_HOLDER__NO_MESSAGES: 'No messages',
 UNKNOWN__UNKNOWN_MESSAGE_TYPE: '(Unknown message type)',
@@ -168,54 +163,104 @@ HEADER_BUTTON__AGENT_HANDOFF: 'Connect with an agent',
 
 // Message Input
 MESSAGE_INPUT__PLACE_HOLDER: 'Ask a question',
-MESSAGE_INPUT__PLACE_HOLDER__WAIT_AI_AGENT_RESPONSE: 'Waiting for the agent's reply…',
+MESSAGE_INPUT__PLACE_HOLDER__WAIT_AI_AGENT_RESPONSE: "Waiting for the agent's reply...",
 MESSAGE_INPUT__PLACE_HOLDER__DISABLED: 'Chat is unavailable in this channel',
+MESSAGE_INPUT__PLACE_HOLDER__SUGGESTED_REPLIES: 'Select an option to continue',
+MESSAGE_INPUT__PLACE_HOLDER__RECONNECTING: 'Trying to reconnect. Refresh if persists.',
 
 // Common UI
 BUTTON__CANCEL: 'Cancel',
-BUTTON__SAVE: 'Save',
-BUTTON__OK: 'OK',
-NO_NAME: '(No name)',
+BUTTON__SUBMIT: 'Submit',
+SUBMITTED: 'Submitted',
+TRY_AGAIN: 'Please try again.',
 RETRY: 'Retry',
+POWERED_BY: 'Powered by',
+OPTIONAL: 'optional',
 
 // Date format
 DATE_FORMAT__MESSAGE_LIST__DATE_SEPARATOR: 'MMMM dd, yyyy',
 DATE_FORMAT__MESSAGE_TIMESTAMP: 'p',
+DATE_FORMAT__JUST_NOW: 'Just now',
+DATE_FORMAT__MINUTES_AGO: (minutes) => `${minutes} minutes ago`,
+DATE_FORMAT__HOURS_AGO: (hours) => `${hours} hours ago`,
+DATE_FORMAT__DATE_SHORT: 'MM/dd/yyyy',
 
 // File Upload
-FILE_UPLOAD_NOTIFICATION__COUNT_LIMIT: "You can't upload more than one image",
+FILE_UPLOAD_NOTIFICATION__COUNT_LIMIT: 'Up to %d files can be attached.',
 FILE_UPLOAD_NOTIFICATION__SIZE_LIMIT: 'The maximum size per file is %d MB.',
+FILE_UPLOAD_NOTIFICATION__FILES_EXCLUDED_BY_VALIDATION: '%d files were excluded due to limits. Please select files individually.',
+FILE_UPLOAD_NO_SUPPORTED_FILES: 'No supported file types available.',
+FILE_UPLOAD_PHOTOS: 'Photos',
+FILE_UPLOAD_FILES: 'Files',
 
 // File Viewer
 FILE_VIEWER__UNSUPPORT: 'Unsupported message',
+
+// Image Viewer
+IMAGE_VIEWER__DEFAULT_TITLE: 'Image',
 
 // CSAT
 CSAT_TITLE_UNSUBMITTED: 'Your feedback matters to us',
 CSAT_TITLE_SUBMITTED: 'Successfully submitted!',
 CSAT_CRE_TITLE: 'Was your issue resolved?',
 CSAT_CRE_SOLVED: 'Yes, thank you! 👍',
-CSAT_CRE_NOT_SOLVED: 'No, that didn't help.',
+CSAT_CRE_NOT_SOLVED: "No, that didn't help.",
 CSAT_REASON_PLACEHOLDER: 'Share your feedback',
 CSAT_RATING_TITLE: 'How would you rate your experience?',
-CSAT5_RATING_SCORE_1: 'Terrible',
-CSAT5_RATING_SCORE_2: 'Bad',
-CSAT5_RATING_SCORE_3: 'Okay',
-CSAT5_RATING_SCORE_4: 'Good',
-CSAT5_RATING_SCORE_5: 'Great',
 CSAT_SUBMIT_LABEL: 'Submit',
-CSAT_SUBMISSION_EXPIRED: 'We're sorry, the survey period has ended.',
-
-POWERED_BY: 'Powered by',
+CSAT_SUBMISSION_EXPIRED: "We're sorry, the survey period has ended.",
 
 // Conversation list
-CONVERSATION_CLOSED_FOOTER_LABEL: 'Your conversation has ended',
-START_NEW_CONVERSATION: '💬 Start a new conversation',
-RETURN_TO_CONVERSATION: '💬 Return to conversation',
-CONVERSATION_LIST__HEADER_TITLE: 'Conversation history',
-CONVERSATION_LIST__TOPICS_FALLBACK: 'No category',
+CONVERSATION_LIST__HEADER_TITLE: 'Conversations',
 CONVERSATION_LIST__NO_CONVERSATIONS: 'No conversations yet',
-DATE_FORMAT__CONVERSATION_LIST__LIST_ITEM_TITLE: 'MM/dd/yyyy',
-DATE_FORMAT__CONVERSATION_LIST__LIST_ITEM_TITLE_CAPTION: 'h:mma',
+CONVERSATION_LIST__ENDED: 'Ended',
+CONVERSATION_LIST__MULTIPLE_FILES_COUNT: (count) => `${count} ${count === 1 ? 'file' : 'files'}`,
+TALK_TO_AGENT: 'Start a conversation',
+
+// Citation
+CITATION_SOURCE_TITLE: 'Source',
+
+// Forms
+FORM_PLACEHOLDER: 'Please fill out the form to move forward.',
+FORM_UNAVAILABLE: 'Form is no longer available.',
+FORM_NOT_SUPPORTED: 'This form is not supported in the current version.',
+FORM_VALIDATION_REQUIRED: 'This question is required',
+FORM_VALIDATION_MIN_LENGTH: (minLength) => `Minimum ${minLength} characters required`,
+FORM_VALIDATION_MAX_LENGTH: (maxLength) => `Maximum ${maxLength} characters allowed`,
+FORM_VALIDATION_MIN: (minValue) => `Minimum value is ${minValue}`,
+FORM_VALIDATION_MAX: (maxValue) => `Maximum value is ${maxValue}`,
+FORM_VALIDATION_MIN_SELECT: (minSelect) => `Select at least ${minSelect} options`,
+FORM_VALIDATION_MAX_SELECT: (maxSelect) => `Select at most ${maxSelect} options`,
+FORM_VALIDATION_REGEX_FAILED: 'Invalid format',
+
+// Feedback
+FEEDBACK_TITLE: 'Submit feedback',
+FEEDBACK_GOOD: 'Good',
+FEEDBACK_BAD: 'Bad',
+FEEDBACK_COMMENT_LABEL: 'Comment (optional)',
+FEEDBACK_COMMENT_PLACEHOLDER: 'Leave a comment',
+FEEDBACK_CANCEL: 'Cancel',
+FEEDBACK_SUBMIT: 'Submit',
+FEEDBACK_SAVE: 'Save',
+FEEDBACK_EDIT: 'Edit feedback',
+FEEDBACK_REMOVE: 'Remove feedback',
+
+// Failed messages
+FAILED_MESSAGE_RESEND: 'Retry',
+FAILED_MESSAGE_REMOVE: 'Remove',
+
+// Accessibility
+A11Y_MESSAGE_LIST: 'Chat messages',
+A11Y_SCROLL_TO_BOTTOM: 'Scroll to bottom',
+A11Y_SCROLL_TO_NEW_MESSAGES: 'Scroll to new messages',
+A11Y_OPEN_CONVERSATION_LIST: 'Open conversation list',
+A11Y_IMAGE_VIEWER_CLOSE: 'Close image viewer',
+A11Y_IMAGE_VIEWER_PREVIOUS: 'Previous image',
+A11Y_IMAGE_VIEWER_NEXT: 'Next image',
+A11Y_IMAGE_VIEWER_DOWNLOAD: 'Download image',
+A11Y_ATTACH_FILE: 'Attach file',
+
+SCROLL_TO_NEW_MESSAGES_LABEL: () => 'New message',
 ```
 
 ---
@@ -229,9 +274,7 @@ For better code organization, you can define your string sets in separate files:
 ```javascript
 // cn.ts - Chinese localization strings
 export const cnStringSet = {
-  // Channel - Common
-  CHANNEL_FROZEN: '频道已冻结',
-  // ... all other strings
+  // ... all required strings
 };
 
 // Then import and use in your initialization
