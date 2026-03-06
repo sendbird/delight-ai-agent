@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.19.0 (Mar 06, 2026) with ChatSDK ^4.21.2
+
+
+### Minor Changes
+
+- Handle session token expiration for anonymous widget users with alert dialog
+
+### Patch Changes
+
+- Prevent duplicate alert sounds across tabs viewing the same channel
+- Auto-scroll to submit button when CSAT is displayed
+- Fix channel state synchronization issue after conversation handoff and auto-close
+
+
 ## v1.18.0 (Feb 20, 2026) with ChatSDK ^4.21.2
 
 

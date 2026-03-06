@@ -72,9 +72,11 @@ IncomingMessageLayout.components = {
   TypingIndicator,   // Typing animation
   SuggestedReplies,  // Quick reply buttons
   MessageTemplate,   // Rich message templates
+  CustomMessageTemplate, // Custom message templates
   CTAButton,         // Call-to-action buttons
   Citation,          // Reference citations
   Form,              // Interactive forms
+  Feedback,          // Message feedback
   MessageLogs,       // Debug/log information
 }
 ```
@@ -507,7 +509,7 @@ const EmptyComponent = () => <></>;
 
 export const MyCustomMessenger = () => {
   return (
-    <AgentProviderContainer appearance={{ theme: 'light' }}>
+    <AgentProviderContainer>
       {/* Apply all customizations */}
       <IncomingMessageLayout.Template>
         <IncomingMessageLayout.MessageBody component={CustomMessageBody} />
