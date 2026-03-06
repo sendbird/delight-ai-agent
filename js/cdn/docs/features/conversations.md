@@ -324,7 +324,7 @@ messenger.initialize(config)
 | `context`         | Record\<string, string>                   | -                  | Context object for personalized AI agent responses                     |
 | `config`          | object                                    | -                  | AI agent configuration object                                          |
 | `theme`           | object                                    | -                  | Theme customization for palette and typography                         |
-| `stringSet`       | Partial                                   | -                  | Localization string set for the messenger                              |
+| `stringSet`       | Partial\<StringSet>                      | -                  | Localization string set for the messenger                              |
 | `logLevel`        | LogLevel                                  | -                  | Log level for the AI agent client                                      |
 
 ### Messenger methods
@@ -341,7 +341,7 @@ messenger.initialize(config)
 
 | Method                       | Parameters                                         | Description                       |
 | ---------------------------- | -------------------------------------------------- | --------------------------------- |
-| `updateConfig(config)`       | config: Partial                                    | Update messenger configuration    |
+| `updateConfig(config)`       | config: Partial\<AIAgentProps>                    | Update messenger configuration    |
 | `updateUserSession(session)` | session: ManualSessionInfo \| AnonymousSessionInfo | Update user session information   |
 | `setPosition(params)`        | params: { position?, margin? }                     | Set launcher position and margins |
 
@@ -380,5 +380,5 @@ Parameters for `setPosition()` method:
 
 | Parameter | Type                                                | Description                                         |
 | --------- | --------------------------------------------------- | --------------------------------------------------- |
-| `position` | 'start-top' \| 'start-bottom' \| 'end-top' \| 'end-bottom' | Position of the launcher button. (Default: -)       |
-| `margin`   | Partial<{ top: number; bottom: number; start: number; end: number }> | Margin around the launcher in pixels. (Default: -) |
+| `position` | 'start-top' \| 'start-bottom' \| 'end-top' \| 'end-bottom' | Position of the launcher button. (Default: `'end-bottom'`)       |
+| `margin`   | Partial\<{ top: number; bottom: number; start: number; end: number }> | Margin around the launcher in pixels. (Default: `{ top: 24, bottom: 24, start: 24, end: 24 }`) |
