@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.8.0 (Mar 06, 2026) with ChatSDK ^4.21.2
+
+
+### Minor Changes
+
+- Handle session token expiration for anonymous widget users with native alert
+
+### Patch Changes
+
+- Auto-scroll to submit button when CSAT is displayed
+- Fix channel state synchronization issue after conversation handoff and auto-close
+- Add device OS version to platform configuration for better device tracking
+
+
 ## v1.7.0 (Feb 12, 2026) with ChatSDK ^4.21.2
 
 
