@@ -106,9 +106,7 @@ messenger.updateConfig({
 });
 ```
 
-{% hint style="info" %}
-**Note**: When updating at runtime with `updateConfig`, only the UI strings will be changed. The AI Agent's language preference will not be affected.
-{% endhint %}
+> **Note**: When updating at runtime with `updateConfig`, only the UI strings will be changed. The AI Agent's language preference will not be affected.
 
 #### Scenario 2: Adding support for unsupported languages
 
