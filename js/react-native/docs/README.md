@@ -34,7 +34,7 @@ You can find them under the **Channels** > **Messenger** menu on the Delight AI 
 
 - React >= 18.0.0
 - React Native >= 0.80.0
-- @sendbird/chat ^4.19.0
+- @sendbird/chat ^4.21.2
 - react-native-mmkv >= 3.0.0
 - react-native-safe-area-context >= 5.0.0
 - date-fns >= 4.0.0
