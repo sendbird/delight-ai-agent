@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.19.1 (Mar 09, 2026) with ChatSDK ^4.21.2
+
+
+### Patch Changes
+
+- Fix message input being disabled after app switch by correctly restoring connection state when coming back online
+
+
 ## v1.19.0 (Mar 06, 2026) with ChatSDK ^4.21.2
 
 
