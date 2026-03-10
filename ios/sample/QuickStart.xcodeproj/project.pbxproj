@@ -169,9 +169,9 @@
 			isa = PBXGroup;
 			children = (
 				AD4E20B9C1F1ED5A41FF3054 /* Assets.xcassets */,
+				2AA92E0DCCB9C37FC6A894E9 /* SampleAssets.xcassets */,
 				AD25C27DBD40C011BE5FA1A3 /* LaunchScreen.storyboard */,
 				2C95882B9025D2EC6E3A6F68 /* Main.storyboard */,
-				2AA92E0DCCB9C37FC6A894E9 /* SampleAssets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -324,7 +324,6 @@
 				};
 			};
 			buildConfigurationList = 8861DA78869735219C78A80B /* Build configuration list for PBXProject "QuickStart" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -338,6 +337,7 @@
 				675F8C38FD2AE3D8230AF692 /* XCRemoteSwiftPackageReference "Splash" */,
 			);
 			preferredProjectObjectVersion = 77;
+			productRefGroup = 1B0653278AD1D8CFF0B5B8F6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -445,7 +445,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.7.0;
+				MARKETING_VERSION = 1.8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -485,7 +485,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.0;
+				MARKETING_VERSION = 1.8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
@@ -640,7 +640,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.7.0;
+				MARKETING_VERSION = 1.8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -681,7 +681,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.0;
+				MARKETING_VERSION = 1.8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
@@ -735,7 +735,7 @@
 			repositoryURL = "https://github.com/sendbird/delight-ai-agent-messenger-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.7.0;
+				minimumVersion = 1.8.0;
 			};
 		};
 		675F8C38FD2AE3D8230AF692 /* XCRemoteSwiftPackageReference "Splash" */ = {
