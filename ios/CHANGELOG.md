@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.8.0 (Mar 10, 2026) with Chat SDK v4.37.2
+
+### New Features
+
+- **`AIAgentSessionDelegate`** — New session event callback protocol
+  - `externalAuthTokenDidExpire` callback to receive token expiration events
+  - Backward compatible by extending the existing `SessionDelegate`
+  - Previous session delegate API is now deprecated → use `aiAgentSessionDelegate` instead
+- **`updateContext` / `patchContext`** — New public APIs on `AIAgentMessenger` for updating AI Agent context
+
+### Bug Fixes
+
+- **Fixed anonymous user session expiration handling** — Anonymous users now properly handle session token expiration
+  - Previously, no session delegate was registered for anonymous users, causing the SDK to fail silently
+  - Now triggers the full expiration flow: deauthenticate → reset session → close all SDK screens
+- **Fixed iOS 16 UI freeze** caused by TextKit2 rendering
+  - Forces TextKit1 on iOS 16 to prevent CoreText glyph encoding performance issues during CollectionView cell layout
+
 ## v1.7.0 (Feb 20, 2026) with Chat SDK v4.37.1
 
 ### New Features
