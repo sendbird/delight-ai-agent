@@ -228,11 +228,11 @@ The following are available advanced features.
 const messenger = await loadMessenger({
   // Use Conversation component to display only the messenger without the launcher
   customMainComponent: ({ messenger, react }) => {
-    return (props) => {
+    return react.forwardRef((props, ref) => {
         return react.createElement(messenger.AgentProviderContainer, props, [
         react.createElement(messenger.Conversation),
       ]);
-    };
+    });
   },
 });
 messenger.initialize({
