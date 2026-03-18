@@ -294,7 +294,7 @@ messenger.destroy();
 
 ### loadMessenger()
 
-Loads the AI Agent Messenger module. It returns `Promise<Messenger>`.
+Loads the AI Agent Messenger module. It returns `Promise<AIAgentLoader>`.
 
 ```javascript
 await loadMessenger(config)
