@@ -123,8 +123,8 @@ function App() {
 
   const switchLanguage = async (newLanguage: string) => {
     if (newLanguage === 'zh-CN') {
-      const { zhStringSet } = await import('./languages/zh');
-      setStringSet(zhStringSet);
+      const module = await import('./languages/zh');
+      setStringSet(module.default);
     } else {
       setStringSet(undefined);
     }
@@ -210,7 +210,7 @@ function App() {
 
 ```tsx
 // Only use this approach if you need just one additional language
-import { zhStringSet } from './languages/zh';
+import zhStringSet from './languages/zh';
 
 function App() {
   return (

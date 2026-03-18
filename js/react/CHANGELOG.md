@@ -1,5 +1,38 @@
 # Changelog
 
+## v1.20.0 (Mar 18, 2026) with ChatSDK ^4.21.2
+
+
+### Minor Changes
+
+- **Desk ticket support**: AI Agent SDK now includes Desk ticket support. You can now access Desk ticket information directly from the AI Agent SDK for conversations handed off to Desk, removing the need to use a separate Desk SDK for ticket lookup.
+    - Added `DeskTicketInterface` with properties: `id`, `title`, `status`, `agent`, `priority`, `group`, `firstResponseTime`, `issuedAt`, `customFields`
+    - Added `refresh(): Promise<DeskTicketInterface>` to reload latest ticket data
+    - Added `deskClient.getTicket(id): Promise<DeskTicketInterface>` to fetch a ticket by ID
+    - Added `DeskTicketAgent` interface with `userId`, `name`, `profileUrl` properties
+    - Added `DeskTicketPriority` enum: `URGENT`, `HIGH`, `MEDIUM`, `LOW`
+    - Added `DeskTicketStatus` enum: `INITIALIZED`, `PROACTIVE`, `PENDING`, `ACTIVE`, `CLOSED`, `WORK_IN_PROGRESS`, `IDLE`
+    ```typescript
+    // Access deskClient from context
+    const { deskClient } = useAIAgentContext();
+
+    // Get ticket information
+    const ticket = await deskClient.getTicket(12345);
+    console.log('Ticket status:', ticket.status);
+    console.log('Assigned agent:', ticket.agent?.name);
+    console.log('Priority:', ticket.priority);
+
+    // Refresh ticket data
+    const updatedTicket = await ticket.refresh();
+    ```
+
+### Patch Changes
+
+- Fix template rendering when message template key is missing
+- Fix sideEffects field in package.json to prevent incorrect tree-shaking of entry points
+- Pin dompurify to 3.3.2
+
+
 ## v1.19.1 (Mar 09, 2026) with ChatSDK ^4.21.2
 
 
