@@ -28,9 +28,24 @@ extension AIAgentStarterKit {
     /// - `moduleSetCustomizationBuilder`: Module-specific customizations
     /// - `contextObjectsBuilder`: Context object configurations
     static func applyCustomizations() {
+        Self.applyIconCustomizations()
         Self.globalConfigCustomizationBuilder?()
         Self.moduleSetCustomizationBuilder?()
         Self.contextObjectsBuilder?()
+    }
+
+    // MARK: - Icon
+    /// Applies custom icon overrides for testing icon customization.
+    ///
+    /// ## Usage
+    /// ```swift
+    /// // Replace individual icons with custom images
+    /// SBAIconSet.iconClose = UIImage(systemName: "xmark")!
+    /// SBAIconSet.iconSend = UIImage(systemName: "paperplane.fill")!
+    /// SBAIconSet.iconAdd = UIImage(systemName: "plus")!
+    /// ```
+    private static func applyIconCustomizations() {
+        // NOTE: Uncomment the lines below to test icon customization
     }
     
     // MARK: - Theme

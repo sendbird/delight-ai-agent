@@ -1,5 +1,42 @@
 # Changelog
 
+## v1.9.0 (Mar 18, 2026) with Chat SDK v4.38.0
+
+### New Features
+
+#### AI Agent SDK now includes Desk ticket support.
+
+You can now access Desk ticket information directly from the AI Agent SDK for conversations handed off to Desk. This removes the need to use a separate Desk SDK for ticket lookup.
+Using the linked ticket ID, developers can retrieve ticket details such as status, agent, priority, group, response time, issue date, and custom fields through the new `DeskTicket` class.
+
+- Added `DeskTicket` class with properties: `id`, `title`, `status`, `agent`, `priority`, `group`, `firstResponseTime`, `issuedAt`, `customFields`
+- Added `func refresh() async throws -> DeskTicket` to reload latest ticket data
+- Added `static func getTicket(id: Int64) async throws -> DeskTicket` to fetch a ticket by ID
+- Added `DeskTicket.Agent` struct with `userId`, `name`, `profileUrl` properties
+- Added `DeskTicket.Priority` enum: `urgent`, `high`, `medium`, `low`
+- Added `DeskTicket.Status` enum: `initialized`, `proactive`, `pending`, `active`, `closed`, `workInProgress`, `idle`
+
+```swift
+// Example: Get ticket information
+let ticket = try await DeskTicket.getTicket(id: 12345)
+print("Ticket status: \(ticket.status)")
+print("Assigned agent: \(ticket.agent?.name ?? "none")")
+print("Priority: \(ticket.priority)")
+
+// Example: Refresh ticket data
+let updatedTicket = try await ticket.refresh()
+```
+
+#### Resource customization support 
+
+- Access Control: Change properties that external customers should not be able to modify to public private(set) or internal.
+- Unused Separation: Separate unused properties in SBAIconSet/SBATheme into a +Unused.swift file.
+- **Doc Comments:** Add a "///" document comment to all public theme classes and property wrappers.
+- Customization Guides: Write/update three guide documents in the documents/customization/ folder.
+  - ThemeCustomizationGuide.md — UI component-specific color/font customization
+  - IconSetCustomizationGuide.md — Icon replacement guide
+  - ColorSetCustomizationGuide.md: Color palette and font set customization
+
 ## v1.8.0 (Mar 10, 2026) with Chat SDK v4.37.2
 
 ### New Features
