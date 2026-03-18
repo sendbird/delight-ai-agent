@@ -1,5 +1,67 @@
 # Changelog
 
+## v1.9.0 (Mar 18, 2026) with Chat SDK `v4.34.1`
+
+### Features
+
+AI Agent SDK now includes Desk ticket support
+You can now access Desk ticket information directly from the AI Agent SDK for conversations handed off to Desk. This removes the need to use a separate Desk SDK for ticket lookup.
+Using the linked ticket ID, developers can retrieve ticket details such as status, agent, priority, group, response time, issue date, and custom fields through the new DeskTicket class.
+
+- Added `DeskTicket` class for accessing Sendbird Desk ticket information
+    - Added `DeskTicket` class with properties: `id`, `title`, `status`, `agent`, `priority`, `group`, `firstResponseTime`, `issuedAt`, `customFields`
+    - Added `suspend fun refresh(): DeskTicket` to reload latest ticket data
+    - Added `suspend fun getTicket(Long): DeskTicket` companion function to fetch a ticket by ID
+    - Added `DeskTicket.Agent` data class with `userId`, `name`, `profileUrl` properties
+    - Added `DeskTicket.Priority` enum: `URGENT`, `HIGH`, `MEDIUM`, `LOW`
+    - Added `DeskTicket.Status` enum: `INITIALIZED`, `PROACTIVE`, `PENDING`, `ACTIVE`, `CLOSED`, `WORK_IN_PROGRESS`, `IDLE`
+```kotlin
+// Example: Get ticket information
+val ticket = DeskTicket.getTicket(ticketId = 12345L)
+println("Ticket status: ${ticket.status}")
+println("Assigned agent: ${ticket.agent?.name}")
+println("Priority: ${ticket.priority}")
+
+// Example: Refresh ticket data
+val updatedTicket = ticket.refresh()
+```
+
+- Added context management methods in `AIAgentMessenger` for updating AI agent context in a channel
+    - Added `fun updateContext(String, String, Map<String, String>, AIAgentContextHandler?)` - Replaces the entire context with provided key-value pairs
+    - Added `fun patchContext(String, String, Map<String, String>, AIAgentContextHandler?)` - Merges provided key-value pairs with the existing context
+
+- Added external authentication token expiration handling in `AIAgentSessionHandler`
+    - Added `fun onExternalAuthTokenExpired(ExternalAuthTokenExpiredData)` callback method
+    - Added `ExternalAuthTokenExpiredData` data class with `aiAgentId`, `channelUrl`, `channelType`, and `conversationId` properties
+
+```kotlin
+// Example: Handle external auth token expiration
+val sessionHandler = object : AIAgentSessionHandler() {
+    override fun onSessionTokenRequired(handler: SessionTokenRequester) {
+        // Provide new session token
+    }
+
+    override fun onExternalAuthTokenExpired(data: ExternalAuthTokenExpiredData) {
+        // Refresh external token and update context
+        AIAgentMessenger.patchContext(
+            aiAgentId = data.aiAgentId,
+            channelUrl = data.channelUrl,
+            context = mapOf("token_key" to "new_refreshed_token")
+        ) { _, _ -> }
+    }
+}
+```
+
+- Added `language` and `country` properties in `MessengerSettings`
+    - Added `language: String?` property for the language code of the messenger settings
+    - Added `country: String?` property for the country code of the messenger settings
+
+### Improvements
+
+- Improved initialization logic to skip redundant initialization when called with identical parameters
+
+---
+
 ## v1.8.0 (Feb 20, 2026) with Chat SDK `v4.33.1`
 
 ### Features
