@@ -1,5 +1,5 @@
 // MARK: - COMMON
-"SBA_Common_ok" = "OK";
+"SBA_Common_okay" = "OK";
 "SBA_Common_cancel" = "Cancel";
 "SBA_Common_retry" = "Retry";
 "SBA_Common_save" = "Save";
