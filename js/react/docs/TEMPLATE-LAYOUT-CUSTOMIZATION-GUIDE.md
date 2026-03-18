@@ -69,6 +69,10 @@ IncomingMessageLayout.components = {
   SenderAvatar,      // Display sender's avatar
   SentTime,          // Show message timestamp
   MessageBody,       // Main message content
+  TextMessageBody,          // Text message content
+  MediaMessageBody,         // Image/video message content
+  FileMessageBody,          // File attachment content
+  MultipleFilesMessageBody, // Multiple file attachments content
   TypingIndicator,   // Typing animation
   SuggestedReplies,  // Quick reply buttons
   MessageTemplate,   // Rich message templates
@@ -159,6 +163,10 @@ OutgoingMessageLayout.components = {
   SendingStatus,  // Show sending/sent/failed status
   SentTime,       // Display timestamp
   MessageBody,    // Message content
+  TextMessageBody,          // Text message content
+  MediaMessageBody,         // Image message content
+  FileMessageBody,          // File attachment content
+  MultipleFilesMessageBody, // Multiple file attachments content
 }
 ```
 
