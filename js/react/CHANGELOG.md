@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.20.1 (Mar 20, 2026) with ChatSDK ^4.21.2
+
+
+### Patch Changes
+
+- Fix scroll-to-bottom button not disappearing after click by optimistically resetting scroll distance to 0 when `scrollToBottom()` is called
+- Fix scroll-to-bottom button reappearing unexpectedly by detecting external scroll intervention during programmatic scroll
+
+
 ## v1.20.0 (Mar 18, 2026) with ChatSDK ^4.21.2
 
 

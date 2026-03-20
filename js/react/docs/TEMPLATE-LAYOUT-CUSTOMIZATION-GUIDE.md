@@ -104,7 +104,7 @@ const CustomMessageBody = (props: IncomingMessageProps) => {
 // Apply customization
 export const CustomIncomingMessage = () => {
   return (
-    <AgentProviderContainer>
+    <AgentProviderContainer appId="YOUR_APP_ID" aiAgentId="YOUR_AI_AGENT_ID">
       <IncomingMessageLayout.MessageBody component={CustomMessageBody} />
       <Conversation />
     </AgentProviderContainer>
@@ -517,7 +517,7 @@ const EmptyComponent = () => <></>;
 
 export const MyCustomMessenger = () => {
   return (
-    <AgentProviderContainer>
+    <AgentProviderContainer appId="YOUR_APP_ID" aiAgentId="YOUR_AI_AGENT_ID">
       {/* Apply all customizations */}
       <IncomingMessageLayout.Template>
         <IncomingMessageLayout.MessageBody component={CustomMessageBody} />

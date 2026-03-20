@@ -258,6 +258,8 @@ import { AgentProviderContainer, IncomingMessageLayout } from '@sendbird/ai-agen
 Your custom component receives `extendedMessagePayload` which contains the `custom_message_templates` array. You can retrieve the data to render the message. Here's how to access and render it:
 
 ```typescript
+import type { CustomMessageTemplateData } from '@sendbird/ai-agent-messenger-react';
+
 type Props = {
   extendedMessagePayload?: {
     custom_message_templates?: CustomMessageTemplateData[];

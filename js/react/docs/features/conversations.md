@@ -302,7 +302,7 @@ Configuration options for the `FixedMessenger` component.
 | `dir` | 'ltr' \| 'rtl' | - | Text direction for the widget. |
 | `entryStyle` | CSSProperties | - | Custom CSS styles for the entry container element. |
 | `rootElement` | HTMLElement | document.body | Root HTML element to which the messenger will be appended. |
-| `state` | object | - | Custom state management for opened/expanded states. |
+| `state` | { opened?: boolean; setOpened?: (value: boolean) => void; expanded?: boolean; setExpanded?: (value: boolean) => void; } | - | Custom state management for opened/expanded states. |
 
 ### FixedMessenger.Style Props
 
@@ -324,6 +324,7 @@ Configuration options for the `Conversation` component.
 | `onClearChannelUrl` | () => void | - | Callback when channel URL should be cleared. |
 | `onNavigateToConversationList` | () => void | - | Callback to navigate to conversation list. |
 | `shouldMarkAsRead` | boolean | true | Whether to mark messages as read when viewed. |
+| `style` | CSSProperties | - | Custom CSS styles for the conversation container. |
 
 ### useMessengerSessionContext Hook
 
