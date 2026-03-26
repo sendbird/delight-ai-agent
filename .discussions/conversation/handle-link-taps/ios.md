@@ -12,14 +12,14 @@ import SendbirdAIAgentMessenger
 final class CustomConversationController: SBAConversationViewController {
     override func conversationModule(
         _ listComponent: SBAConversationModule.List,
-        event: SBAConversationModule.List.DelegateEvent
+        didReceiveEvent event: SBAConversationModule.List.DelegateEvent
     ) {
         switch event {
         case .didTapMessageLink(let message, let url):
             // You can handle the URL here (e.g., open in Safari, route internally, etc.)
             debugPrint("handle link url: \(url.absoluteString)")
         default:
-            super.conversationModule(listComponent, event: event)
+            super.conversationModule(listComponent, didReceiveEvent: event)
         }
     }
 }
