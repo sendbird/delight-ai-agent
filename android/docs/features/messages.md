@@ -47,7 +47,7 @@ Image message enables sharing of image files within conversations. This message 
   <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-image-message2.png" alt="Image message in a conversation" width="375">
 </figure>
 
-> **Note**: Once handed off to a human agent, users can send image files in any format.
+> __Note__: Once handed off to a human agent, users can send image files in any format.
 
 ### File message
 
@@ -307,26 +307,32 @@ override fun onCreateCustomMessageTemplateView(
 
 ##### Error handling patterns
 
+{% tabs %}
+{% tab title="Fallback UI" %}
 **Fallback UI for unregistered template**
 
 Return fallback UI for unknown template IDs:
 
 ```kotlin
+val templateData = data.firstOrNull() ?: return createFallbackView(context)
 when (templateData.id) {
-    "known_template" -> createKnownTemplate(context, data)
+    "known_template" -> createKnownTemplate(context, templateData)
     else -> createFallbackView(context)
 }
 ```
-
+{% endtab %}
+{% tab title="API fail" %}
 **Error UI - API call failed**
 
 Check response status and error field:
 
 ```kotlin
-if (data.error != null) return createErrorView(context, data.error)
-if (data.response.status != 200) return createErrorView(context, "API error")
+val templateData = data.firstOrNull() ?: return createErrorView(context, "No template data")
+if (templateData.error != null) return createErrorView(context, templateData.error)
+if (templateData.response.status != 200) return createErrorView(context, "API error")
 ```
-
+{% endtab %}
+{% tab title="Runtime error" %}
 **Error Boundary - Runtime error**
 
 Wrap handler logic in try-catch. SDK also wraps calls to prevent crashes:
@@ -338,6 +344,8 @@ try {
     callback.onViewReady(createFallbackView(context))
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 ---
 

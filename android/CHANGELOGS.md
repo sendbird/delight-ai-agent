@@ -1,5 +1,70 @@
 # Changelog
 
+## v1.10.0 (Mar 26, 2026) with Chat SDK `v4.35.0`
+
+### Features
+
+- Added suspend function alternatives for `AIAgentMessenger` static methods
+    - Added `suspend fun awaitCreateConversation(ConversationCreateParams): String`
+    - Added `suspend fun awaitSearchConversation(SearchConversationParams): List<String>`
+    - Added `suspend fun awaitUpdateContext(String, String, Map<String, String>)`
+    - Added `suspend fun awaitPatchContext(String, String, Map<String, String>)`
+
+- Added Flow-based message sending methods in `ConversationViewModel`
+    - Added `fun sendUserMessageFlow(UserMessageCreateParams): Flow<MessageResult<UserMessage>>`
+    - Added `fun sendFileMessageFlow(FileMessageCreateParams): Flow<MessageResult<FileMessage>>`
+    - Added `fun sendMultipleFilesMessageFlow(MultipleFilesMessageCreateParams): Flow<MultipleFilesMessageResult>`
+    - Added `fun resendUserMessageFlow(UserMessage): Flow<MessageResult<UserMessage>>`
+    - Added `fun resendFileMessageFlow(FileMessage): Flow<MessageResult<FileMessage>>`
+    - Added `fun resendMultipleFilesMessageFlow(MultipleFilesMessage): Flow<MultipleFilesMessageResult>`
+
+- Added suspend function alternatives in `ConversationViewModel`
+    - Added `suspend fun awaitCloseConversation()`
+    - Added `suspend fun awaitCreateMessageFeedback(AIAgentMessageFeedbackCreateParams): String`
+    - Added `suspend fun awaitUpdateMessageFeedback(AIAgentMessageFeedbackUpdateParams): String`
+    - Added `suspend fun awaitDeleteMessageFeedback(AIAgentMessageFeedbackDeleteParams)`
+    - Added `suspend fun awaitSubmitCSAT(CSATSubmitParams): Conversation`
+    - Added `suspend fun awaitMarkConversationAsHandover(): Conversation`
+    - Added `suspend fun awaitGetContextObject(): ContextObject`
+    - Added `suspend fun awaitUpdateContext(Map<String, String>): ContextObject`
+    - Added `suspend fun awaitPatchContext(Map<String, String>): ContextObject`
+    - Added `suspend fun awaitRemoveFailedMessage(BaseMessage): List<String>`
+
+- Added suspend function alternatives in `ConversationRepository`
+    - Added `suspend fun awaitRefreshChannel()`
+    - Added `suspend fun awaitRemoveFailedMessage(BaseMessage): List<String>`
+    - Added Flow-based message sending/resending methods matching `ConversationViewModel`
+
+### Deprecations
+
+- Deprecated callback-based methods in `ConversationViewModel` in favor of Flow and suspend alternatives
+    - `sendUserMessage(UserMessageCreateParams, UserMessageHandler?)` → Use `sendUserMessageFlow(UserMessageCreateParams)`
+    - `sendFileMessage(FileMessageCreateParams, FileMessageHandler?)` → Use `sendFileMessageFlow(FileMessageCreateParams)`
+    - `sendMultipleFilesMessage(MultipleFilesMessageCreateParams, FileUploadHandler?, MultipleFilesMessageHandler?)` → Use `sendMultipleFilesMessageFlow(MultipleFilesMessageCreateParams)`
+    - `resendUserMessage(UserMessage, UserMessageHandler?)` → Use `resendUserMessageFlow(UserMessage)`
+    - `resendFileMessage(FileMessage, FileMessageHandler?)` → Use `resendFileMessageFlow(FileMessage)`
+    - `resendMultipleFilesMessage(MultipleFilesMessage, FileUploadHandler?, MultipleFilesMessageHandler?)` → Use `resendMultipleFilesMessageFlow(MultipleFilesMessage)`
+    - `deleteMessage(BaseMessage, RemoveFailedMessagesHandler?)` → Use `awaitRemoveFailedMessage(BaseMessage)`
+    - `submitCSAT(CSATSubmitParams, SubmitCSATHandler?)` → Use `awaitSubmitCSAT(CSATSubmitParams)`
+    - `markConversationAsHandover(MarkConversationAsHandoffHandler?)` → Use `awaitMarkConversationAsHandover()`
+    - `getContextObject(ContextObjectResultHandler?)` → Use `awaitGetContextObject()`
+    - `updateContext(Map<String, String>, ContextObjectResultHandler?)` → Use `awaitUpdateContext(Map<String, String>)`
+    - `patchContext(Map<String, String>, ContextObjectResultHandler?)` → Use `awaitPatchContext(Map<String, String>)`
+    - `createMessageFeedback(AIAgentMessageFeedbackCreateParams, AIAgentMessageFeedbackCreateHandler?)` → Use `awaitCreateMessageFeedback(AIAgentMessageFeedbackCreateParams)`
+    - `updateMessageFeedback(AIAgentMessageFeedbackUpdateParams, AIAgentMessageFeedbackUpdateHandler?)` → Use `awaitUpdateMessageFeedback(AIAgentMessageFeedbackUpdateParams)`
+    - `deleteMessageFeedback(AIAgentMessageFeedbackDeleteParams, AIAgentMessageFeedbackDeleteHandler?)` → Use `awaitDeleteMessageFeedback(AIAgentMessageFeedbackDeleteParams)`
+    - `closeConversation(CompletionHandler?)` → Use `awaitCloseConversation()`
+
+- Deprecated callback-based methods in `AIAgentMessenger` in favor of suspend alternatives
+    - `createConversation(ConversationCreateParams, ConversationCreateHandler?)` → Use `awaitCreateConversation(ConversationCreateParams)`
+    - `searchConversation(SearchConversationParams, ChannelUrlsHandler?)` → Use `awaitSearchConversation(SearchConversationParams)`
+    - `updateContext(String, String, Map<String, String>, AIAgentContextHandler?)` → Use `awaitUpdateContext(String, String, Map<String, String>)`
+    - `patchContext(String, String, Map<String, String>, AIAgentContextHandler?)` → Use `awaitPatchContext(String, String, Map<String, String>)`
+
+- Deprecated `refreshChannel(CompletionHandler?)` in `ConversationRepository` → Use `awaitRefreshChannel()`
+
+---
+
 ## v1.9.0 (Mar 18, 2026) with Chat SDK `v4.34.1`
 
 ### Features
