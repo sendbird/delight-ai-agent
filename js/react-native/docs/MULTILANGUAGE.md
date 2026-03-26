@@ -39,13 +39,15 @@ If you need support for a language that is not listed above, you can customize t
 You can set the language during component initialization:
 
 ```tsx
-import { AIAgentProviderContainer, FixedMessenger } from '@sendbird/ai-agent-messenger-react-native';
+import { AIAgentProviderContainer, FixedMessenger, AnonymousSessionInfo } from '@sendbird/ai-agent-messenger-react-native';
 
 function App() {
   return (
     <AIAgentProviderContainer
       appId={'YOUR_APP_ID'}
       aiAgentId={'YOUR_AI_AGENT_ID'}
+      nativeModules={nativeModules}
+      userSessionInfo={new AnonymousSessionInfo()}
       language={'ko-KR'}
       countryCode={'KR'}
     >
@@ -65,6 +67,8 @@ function App() {
 <AIAgentProviderContainer
   appId={'YOUR_APP_ID'}
   aiAgentId={'YOUR_AI_AGENT_ID'}
+  nativeModules={nativeModules}
+  userSessionInfo={new AnonymousSessionInfo()}
   language={'es-ES'}
   // You can still customize certain strings even in supported language
   strings={{
@@ -86,6 +90,8 @@ function App() {
 <AIAgentProviderContainer
   appId={'YOUR_APP_ID'}
   aiAgentId={'YOUR_AI_AGENT_ID'}
+  nativeModules={nativeModules}
+  userSessionInfo={new AnonymousSessionInfo()}
   language={'zh-CN'}
   // All strings for unsupported languages must be provided
   strings={{
@@ -135,6 +141,8 @@ function App() {
       <AIAgentProviderContainer
         appId={'YOUR_APP_ID'}
         aiAgentId={'YOUR_AI_AGENT_ID'}
+        nativeModules={nativeModules}
+        userSessionInfo={new AnonymousSessionInfo()}
         language={language}
         strings={strings}
       >

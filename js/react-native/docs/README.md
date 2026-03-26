@@ -34,10 +34,11 @@ You can find them under the **Channels** > **Messenger** menu on the Delight AI 
 
 - React >= 18.0.0
 - React Native >= 0.80.0
-- @sendbird/chat ^4.21.2
+- @sendbird/chat ^4.22.0
 - react-native-mmkv >= 3.0.0
 - react-native-safe-area-context >= 5.0.0
 - date-fns >= 4.0.0
+- @react-native-clipboard/clipboard >= 1.0.0
 
 ---
 
@@ -50,7 +51,7 @@ Quickly install and initialize the AI Agent SDK by following the steps below.
 Install the package with its peer dependencies using npm or yarn:
 
 ```bash
-npm install @sendbird/ai-agent-messenger-react-native @sendbird/chat react-native-mmkv react-native-safe-area-context date-fns
+npm install @sendbird/ai-agent-messenger-react-native @sendbird/chat react-native-mmkv react-native-safe-area-context date-fns @react-native-clipboard/clipboard
 ```
 
 **(Optional) File attachment support:**

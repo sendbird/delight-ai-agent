@@ -519,7 +519,7 @@ Configuration options for the `AIAgentProviderContainer` component. This compone
 | `chatParams` | Partial<SendbirdChatParams<[GroupChannelModule, AIAgentModule]>> | - | Custom parameters for initializing the chat SDK |
 | `theme` | object | - | Theme customization including mode, palette and typography |
 | `logLevel` | LogLevel | LogLevel.WARN | Log level for the AI agent client |
-| `language` | string | System default | Language setting following IETF BCP 47 format (e.g., "en-US", "ko-KR") |
+| `language` | string | 'en' | Language setting following IETF BCP 47 format (e.g., "en-US", "ko-KR") |
 | `strings` | PartialDeep<StringSet> | - | Localization strings for the messenger |
 | `countryCode` | string | - | Country code following ISO 3166 format (e.g., "US", "KR") |
 | `context` | Record<string, string> | - | Context object for personalized AI agent responses |
@@ -557,7 +557,7 @@ Native modules configuration.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `mmkv` | MMKVInstance | Required | MMKV instance for local storage |
+| `mmkv` | MMKVModule | Required | MMKV instance for local storage |
 | `imagePicker` | typeof ImagePicker | Optional | Image picker module (expo-image-picker or react-native-image-picker). Can be omitted if attachment features are not used. |
 | `documentPicker` | typeof DocumentPicker | Optional | Document picker module (expo-document-picker or @react-native-documents/picker). Can be omitted if attachment features are not used. |
 | `permissions` | typeof RNPermissions | Optional | react-native-permissions module. Only required when using react-native-image-picker. |
@@ -572,6 +572,7 @@ Configuration options for the `Conversation` component.
 | `onClearChannelUrl` | () => void | - | Callback when channel URL should be cleared |
 | `onNavigateToConversationList` | () => void | - | Callback to navigate to conversation list |
 | `onClose` | () => void | - | Callback when conversation should be closed |
+| `shouldMarkAsRead` | boolean | `true` | Whether to automatically mark messages as read |
 
 ### useMessengerSessionContext Hook
 

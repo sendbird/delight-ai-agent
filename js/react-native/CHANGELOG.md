@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.10.0 (Mar 26, 2026) with ChatSDK ^4.22.0
+
+
+### Minor Changes
+
+- Add thinking mode to the typing indicator with shimmer animation
+
+### Patch Changes
+
+- Add `_agentVersion` support for internal conversation initialization via `requestMessengerSettings`
+- Refactor `initConversationIfNeeded` to be accessible from the `AIAgent` instance
+- Refactor active channel updates to use `_aiAgentSDK` session directly
+
+
 ## v1.9.0 (Mar 18, 2026) with ChatSDK ^4.21.2
 
 
