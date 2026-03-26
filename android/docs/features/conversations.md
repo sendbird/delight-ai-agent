@@ -7,7 +7,7 @@ When the launcher is clicked, a user can be led to either their conversation lis
 | Feature                    | Single active conversation                                                                 | Multiple active conversations (Default)                                                                 |
 | -------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
 | Number of active conversation | A user can have only one active conversation with your AI agent at a time.                 | A user can have multiple active conversations with your AI agent at the same time.                      |
-| Starting a new conversation   | A new conversation can't be created if there is an active conversation at the moment. The existing conversation must end first. | New conversations can be created anytime using `AIAgentMessenger.createConversation()`.                 |
+| Starting a new conversation   | A new conversation can't be created if there is an active conversation at the moment. The existing conversation must end first. | New conversations can be created anytime using `AIAgentMessenger.awaitCreateConversation()`.                 |
 
 > **Note**: Whichever conversation mode you choose, if there is no active conversation, a new conversation is automatically created and the user can start a dialogue with your AI agent. This provides seamless user experience without requiring manual conversation setup.
 
@@ -129,7 +129,7 @@ The `context` object allows you to provide user's information to AI agents for m
 | Class                        | Purpose                                                                 | Used With                                                                                 |
 | ---------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `ConversationSettingsParams` | Configures the conversation settings when launching via `MessengerActivity`. | `MessengerActivity.newIntentForConversation()`, `MessengerActivity.newIntentForConversationList()` |
-| `ConversationCreateParams`   | Manually creates a new conversation.                                    | `AIAgentMessenger.createConversation()`                                                   |
+| `ConversationCreateParams`   | Manually creates a new conversation.                                    | `AIAgentMessenger.awaitCreateConversation()`                                                   |
 | `LauncherSettingsParams`     | Configures the floating launcher’s behavior and appearance.             | `MessengerLauncher` constructor                                                           |
 
 ```kotlin
@@ -164,9 +164,8 @@ val createParams = ConversationCreateParams(
     )
 )
 
-AIAgentMessenger.createConversation(createParams) { channelUrl, error ->
-    // Handle result
-}
+val channelUrl = AIAgentMessenger.awaitCreateConversation(createParams)
+// Use the returned channel URL to open the conversation
 ```
 
 ### Opening a specific conversation with channel URL
@@ -194,7 +193,7 @@ startActivity(intent)
 
 ### Start a conversation in multiple conversation mode
 
-Multiple active conversation mode allows users to simultaneously communicate with your AI agent in different channels. In this case, use `AIAgentMessenger.createConversation()` to create a new conversation whenever needed.
+Multiple active conversation mode allows users to simultaneously communicate with your AI agent in different channels. In this case, use `AIAgentMessenger.awaitCreateConversation()` to create a new conversation whenever needed.
 
 > **Note**: In single conversation mode, a new conversation can't be created if there is an active conversation.
 
@@ -210,26 +209,25 @@ val params = ConversationCreateParams(
     )
 )
 
-AIAgentMessenger.createConversation(params) { channelUrl, error ->
-    if (error == null && channelUrl != null) {
-        // Use the returned channel URL to launch the conversation
+try {
+    val channelUrl = AIAgentMessenger.awaitCreateConversation(params)
+    // Use the returned channel URL to launch the conversation
 
-        // Option 1: Launch via MessengerLauncher
-        messengerLauncher.openConversation(channelUrl = channelUrl)
+    // Option 1: Launch via MessengerLauncher
+    messengerLauncher.openConversation(channelUrl = channelUrl)
 
-        // Option 2: Launch via MessengerActivity
-        val intent = MessengerActivity.newIntentForConversation(
-            context = this,
-            aiAgentId = "YOUR_AI_AGENT_ID",
-            conversationChannelUrl = channelUrl
-        )
-        startActivity(intent)
+    // Option 2: Launch via MessengerActivity
+    val intent = MessengerActivity.newIntentForConversation(
+        context = this,
+        aiAgentId = "YOUR_AI_AGENT_ID",
+        conversationChannelUrl = channelUrl
+    )
+    startActivity(intent)
 
-        Log.d("Conversation", "Successfully created conversation: $channelUrl")
-    } else {
-        // Handle error case
-        Log.e("Conversation", "Failed to create conversation: ${error?.message}")
-    }
+    Log.d("Conversation", "Successfully created conversation: $channelUrl")
+} catch (e: Exception) {
+    // Handle error case
+    Log.e("Conversation", "Failed to create conversation: ${e.message}")
 }
 ```
 
@@ -264,17 +262,17 @@ The following table lists the configuration options in `ConversationSettingsPara
 
 The following table lists the interface for handling conversation creation results.
 
-| Method     | Parameters                                         | Description                                                 |
-| ---------- | -------------------------------------------------- | ----------------------------------------------------------- |
-| `onResult` | channelUrl: String?, exception: SendbirdException? | Callback method called when conversation creation completes. |
+| Method     | Parameters                                 | Description                                                 |
+| ---------- |--------------------------------------------| ----------------------------------------------------------- |
+| `onResult` | channelUrl: String?, e: SendbirdException? | Callback method called when conversation creation completes. |
 
 ### AIAgentMessenger Methods
 
 The following table lists the core conversation management methods in `AIAgentMessenger` object.
 
-| Method               | Parameters                                                            | Return Type | Description                                          |
-| -------------------- | --------------------------------------------------------------------- | ----------- | ---------------------------------------------------- |
-| `createConversation` | params: ConversationCreateParams, handler: ConversationCreateHandler? | Unit        | Creates a new conversation with specified parameters. |
+| Method                     | Parameters                          | Return Type | Description                                          |
+| -------------------------- | ----------------------------------- | ----------- | ---------------------------------------------------- |
+| `awaitCreateConversation`  | params: ConversationCreateParams    | String      | Creates a new conversation with specified parameters. Returns channel URL. |
 
 ### MessengerActivity Methods
 

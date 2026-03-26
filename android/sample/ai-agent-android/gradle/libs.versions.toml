@@ -18,9 +18,9 @@ sdkBinaryCompatibilityValidator = "0.16.0"
 googleService = "4.4.2"
 firebaseMessagingKtx = "24.1.1"
 
-sdkSendbirdKtx = "4.34.1"
-sdkSendbirdChat = "4.34.1"
-sdkSendbirdAuth = "1.0.21"
+sdkSendbirdKtx = "4.35.0"
+sdkSendbirdChat = "4.35.0"
+sdkSendbirdAuth = "1.0.22"
 sdkSendbirdMessageTemplate = "1.2.0"
 kotlinSerializationJson = "1.3.2"
 activity = "1.6.1"
@@ -30,9 +30,10 @@ viewpager2 = "1.0.0"
 markwon = "4.6.2"
 kotlinBom = "1.8.0"
 sdkUikit = "3.23.0"
-sdkAiAgentMessenger = "1.9.0"
+sdkAiAgentMessenger = "1.10.0"
 sdkDesk = "1.1.6"
 sdkMockk = "1.13.4"
+sdkMockkAndroid = "1.13.3"
 sdkKotest ="5.6.0"
 sdkKotlinxCoroutines = "1.7.1"
 androidxRules = "1.5.0"
@@ -57,9 +58,12 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-espresso-contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espressoCore" }
+androidx-espresso-accessibility = { group = "androidx.test.espresso", name = "espresso-accessibility", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+androidx-fragment-testing = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragmentKtx" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewModelKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
@@ -72,6 +76,7 @@ androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", vers
 firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
 kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlinBom" }
 sdk-mockk = { group = "io.mockk", name = "mockk", version.ref = "sdkMockk" }
+sdk-mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "sdkMockkAndroid" }
 sdk-kotest = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "sdkKotest" }
 sdk-junit4 = { group = "junit", name = "junit", version.ref = "sdkJunit4" }
 sdk-kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "sdkKotlinxCoroutines" }

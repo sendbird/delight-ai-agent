@@ -62,7 +62,7 @@ You can set the context object:
 
 The following methods can be used to add or update context objects after initialization.
 
-<table><thead><tr><th width="186.49609375">Method</th><th>Description</th></tr></thead><tbody><tr><td><code>updateContext</code></td><td>Overwrites the entire context object. Keys not included will be removed. </td></tr><tr><td><code>patchContext</code></td><td>Merges the provided keys into the existing context. Other keys remain unchanged.</td></tr><tr><td><code>getContextObject</code></td><td>Retrieves the current context object.</td></tr></tbody></table>
+<table><thead><tr><th width="186.49609375">Method</th><th>Description</th></tr></thead><tbody><tr><td><code>awaitUpdateContext</code></td><td>Overwrites the entire context object. Keys not included will be removed. </td></tr><tr><td><code>awaitPatchContext</code></td><td>Merges the provided keys into the existing context. Other keys remain unchanged.</td></tr><tr><td><code>awaitGetContextObject</code></td><td>Retrieves the current context object.</td></tr></tbody></table>
 
 > For details on setting context at initialization, refer to the [Android messenger quickstart guide](README.md#passing-context-object-to-agent).
 
@@ -71,13 +71,16 @@ The following methods can be used to add or update context objects after initial
 ### Update context object
 
 ```kotlin
+// Using AIAgentMessenger (top-level)
 val context: Map<String, String> = mapOf("key1" to "value1", "key2" to "value2")
-updateContext(context) { contextObject, e ->
-    if (e != null) {
-        // Handle the error
-    }
-    // Handle the context object
-}
+val contextObject = AIAgentMessenger.awaitUpdateContext(
+    aiAgentId = "YOUR_AI_AGENT_ID",
+    channelUrl = "CHANNEL_URL",
+    context = context
+)
+
+// Using ConversationViewModel (inside a conversation)
+val contextObject = viewModel.awaitUpdateContext(context)
 ```
 
 ***
@@ -85,13 +88,16 @@ updateContext(context) { contextObject, e ->
 ### Patch context object
 
 ```kotlin
+// Using AIAgentMessenger (top-level)
 val context: Map<String, String> = mapOf("key1" to "value3", "key2" to "value4")
-patchContext(context) { contextObject, e ->
-    if (e != null) {
-        // Handle the error
-    }
-    // Handle the context object
-}
+val contextObject = AIAgentMessenger.awaitPatchContext(
+    aiAgentId = "YOUR_AI_AGENT_ID",
+    channelUrl = "CHANNEL_URL",
+    context = context
+)
+
+// Using ConversationViewModel (inside a conversation)
+val contextObject = viewModel.awaitPatchContext(context)
 ```
 
 ***
@@ -99,10 +105,6 @@ patchContext(context) { contextObject, e ->
 ### Get context object
 
 ```kotlin
-getContextObject { contextObject, e ->
-    if (e != null) {
-        // Handle the error
-    }
-    // Handle the context object
-}
+// Using ConversationViewModel (inside a conversation)
+val contextObject = viewModel.awaitGetContextObject()
 ```
