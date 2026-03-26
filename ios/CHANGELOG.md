@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.10.0 (Mar 26, 2026) with Chat SDK v4.38.1
+
+### Features
+
+- Added thinking mode to the typing indicator with shimmer animation
+- Blocked user input during requesting handoff
+
+### Improvements
+
+- Fixed AI agent profile not updating correctly
+
 ## v1.9.0 (Mar 18, 2026) with Chat SDK v4.38.0
 
 ### New Features
