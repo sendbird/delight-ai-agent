@@ -164,13 +164,13 @@ The following snippet demonstrates how to load the messenger with a custom main 
 ```javascript
 const messenger = await loadMessenger({
   customMainComponent: ({ messenger, react }) => {
-    return (props) => {
+    return react.forwardRef((props, ref) => {
       return react.createElement(
         messenger.AgentProviderContainer,
-        props,
+        { ...props, ref },
         [react.createElement(messenger.Conversation)]
       );
-    };
+    });
   }
 });
 

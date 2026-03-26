@@ -258,7 +258,7 @@ A11Y_IMAGE_VIEWER_NEXT: 'Next image',
 A11Y_IMAGE_VIEWER_DOWNLOAD: 'Download image',
 A11Y_ATTACH_FILE: 'Attach file',
 
-SCROLL_TO_NEW_MESSAGES_LABEL: () => 'New message',
+SCROLL_TO_NEW_MESSAGES_LABEL: (messages) => 'New message',
 ```
 
 ---
