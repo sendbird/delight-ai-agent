@@ -302,6 +302,7 @@ Configuration options for the `FixedMessenger` component.
 | `dir` | 'ltr' \| 'rtl' | - | Text direction for the widget. |
 | `entryStyle` | CSSProperties | - | Custom CSS styles for the entry container element. |
 | `rootElement` | HTMLElement | document.body | Root HTML element to which the messenger will be appended. |
+| `initialChannelUrl` | string | - | The URL of the channel to open initially when the messenger is first loaded. |
 | `state` | { opened?: boolean; setOpened?: (value: boolean) => void; expanded?: boolean; setExpanded?: (value: boolean) => void; } | - | Custom state management for opened/expanded states. |
 
 ### FixedMessenger.Style Props

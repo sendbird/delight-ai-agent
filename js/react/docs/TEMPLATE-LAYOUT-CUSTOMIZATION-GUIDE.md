@@ -90,7 +90,7 @@ IncomingMessageLayout.components = {
 You can customize individual components by providing custom implementations:
 
 ```tsx
-import { IncomingMessageLayout, IncomingMessageProps } from '@sendbird/ai-agent-messenger-react';
+import { IncomingMessageLayout, IncomingMessageProps, AgentProviderContainer, Conversation } from '@sendbird/ai-agent-messenger-react';
 
 // Custom message body with enhanced styling
 const CustomMessageBody = (props: IncomingMessageProps) => {
