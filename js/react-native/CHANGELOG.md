@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.10.1 (Mar 27, 2026) with ChatSDK ^4.22.0
+
+
+### Patch Changes
+
+- Fix scroll flicker during streaming by suppressing re-renders while programmatic scroll is in flight
+- Fix away-from-bottom state going stale when repeated auto-scrolls were triggered rapidly
+- Recompute scroll list scrollability when the viewport changes (rotation, keyboard, safe-area)
+- Scroll to bottom when the typing indicator appears and the user is near the bottom, matching React web behavior
+- Fix MMKV storage routing so it flows through `useMMKVStorage` instead of `chatParams.useMMKVStorageStore`
+- Export `useAIAgentContext` from the package
+
+
 ## v1.10.0 (Mar 26, 2026) with ChatSDK ^4.22.0
 
 
