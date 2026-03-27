@@ -37,3 +37,4 @@ xcuserdata/
 **/local.properties
 **/.DS_Store
 .discussions/_output/
+**/.omc/
