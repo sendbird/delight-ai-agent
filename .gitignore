@@ -3,7 +3,6 @@
 **/.vite
 **/deps
 **/.pnpm-store
-**/pnpm-lock.yaml
 **/playwright-report/**
 **/test-results
 .idea
@@ -37,3 +36,4 @@ xcuserdata/
 **/local.properties
 **/.DS_Store
 .discussions/_output/
+**/.omc/
