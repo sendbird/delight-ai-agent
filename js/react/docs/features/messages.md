@@ -7,6 +7,7 @@ This guide explains:
     - [Text message](#text-message)
     - [Image message](#image-message)
     - [File message](#file-message)
+    - [Multiple files message](#multiple-files-message)
     - [Rich message](#rich-message)
 - [Key features](#key-features)
     - [Citation](#citation)
@@ -23,6 +24,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 | [Text message](#text-message) | Regular text-based communication | Plain text | Basic conversational interactions, Q&A, general dialogue |
 | [Image message](#image-message) | Visual file sharing | Image files in `PNG` and `JPG` only | Visual communication, screenshots, diagrams |
 | [File message](#file-message) | Document and file sharing | Various file formats | Document sharing, attachments, downloadable resources |
+| [Multiple files message](#multiple-files-message) | Multiple image sharing in a single message | Image files in `JPEG` and `PNG` only | Sharing multiple photos at once |
 | [Rich message](#rich-message)| Template-based messages with interactive UI | Structured JSON templates | Product displays, carousels, CTAs and more. See below section for details. |
 
 
@@ -47,7 +49,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
   <figcaption></figcaption>
 </figure>
 
->__Note__: However, once handed off to a human agent, users can send image files in any format.
+> **Note:** However, once handed off to a human agent, users can send image files in any format.
 
 ### File message
 
@@ -61,6 +63,21 @@ Delight AI agent messenger supports various message types to provide comprehensi
   <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-web-file-message.png" alt="" width="375">
   <figcaption></figcaption>
 </figure>
+
+### Multiple files message
+
+**Multiple files message** allows users to send multiple image files in a single message. Selected images are displayed in a grid layout within the conversation.
+
+- Supported formats: Images only (`JPEG`, `PNG`). Can be sent with text. Documents and videos must be sent individually.
+- Max count: One image by default. The maximum can be adjusted by your Delight representative. Maximum file size is 300 MB per file.
+- Display: Grid layout for multiple images.
+
+<figure>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/aa-sdk-multi-file-message%403x.png" alt="" width="375">
+  <figcaption></figcaption>
+</figure>
+
+> **Note:** By default, only single-file sending is enabled. To enable multiple files message, contact your Delight representative.
 
 ### Rich message
 
@@ -135,7 +152,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 
 Custom message templates enable Delight AI agent server to send structured data that clients can render with their own UI components. Unlike pre-defined message templates, clients must implement and register components beforehand, enabling business-specific UIs such as coupons, product lists, and reservations.
 
-##### How it works
+#### How it works
 
 **Raw response delivery**
 
@@ -154,7 +171,7 @@ Custom message templates enable Delight AI agent server to send structured data 
 - If client app receives unregistered template ID, [display a fallback UI](#a-fallback-ui-for-unregistered-template).
 - This ensures app doesn't break with unknown templates.
 
-##### Data structure
+#### Data structure
 
 The interface for `custom_message_templates` is defined as `CustomMessageTemplateData`.
 
@@ -207,7 +224,7 @@ The client app will receive a JSON payload of `custom_message_templates` like be
 }
 ```
 
-##### How to implement {#register-custom-component}
+#### How to implement
 
 To render a custom message template, you must:
 
@@ -241,9 +258,7 @@ Custom templates are rendered in a dedicated slot within the message structure. 
 
 Register your custom message template as `IncomingMessageLayout.CustomMessageTemplate` under `AgentProviderContainer`. In the following snippet, you'll register `MyCustomMessageTemplate` as a component.
 
-{% hint style="info" %}
-If you don't register a custom component, this template slot renders nothing by default.
-{% endhint %}
+> **Note:** If you don't register a custom component, this template slot renders nothing by default.
 
 ```typescript
 import { AgentProviderContainer, IncomingMessageLayout } from '@sendbird/ai-agent-messenger-react';
@@ -275,16 +290,14 @@ function MyCustomMessageTemplate({ extendedMessagePayload }: Props) {
 }
 ```
 
-##### How to handle a fallback and an error {#a-fallback-ui-for-unregistered-template}
+#### How to handle a fallback and an error
 
-Refer to the snippets in the tabs in the case of exceptions such as:
+Refer to the snippets in the following sections in the case of exceptions such as:
 
 - Fallback
 - API request fail
 - Runtime error
 
-{% tabs %}
-{% tab title="a) Fallback UI" %}
 **a) Fallback UI for unregistered template**
 
 The following snippet demonstrates how to render a fallback UI when an unregistered template ID is passed through. In the SDK for JavaScript, an "Unsupported template" UI will appear against a yellow background.
@@ -305,9 +318,7 @@ function MyCustomMessageTemplate({ extendedMessagePayload }) {
 
 const FallbackUI = () => <div>Unsupported template type</div>;
 ```
-{% endtab %}
 
-{% tab title="b) API fail" %}
 **b) Error UI - API call failed**
 
 The following snippet demonstrates how to handle when an API request for a custom template failed.
@@ -327,9 +338,7 @@ function MyCustomMessageTemplate({ extendedMessagePayload }) {
 
 const RequestErrorUI = () => <div>Please retry later</div>;
 ```
-{% endtab %}
 
-{% tab title="c) Runtime error" %}
 **c) Error Boundary - Runtime error**
 
 The following snippet demonstrates how to handle when a runtime error occurs due to unexpected causes such as an API response change.
@@ -351,8 +360,6 @@ function MyCustomMessageTemplate({ extendedMessagePayload }) {
 
 const ComponentErrorUI = () => <div>Sorry, please contact Admin</div>;
 ```
-{% endtab %}
-{% endtabs %}
 
 ---
 
