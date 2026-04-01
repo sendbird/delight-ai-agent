@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.21.2 (Apr 01, 2026) with ChatSDK ^4.22.0
+
+
+### Patch Changes
+
+- Fix race condition where stale `refreshActiveChannel` closures from a previous session could overwrite the new session's active channel after a session switch
+
+
 ## v1.21.1 (Mar 27, 2026) with ChatSDK ^4.22.0
 
 
