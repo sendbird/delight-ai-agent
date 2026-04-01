@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.11.0 (Apr 01, 2026) with Chat SDK v4.38.1
+
+### Features
+
+- Added Live Metric API for real-time tracking of handoff, conversation, message, and connection events
+
+### Improvements
+
+- Fixed iOS 16.0~16.1 UITextView freeze caused by TextKit2
+
 ## v1.10.0 (Mar 26, 2026) with Chat SDK v4.38.1
 
 ### Features
