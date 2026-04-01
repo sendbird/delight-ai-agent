@@ -68,6 +68,7 @@ extension AIAgentStarterKit {
                 )
 
                 AIAgentStarterKit.status = .initialized
+                AIAgentStarterKit.setupLiveMetricHandler()
 
                 #if INTERNAL_TEST
                 InternalTestManager.updateHost(SampleConfiguration.productionServer)
@@ -83,6 +84,16 @@ extension AIAgentStarterKit {
                 }
             }
         }
+    }
+}
+
+// MARK: - Live Metric
+extension AIAgentStarterKit {
+    static func setupLiveMetricHandler() {
+        // NOTE: To check live metrics, uncomment the handler below.
+        // AIAgentMessenger.onLiveMetricHandler = { metric in
+        //     debugPrint("[LiveMetric] [\(metric.category.rawValue)] \(metric.metricKey) — \(metric.data)")
+        // }
     }
 }
 
