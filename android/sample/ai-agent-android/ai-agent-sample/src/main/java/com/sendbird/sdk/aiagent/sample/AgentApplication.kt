@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 class AgentApplication : Application(), MessengerInitResultHandler {
     override fun onCreate() {
         super.onCreate()
+        initHandler = this
 
         PreferenceUtils.init(applicationContext)
         val appInfo: SampleAppInfo = PreferenceUtils.sampleAppInfo ?: us3
@@ -66,5 +67,6 @@ class AgentApplication : Application(), MessengerInitResultHandler {
 
     companion object {
         internal val initState = MutableStateFlow(InitState.NONE)
+        internal var initHandler: MessengerInitResultHandler? = null
     }
 }
