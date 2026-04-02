@@ -23,8 +23,8 @@ internal data class ManualUserInfo(
 }
 // region public user info
 internal val userUs3 = ManualUserInfo(
-    userId = "client_user",
-    authToken = "deb776838a0dca710fffd9c38b06ed133e2d088f",
+    userId = "client_user2",
+    authToken = "4e257a7d92d70eae46c016cdef4ab224e3e48f30",
 )
 // endregion
 

@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.11.0 (Apr 2, 2026) with Chat SDK `v4.35.0`
+
+### Features
+
+- Added Live Metric tracking system for monitoring SDK events in real-time
+    - Added `fun removeLiveMetricHandler(String)` in `AIAgentMessenger`
+    - Added `fun removeLiveMetricHandlers()` in `AIAgentMessenger`
+    - Added `LiveMetric` abstract class with `category` and `metricKey` properties
+
+### Bug Fixes
+
+- Fixed a concurrency issue in `MessageDiffCallback` by tracking the last submitted item to prevent race conditions during rapid list updates
+
+---
+
 ## v1.10.0 (Mar 26, 2026) with Chat SDK `v4.35.0`
 
 ### Features

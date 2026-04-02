@@ -3,11 +3,13 @@ package com.sendbird.sdk.aiagent.sample.utils
 import android.content.Context
 import android.content.res.Configuration
 import com.sendbird.android.exception.SendbirdException
+import com.sendbird.sdk.aiagent.common.utils.LoggerLevel
 import com.sendbird.sdk.aiagent.messenger.AIAgentMessenger
 import com.sendbird.sdk.aiagent.messenger.consts.MessengerThemeMode
 import com.sendbird.sdk.aiagent.messenger.interfaces.MessengerInitResultHandler
 import com.sendbird.sdk.aiagent.messenger.model.MessengerInitParams
 import com.sendbird.sdk.aiagent.messenger.model.SessionInfo
+import com.sendbird.sdk.aiagent.sample.AgentApplication
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -33,17 +35,21 @@ suspend fun Context.awaitInitializeMessenger(appId: String, apiHost: String?, ws
             theme = getCurrentTheme(),
             initResultHandler = object : MessengerInitResultHandler {
                 override fun onInitSuccess() {
-                    AIAgentMessenger.updateSessionInfo(SessionInfo.AnonymousSessionInfo())
+                    AgentApplication.initHandler?.onInitSuccess()
                     cont.resume(Unit)
                 }
 
                 override fun onInitFailure(e: SendbirdException) {
+                    AgentApplication.initHandler?.onInitFailure(e)
                     cont.resumeWithException(e)
                 }
-                override fun onMigrationStarted() {}
+                override fun onMigrationStarted() {
+                    AgentApplication.initHandler?.onMigrationStarted()
+                }
             },
             apiHost = apiHost,
-            wsHost = wsHost
+            wsHost = wsHost,
+            loggerLevel = LoggerLevel.VERBOSE
         )
     )
 }
