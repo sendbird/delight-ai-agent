@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.10.3 (Apr 03, 2026) with ChatSDK ^4.22.0
+
+
+### Patch Changes
+
+- Improved stability and internal enhancements
+
+
 ## v1.10.2 (Apr 01, 2026) with ChatSDK ^4.22.0
 
 
