@@ -40,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupInternalTest() {
         #if INTERNAL_TEST
         InternalTestManager.loadTestAppInfo()
+        if !InternalTestManager.isRunningTests {
+            InternalTestManager.restoreQueryParams()
+        }
         #endif
     }
 
@@ -57,6 +60,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func initializeAIAgentSDK() {
+        #if INTERNAL_TEST
+        guard !InternalTestManager.isRunningTests else { return }
+        #endif
+
         AIAgentStarterKit.initialize(
             applicationId: SampleConfiguration.appId,
             logLevel: SampleConfiguration.logLevel,

@@ -36,6 +36,8 @@
 "SBA_Common_Alert_notSupportedImageType" = "Unsupported image file type.";
 "SBA_Common_Alert_maxImageSelection" = "Select up to %d photos.";
 "SBA_Common_Alert_someFilesExcluded" = "Some files were excluded due to upload restrictions. Please add them one at a time.";
+"SBA_Common_Alert_replaceAttachmentTitle" = "Replace attachment?";
+"SBA_Common_Alert_replaceAttachmentMessage" = "Uploading a different file type will replace the current one.";
 "SBA_Common_Error_exceededSizeLimit" = "The maximum size per file is %dMB.";
 
 // MARK: - COMMON DATE FORMAT
@@ -51,6 +53,13 @@
 "SBA_Conversation_Input_Placeholder_noConversation" = "Waiting for the agent's reply...";
 "SBA_Conversation_Input_Placeholder_suggestedReplies" = "Select an option to continue";
 "SBA_Conversation_Input_Placeholder_chatUnavailable" = "Chat is unavailable in this channel";
+"SBA_Conversation_Input_Placeholder_steward" = "Processing your request...";
+
+// MARK: - CONVERSATION HANDOFF
+"SBA_Conversation_Handoff_title" = "Request handoff?";
+"SBA_Conversation_Handoff_description" = "You'll be transferred to a human agent. Your conversation history will be shared.";
+"SBA_Conversation_Handoff_positiveText" = "Handoff";
+"SBA_Conversation_Handoff_negativeText" = "Cancel";
 
 // MARK: - CONVERSATION LIST
 "SBA_Conversation_List_UnknownMessage_title" = "(Unknown message type)";
