@@ -16,9 +16,12 @@
     <string name="sample_text_title_activity_compose">ComposeActivity</string>
     <string name="sample_text_open_compose_sample">Open Compose Sample</string>
     <string name="sample_text_open_view_sample">Open View Sample</string>
-    <string name="sample_text_main_title">Your AI\nworkforce for\nomnichannel\nconversations</string>
-    <string name="sample_text_main_contents">Solve &gt;90% of customer service cases autonomously. Accelerate your customer journey inside and outside the app, backed by handoff to conversations with human agents.</string>
-    <string name="sample_text_view_demo">Ver demonstração</string>
+    <string name="sample_text_main_label">AI CONCIERGE</string>
+    <string name="sample_text_main_title">Seu concierge\nde IA personalizado</string>
+    <string name="sample_text_main_contents">Um concierge de IA em que você pode confiar para cuidar dos seus clientes durante todo o ciclo de vida.</string>
+    <string name="sample_text_view_demo">Abrir Messenger</string>
+    <string name="sample_text_pinned_channels">Canais fixados</string>
+    <string name="sample_text_powered_by">Powered by Delight.ai</string>
     <string name="sample_region_production">PRODUCTION</string>
     <string name="sample_region_no1">NO1</string>
     <string name="sample_region_no2">NO2</string>

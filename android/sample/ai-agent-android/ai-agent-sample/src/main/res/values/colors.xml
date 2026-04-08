@@ -9,4 +9,20 @@
     <color name="black_500">#1A171F</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#AAAAAA</color>
+    <color name="accent_yellow">#f6f3ee</color>
+    <color name="dark_bg">#0D0D0D</color>
+    <color name="dark_input">#1A1A1A</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="text_tertiary">#80FFFFFF</color>
+    <color name="text_muted">#50FFFFFF</color>
+    <color name="text_hint">#40FFFFFF</color>
+    <color name="card_bg">#0DFFFFFF</color>
+    <color name="card_border">#15FFFFFF</color>
+    <color name="input_border">#1AFFFFFF</color>
+    <color name="gradient_yellow_start">#55D4E645</color>
+    <color name="gradient_yellow_end">#00D4E645</color>
+    <color name="gradient_warm_start">#40F5E642</color>
+    <color name="gradient_warm_end">#00F5E642</color>
+    <color name="gradient_white_start">#15FFFFFF</color>
+    <color name="gradient_white_end">#00FFFFFF</color>
 </resources>

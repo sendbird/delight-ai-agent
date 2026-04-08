@@ -1,121 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_500"
-    android:fillViewport="true"
-    android:clipChildren="false"
-    android:clipToPadding="false"
+    android:background="@drawable/bg_main_gradient"
     android:fitsSystemWindows="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black_500"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
+        <!-- Top bar: Logo left, Profile right -->
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/ivLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/main_background"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/sb_size_30"
-            android:text="@string/sample_text_main_title"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sb_text_size_35"
-            android:textStyle="bold"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/logo_dark"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ivProfile"
-            android:layout_width="@dimen/sb_size_48"
-            android:layout_height="@dimen/sb_size_48"
-            android:layout_margin="@dimen/sb_size_16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/purple_200"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="12dp"
             android:src="@drawable/sample_profile_icon"
-            />
-
-        <TextView
-            android:id="@+id/tvContents"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:lineSpacingExtra="5dp"
-            android:padding="@dimen/sb_size_24"
-            android:text="@string/sample_text_main_contents"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/sb_text_size_20"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
-
-        <Button
-            android:id="@+id/btnViewDemo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/sb_size_24"
-            android:layout_marginTop="@dimen/sb_size_40"
-            android:background="@drawable/sample_shape_main_demo_button"
-            android:paddingStart="@dimen/sb_size_18"
-            android:paddingEnd="@dimen/sb_size_18"
-            android:text="@string/sample_text_view_demo"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
+            app:tint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvContents" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnLogout"
+        <!-- Glass Card - scrollable on small screens -->
+        <ScrollView
+            android:id="@+id/glassCardScroll"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:fillViewport="true"
+            android:clipToPadding="false"
+            android:background="@drawable/bg_glass_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivLogo"
+            app:layout_constraintBottom_toTopOf="@id/bottomInfo">
+
+            <LinearLayout
+                android:id="@+id/glassCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:paddingTop="36dp"
+                android:paddingBottom="24dp">
+
+                <TextView
+                    android:id="@+id/tvLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_text_main_label"
+                    android:textColor="@color/accent_yellow"
+                    android:textSize="12sp"
+                    android:letterSpacing="0.15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="@string/sample_text_main_title"
+                    android:textColor="@color/white"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:lineSpacingMultiplier="1.1"
+                    android:letterSpacing="-0.02" />
+
+                <TextView
+                    android:id="@+id/tvContents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="@string/sample_text_main_contents"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.5" />
+
+                <!-- Spacer pushes buttons down when fillViewport is active -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <!-- Buttons -->
+                <Button
+                    android:id="@+id/btnViewDemo"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:text="@string/sample_text_view_demo"
+                    android:textAllCaps="false"
+                    android:textColor="@color/dark_bg"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSetPinnedChannels"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/bg_button_secondary"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:text="@string/sample_text_pinned_channels"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnLogout"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/bg_button_secondary"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:text="@string/sample_text_logout"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Bottom info area - pinned to bottom -->
+        <LinearLayout
+            android:id="@+id/bottomInfo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/sb_size_20"
-            android:background="@drawable/sample_shape_main_demo_button"
-            android:paddingStart="@dimen/sb_size_18"
-            android:paddingEnd="@dimen/sb_size_18"
-            android:text="@string/sample_text_logout"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@id/btnViewDemo"
-            app:layout_constraintStart_toStartOf="@id/btnViewDemo"
-            app:layout_constraintTop_toBottomOf="@+id/btnViewDemo" />
-
-        <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center_horizontal|bottom"
-            android:paddingBottom="@dimen/sb_size_20"
+            android:paddingStart="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnLogout"
-            >
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/tvInformation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                />
-            <ImageView
+                android:textColor="@color/text_tertiary"
+                android:textSize="11sp" />
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/sb_size_23"
-                android:adjustViewBounds="true"
-                android:layout_marginTop="@dimen/sb_size_5"
-                android:src="@drawable/logo_dark"
-                />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/sample_text_powered_by"
+                android:textColor="@color/text_muted"
+                android:textSize="11sp"
+                android:letterSpacing="0.02" />
+
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</FrameLayout>

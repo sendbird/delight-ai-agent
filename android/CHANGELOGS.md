@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.12.0 (Apr 8, 2026) with Chat SDK `v4.36.0`
+
+### Features
+
+- Added `ConfirmationDialogStyle` interface for customizable confirmation dialog theming
+    - Added `confirmationDialogStyle` property in `InputBoxTheme`
+    - Added `handoffConfirmDialogStyle` property in `ConversationHeaderTheme`
+
+- Added `traceName` and `eventDetail` properties in `ConversationListContext`
+
+### Improvements
+
+- Updated Chat SDK version to 4.36.0
+- Improved confirmation dialog for replacing attachments of different media types in the message input
+
+---
+
 ## v1.11.0 (Apr 2, 2026) with Chat SDK `v4.35.0`
 
 ### Features

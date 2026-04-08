@@ -6,6 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import com.sendbird.android.SendbirdChat
 import com.sendbird.sdk.aiagent.messenger.AIAgentMessenger
 import com.sendbird.sdk.aiagent.messenger.model.SessionInfo
+import com.sendbird.sdk.aiagent.sample.R
 import com.sendbird.sdk.aiagent.sample.consts.Region
 import com.sendbird.sdk.aiagent.sample.databinding.SampleLayoutLoginBinding
 import com.sendbird.sdk.aiagent.sample.model.ManualUserInfo

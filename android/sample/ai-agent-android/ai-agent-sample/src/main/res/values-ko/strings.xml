@@ -16,9 +16,12 @@
     <string name="sample_text_title_activity_compose">ComposeActivity</string>
     <string name="sample_text_open_compose_sample">Open Compose Sample</string>
     <string name="sample_text_open_view_sample">Open View Sample</string>
-    <string name="sample_text_main_title">Your AI\nworkforce for\nomnichannel\nconversations</string>
-    <string name="sample_text_main_contents">Solve &gt;90% of customer service cases autonomously. Accelerate your customer journey inside and outside the app, backed by handoff to conversations with human agents.</string>
-    <string name="sample_text_view_demo">데모 보기</string>
+    <string name="sample_text_main_label">AI CONCIERGE</string>
+    <string name="sample_text_main_title">브랜드에 맞는\nAI 컨시어지</string>
+    <string name="sample_text_main_contents">전체 고객 여정을 통해 고객을 케어할 수 있는 신뢰할 수 있는 AI 컨시어지.</string>
+    <string name="sample_text_view_demo">메신저 열기</string>
+    <string name="sample_text_pinned_channels">고정된 채널</string>
+    <string name="sample_text_powered_by">Powered by Delight.ai</string>
     <string name="sample_region_production">PRODUCTION</string>
     <string name="sample_region_no1">NO1</string>
     <string name="sample_region_no2">NO2</string>

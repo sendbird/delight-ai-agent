@@ -19,6 +19,7 @@
     <string name="aa_text_message_input_hint_suggested_replies">Please choose one from above</string>
     <string name="aa_text_message_input_hint_unavailable">Chat is unavailable in this channel</string>
     <string name="aa_text_message_input_hint_option_selection_required">Select an option to continue</string>
+    <string name="aa_text_message_input_hint_steward">Processing your request…</string>
     <string name="aa_text_button_retry">Retry</string>
     <string name="aa_text_error_retry_request">Check your connection and try again.</string>
     <string name="aa_text_default_error_status_message">Couldn\&#39;t retrieve channel.</string>
@@ -81,4 +82,16 @@
     <string name="aa_text_new_message">New message</string>
     <string name="aa_text_max_upload_file_count_limit_exceeded">Select up to %d photos</string>
     <string name="aa_text_multiple_files_count">%d photos</string>
+
+    <string name="aa_text_dialog_confirm">OK</string>
+
+    <!--  Replace attachment confirmation dialog  -->
+    <string name="aa_text_replace_attachment_dialog_title">Replace attachment?</string>
+    <string name="aa_text_replace_attachment_dialog_description">Uploading a different file type will replace the current one.</string>
+
+    <!--  Handoff confirmation dialog  -->
+    <string name="aa_text_handoff_dialog_title">Request Handoff</string>
+    <string name="aa_text_handoff_dialog_description">You\'ll be transferred to a human agent. Your conversation history will be shared.</string>
+    <string name="aa_text_handoff_dialog_positive">Handoff</string>
+    <string name="aa_text_handoff_dialog_negative">Cancel</string>
 </resources>
