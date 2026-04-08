@@ -37,7 +37,6 @@ class SplashActivity : BaseSampleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         // Request push notification permission for Android 13+
         requestNotificationPermissionIfNeeded()
 

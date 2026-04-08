@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base dark -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/dark_bg"/>
+        </shape>
+    </item>
+    <!-- Top-right yellow-lime glow -->
+    <item android:top="-200dp" android:right="-100dp" android:left="100dp" android:bottom="400dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="300dp"
+                android:centerX="0.7"
+                android:centerY="0.3"
+                android:startColor="@color/gradient_yellow_start"
+                android:endColor="@color/gradient_yellow_end"/>
+        </shape>
+    </item>
+    <!-- Bottom-left warm glow -->
+    <item android:top="400dp" android:right="200dp" android:left="-100dp" android:bottom="-100dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="250dp"
+                android:centerX="0.3"
+                android:centerY="0.7"
+                android:startColor="@color/gradient_warm_start"
+                android:endColor="@color/gradient_warm_end"/>
+        </shape>
+    </item>
+    <!-- Center subtle white glow -->
+    <item android:top="100dp" android:bottom="200dp" android:left="50dp" android:right="50dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="200dp"
+                android:centerX="0.5"
+                android:centerY="0.5"
+                android:startColor="@color/gradient_white_start"
+                android:endColor="@color/gradient_white_end"/>
+        </shape>
+    </item>
+</layer-list>

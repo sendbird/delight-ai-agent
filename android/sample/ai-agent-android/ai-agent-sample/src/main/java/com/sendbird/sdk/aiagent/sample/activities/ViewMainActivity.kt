@@ -5,13 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import com.sendbird.sdk.aiagent.common.extensions.addRipple
 import com.sendbird.sdk.aiagent.common.extensions.aiAgentId
-import com.sendbird.sdk.aiagent.common.extensions.setAppearance
 import com.sendbird.sdk.aiagent.messenger.AIAgentMessenger
 import com.sendbird.sdk.aiagent.messenger.BuildConfig
 import com.sendbird.sdk.aiagent.messenger.consts.LaunchMode
@@ -19,11 +17,17 @@ import com.sendbird.sdk.aiagent.messenger.model.LauncherLayoutParams
 import com.sendbird.sdk.aiagent.messenger.model.LauncherLocation
 import com.sendbird.sdk.aiagent.messenger.model.LauncherMargin
 import com.sendbird.sdk.aiagent.messenger.model.LauncherSettingsParams
+import com.sendbird.sdk.aiagent.messenger.providers.AIAgentAdapterProviders
+import com.sendbird.sdk.aiagent.messenger.providers.AIAgentRepositoryProviders
+import com.sendbird.sdk.aiagent.messenger.providers.ConversationListAdapterProvider
+import com.sendbird.sdk.aiagent.messenger.providers.ConversationListRepositoryProvider
 import com.sendbird.sdk.aiagent.messenger.ui.MessengerLauncher
 import com.sendbird.sdk.aiagent.messenger.ui.activity.MessengerActivity
 import com.sendbird.sdk.aiagent.sample.R
 import com.sendbird.sdk.aiagent.sample.databinding.ActivityViewMainBinding
 import com.sendbird.sdk.aiagent.sample.model.us3
+import com.sendbird.sdk.aiagent.sample.sendbird.CustomConversationListRepository
+import com.sendbird.sdk.aiagent.sample.sendbird.CustomConversationListAdapter
 import com.sendbird.sdk.aiagent.sample.utils.PreferenceUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,6 +41,7 @@ class ViewMainActivity : BaseSampleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        registerProviders()
         initMessengerLauncher()
         setButtonForFullScreenAiAgent()
         initView()
@@ -87,11 +92,6 @@ class ViewMainActivity : BaseSampleActivity() {
 
     private fun initView() {
         lifecycleScope.launch {
-            binding.tvInformation.setAppearance(R.style.Body3)
-            binding.tvInformation.setTextColor(ContextCompat.getColor(this@ViewMainActivity, R.color.white))
-
-            window.statusBarColor = ContextCompat.getColor(this@ViewMainActivity, R.color.black_500)
-            WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
             binding.btnLogout.setOnClickListener {
                 lifecycleScope.launch(Dispatchers.IO) {
                     PreferenceUtils.clearAll()
@@ -102,7 +102,105 @@ class ViewMainActivity : BaseSampleActivity() {
                     }
                 }
             }
+            binding.btnSetPinnedChannels.setOnClickListener {
+                showPinnedChannelDialog()
+            }
         }
+    }
+
+    private fun registerProviders() {
+        AIAgentRepositoryProviders.conversationList =
+            ConversationListRepositoryProvider { aiAgentId ->
+                CustomConversationListRepository(aiAgentId)
+            }
+        AIAgentAdapterProviders.conversationList =
+            ConversationListAdapterProvider { uiParams, onItemClickListener ->
+                CustomConversationListAdapter(uiParams, onItemClickListener)
+            }
+    }
+
+    private fun showPinnedChannelDialog() {
+        val dialogView = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(48, 32, 48, 16)
+        }
+
+        val listContainer = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+        }
+        dialogView.addView(listContainer)
+
+        val inputLayout = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+        }
+        val editText = android.widget.EditText(this).apply {
+            hint = "Channel URL"
+            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+            setSingleLine(true)
+        }
+        val addButton = android.widget.Button(this).apply {
+            text = "Add"
+        }
+        inputLayout.addView(editText)
+        inputLayout.addView(addButton)
+        dialogView.addView(inputLayout)
+
+        val pinnedUrls = PreferenceUtils.pinnedChannelUrls.toMutableList()
+
+        fun refreshList() {
+            listContainer.removeAllViews()
+            pinnedUrls.forEachIndexed { index, url ->
+                val row = LinearLayout(this).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    gravity = android.view.Gravity.CENTER_VERTICAL
+                    setPadding(0, 8, 0, 8)
+                }
+                val textView = android.widget.TextView(this).apply {
+                    text = url
+                    layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+                    setTextColor(android.graphics.Color.BLACK)
+                    maxLines = 1
+                    ellipsize = android.text.TextUtils.TruncateAt.MIDDLE
+                }
+                val removeButton = android.widget.Button(this).apply {
+                    text = "X"
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                    setOnClickListener {
+                        pinnedUrls.removeAt(index)
+                        PreferenceUtils.pinnedChannelUrls = pinnedUrls
+                        refreshList()
+                    }
+                }
+                row.addView(textView)
+                row.addView(removeButton)
+                listContainer.addView(row)
+            }
+        }
+
+        addButton.setOnClickListener {
+            val url = editText.text.toString().trim()
+            when {
+                url.isBlank() -> Toast.makeText(this, "URL cannot be empty", Toast.LENGTH_SHORT).show()
+                pinnedUrls.contains(url) -> Toast.makeText(this, "URL already added", Toast.LENGTH_SHORT).show()
+                else -> {
+                    pinnedUrls.add(url)
+                    PreferenceUtils.pinnedChannelUrls = pinnedUrls
+                    editText.text.clear()
+                    refreshList()
+                }
+            }
+        }
+
+        refreshList()
+
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Set Pinned Channels")
+            .setView(dialogView)
+            .setPositiveButton("Close", null)
+            .show()
     }
 
     private fun drawFingerPrint() {

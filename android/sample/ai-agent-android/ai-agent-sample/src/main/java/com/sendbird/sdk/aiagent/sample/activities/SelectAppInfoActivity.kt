@@ -37,11 +37,13 @@ class SelectAppInfoActivity : BaseSampleActivity() {
         with(binding) {
             setContentView(root)
             val spinnerItems = resources.getStringArray(R.array.sb_regions)
-            val myAdapter = ArrayAdapter(this@SelectAppInfoActivity, R.layout.support_simple_spinner_dropdown_item, spinnerItems)
+            val myAdapter = ArrayAdapter(this@SelectAppInfoActivity, R.layout.spinner_dropdown_item_dark, spinnerItems).apply {
+                setDropDownViewResource(R.layout.spinner_dropdown_item_dark)
+            }
             sRegion.adapter = myAdapter
             sRegion.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    (view as TextView).setTextColor(ContextCompat.getColor(this@SelectAppInfoActivity, R.color.black))
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    (view as? TextView)?.setTextColor(ContextCompat.getColor(this@SelectAppInfoActivity, R.color.white))
                     appInfo = getDefaultAppInfo(spinnerItems[position].toRegion(this@SelectAppInfoActivity))
                     setDefaultInformation(this@with, appInfo)
                 }
