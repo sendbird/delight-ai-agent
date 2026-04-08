@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.11.1 (Apr 08, 2026) with Chat SDK v4.38.2
+
+### Build Environment
+
+- Rebuilt with **Xcode 26** to comply with Apple's App Store submission requirement,
+  effective late April 2026, which mandates that all apps be built using Xcode 26 or later.
+- No functional changes or API modifications are included in this release.
+
+> **Note for Xcode 16 users:** This release is compiled with Xcode 26 and may not be
+> compatible with Xcode 16 build environments. If you are still on Xcode 16, please
+> continue using the previous version.
+
+### Added
+
+- Show confirmation alert when attaching a different file type than the existing attachment
+
 ## v1.11.0 (Apr 01, 2026) with Chat SDK v4.38.1
 
 ### Features
