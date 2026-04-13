@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.11.0 (Apr 13, 2026) with ChatSDK ^4.22.0
+
+
+### Minor Changes
+
+- Add `colors` prop to `MessengerThemeContext` and provider container theme props for per-value color overrides
+- Add `AccessibilityAnnouncerContext` for platform-native accessibility announcements
+- Add `ConversationAnnouncementsContext` for coordinating status, typing, and screen entry announcements
+- Add `useA11y` hook for accessibility attributes on conversation UI elements
+- Add status, typing, and screen entry announcement hooks
+- Add `useReducedMotion` hook to respect user motion preferences
+
+
 ## v1.10.3 (Apr 03, 2026) with ChatSDK ^4.22.0
 
 
