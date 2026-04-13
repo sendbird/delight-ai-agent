@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.22.0 (Apr 13, 2026) with ChatSDK ^4.22.0
+
+
+### Minor Changes
+
+- Add `colors` prop to `MessengerThemeContext` and provider container theme props for per-value color overrides
+- Add `AriaLiveRegionContext` for ARIA live region screen reader announcements
+- Add `ConversationAnnouncementsContext` for coordinating status, typing, and screen entry announcements
+- Add `ScreenReaderOnly` component for visually-hidden accessible text
+- Add focus management hooks: `useFocusTrap`, `useKeyboardFocusVisibility`, `useEscapeKey`
+- Add `useA11y` hook for comprehensive accessibility attributes on conversation UI elements
+- Add status, typing, and screen entry announcement hooks
+- Add `useReducedMotion` hook to respect user motion preferences
+- Add new a11y localization string keys
+
+
 ## v1.21.3 (Apr 03, 2026) with ChatSDK ^4.22.0
 
 

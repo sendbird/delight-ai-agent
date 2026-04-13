@@ -1,8 +1,8 @@
----
-
 # Context object
 
 Context object is a key–value store that sends customer-specific information to the AI agent. This enables more personalized and context-aware responses.
+
+> ℹ️ If you've integrated Delight AI agent with Sendbird Desk, the `contextObject` is automatically imported and displayed in Desk tickets. For details, [see our Desk guide](https://docs.delight.ai/dashboard-guide/integrations/sendbird-desk/handoff?q=auto+popu#auto-populated-ticket-fields).
 
 ---
 
@@ -70,7 +70,7 @@ The following methods can be used to add or update context objects after initial
 | `patchContext` | Merges the provided keys into the existing context. Other keys remain unchanged. |
 | `getContextObject` | Retrieves the current context object. |
 
-> For details on setting context at initialization, refer to the [React messenger quickstart guide](README.md#passing-context-object-to-agent).
+> For details on setting context at initialization, refer to the [React messenger quickstart guide](./#passing-context-object-to-agent).
 
 ---
 
@@ -112,7 +112,4 @@ function App() {
     />
   );
 }
-
 ```
-
----
