@@ -331,11 +331,12 @@ messenger.initialize(config)
 
 #### Lifecycle methods
 
-| Method      | Parameters | Description                              |
-| ----------- | ---------- | ---------------------------------------- |
-| `open()`    | -          | Open the messenger                       |
-| `close()`   | -          | Close the messenger                      |
-| `destroy()` | -          | Completely remove the messenger instance |
+| Method        | Parameters     | Description                                          |
+| ------------- | -------------- | ---------------------------------------------------- |
+| `open()`      | -              | Open the messenger                                   |
+| `close()`     | -              | Close the messenger                                  |
+| `destroy()`   | -              | Completely remove the messenger instance             |
+| `onLoad(fn)`  | fn: () => void | Register a handler called when the messenger is loaded |
 
 #### Configuration methods
 
