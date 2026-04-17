@@ -108,6 +108,7 @@ function App() {
     form: { /* ... */ },
     common: { /* ... */ },
     feedback: { /* ... */ },
+    handoff: { /* ... */ },
   }}
 >
   <FixedMessenger />
