@@ -68,8 +68,8 @@ Delight AI agent messenger supports various message types to provide comprehensi
 
 **Multiple files message** allows users to send multiple image files in a single message. Selected images are displayed in a grid layout within the conversation.
 
-- Supported formats: Images only (`JPEG`, `PNG`). Can be sent with text. Documents and videos must be sent individually.
-- Max count: One image by default. The maximum can be adjusted by your Delight representative. Maximum file size is 300 MB per file.
+- Supported formats: Images only (`JPEG`, `PNG`). Can be sent with text. Documents must be sent individually.
+- Max count: One image by default. The maximum can be adjusted by your Delight representative. Maximum file size is 25 MB per file.
 - Display: Grid layout for multiple images.
 
 <figure>
@@ -152,7 +152,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 
 Custom message templates enable Delight AI agent server to send structured data that clients can render with their own UI components. Unlike pre-defined message templates, clients must implement and register components beforehand, enabling business-specific UIs such as coupons, product lists, and reservations.
 
-#### How it works
+##### How it works
 
 **Raw response delivery**
 
@@ -171,7 +171,7 @@ Custom message templates enable Delight AI agent server to send structured data 
 - If client app receives unregistered template ID, [display a fallback UI](#a-fallback-ui-for-unregistered-template).
 - This ensures app doesn't break with unknown templates.
 
-#### Data structure
+##### Data structure
 
 The interface for `custom_message_templates` is defined as `CustomMessageTemplateData`.
 
@@ -224,7 +224,7 @@ The client app will receive a JSON payload of `custom_message_templates` like be
 }
 ```
 
-#### How to implement
+##### How to implement {#register-custom-component}
 
 To render a custom message template, you must:
 
@@ -290,9 +290,9 @@ function MyCustomMessageTemplate({ extendedMessagePayload }: Props) {
 }
 ```
 
-#### How to handle a fallback and an error
+##### How to handle a fallback and an error {#a-fallback-ui-for-unregistered-template}
 
-Refer to the snippets in the following sections in the case of exceptions such as:
+Refer to the snippets in the tabs in the case of exceptions such as:
 
 - Fallback
 - API request fail

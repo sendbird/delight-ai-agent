@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.23.0 (Apr 17, 2026) with ChatSDK ^4.22.0
+
+
+### Minor Changes
+
+- Improve message list keyboard traversal and screen-reader accessibility
+- Stabilize conversation announcements and input focus management
+- Improve CSAT accessibility semantics and radio-group keyboard interaction
+- Fix header button voiceover hints, focus targeting, and decorative cover hiding
+- Pause incoming message announcements during focus sync to reduce noise
+- Add scroll-to-bottom button and fixed mini-window accessibility
+
+### Patch Changes
+
+- Show confirmation alert when uploading a different file type that would replace the current attachment; confirmation is checked before file validation
+- Fix validation alerts being cleared after replacement confirmation
+- Add `cancelText` and `onCancel` props to `Alert` component to support cancel actions
+- Fix conversation header and list to show the most recently joined agent
+
+
 ## v1.22.0 (Apr 13, 2026) with ChatSDK ^4.22.0
 
 
