@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.11.1 (Apr 17, 2026) with ChatSDK ^4.22.0
+
+
+### Patch Changes
+
+- Fix conversation header and list to show the most recently joined agent
+
+
 ## v1.11.0 (Apr 13, 2026) with ChatSDK ^4.22.0
 
 
