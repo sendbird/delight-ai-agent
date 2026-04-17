@@ -4,15 +4,15 @@ In Delight AI agent messenger, AI agent and users can exchange various types of 
 
 This guide explains:
 
-* [Types](messages.md#types)
-  * [Text message](messages.md#text-message)
-  * [Image message](messages.md#image-message)
-  * [File message](messages.md#file-message)
-  * [Multiple files message](messages.md#multiple-files-message)
-  * [Rich message](messages.md#rich-message)
-* [Key features](messages.md#key-features)
-  * [Citation](messages.md#citation)
-  * [Special notice](messages.md#special-notice)
+* [Types](#types)
+  * [Text message](#text-message)
+  * [Image message](#image-message)
+  * [File message](#file-message)
+  * [Multiple files message](#multiple-files-message)
+  * [Rich message](#rich-message)
+* [Key features](#key-features)
+  * [Citation](#citation)
+  * [Special notice](#special-notice)
 
 ---
 
@@ -22,11 +22,11 @@ Delight AI agent messenger supports various message types to provide comprehensi
 
 | Type                                       | Description                                 | Content format                      | Use cases                                                                  |
 | ------------------------------------------ | ------------------------------------------- | ----------------------------------- | -------------------------------------------------------------------------- |
-| [Text message](messages.md#text-message)   | Regular text-based communication            | Plain text                          | Basic conversational interactions, Q\&A, general dialogue                  |
-| [Image message](messages.md#image-message) | Visual file sharing                         | Image files in `PNG` and `JPG` only | Visual communication, screenshots, diagrams                                |
-| [File message](messages.md#file-message)   | Document and file sharing                   | Various file formats                | Document sharing, attachments, downloadable resources                      |
-| [Multiple files message](messages.md#multiple-files-message) | Multiple image sharing in a single message | Image files in `JPEG` and `PNG` only | Sharing multiple photos at once |
-| [Rich message](messages.md#rich-message)   | Template-based messages with interactive UI | Structured JSON templates           | Product displays, carousels, CTAs and more. See below section for details. |
+| [Text message](#text-message)   | Regular text-based communication            | Plain text                          | Basic conversational interactions, Q\&A, general dialogue                  |
+| [Image message](#image-message) | Visual file sharing                         | Image files in `PNG` and `JPG` only | Visual communication, screenshots, diagrams                                |
+| [File message](#file-message)   | Document and file sharing                   | Various file formats                | Document sharing, attachments, downloadable resources                      |
+| [Multiple files message](#multiple-files-message) | Multiple image sharing in a single message | Image files in `JPEG` and `PNG` only | Sharing multiple photos at once |
+| [Rich message](#rich-message)   | Template-based messages with interactive UI | Structured JSON templates           | Product displays, carousels, CTAs and more. See below section for details. |
 
 ### Text message
 
@@ -62,8 +62,8 @@ Delight AI agent messenger supports various message types to provide comprehensi
 
 **Multiple files message** allows users to send multiple image files in a single message. Selected images are displayed in a grid layout within the conversation.
 
-* Supported formats: Images only (`JPEG`, `PNG`). Can be sent with text. Documents and videos must be sent individually.
-* Max count: One image by default. The maximum can be adjusted by your Delight representative. Maximum file size is 300 MB per file.
+* Supported formats: Images only (`JPEG`, `PNG`). Can be sent with text. Documents must be sent individually.
+* Max count: One image by default. The maximum can be adjusted by your Delight representative. Maximum file size is 25 MB per file.
 * Display: Grid layout for multiple images.
 
 <figure><img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/aa-sdk-multi-file-message%403x.png" alt="" width="375"><figcaption></figcaption></figure>
@@ -130,8 +130,8 @@ Delight AI agent messenger supports various message types to provide comprehensi
 
 The core features supported for messages in Delight AI agent include:
 
-* [Citation](messages.md#citation)
-* [Special notice](messages.md#special-notice)
+* [Citation](#citation)
+* [Special notice](#special-notice)
 
 ### Citation
 
