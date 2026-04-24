@@ -38,6 +38,8 @@
 "SBA_Common_Alert_someFilesExcluded" = "Some files were excluded due to upload restrictions. Please add them one at a time.";
 "SBA_Common_Alert_replaceAttachmentTitle" = "Replace attachment?";
 "SBA_Common_Alert_replaceAttachmentMessage" = "Uploading a different file type will replace the current one.";
+"SBA_Common_Alert_busyServerTitle" = "Something went wrong.\nYou'll be reconnected\nshortly.";
+"SBA_Common_Alert_busyServerMessage" = "Estimated waiting time:";
 "SBA_Common_Error_exceededSizeLimit" = "The maximum size per file is %dMB.";
 
 // MARK: - COMMON DATE FORMAT
@@ -129,5 +131,110 @@
 // MARK: - NEW MESSAGE
 "SBA_Conversation_List_NewMessageView_title" = "New Message";
 
+
+// MARK: - ACCESSIBILITY - LAUNCHER
+"SBA_Accessibility_Launcher_openChat" = "Open conversation";
+"SBA_Accessibility_Launcher_closeChat" = "Close conversation";
+
+// MARK: - ACCESSIBILITY - HEADER
+"SBA_Accessibility_Header_closeConversation" = "Close conversation";
+"SBA_Accessibility_Header_menu" = "Menu";
+"SBA_Accessibility_Header_connectToAgent" = "Talk to human agent";
+"SBA_Accessibility_Header_conversationList" = "Conversations";
+
+// MARK: - ACCESSIBILITY - INPUT
+"SBA_Accessibility_Input_messageInput" = "Message";
+"SBA_Accessibility_Input_sendMessage" = "Send message";
+"SBA_Accessibility_Input_attachFile" = "Attach file";
+
+// MARK: - ACCESSIBILITY - MESSAGE
+"SBA_Accessibility_Message_mePrefix" = "Me";
+"SBA_Accessibility_Message_systemMessage" = "System message";
+"SBA_Accessibility_Message_imageLabel" = "Image";
+"SBA_Accessibility_Message_fileFormat" = "File: %@";
+"SBA_Accessibility_Message_imageFileFormat" = "Image file: %@";
+"SBA_Accessibility_Message_videoFileFormat" = "Video file: %@";
+"SBA_Accessibility_Message_pdfFileFormat" = "PDF file: %@";
+"SBA_Accessibility_Message_audioFileFormat" = "Audio file: %@";
+"SBA_Accessibility_Message_file" = "File";
+"SBA_Accessibility_Message_imageFile" = "Image file";
+"SBA_Accessibility_Message_videoFile" = "Video file";
+"SBA_Accessibility_Message_pdfFile" = "PDF file";
+"SBA_Accessibility_Message_audioFile" = "Audio file";
+"SBA_Accessibility_Message_imagesFormat" = "%d images";
+"SBA_Accessibility_Message_filesFormat" = "%d files";
+
+// MARK: - ACCESSIBILITY - CSAT
+"SBA_Accessibility_CSAT_good" = "Good";
+"SBA_Accessibility_CSAT_bad" = "Bad";
+"SBA_Accessibility_CSAT_submitButton" = "Submit";
+"SBA_Accessibility_CSAT_submitted" = "Submitted";
+"SBA_Accessibility_CSAT_enterAnswer" = "Enter answer";
+"SBA_Accessibility_CSAT_satisfactionSurvey" = "Satisfaction survey";
+"SBA_Accessibility_CSAT_scoreValueFormat" = "%d out of 5 — %@";
+
+// MARK: - ACCESSIBILITY - FEEDBACK
+"SBA_Accessibility_Feedback_like" = "Like";
+"SBA_Accessibility_Feedback_dislike" = "Dislike";
+"SBA_Accessibility_Feedback_submitComment" = "Submit";
+"SBA_Accessibility_Feedback_enterComment" = "Enter comment";
+
+// MARK: - ACCESSIBILITY - IMAGE VIEWER
+"SBA_Accessibility_ImageViewer_closeViewer" = "Close image viewer";
+"SBA_Accessibility_ImageViewer_previousImage" = "Previous image";
+"SBA_Accessibility_ImageViewer_nextImage" = "Next image";
+"SBA_Accessibility_ImageViewer_viewerFormat" = "Image viewer, %2$d of %1$d";
+
+// MARK: - ACCESSIBILITY - SCROLL INDICATOR
+"SBA_Accessibility_ScrollIndicator_scrollToBottom" = "Scroll to bottom";
+"SBA_Accessibility_ScrollIndicator_newMessagesFormat" = "%d new messages";
+
+// MARK: - ACCESSIBILITY - HINT
+"SBA_Accessibility_Hint_sendMessage" = "Sends the message";
+"SBA_Accessibility_Hint_openConversation" = "Opens the conversation";
+"SBA_Accessibility_Hint_openChat" = "Opens the conversation";
+"SBA_Accessibility_Hint_closeChat" = "Closes the conversation";
+"SBA_Accessibility_Hint_closeConversation" = "Closes the conversation";
+"SBA_Accessibility_Hint_openMenu" = "Opens the menu";
+"SBA_Accessibility_Hint_connectToAgent" = "Escalates to a human agent";
+"SBA_Accessibility_Hint_attachFile" = "Opens file attachment options";
+"SBA_Accessibility_Hint_viewNewMessages" = "Scrolls to new messages";
+"SBA_Accessibility_Hint_openFile" = "Opens the file";
+"SBA_Accessibility_Hint_openImage" = "Opens the image";
+"SBA_Accessibility_Hint_sendReply" = "Sends this reply";
+"SBA_Accessibility_Hint_selectRating" = "Selects this rating";
+
+// MARK: - ACCESSIBILITY - ANNOUNCE
+"SBA_Accessibility_Announce_conversationFormat" = "Conversation with %@";
+"SBA_Accessibility_Announce_conversationListFormat" = "Conversations, %d total";
+"SBA_Accessibility_Announce_typingFormat" = "%@ is typing";
+"SBA_Accessibility_Announce_conversationClosed" = "Conversation has ended";
+"SBA_Accessibility_Announce_connectedToAgent" = "Connected to human agent";
+"SBA_Accessibility_Announce_conversationResolved" = "Conversation resolved";
+"SBA_Accessibility_Announce_newMessage" = "New message";
+"SBA_Accessibility_Announce_sendFailed" = "Message send failed";
+"SBA_Accessibility_Announce_loading" = "Loading";
+"SBA_Accessibility_Announce_loadingComplete" = "Complete";
+"SBA_Accessibility_Announce_inputDisabled" = "Chat is unavailable in this channel";
+"SBA_Accessibility_Announce_surveySubmitted" = "Satisfaction survey submitted";
+"SBA_Accessibility_Announce_surveyExpired" = "Survey period ended";
+
+// MARK: - ACCESSIBILITY - STATE
+"SBA_Accessibility_State_selected" = "Selected";
+"SBA_Accessibility_State_fileSelectedFormat" = "%@, selected";
+
+// MARK: - ACCESSIBILITY - CONVERSATION CELL
+"SBA_Accessibility_ConversationCell_unreadMessagesFormat" = "%d unread messages";
+
+// MARK: - ACCESSIBILITY - ACTION
+"SBA_Accessibility_Action_copyMessage" = "Copy message";
+"SBA_Accessibility_Action_deleteMessage" = "Delete message";
+"SBA_Accessibility_Action_removeFileFormat" = "Remove %@";
+"SBA_Accessibility_Action_removeFile" = "Remove";
+
+
+// MARK: - ACCESSIBILITY - CONVERSATION
+"SBA_Accessibility_Conversation_newMessage" = "New messages, scroll to bottom";
+"SBA_Accessibility_Conversation_poweredBySendbird" = "Powered by Sendbird";
 
 // https://docs.google.com/spreadsheets/d/14JHjaM3Y9sNITSc3ej1QZT39tUGehuCKhSoL9_4GF6I/edit?gid=0#gid=0

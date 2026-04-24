@@ -70,7 +70,13 @@ extension AIAgentStarterKit {
         // There is no need to use this function because connect is handled internally when necessary.
         return try await withCheckedThrowingContinuation { continuation in
             AIAgentMessenger.authenticate(
-                aiAgentId: SampleConfiguration.aiAgentId
+                aiAgentId: SampleConfiguration.aiAgentId,
+                paramsBuilder: { params in
+                    params.context = self.contextObjects.context
+                    params.countryCode = self.contextObjects.countryCode
+                    params.language = self.contextObjects.language
+                }
+                
             ) { result in
                 switch result {
                 case .success:
