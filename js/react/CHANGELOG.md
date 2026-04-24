@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.24.0 (Apr 24, 2026) with ChatSDK ^4.22.0
+
+
+### Minor Changes
+
+- Add `icons` prop to customize icon components via a partial icon registry
+
+### Patch Changes
+
+- Fix z-index layering for DefaultMessenger to use auto stacking context instead of hardcoded max z-index
+- Flatten incoming message layout variables by inlining intermediate JSX fragments directly into the return statement.
+- Fix CSAT score button alignment and focus ring
+- Fix contrast and accessibility in FeedbackModal, CSAT message, StartNewConversationButton, and inline feedback pill components
+
+
 ## v1.23.0 (Apr 17, 2026) with ChatSDK ^4.22.0
 
 
