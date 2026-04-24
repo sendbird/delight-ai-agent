@@ -18,6 +18,7 @@ import com.sendbird.sdk.aiagent.sample.model.no3
 import com.sendbird.sdk.aiagent.sample.model.no4
 import com.sendbird.sdk.aiagent.sample.model.no5
 import com.sendbird.sdk.aiagent.sample.model.no6
+import com.sendbird.sdk.aiagent.sample.model.a11y
 import com.sendbird.sdk.aiagent.sample.model.us3
 import com.sendbird.sdk.aiagent.sample.utils.PreferenceUtils
 import com.sendbird.sdk.aiagent.sample.utils.apiHost
@@ -96,6 +97,7 @@ class SelectAppInfoActivity : BaseSampleActivity() {
             Region.NO4 -> no4
             Region.NO5 -> no5
             Region.NO6 -> no6
+            Region.A11Y -> a11y
         }
     }
 }

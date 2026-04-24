@@ -9,7 +9,8 @@ enum class Region(val value: Int) {
     NO3(R.string.sample_region_no3),
     NO4(R.string.sample_region_no4),
     NO5(R.string.sample_region_no5),
-    NO6(R.string.sample_region_no6)
+    NO6(R.string.sample_region_no6),
+    A11Y(R.string.sample_region_a11y)
     ;
 
     companion object {
@@ -22,6 +23,7 @@ enum class Region(val value: Int) {
                 R.string.sample_region_no4 -> NO4
                 R.string.sample_region_no5 -> NO5
                 R.string.sample_region_no6 -> NO6
+                R.string.sample_region_a11y -> A11Y
                 else -> PRODUCTION
             }
         }

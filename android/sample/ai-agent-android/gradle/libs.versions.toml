@@ -19,8 +19,8 @@ googleService = "4.4.2"
 firebaseMessagingKtx = "24.1.1"
 
 sdkSendbirdKtx = "4.36.0"
-sdkSendbirdChat = "4.36.0"
-sdkSendbirdAuth = "1.0.22"
+sdkSendbirdChat = "4.36.1"
+sdkSendbirdAuth = "1.0.23"
 sdkSendbirdMessageTemplate = "1.2.0"
 kotlinSerializationJson = "1.3.2"
 activity = "1.6.1"
@@ -30,10 +30,11 @@ viewpager2 = "1.0.0"
 markwon = "4.6.2"
 kotlinBom = "1.8.0"
 sdkUikit = "3.23.0"
-sdkAiAgentMessenger = "1.12.0"
+sdkAiAgentMessenger = "1.13.0"
 sdkDesk = "1.1.6"
 sdkMockk = "1.13.4"
 sdkMockkAndroid = "1.13.3"
+sdkDexmaker = "2.28.5"
 sdkKotest ="5.6.0"
 sdkKotlinxCoroutines = "1.7.1"
 androidxRules = "1.5.0"
@@ -77,6 +78,7 @@ firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messa
 kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlinBom" }
 sdk-mockk = { group = "io.mockk", name = "mockk", version.ref = "sdkMockk" }
 sdk-mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "sdkMockkAndroid" }
+sdk-dexmaker = { group = "com.linkedin.dexmaker", name = "dexmaker", version.ref = "sdkDexmaker" }
 sdk-kotest = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "sdkKotest" }
 sdk-junit4 = { group = "junit", name = "junit", version.ref = "sdkJunit4" }
 sdk-kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "sdkKotlinxCoroutines" }

@@ -16,7 +16,6 @@
     <string name="aa_text_information_channel_frozen">Channel is frozen</string>
     <string name="aa_text_message_input_hint">Ask a question</string>
     <string name="aa_text_message_input_hint_bot_reply">Waiting for the agent\'s reply…</string>
-    <string name="aa_text_message_input_hint_suggested_replies">Please choose one from above</string>
     <string name="aa_text_message_input_hint_unavailable">Chat is unavailable in this channel</string>
     <string name="aa_text_message_input_hint_option_selection_required">Select an option to continue</string>
     <string name="aa_text_message_input_hint_steward">Processing your request…</string>
@@ -94,4 +93,8 @@
     <string name="aa_text_handoff_dialog_description">You\'ll be transferred to a human agent. Your conversation history will be shared.</string>
     <string name="aa_text_handoff_dialog_positive">Handoff</string>
     <string name="aa_text_handoff_dialog_negative">Cancel</string>
+
+    <!--  Connection delayed dialog  -->
+    <string name="aa_text_connection_delayed_title">Something went wrong.\nYou\'ll be reconnected shortly.</string>
+    <string name="aa_text_connection_delayed_description">Estimated waiting time: %1$s</string>
 </resources>

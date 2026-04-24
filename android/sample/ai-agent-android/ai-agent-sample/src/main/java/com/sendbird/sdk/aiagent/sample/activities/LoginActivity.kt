@@ -12,6 +12,7 @@ import com.sendbird.sdk.aiagent.sample.databinding.SampleLayoutLoginBinding
 import com.sendbird.sdk.aiagent.sample.model.ManualUserInfo
 import com.sendbird.sdk.aiagent.sample.model.SampleAppInfo
 import com.sendbird.sdk.aiagent.sample.model.us3
+import com.sendbird.sdk.aiagent.sample.model.userA11y
 import com.sendbird.sdk.aiagent.sample.model.userNo1
 import com.sendbird.sdk.aiagent.sample.model.userNo2
 import com.sendbird.sdk.aiagent.sample.model.userNo3
@@ -93,6 +94,7 @@ class LoginActivity : BaseSampleActivity() {
             Region.NO4 -> userNo4
             Region.NO5 -> userNo5
             Region.NO6 -> userNo6
+            Region.A11Y -> userA11y
         }
     }
 }

@@ -7,6 +7,7 @@ This guide covers:
     - [Text message](#text-message)
     - [Image message](#image-message)
     - [File message](#file-message)
+    - [Multiple files message](#multiple-files-message)
     - [Rich message](#rich-message)
 - [Key features](#key-features)
     - [Read receipt](#read-receipt)
@@ -25,6 +26,7 @@ Delight AI agent supports the following message types.
 | [Text message](#text-message)   | Regular text-based communication            | Plain text                          | Basic conversational interactions, Q\&A, general dialogue                  |
 | [Image message](#image-message) | Visual file sharing                         | Image files in `JPEG` and `PNG` only | Visual communication, screenshots, diagrams                                |
 | [File message](#file-message)   | Document and file sharing                   | Various file formats                | Document sharing, attachments, downloadable resources                      |
+| [Multiple files message](#multiple-files-message) | Multiple image sharing in a single message | Image files in `JPEG` and `PNG` only | Sharing multiple photos at once |
 | [Rich message](#rich-message)   | Template-based messages with interactive UI | Structured JSON templates           | Product displays, carousels, CTAs and more. See below section for details. |
 
 ### Text message
@@ -47,7 +49,7 @@ Image message enables sharing of image files within conversations. This message 
   <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-image-message2.png" alt="Image message in a conversation" width="375">
 </figure>
 
-> __Note__: Once handed off to a human agent, users can send image files in any format.
+> ℹ️ Once handed off to a human agent, users can send image files in any format.
 
 ### File message
 
@@ -60,6 +62,20 @@ File message allows sharing of various file formats within conversations, enabli
 <figure>
   <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-file-message2.png" alt="File message in a conversation" width="375">
 </figure>
+
+### Multiple files message
+
+Multiple files message allows users to send multiple image files in a single message. Selected images are displayed in a grid layout within the conversation.
+
+- Supported formats: Images only (`JPEG`, `PNG`). Can be sent with text. Documents must be sent individually.
+- Max count: One image by default. The maximum can be adjusted by your Delight representative. Maximum file size is 25 MB per file.
+- Display: Grid layout for multiple images.
+
+<figure>
+  <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/aa-sdk-multi-file-message%403x.png" alt="Multiple files message displaying images in a grid layout" width="375">
+</figure>
+
+> **Note**: By default, only single-file sending is enabled. To enable multiple files message, contact your Delight representative.
 
 ### Rich message
 
@@ -307,8 +323,6 @@ override fun onCreateCustomMessageTemplateView(
 
 ##### Error handling patterns
 
-{% tabs %}
-{% tab title="Fallback UI" %}
 **Fallback UI for unregistered template**
 
 Return fallback UI for unknown template IDs:
@@ -320,8 +334,7 @@ when (templateData.id) {
     else -> createFallbackView(context)
 }
 ```
-{% endtab %}
-{% tab title="API fail" %}
+
 **Error UI - API call failed**
 
 Check response status and error field:
@@ -331,8 +344,7 @@ val templateData = data.firstOrNull() ?: return createErrorView(context, "No tem
 if (templateData.error != null) return createErrorView(context, templateData.error)
 if (templateData.response.status != 200) return createErrorView(context, "API error")
 ```
-{% endtab %}
-{% tab title="Runtime error" %}
+
 **Error Boundary - Runtime error**
 
 Wrap handler logic in try-catch. SDK also wraps calls to prevent crashes:
@@ -344,8 +356,6 @@ try {
     callback.onViewReady(createFallbackView(context))
 }
 ```
-{% endtab %}
-{% endtabs %}
 
 ---
 

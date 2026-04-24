@@ -46,6 +46,12 @@ internal val no2 = SampleAppInfo(
     aiAgentId = ""
 )
 
+internal val a11y = SampleAppInfo(
+    region = Region.A11Y,
+    appId = "",
+    aiAgentId = ""
+)
+
 internal val no3 = SampleAppInfo(
     region = Region.NO3,
     appId = "",

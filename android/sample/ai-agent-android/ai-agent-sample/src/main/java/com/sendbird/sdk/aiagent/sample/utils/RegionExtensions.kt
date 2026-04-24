@@ -12,6 +12,7 @@ fun Region.apiHost(): String? {
         Region.NO4 -> "https://api-no4.sendbirdtest.com"
         Region.NO5 -> "https://api-no5.sendbirdtest.com"
         Region.NO6 -> "https://api-no6.sendbirdtest.com"
+        Region.A11Y -> "https://api-no2.sendbirdtest.com"
         else -> null
     }
 }
@@ -24,6 +25,7 @@ fun Region.wsHost(): String? {
         Region.NO4 -> "wss://ws-no4.sendbirdtest.com"
         Region.NO5 -> "wss://ws-no5.sendbirdtest.com"
         Region.NO6 -> "wss://ws-no6.sendbirdtest.com"
+        Region.A11Y -> "wss://ws-no2.sendbirdtest.com"
         else -> null
     }
 }
@@ -38,6 +40,7 @@ fun String.toRegion(context: Context): Region {
             context.getString(R.string.sample_region_no4) -> Region.NO4
             context.getString(R.string.sample_region_no5) -> Region.NO5
             context.getString(R.string.sample_region_no6) -> Region.NO6
+            context.getString(R.string.sample_region_a11y) -> Region.A11Y
             else -> Region.PRODUCTION
         }
     }

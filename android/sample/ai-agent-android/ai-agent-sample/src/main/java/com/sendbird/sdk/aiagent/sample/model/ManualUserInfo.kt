@@ -38,6 +38,11 @@ internal val userNo2 = ManualUserInfo(
     authToken = "",
 )
 
+internal val userA11y = ManualUserInfo(
+    userId = "",
+    authToken = "",
+)
+
 internal val userNo3 = ManualUserInfo(
     userId = "",
     authToken = "",
