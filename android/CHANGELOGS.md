@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.13.0 (Apr 24, 2026) with Chat SDK `v4.36.1`
+
+### Features
+
+- Added `DialogTheme` interface for grouping dialog-related theming
+    - Added `connectionDelayedDialogStyle` property in `DialogTheme`
+- Added `dialog` property in `MessengerTheme`
+- Added `fun showConnectionDelayedDialog(Long)` in `BaseModuleFragment`
+- Added `fun dismissConnectionDelayedDialog()` in `BaseModuleFragment`
+
+### Improvements
+
+- Updated Chat SDK version to 4.36.1
+- Improved TalkBack accessibility across the conversation and conversation list screens.
+- Improved color contrast and text emphasis across the messenger UI (low/medium emphasis text, feedback rating buttons, conversation-ended footer) to meet WCAG 2.2 AA compliance
+
+### Bug Fixes
+
+- Fixed an issue where channel information could fail to load when entering the Conversation screen, even after authentication had completed.
+
+---
+
 ## v1.12.0 (Apr 8, 2026) with Chat SDK `v4.36.0`
 
 ### Features

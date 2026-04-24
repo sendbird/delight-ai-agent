@@ -8,5 +8,6 @@
         <item>@string/sample_region_no4</item>
         <item>@string/sample_region_no5</item>
         <item>@string/sample_region_no6</item>
+        <item>@string/sample_region_a11y</item>
     </string-array>
 </resources>

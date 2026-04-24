@@ -1,8 +1,10 @@
 # Context object
 
-Context object is a key–value store that sends customer-specific information to the AI agent. This enables more personalized and context-aware responses.&#x20;
+Context object is a key–value store that sends customer-specific information to the AI agent. This enables more personalized and context-aware responses.
 
-***
+> ℹ️ **Note:** If you've integrated Delight AI agent with Sendbird Desk, the `contextObject` is automatically imported and displayed in Desk tickets. For details, [see our Desk guide](https://docs.delight.ai/dashboard-guide/integrations/sendbird-desk/handoff?q=auto+popu#auto-populated-ticket-fields).
+
+---
 
 ### Use case examples
 
@@ -47,7 +49,7 @@ The AI agent can look up booking details, or suggest upgrades.
 }
 ```
 
-***
+---
 
 ### When to set context
 
@@ -56,17 +58,21 @@ You can set the context object:
 * **At initialization**: To pass initial user or environment information.
 * **After initialization (at runtime)**: To update or add information after the messenger is running, or mid-conversation.
 
-***
+---
 
 ### Methods
 
 The following methods can be used to add or update context objects after initialization.
 
-<table><thead><tr><th width="186.49609375">Method</th><th>Description</th></tr></thead><tbody><tr><td><code>awaitUpdateContext</code></td><td>Overwrites the entire context object. Keys not included will be removed. </td></tr><tr><td><code>awaitPatchContext</code></td><td>Merges the provided keys into the existing context. Other keys remain unchanged.</td></tr><tr><td><code>awaitGetContextObject</code></td><td>Retrieves the current context object.</td></tr></tbody></table>
+| Method | Description |
+| --- | --- |
+| `awaitUpdateContext` | Overwrites the entire context object. Keys not included will be removed. |
+| `awaitPatchContext` | Merges the provided keys into the existing context. Other keys remain unchanged. |
+| `awaitGetContextObject` | Retrieves the current context object. |
 
-> For details on setting context at initialization, refer to the [Android messenger quickstart guide](README.md#passing-context-object-to-agent).
+> For details on setting context at initialization, refer to the [Android messenger quickstart guide](./#passing-context-object-to-agent).
 
-***
+---
 
 ### Update context object
 
@@ -83,7 +89,7 @@ val contextObject = AIAgentMessenger.awaitUpdateContext(
 val contextObject = viewModel.awaitUpdateContext(context)
 ```
 
-***
+---
 
 ### Patch context object
 
@@ -100,7 +106,7 @@ val contextObject = AIAgentMessenger.awaitPatchContext(
 val contextObject = viewModel.awaitPatchContext(context)
 ```
 
-***
+---
 
 ### Get context object
 
