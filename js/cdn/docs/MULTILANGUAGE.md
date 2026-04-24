@@ -259,6 +259,81 @@ A11Y_IMAGE_VIEWER_DOWNLOAD: 'Download image',
 A11Y_ATTACH_FILE: 'Attach file',
 
 SCROLL_TO_NEW_MESSAGES_LABEL: (messages) => 'New message',
+
+// Message Input
+MESSAGE_INPUT__PLACE_HOLDER__STEWARD: 'Processing your request...',
+
+// Common UI
+BUTTON__OK: 'OK',
+
+// Conversation List
+CONVERSATION_LIST__SYSTEM_MESSAGE: 'System message',
+
+// File Upload
+FILE_UPLOAD_REPLACE_ALERT__TITLE: 'Replace attachment?',
+FILE_UPLOAD_REPLACE_ALERT__DESCRIPTION: 'Uploading a different file type will replace the current one.',
+
+// Handoff
+HANDOFF_CONFIRM__TITLE: 'Request handoff?',
+HANDOFF_CONFIRM__DESCRIPTION: "You'll be transferred to a human agent. Your conversation history will be shared.",
+HANDOFF_CONFIRM__CANCEL: 'Cancel',
+HANDOFF_CONFIRM__HANDOFF: 'Handoff',
+
+// Accessibility
+A11Y_OPEN_CONVERSATION: 'Open conversation',
+A11Y_OPEN_CONVERSATIONS: 'Open conversations',
+A11Y_CLOSE_CONVERSATION: 'Close conversation',
+A11Y_CLOSE_CONVERSATIONS: 'Close conversations',
+A11Y_MENU: 'Menu',
+A11Y_MESSAGE_INPUT: 'Message',
+A11Y_SEND_MESSAGE: 'Send message',
+A11Y_MESSAGE_SENDER_YOU: 'You',
+A11Y_SUGGESTED_REPLY: 'Suggested reply',
+A11Y_TYPING_INDICATOR: 'Typing',
+A11Y_CODE_BLOCK_PLACEHOLDER: 'Code block',
+A11Y_CSAT_RATING_LABEL: (score, label) => `${score} — ${label}`,
+A11Y_FILE_UPLOAD_OPTIONS: 'File upload options',
+A11Y_FAILED_MESSAGE_OPTIONS: 'Failed message options',
+A11Y_FEEDBACK_OPTIONS: 'Feedback options',
+A11Y_CSAT_TEXT_INPUT_LABEL: 'Enter answer',
+A11Y_TYPING_FORMAT: (name) => `${name} is typing`,
+A11Y_MESSAGE_FAILED: 'Message send failed',
+A11Y_NEW_MESSAGES_RECEIVED: (count) => `${count} new ${count === 1 ? 'message' : 'messages'} received`,
+A11Y_NEW_MESSAGES_RECEIVED_FROM_SENDER: (sender, count) => `${sender}: ${count} new ${count === 1 ? 'message' : 'messages'} received`,
+A11Y_AGENT_CONNECTED: (name) => 'Connected to human agent',
+A11Y_CONVERSATION_CLOSED: 'Conversation has ended',
+A11Y_FILE_IMAGE: (name) => `Image file: ${name}`,
+A11Y_FILE_VIDEO: (name) => `Video file: ${name}`,
+A11Y_FILE_DOCUMENT: (name) => `Document file: ${name}`,
+A11Y_FILE_SELECTED: (label) => `${label}, selected`,
+A11Y_FILE_REMOVE_BUTTON: (name) => `Remove file: ${name}`,
+A11Y_SCREEN_CONVERSATION: 'Conversation',
+A11Y_SCREEN_CONVERSATION_WITH_AGENT: (name) => `Conversation with ${name}`,
+A11Y_SCREEN_CONVERSATION_LIST_NO_COUNT: 'Conversation list',
+A11Y_SCREEN_CONVERSATION_LIST_WITH_COUNT: (count) => `Conversations, ${count} total`,
+A11Y_CSAT_DISPLAYED: 'Satisfaction survey displayed',
+A11Y_EMPTY_CONVERSATION: 'No messages in this conversation',
+A11Y_INPUT_DISABLED: 'Message input is disabled',
+A11Y_FILE_SIZE_EXCEEDED: (maxSizeMB) => `File exceeds size limit of ${maxSizeMB}MB`,
+A11Y_CSAT_FORM_ERROR: 'Please complete the required fields',
+A11Y_CONVERSATION_ITEM: (agent, status, time, count) => `${agent}, ${status}, ${time}, ${count} unread ${count === 1 ? 'message' : 'messages'}`,
+A11Y_RATING_LABEL: (score, label) => `${score} out of 5 — ${label}`,
+A11Y_CONNECT_AGENT: 'Talk to human agent',
+A11Y_CLOSE_MESSENGER: 'Close messenger',
+A11Y_EXPAND_MESSENGER: 'Expand messenger',
+A11Y_COLLAPSE_MESSENGER: 'Collapse messenger',
+A11Y_HINT_SEND_MESSAGE: 'Sends the message',
+A11Y_HINT_OPEN_CONVERSATION: 'Opens the conversation',
+A11Y_HINT_OPEN_CONVERSATIONS: 'Opens conversations',
+A11Y_HINT_CLOSE_CONVERSATION: 'Closes the conversation',
+A11Y_HINT_OPEN_MENU: 'Opens the menu',
+A11Y_HINT_CONNECT_TO_AGENT: 'Escalates to a human agent',
+A11Y_HINT_ATTACH_FILE: 'Opens file attachment options',
+A11Y_HINT_VIEW_NEW_MESSAGES: 'Scrolls to new messages',
+A11Y_HINT_OPEN_FILE: 'Opens the file',
+A11Y_HINT_OPEN_IMAGE: 'Opens the image',
+A11Y_HINT_SEND_REPLY: 'Sends this reply',
+A11Y_HINT_SELECT_RATING: 'Selects this rating',
 ```
 
 ---

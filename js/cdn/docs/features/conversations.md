@@ -326,6 +326,7 @@ messenger.initialize(config)
 | `theme`           | object                                    | -                  | Theme customization for palette and typography                         |
 | `stringSet`       | Partial\<StringSet>                      | -                  | Localization string set for the messenger                              |
 | `logLevel`        | LogLevel                                  | -                  | Log level for the AI agent client                                      |
+| `initialChannelUrl` | string                                  | -                  | The URL of the channel to open initially when the messenger is first loaded |
 
 ### Messenger methods
 
