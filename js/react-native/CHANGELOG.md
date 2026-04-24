@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.12.0 (Apr 24, 2026) with ChatSDK ^4.22.0
+
+
+### Minor Changes
+
+- Add `icons` prop to customize icon components via a partial icon registry
+
+### Patch Changes
+
+- Fix contrast and accessibility in FeedbackModal and inline feedback pill components
+
+
 ## v1.11.1 (Apr 17, 2026) with ChatSDK ^4.22.0
 
 
