@@ -1,5 +1,37 @@
 # Changelog
 
+## v1.13.0 (Apr 24, 2026) with Chat SDK v4.39.2
+
+### Features
+
+- Added Accessibility support
+  - Full VoiceOver support across all UI components (labels, traits, hints, focus order)
+  - Dynamic Type font scaling
+  - Accessibility localization for 10 languages
+  - Two-finger Z escape gesture for modals and containers
+  - Improved text and feedback thumb contrast to meet WCAG 2.2 AA
+- Added countdown alert for delayed connection state
+  - Displays a countdown alert when the server is busy, with estimated reconnect time
+  - Auto-dismisses on successful reconnection
+  - New interfaces for this feature:
+    - `SBACountdownAlertView`: Countdown-specific alert subclass of `SBAAlertView`
+    - `SBAConversationViewModel.DelegateEvent`: Added `didDelayConnection`, `didSucceedReconnection`, `didFailReconnection` cases
+    - `SBAConversationListViewModel.DelegateEvent`: Same connection event cases added
+    - Customers can handle connection events in their `SBAConversationViewModelDelegate` / `SBAConversationListViewModelDelegate` implementation to display a custom UI for the busy server state
+- Added `AIAgentMessenger.createConversationListCollection()` factory method
+
+### Improvements
+
+- Refactored `SBAConversationListCollection` to inherit from `BaseGroupChannelCollection`
+- Unified `ConnectionDelegate` handling via new `SBABaseViewModel`
+- Changed image disk cache directory to `applicationSupportDirectory` to prevent OS eviction
+
+### Bug Fixes
+
+- Fixed CSAT submit button text truncation for long confirmation messages
+- Fixed survey period ended wording truncation on smaller screens
+- Fixed feedback thumb selection border being reset on relayout
+
 ## v1.12.0 (Apr 09, 2026) with Chat SDK v4.39.0
 
 ### Build Environment

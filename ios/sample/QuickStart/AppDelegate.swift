@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        let mainVC = ViewController(nibName: "ViewController", bundle: nil)
+        let mainVC = ViewController()
         let navigationController = UINavigationController(rootViewController: mainVC)
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
 
         #if INTERNAL_TEST
         setupInternalTest()
@@ -71,6 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let error = error {
                     debugPrint("[AppDelegate] ❌ Initialization failed - \(error.localizedDescription)")
                 }
+                
+                AIAgentStarterKit.updateContextObjects(language: "en", countryCode: "US", context: [:])
             }
         )
     }
