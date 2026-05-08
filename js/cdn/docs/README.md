@@ -21,13 +21,13 @@ This guide explains:
 
 ### Prerequisites
 
-Before you start, you'll need your Delight **Application ID** and **AI Agent ID**.\
-\
+Before you start, you'll need your Delight **Application ID** and **AI Agent ID**.
+
 You can find it under the **Channels** > **Messenger** menu on the Delight AI dashboard.
 
 ![ai-agent-app-id-agent-id](https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/aa-messenger-basic-information.png)
 
-***
+---
 
 ### Getting Started
 
@@ -68,7 +68,7 @@ messenger.initialize({
 
 Both parameters are optional and only need to be configured if required.
 
-***
+---
 
 ### Running your application
 
@@ -82,6 +82,26 @@ The SDK supports two types of user sessions: **Manual Session** for authenticate
 
 **1. Manual Session (ManualSessionInfo):** Use this when you have an authenticated user with a specific user ID and session token.
 
+Manual sessions require a session token issued by your server. The SDK uses this token to authenticate the user. When the token expires or is about to expire, the SDK automatically requests a new one through the `sessionHandler` callbacks you provide.
+
+**Session token flow:**
+
+1. Your app requests a session token from your server using the user's credentials.
+2. Your app passes the token to the SDK through `ManualSessionInfo`.
+3. The SDK connects and starts the session.
+4. When the token needs to be refreshed, the SDK calls `onSessionTokenRequired`.
+5. Your app fetches a new token from your server and passes it to `resolve(token)`.
+6. If the session cannot be refreshed, the SDK calls `onSessionClosed`.
+
+**sessionHandler callbacks:**
+
+| Callback | Required | Description |
+|----------|----------|-------------|
+| onSessionTokenRequired | Yes | Called when the SDK needs a new session token. Fetch a new token from your server and pass it to `resolve(token)`. If an error occurs, call `reject(error)`. |
+| onSessionClosed | Yes | Called when the user is logged out. This can occur when the token is revoked, the user is deactivated, or the app does not refresh the token. To recover, call `loadMessenger()` and `initialize()` again. |
+| onSessionError | No | Called when an error occurs during session refresh. |
+| onSessionRefreshed | No | Called when the session token is refreshed. |
+
 ```javascript
 messenger.initialize({
   // ... Other initialization configurations
@@ -89,25 +109,16 @@ messenger.initialize({
     userId: 'user_id',
     authToken: 'auth_token',
     sessionHandler: {
-      // A new session token is required in the SDK to refresh the session.
       onSessionTokenRequired: async (resolve, reject) => {
         try {
-          // Refresh the session token and pass it onto the SDK through resolve(NEW_TOKEN).
-          // If you don't want to refresh the session, pass on a null value through resolve(null).
           const response = await fetch('new-token-endpoint');
           resolve(response.token);
         } catch (error) {
-          // If any error occurs while refreshing the token, let the SDK know about it through reject(error).
           reject(error);
         }
       },
-      // Called when the session refresh has been denied.
-      // This event can occur if the client app doesn't explicitly refresh the token, the token is revoked, or the user is deactivated.
-      // In this case, the client app should handle the UX appropriately — such as redirecting the user to a login page or hiding/destroying the messenger.
       onSessionClosed: () => { },
-      // Optional: Called when an error occurs during session refresh.
       onSessionError: (error) => { },
-      // Optional: Called when the session is refreshed.
       onSessionRefreshed: () => { },
     }
   })
@@ -154,7 +165,7 @@ Once the authentication information has been successfully registered, you can la
 
 To launch and display the messenger, implement the code below:
 
-> **Note**: Replace `YOUR_APP_ID` AND `YOUR_AI_AGENT_ID` with your Application ID and AI agent ID which you can obtain from the Delight AI dashboard. To learn how do to so, refer to the [prerequisites](#prerequisites) section.
+> **Note:** Replace `YOUR_APP_ID` AND `YOUR_AI_AGENT_ID` with your Application ID and AI agent ID which you can obtain from the Delight AI dashboard. To learn how do to so, refer to the [prerequisites](#prerequisites) section.
 
 ```javascript
 const messenger = await loadMessenger();
@@ -214,7 +225,7 @@ messenger.updateConfig({
 });
 ```
 
-***
+---
 
 ### Advanced Features
 
@@ -264,7 +275,7 @@ You can predefine customer-specific information such as country, language, or ot
 
 This allows for a more personalized and context-aware interaction experience.
 
-> **Important**: These settings can only be configured during initialization.
+> **Warning:** These settings can only be configured during initialization.
 
 ```javascript
 const messenger = await loadMessenger();
