@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.25.0 (May 08, 2026) with ChatSDK ^4.22.0
+
+
+### Minor Changes
+
+- Add compile-time feature flags (`__SBA_USE_SYNTAX_HIGHLIGHT__`, `__SBA_USE_MESSAGE_TEMPLATE__`, `__SBA_USE_FORM__`) for selective tree-shaking; flags are inlined at dynamic import sites so Webpack can statically eliminate disabled async chunks; disabling all flags reduces ESM gzip size by ~35%
+- Add connection delay dialog that shows a countdown when the SDK connection is delayed
+- Improve accessibility attributes across the launcher, message list, forms, and file previews
+- Move screen-reader focus to the first header element (menu button, with header title as fallback) when entering a conversation
+
+### Patch Changes
+
+- Fix accessibility announcement to correctly name the most recently transferred agent after a handoff
+- Fix FixedMiniWindow close animation not playing by delaying the visibility transition to hidden
+- Refactor escape key handling to use a centralized dismiss stack so that pressing Escape reliably closes only the topmost open element (modal, alert, bottom sheet, mini window, etc.) instead of multiple components reacting at once
+
+
 ## v1.24.0 (Apr 24, 2026) with ChatSDK ^4.22.0
 
 
