@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.13.0 (May 08, 2026) with ChatSDK ^4.22.0
+
+
+### Minor Changes
+
+- Add multi-file upload support to the React Native messenger. Users can now attach and send multiple files in a single message. Received multi-file messages are displayed as an image grid, and tapping any image opens a full-screen MediaViewer with prev/next navigation. Outgoing pending messages show local file previews with a dimmed overlay while uploading.
+- Add connection delay dialog that shows a countdown when the SDK connection is delayed
+- Add fixed scroll mode for streaming messages that anchors the user message in place while the AI response streams in above it
+- Fix closed-conversation state being lost when switching channels
+- Fix layout glitch when entering a conversation before messages load in fixed scroll mode
+- Move screen-reader focus to the first header element (menu button, with header title as fallback) when entering a conversation
+- Add `onCustomEvent` handler to receive message lifecycle events (`message-sent-pending`, `message-sent-succeeded`, `bot-message-received`, `user-action-requested`)
+
+### Patch Changes
+
+- Fix accessibility announcement to correctly name the most recently transferred agent after a handoff
+- Fix image and multiple-file previews switching to server URLs after upload succeeds
+
+
 ## v1.12.0 (Apr 24, 2026) with ChatSDK ^4.22.0
 
 
