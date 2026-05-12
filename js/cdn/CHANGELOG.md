@@ -32,6 +32,10 @@
 
 ### Patch Changes
 
+- Steward support: Introduced Steward, an agentic workflow layer that handles structured customer requests within the chat widget
+  - The widget title now updates dynamically to reflect the current Steward state (e.g., processing, completed, cancelled)
+  - Users can cancel an active Steward request directly from the chat interface
+  - Users can demand a handoff to a human agent at any point during a Steward workflow
 - Updated dependencies
   - @sendbird/ai-agent-messenger-react@1.22.0
 
