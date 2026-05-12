@@ -1,6 +1,6 @@
-[![Android Languages](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)![Android Version](https://img.shields.io/badge/1.3.0-grey.svg?style=flat-square)]()
+[![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)![Version](https://img.shields.io/badge/1.3.0-grey.svg?style=flat-square)](https://github.com/sendbird/ai-agent-messenger-android/releases)
 
-## Customizing the Font Style or Color
+# Customizing the Font Style or Color
 
 This guide explains how to customize the appearance and layout of message bubbles in the Delight AI Agent Android SDK, including sender name styling.
 
