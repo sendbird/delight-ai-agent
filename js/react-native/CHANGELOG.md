@@ -44,16 +44,16 @@
 
 ### Minor Changes
 
+- Steward support: Introduced Steward, an agentic workflow layer that handles structured customer requests within the chat widget
+  - The widget title now updates dynamically to reflect the current Steward state (e.g., processing, completed, cancelled)
+  - Users can cancel an active Steward request directly from the chat interface
+  - Users can demand a handoff to a human agent at any point during a Steward workflow
 - Add `colors` prop to `MessengerThemeContext` and provider container theme props for per-value color overrides
 - Add `AccessibilityAnnouncerContext` for platform-native accessibility announcements
 - Add `ConversationAnnouncementsContext` for coordinating status, typing, and screen entry announcements
 - Add `useA11y` hook for accessibility attributes on conversation UI elements
 - Add status, typing, and screen entry announcement hooks
 - Add `useReducedMotion` hook to respect user motion preferences
-- Steward support: Introduced Steward, an agentic workflow layer that handles structured customer requests within the chat widget
-  - The widget title now updates dynamically to reflect the current Steward state (e.g., processing, completed, cancelled)
-  - Users can cancel an active Steward request directly from the chat interface
-  - Users can demand a handoff to a human agent at any point during a Steward workflow
 
 
 ## v1.10.3 (Apr 03, 2026) with ChatSDK ^4.22.0
