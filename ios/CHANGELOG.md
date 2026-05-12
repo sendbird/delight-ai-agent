@@ -44,6 +44,16 @@
 > compatible with Xcode 16 build environments. If you are still on Xcode 16, please
 > continue using the previous version.
 
+### New features
+
+#### Steward support
+
+Introduced Steward, an agentic workflow layer that handles structured customer requests within the chat widget
+
+- The widget title now updates dynamically to reflect the current Steward state (e.g., processing, completed, cancelled)
+- Users can cancel an active Steward request directly from the chat interface
+- Users can demand a handoff to a human agent at any point during a Steward workflow
+
 ### Added
 
 - Show confirmation alert when attaching a different file type than the existing attachment
