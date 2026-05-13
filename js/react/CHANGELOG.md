@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.26.0 (May 13, 2026) with ChatSDK ^4.22.3
+
+
+### Minor Changes
+
+- Announce CSAT submission and expiration to screen readers, and announce every incoming message in a realtime batch instead of collapsing to the latest
+- Include sender, message body, and timestamp in new-message announcements, and align received-file labels (image, video, PDF, document) with the documented accessibility format
+- Add `A11Y_RECEIVED_FILE_IMAGE`, `A11Y_RECEIVED_FILE_VIDEO`, `A11Y_RECEIVED_FILE_PDF`, and `A11Y_RECEIVED_FILES_IMAGE_COUNT` string set entries for received-file announcements
+- Fix duplicate CSAT expiration announcements when the form transitions through submit
+- Add a user memory indicator to the conversation header that surfaces the consent dialog on first use and lets users manage whether the AI Agent remembers them; new `MemoryIndicator` slot is available on `ConversationHeaderLayout` for customization
+
+### Patch Changes
+
+- Improve CSAT score screen-reader announcement to include the total (e.g. "1 out of 5 — Terrible") across all supported languages
+
+
 ## v1.25.0 (May 08, 2026) with ChatSDK ^4.22.0
 
 
