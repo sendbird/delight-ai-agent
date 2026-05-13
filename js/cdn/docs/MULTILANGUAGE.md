@@ -157,7 +157,7 @@ PLACE_HOLDER__NO_MESSAGES: 'No messages',
 UNKNOWN__UNKNOWN_MESSAGE_TYPE: '(Unknown message type)',
 
 // Channel - Header
-HEADER_BUTTON__AGENT_HANDOFF: 'Connect with an agent',
+HEADER_BUTTON__AGENT_HANDOFF: 'Talk to human agent',
 
 // Message Input
 MESSAGE_INPUT__PLACE_HOLDER: 'Ask a question',
@@ -317,7 +317,6 @@ A11Y_INPUT_DISABLED: 'Message input is disabled',
 A11Y_FILE_SIZE_EXCEEDED: (maxSizeMB) => `File exceeds size limit of ${maxSizeMB}MB`,
 A11Y_CSAT_FORM_ERROR: 'Please complete the required fields',
 A11Y_CONVERSATION_ITEM: (agent, status, time, count) => `${agent}, ${status}, ${time}, ${count} unread ${count === 1 ? 'message' : 'messages'}`,
-A11Y_RATING_LABEL: (score, label) => `${score} out of 5 — ${label}`,
 A11Y_CONNECT_AGENT: 'Talk to human agent',
 A11Y_CLOSE_MESSENGER: 'Close messenger',
 A11Y_EXPAND_MESSENGER: 'Expand messenger',

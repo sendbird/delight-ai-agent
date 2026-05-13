@@ -43,6 +43,8 @@ Add the AI Agent SDK to your web page by importing it as a module.
 </script>
 ```
 
+> ℹ️ To use the latest features such as [Agent Steward](../../dashboard-guide/shared-assets/steward.md), use AI Agent Messenger SDK version **1.22.0** or higher.
+
 #### Step 2. Initialize AI Agent SDK
 
 ```javascript
@@ -85,6 +87,8 @@ The SDK supports two types of user sessions: **Manual Session** for authenticate
 Manual sessions require a session token issued by your server. The SDK uses this token to authenticate the user. When the token expires or is about to expire, the SDK automatically requests a new one through the `sessionHandler` callbacks you provide.
 
 **Session token flow:**
+
+<figure><img src="" alt="Diagram showing session token lifecycle between your server, your app, and the SDK"><figcaption></figcaption></figure>
 
 1. Your app requests a session token from your server using the user's credentials.
 2. Your app passes the token to the SDK through `ManualSessionInfo`.
@@ -165,7 +169,7 @@ Once the authentication information has been successfully registered, you can la
 
 To launch and display the messenger, implement the code below:
 
-> **Note:** Replace `YOUR_APP_ID` AND `YOUR_AI_AGENT_ID` with your Application ID and AI agent ID which you can obtain from the Delight AI dashboard. To learn how do to so, refer to the [prerequisites](#prerequisites) section.
+> ℹ️ Replace `YOUR_APP_ID` AND `YOUR_AI_AGENT_ID` with your Application ID and AI agent ID which you can obtain from the Delight AI dashboard. To learn how do to so, refer to the [prerequisites](#prerequisites) section.
 
 ```javascript
 const messenger = await loadMessenger();
@@ -275,7 +279,7 @@ You can predefine customer-specific information such as country, language, or ot
 
 This allows for a more personalized and context-aware interaction experience.
 
-> **Warning:** These settings can only be configured during initialization.
+> ⚠️ These settings can only be configured during initialization.
 
 ```javascript
 const messenger = await loadMessenger();
