@@ -70,9 +70,9 @@ npm install expo-image-picker expo-document-picker
 npm install react-native-image-picker @react-native-documents/picker react-native-permissions
 ```
 
-{% hint style="info" %}
-When using `react-native-image-picker`, you must also install `react-native-permissions` for camera access.
-{% endhint %}
+> **Note:** When using `react-native-image-picker`, you must also install `react-native-permissions` for camera access.
+
+> **Note:** To use the latest features such as [Agent Steward](../../dashboard-guide/shared-assets/steward.md), use AI Agent Messenger SDK version **1.11.0** or higher.
 
 ### Step 2. Configure native modules
 
@@ -197,9 +197,7 @@ Now that you have installed and initialized the AI Agent SDK, follow the steps b
 
 To launch and display the messenger, implement the code below:
 
-{% hint style="info" %}
-Replace `YOUR_APP_ID` and `YOUR_AI_AGENT_ID` with your Application ID and AI agent ID which you can obtain from the Delight AI dashboard. To learn how to do so, refer to the [prerequisites](#prerequisites) section.
-{% endhint %}
+> **Note:** Replace `YOUR_APP_ID` and `YOUR_AI_AGENT_ID` with your Application ID and AI agent ID which you can obtain from the Delight AI dashboard. To learn how to do so, refer to the [prerequisites](#prerequisites) section.
 
 ```tsx
 function App() {
@@ -427,9 +425,7 @@ You can predefine customer-specific information such as country, language, or ot
 
 This allows for a more personalized and context-aware interaction experience.
 
-{% hint style="warning" %}
-These settings can only be configured during initialization.
-{% endhint %}
+> **Warning:** These settings can only be configured during initialization.
 
 ```tsx
 <AIAgentProviderContainer
