@@ -53,6 +53,8 @@ yarn add @sendbird/ai-agent-messenger-react @sendbird/chat styled-components
 
 > **Note:** Modern npm versions automatically install peer dependencies, but explicitly installing them ensures compatibility and avoids potential version conflicts.
 
+> **Note:** To use the latest features such as [Agent Steward](../../dashboard-guide/steward.md), use AI Agent Messenger SDK version **1.22.0** or higher.
+
 ### Step 2. Initialize AI agent SDK
 
 The React SDK provides two main approaches for integration:
@@ -260,7 +262,7 @@ You can predefine customer-specific information such as country, language, or ot
 
 This allows for a more personalized and context-aware interaction experience.
 
-> **Important**: These settings can only be configured during initialization.
+> **Note:** **Important**: These settings can only be configured during initialization.
 
 ```tsx
 <FixedMessenger
