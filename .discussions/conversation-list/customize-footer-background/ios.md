@@ -41,7 +41,7 @@ extension UIColor {
 **Step 2: Register the Custom View**
 
 ```swift
-SBAModuleSet.ConversationListModule.BottomView = CustomConversationListBottomView.self
+SBAModuleSet.ConversationListModule.List.BottomView = CustomConversationListBottomView.self
 ```
 
 **Notes:**
