@@ -20,7 +20,7 @@ Explanation:
 ⸻
 ## 2. Customizing the Sender Profile in the Message List
 
-- You can show or hide the sender's profile in the conversation message list using the `showSenderProfile` property in the AIAgentMessenger.config.conversation.list.
+- You can show or hide the sender's profile in the conversation message list using the `shouldShowSenderProfile` property in the AIAgentMessenger.config.conversation.list.
 
 **Example**
 ```swift
