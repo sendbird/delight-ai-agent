@@ -22,7 +22,6 @@ extension ExtendedSDKBridge {
         /// - Note: This method only performs actions if SendbirdUIKit is available.
         func initialize(
             applicationId: String,
-            logLevel: SBALogType = .none,
             migrationHandler: VoidHandler? = nil
         ) async throws {
             #if canImport(SendbirdUIKit)
@@ -33,10 +32,7 @@ extension ExtendedSDKBridge {
             try await ExtendedSDKBridge.asyncify { completion in
                 SendbirdUIKit.SendbirdUI.initialize(
                     applicationId: applicationId,
-                    initParamsBuilder: { params in
-                        params?.applicationId = applicationId
-                        params?.logLevel = logLevel.toChatLogLevel()
-                    }, migrationHandler: {
+                    migrationHandler: {
                         migrationHandler?()
                     }, completionHandler: { error in
                         completion(error)

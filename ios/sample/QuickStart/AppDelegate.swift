@@ -64,9 +64,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard !InternalTestManager.isRunningTests else { return }
         #endif
 
+        SendbirdLogger.setLevel(SampleConfiguration.logLevel)
+
         AIAgentStarterKit.initialize(
             applicationId: SampleConfiguration.appId,
-            logLevel: SampleConfiguration.logLevel,
             completion: { error in
                 if let error = error {
                     debugPrint("[AppDelegate] ❌ Initialization failed - \(error.localizedDescription)")

@@ -19,6 +19,7 @@
 ///
 ///
 import SendbirdAIAgentMessenger
+import SendbirdChatSDK
 
 extension ExtendedSDKBridge {
 
@@ -40,7 +41,6 @@ extension ExtendedSDKBridge {
     /// - Throws: An error if any SDK initialization fails
     static func initializeIfNeeded(
         applicationId: String,
-        logLevel: SBALogType,
         migrationHandler: VoidHandler? = nil
     ) async throws {
         // Phase 1: Initialize UIKit SDK
@@ -48,7 +48,6 @@ extension ExtendedSDKBridge {
             do {
                 try await self.uikitTask.initialize(
                     applicationId: applicationId,
-                    logLevel: logLevel,
                     migrationHandler: migrationHandler
                 )
             } catch {
@@ -62,7 +61,6 @@ extension ExtendedSDKBridge {
             do {
                 try await self.deskTask.initialize(
                     applicationId: applicationId,
-                    logLevel: logLevel,
                     migrationHandler: migrationHandler
                 )
             } catch {
@@ -171,28 +169,5 @@ extension ExtendedSDKBridge {
     /// - Returns: `true` if UIKit SDK is linked and available, `false` otherwise
     static func hasUIKit() -> Bool {
         return SampleConfiguration.extendedSDKs.contains { $0 == .uiKit }
-    }
-}
-
-import SendbirdChatSDK
-
-extension SBALogType {
-    func toChatLogLevel() -> SendbirdChatSDK.LogLevel {
-        switch self {
-        case .verbose:
-            return .verbose
-        case .debug:
-            return .debug
-        case .info:
-            return .info
-        case .warning:
-            return .warning
-        case .error:
-            return .error
-        case .none:
-            return .none
-        default:
-            return .none
-        }
     }
 }

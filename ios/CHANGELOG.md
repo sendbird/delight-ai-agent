@@ -1,5 +1,32 @@
 # Changelog
 
+## v1.14.0 (May 14, 2026) with Chat SDK v4.39.4
+
+### Features
+
+- Added user memory indicator to the conversation header
+  - Surfaces a consent dialog on first use, then lets users toggle whether the AI Agent remembers them
+  - State alert reflects server-driven options for toggle availability and delete-on-off behavior
+  - Accessibility label and hints reflect the current memory state, localized across 12 languages
+  - New interfaces for this feature:
+    - `AIAgentMessenger`: Added `clearUserMemories(aiAgentId:completionHandler:)`
+    - `SBAConversationModule.Header`: Added `userMemoryButton` layout slot and `DelegateEvent.didTapUserMemoryItem` case
+    - `SBAConfig.common`: Promoted to public; added `confirmAlert` with `negativeButtonBorderWidth`, `positiveButtonBorderWidth`
+    - `SBATheme.Common.ConfirmAlert`: Added `negativeButtonBackgroundColor`, `negativeButtonBorderColor`, `positiveButtonBorderColor`, `markdown`
+    - `SBATheme.Conversation.Header`: Added `userMemoryStatusOnColor`, `userMemoryStatusOffColor`, `userMemoryStatusBorderColor`
+    - `SBALocalization.conversation.userMemory`: New localization namespace for the consent dialog, state alert buttons, and error toast strings
+- AI Agent logging is now routed through the shared `SendbirdLogger` (`Logger.aiagent` / `ProductIdentifier.aiagent`) and emitted in the unified Sendbird log format
+  - `Log.info(...)` / `Log.warn(...)` / `Log.error(...)` helpers used throughout AI Agent internals
+
+### Improvements
+
+- `SBALog.logType` is no longer independent static state; it now delegates to `SendbirdLogger.level(for: .aiagent)`
+- `InitializeParams.logLevel` is now applied only when the integrator explicitly sets it. Previously, initialization unconditionally pushed AI Agent's level into Chat and Auth, overwriting any level the host app had configured via `SendbirdLogger`. Once `SendbirdLogger.setLevel(...)` has been called, `InitializeParams.logLevel` is ignored
+
+### Deprecated
+
+- `AIAgentMessenger.InitializeParams.logLevel` (`SBALogType`) — use `SendbirdLogger.setLevel(_:)` or `SendbirdLogger.setLevel(_:for: .aiagent)` instead. Existing usage is forwarded to a compatibility setter and continues to work; `SBALogType` maps 1:1 to `AuthLogLevel`
+
 ## v1.13.0 (Apr 24, 2026) with Chat SDK v4.39.2
 
 ### Features

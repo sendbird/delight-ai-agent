@@ -58,6 +58,7 @@ struct SampleConfiguration {
 
 ```swift
 import UIKit
+import SendbirdChatSDK
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(
@@ -65,6 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         // Step 1: Initialize
+        SendbirdLogger.setLevel(SampleConfiguration.logLevel)
+
         AIAgentStarterKit.initialize(
             applicationId: SampleConfiguration.appId
         ) { error in
@@ -153,9 +156,10 @@ AIAgentStarterKit/
 
 #### 1. Initialize
 ```swift
+SendbirdLogger.setLevel(.error)  // .none, .error, .warning, .info, .debug, .verbose
+
 AIAgentStarterKit.initialize(
-    applicationId: "YOUR_APP_ID",
-    logLevel: .error  // .none, .error, .warning, .info, .debug, .verbose
+    applicationId: "YOUR_APP_ID"
 ) { error in
     if let error = error {
         print("Initialization failed: \(error)")
@@ -465,7 +469,7 @@ struct SampleConfiguration {
     static var sessionToken = "your_session_token"
 
     // MARK: - Logging
-    static var logLevel: SBALogType = .error
+    static var logLevel: SendbirdLogger.Level = .error
 
     // MARK: - Server (Optional)
     static var productionServer: String? = nil  // Uses default if nil

@@ -248,7 +248,7 @@ The `AIAgentSessionDelegate` provides three important callbacks:
 **2. `sessionTokenDidRequire(successCompletion:failCompletion:)`**
 - Called when the SDK requires a new session token to refresh the session.
 - Refresh the session token from your authentication server and pass it to the SDK through `successCompletion(newToken)`.
-- When `successCompletion` is called with the new token, the SDK internally calls `updateSessionInfo`, which automatically updates the session token - you don't need to call `updateSessionInfo` manually.
+- When `successCompletion` is called with the new token, the SDK internally updates the session token via `updateSessionToken(with:)` - you don't need to call `updateSessionToken` manually.
 - If you do not want to refresh the session, pass a `nil` value through `successCompletion(nil)`.
 - If any error occurred while refreshing the token, let the SDK know about it through `failCompletion()`.
 
@@ -266,8 +266,12 @@ Here's how to implement an AIAgentSessionDelegate:
 ```swift
 import SendbirdChatSDK
 
-class SessionManager: AIAgentSessionDelegate {
+class SessionManager: NSObject, AIAgentSessionDelegate {
     static let shared = SessionManager()
+
+    override init() {
+        super.init()
+    }
 
     func sessionWasClosed() {
         // The session has been completely closed

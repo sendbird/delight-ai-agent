@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SendbirdAIAgentMessenger
+import SendbirdChatSDK
 #if canImport(SendBirdDesk)
 import SendBirdDesk
 #endif
@@ -67,12 +67,11 @@ struct SampleConfiguration {
     /// This should be obtained from your service server API when using manual session mode.
     static var sessionToken = "deb776838a0dca710fffd9c38b06ed133e2d088f"
     
-    /// The log level for Delight AI Agent Messenger SDK.
-    /// This controls the verbosity of logs output by the SDK.
+    /// The log level for all Sendbird products used by the quickstart app.
     #if INTERNAL_TEST
-    static var logLevel: SBALogType = .error
+    static var logLevel: SendbirdLogger.Level = .verbose
     #else
-    static var logLevel: SBALogType = .error
+    static var logLevel: SendbirdLogger.Level = .error
     #endif
 
     // MARK: - Extended SDK Integration
