@@ -49,7 +49,9 @@ Image message enables sharing of image files within conversations. This message 
   <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-mobile-image-message2.png" alt="Image message in a conversation" width="375">
 </figure>
 
-> ℹ️ Once handed off to a human agent, users can send image files in any format.
+{% hint style="info" %}
+Once handed off to a human agent, users can send image files in any format.
+{% endhint %}
 
 ### File message
 
@@ -75,7 +77,9 @@ Multiple files message allows users to send multiple image files in a single mes
   <img src="https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/aa-sdk-multi-file-message%403x.png" alt="Multiple files message displaying images in a grid layout" width="375">
 </figure>
 
-> **Note**: By default, only single-file sending is enabled. To enable multiple files message, contact your Delight representative.
+{% hint style="info" %}
+By default, only single-file sending is enabled. To enable multiple files message, contact your Delight representative.
+{% endhint %}
 
 ### Rich message
 
@@ -323,6 +327,8 @@ override fun onCreateCustomMessageTemplateView(
 
 ##### Error handling patterns
 
+{% tabs %}
+{% tab title="Fallback UI" %}
 **Fallback UI for unregistered template**
 
 Return fallback UI for unknown template IDs:
@@ -334,7 +340,8 @@ when (templateData.id) {
     else -> createFallbackView(context)
 }
 ```
-
+{% endtab %}
+{% tab title="API fail" %}
 **Error UI - API call failed**
 
 Check response status and error field:
@@ -344,7 +351,8 @@ val templateData = data.firstOrNull() ?: return createErrorView(context, "No tem
 if (templateData.error != null) return createErrorView(context, templateData.error)
 if (templateData.response.status != 200) return createErrorView(context, "API error")
 ```
-
+{% endtab %}
+{% tab title="Runtime error" %}
 **Error Boundary - Runtime error**
 
 Wrap handler logic in try-catch. SDK also wraps calls to prevent crashes:
@@ -356,6 +364,8 @@ try {
     callback.onViewReady(createFallbackView(context))
 }
 ```
+{% endtab %}
+{% endtabs %}
 
 ---
 

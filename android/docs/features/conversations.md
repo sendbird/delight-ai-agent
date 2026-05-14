@@ -9,7 +9,9 @@ When the launcher is clicked, a user can be led to either their conversation lis
 | Number of active conversation | A user can have only one active conversation with your AI agent at a time.                 | A user can have multiple active conversations with your AI agent at the same time.                      |
 | Starting a new conversation   | A new conversation can't be created if there is an active conversation at the moment. The existing conversation must end first. | New conversations can be created anytime using `AIAgentMessenger.awaitCreateConversation()`.                 |
 
-> **Note**: Whichever conversation mode you choose, if there is no active conversation, a new conversation is automatically created and the user can start a dialogue with your AI agent. This provides seamless user experience without requiring manual conversation setup.
+{% hint style="info" %}
+Whichever conversation mode you choose, if there is no active conversation, a new conversation is automatically created and the user can start a dialogue with your AI agent. This provides seamless user experience without requiring manual conversation setup.
+{% endhint %}
 
 This guide explains:
 - [Start a conversation](#start-a-conversation)
@@ -130,7 +132,7 @@ The `context` object allows you to provide user's information to AI agents for m
 | ---------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `ConversationSettingsParams` | Configures the conversation settings when launching via `MessengerActivity`. | `MessengerActivity.newIntentForConversation()`, `MessengerActivity.newIntentForConversationList()` |
 | `ConversationCreateParams`   | Manually creates a new conversation.                                    | `AIAgentMessenger.awaitCreateConversation()`                                                   |
-| `LauncherSettingsParams`     | Configures the floating launcher’s behavior and appearance.             | `MessengerLauncher` constructor                                                           |
+| `LauncherSettingsParams`     | Configures the floating launcher's behavior and appearance.             | `MessengerLauncher` constructor                                                           |
 
 ```kotlin
 // Setting context through ConversationSettingsParams
@@ -195,7 +197,9 @@ startActivity(intent)
 
 Multiple active conversation mode allows users to simultaneously communicate with your AI agent in different channels. In this case, use `AIAgentMessenger.awaitCreateConversation()` to create a new conversation whenever needed.
 
-> **Note**: In single conversation mode, a new conversation can't be created if there is an active conversation.
+{% hint style="info" %}
+In single conversation mode, a new conversation can't be created if there is an active conversation.
+{% endhint %}
 
 ```kotlin
 // Create conversation manually
