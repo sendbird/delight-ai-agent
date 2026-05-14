@@ -15,14 +15,12 @@ extension AIAgentStarterKit {
     /// - Throws: An error if initialization fails.
     static func initialize(
         applicationId: String,
-        logLevel: SBALogType,
         migrationHandler: VoidHandler? = nil
     ) async throws {
         return try await withCheckedThrowingContinuation { continuation in
             AIAgentMessenger.initialize(
                 appId: applicationId,
                 paramsBuilder: { params in
-                    params.logLevel = logLevel
                     params.migrationHandler = migrationHandler
                 }
             ) { result in

@@ -63,6 +63,20 @@
 "SBA_Conversation_Handoff_positiveText" = "Handoff";
 "SBA_Conversation_Handoff_negativeText" = "Cancel";
 
+// MARK: - CONVERSATION USER MEMORY
+"SBA_Conversation_UserMemory_alertTitleState" = "Memory";
+"SBA_Conversation_UserMemory_descriptionOn" = "Memory is **turned on**.<br/>It remembers your conversation history to provide personalized responses tailored to your previous questions and preferences.";
+"SBA_Conversation_UserMemory_descriptionOff" = "Memory is **turned off**.<br/>If turned on, it will remember your conversation history to provide personalized responses tailored to your previous questions and preferences.";
+"SBA_Conversation_UserMemory_use" = "Use";
+"SBA_Conversation_UserMemory_dontUse" = "Don't use";
+"SBA_Conversation_UserMemory_keepUsing" = "Keep using";
+"SBA_Conversation_UserMemory_disableAndDelete" = "Disable & Delete memory";
+"SBA_Conversation_UserMemory_disable" = "Disable";
+"SBA_Conversation_UserMemory_keepOff" = "Keep off";
+"SBA_Conversation_UserMemory_enable" = "Enable memory";
+"SBA_Conversation_UserMemory_cancel" = "Cancel";
+"SBA_Conversation_UserMemory_errorToast" = "Failed to update memory state. Please try again.";
+
 // MARK: - CONVERSATION LIST
 "SBA_Conversation_List_UnknownMessage_title" = "(Unknown message type)";
 "SBA_Conversation_List_UnknownMessage_description" = "Can't read this message.";
@@ -141,6 +155,7 @@
 "SBA_Accessibility_Header_menu" = "Menu";
 "SBA_Accessibility_Header_connectToAgent" = "Talk to human agent";
 "SBA_Accessibility_Header_conversationList" = "Conversations";
+"SBA_Accessibility_Header_userMemory" = "Manage memory";
 
 // MARK: - ACCESSIBILITY - INPUT
 "SBA_Accessibility_Input_messageInput" = "Message";
@@ -203,6 +218,8 @@
 "SBA_Accessibility_Hint_openImage" = "Opens the image";
 "SBA_Accessibility_Hint_sendReply" = "Sends this reply";
 "SBA_Accessibility_Hint_selectRating" = "Selects this rating";
+"SBA_Accessibility_Hint_userMemoryOn" = "Memory is on";
+"SBA_Accessibility_Hint_userMemoryOff" = "Memory is off";
 
 // MARK: - ACCESSIBILITY - ANNOUNCE
 "SBA_Accessibility_Announce_conversationFormat" = "Conversation with %@";

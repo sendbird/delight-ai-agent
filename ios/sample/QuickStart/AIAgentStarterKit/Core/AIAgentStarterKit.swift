@@ -39,7 +39,6 @@ extension AIAgentStarterKit {
     ///   - completion: Optional completion handler called with an error if initialization fails.
     static func initialize(
         applicationId: String,
-        logLevel: SBALogType = .none,
         startHandler: VoidHandler? = nil,
         migrationHandler: VoidHandler? = nil,
         completion: ErrorHandler? = nil
@@ -56,14 +55,12 @@ extension AIAgentStarterKit {
                 // INFO: This is only necessary when using extended SDKs(e,g,. UIKit, DeskSDK).
                 try await ExtendedSDKBridge.initializeIfNeeded(
                     applicationId: applicationId,
-                    logLevel: logLevel,
                     migrationHandler: migrationHandler
                 )
 
                 // Step 2: AI Agent SDK initialization
                 try await self.initialize(
                     applicationId: applicationId,
-                    logLevel: logLevel,
                     migrationHandler: migrationHandler
                 )
 

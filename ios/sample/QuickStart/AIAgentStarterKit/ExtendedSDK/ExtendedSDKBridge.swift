@@ -34,7 +34,7 @@ protocol ExtendedSDKBaseTaskable {
 /// Protocol extending ExtendedSDKBaseTaskable to include asynchronous lifecycle methods
 /// for initializing, connecting, and disconnecting SDK tasks.
 protocol ExtendedSDKTaskable: ExtendedSDKBaseTaskable {
-    func initialize(applicationId: String, logLevel: SBALogType, migrationHandler: VoidHandler?) async throws
+    func initialize(applicationId: String, migrationHandler: VoidHandler?) async throws
     func connect() async throws
     func disconnect() async throws
 }

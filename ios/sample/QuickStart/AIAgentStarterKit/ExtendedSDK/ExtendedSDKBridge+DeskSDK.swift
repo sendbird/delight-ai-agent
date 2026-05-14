@@ -22,7 +22,6 @@ extension ExtendedSDKBridge {
         /// Throws an error if initialization fails.
         func initialize(
             applicationId: String,
-            logLevel: SBALogType = .none,
             migrationHandler: VoidHandler? = nil
         ) async throws {
             return try await withCheckedThrowingContinuation { continuation in
@@ -44,8 +43,7 @@ extension ExtendedSDKBridge {
 
                 let params = InitParams(
                     applicationId: applicationId,
-                    isLocalCachingEnabled: true,
-                    logLevel: logLevel.toChatLogLevel()
+                    isLocalCachingEnabled: true
                 )
                 
                 // NOTE: SendbirdDesk must be initialized and used with SendbirdChat.
