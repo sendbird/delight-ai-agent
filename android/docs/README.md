@@ -74,7 +74,10 @@ dependencyResolutionManagement {
     }
 }
 ```
-> __Note__: You should be using Gradle 8.0 or higher. You can check the `gradle-wrapper.properties` file in your project to see the version of Gradle you are using.
+
+{% hint style="info" %}
+You should be using Gradle 8.0 or higher. You can check the `gradle-wrapper.properties` file in your project to see the version of Gradle you are using.
+{% endhint %}
 
 #### Adding dependency
 
@@ -105,6 +108,10 @@ dependencies {
 ```
 
 Then, click **'Sync Now'** in the Gradle toolbar to apply all changes.
+
+{% hint style="info" %}
+To use the latest features such as [Agent Steward](../../dashboard-guide/shared-assets/steward.md), use AI Agent Messenger SDK version **1.12.0** or higher.
+{% endhint %}
 
 ### Step 3. Initialize AI Agent SDK
 
@@ -170,7 +177,9 @@ To ensure that your `AgentApplication` class is used as the application class, y
 
 Now that you have installed and initialized the AI Agent SDK, follow the steps below to run your application.
 
-> __Note__: Make sure to perform the following steps after the SDK has been successfully initialized. Once initialization is complete, set up the user session and launch the messenger.
+{% hint style="info" %}
+Make sure to perform the following steps after the SDK has been successfully initialized. Once initialization is complete, set up the user session and launch the messenger.
+{% endhint %}
 
 ### Manage user sessions
 
@@ -281,7 +290,9 @@ AIAgentMessenger.updateSessionInfo(SessionInfo.AnonymousSessionInfo())
 
 When using `ManualSessionInfo`, session tokens can expire over time due to security policies. The SDK uses a `SessionHandler` to notify your app when the session needs attention, allowing you to refresh tokens or redirect users to login.
 
-> __Note__: Session expiration handling is **only applicable** when using `ManualSessionInfo`. `AnonymousSessionInfo` does not require session token management or a session handler.
+{% hint style="info" %}
+Session expiration handling is **only applicable** when using `ManualSessionInfo`. `AnonymousSessionInfo` does not require session token management or a session handler.
+{% endhint %}
 
 #### Understanding SessionHandler callbacks
 
@@ -352,7 +363,9 @@ There are two ways to display the messenger:
 1. Using the launcher button
 2. Opening the conversation channel in full-screen mode
 
-> __Note__: Replace `YOUR_AI_AGENT_ID` with your AI agent ID, which you can obtain from the Delight AI dashboard. To learn how to do so, refer to the [Prerequisites](#prerequisites) section.
+{% hint style="info" %}
+Replace `YOUR_AI_AGENT_ID` with your AI agent ID, which you can obtain from the Delight AI dashboard. To learn how to do so, refer to the [Prerequisites](#prerequisites) section.
+{% endhint %}
 
 #### 1. Using the launcher button
 
@@ -360,7 +373,9 @@ There are two ways to display the messenger:
 
 The SDK provides the MessengerLauncher view, which can be easily attached to your application's root view programmatically without directly adding it to XML layouts.
 
-> __Note__: Since the SDK utilizes Fragments, make sure the context you pass to the `MessengerLauncher` is an instance of `FragmentActivity`. If you're using standard Android components such as `AppCompatActivity`, there's no need to worry, as it already inherits from `FragmentActivity`. However, if you're using a custom or legacy activity, verify that it inherits from `FragmentActivity` to avoid runtime issues.
+{% hint style="info" %}
+Since the SDK utilizes Fragments, make sure the context you pass to the `MessengerLauncher` is an instance of `FragmentActivity`. If you're using standard Android components such as `AppCompatActivity`, there's no need to worry, as it already inherits from `FragmentActivity`. However, if you're using a custom or legacy activity, verify that it inherits from `FragmentActivity` to avoid runtime issues.
+{% endhint %}
 
 To add the `MessengerLauncher` to your screen, call the `attach()` function of `MessengerLauncher`, specifying the AI agent ID and configuration parameters:
 
@@ -476,7 +491,9 @@ You can predefine customer-specific information such as country, language, or ot
 
 This allows for a more personalized and context-aware interaction experience.
 
-> __Note__: Once the contexts are set, they are used throughout the conversation to provide personalized and context-aware responses. The configured context is set when the conversation starts. If you need to update the context during the conversation, you can use the Platform API to modify it.
+{% hint style="info" %}
+Once the contexts are set, they are used throughout the conversation to provide personalized and context-aware responses. The configured context is set when the conversation starts. If you need to update the context during the conversation, you can use the Platform API to modify it.
+{% endhint %}
 
 #### 1. Applying settings data through MessengerLauncher
 ```kotlin

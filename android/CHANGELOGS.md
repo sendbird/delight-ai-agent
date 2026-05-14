@@ -1,5 +1,38 @@
 # Changelog
 
+## v1.14.0 (May 14, 2026) with Chat SDK `v4.36.2`
+
+### Features
+
+#### User memory support
+
+Introduced user memory, which lets the AI agent retain conversation context across sessions. The conversation header exposes a memory indicator with a consent flow that gates sending until the end user accepts.
+
+- Added `memory: MemoryInfo?` property in `MessengerSettings`
+- Added `suspend fun awaitClearUserMemories(ClearUserMemoriesParams)` in `AIAgentMessenger`
+- Added `suspend fun awaitSetUserMemoryState(SetUserMemoryStateParams)` in `ConversationViewModel`
+- Added `messengerSettingsUpdated: Flow<MessengerSettings>` in `ConversationViewModel`
+- Added `setOnUserMemoryButtonClickListener(View.OnClickListener)` in `ConversationHeaderComponent`
+- Added `setOnUserMemoryButtonClickListener(View.OnClickListener)` and `setUserMemoryButton(MemoryInfo)` in `ConversationHeaderView`
+
+#### Theming additions
+
+- Added user memory theming in `ConversationHeaderTheme`
+    - `userMemoryIconBackground: Int`
+    - `userMemoryIconTintStateList: ColorStateList`
+    - `userMemoryDotBackground: Int`
+    - `userMemoryDotColorStateList: ColorStateList`
+    - `userMemoryDialogStyle: ConfirmationDialogStyle`
+- Added negative button background customization in `ConfirmationDialogStyle`
+    - `negativeButtonBackground: Int`
+    - `negativeButtonBackgroundTint: ColorRef`
+- Added `background: Int` property to message styles for customization
+    - `AdminMessageStyle`, `AttributionHeaderMessageStyle`, `TemplateMessageStyle`, `TimelineMessageStyle`
+    - `MyUserMessageStyle`, `MyFileMessageStyle`, `MyImageMessageStyle`, `MyUnknownMessageStyle`
+    - `OtherUserMessageStyle`, `OtherFileMessageStyle`, `OtherImageMessageStyle`, `OtherUnknownMessageStyle`
+
+---
+
 ## v1.13.0 (Apr 24, 2026) with Chat SDK `v4.36.1`
 
 ### Features
@@ -37,6 +70,7 @@ Introduced Steward, an agentic workflow layer that handles structured customer r
   - Added `confirmationDialogStyle` property in `InputBoxTheme`
   - Added `handoffConfirmDialogStyle` property in `ConversationHeaderTheme`
 - Added `traceName` and `eventDetail` properties in `ConversationListContext`
+
 ### Improvements
 
 - Updated Chat SDK version to 4.36.0

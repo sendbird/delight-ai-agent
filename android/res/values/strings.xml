@@ -97,4 +97,25 @@
     <!--  Connection delayed dialog  -->
     <string name="aa_text_connection_delayed_title">Something went wrong.\nYou\'ll be reconnected shortly.</string>
     <string name="aa_text_connection_delayed_description">Estimated waiting time: %1$s</string>
+
+    <!--  User memory  -->
+    <string name="aa_text_user_memory_dialog_title">User memory</string>
+    <string name="aa_text_user_memory_status_dialog_title">User memory usage status</string>
+    <string name="aa_text_user_memory_on_description"><![CDATA[Memory is <b>turned on</b>.\nIt remembers your conversation history to provide personalized responses tailored to your previous questions and preferences.]]></string>
+    <string name="aa_text_user_memory_off_description"><![CDATA[Memory is <b>turned off</b>.\nIf turned on, it will remember your conversation history to provide personalized responses tailored to your previous questions and preferences.]]></string>
+    <string name="aa_text_button_use">Use</string>
+    <string name="aa_text_button_dont_use">Don\'t use</string>
+    <string name="aa_text_button_keep_using">Keep using</string>
+    <string name="aa_text_button_disable_and_delete_memory">Disable &amp; Delete memory</string>
+    <string name="aa_text_button_disable_memory">Disable</string>
+    <string name="aa_text_button_keep_off">Keep off</string>
+    <string name="aa_text_button_enable_memory">Enable memory</string>
+    <string name="aa_text_button_close">Close</string>
+    <string name="aa_text_error_memory_state_change_failed">Failed to update memory state. Please try again.</string>
+    <string name="aa_a11y_user_memory">Manage memory</string>
+    <string name="aa_a11y_user_memory_status_on">Memory is on</string>
+    <string name="aa_a11y_user_memory_status_off">Memory is off</string>
+    <string name="aa_announce_memory_turned_on">Memory turned on</string>
+    <string name="aa_announce_memory_turned_off">Memory turned off</string>
+    <string name="aa_announce_memory_consent_required">Memory consent required</string>
 </resources>

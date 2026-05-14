@@ -2,7 +2,9 @@
 
 In Delight AI agent, when a conversation has been handed off to Sendbird Desk, you can retrieve Desk ticket information directly from the AI Agent SDK. This allows you to access ticket details — such as status, priority, assigned agent, and custom fields — without integrating a separate Desk SDK.
 
-> ℹ️ **Note:** Desk ticket information is only available for conversations that have been handed off to Desk. The channel must have a linked Desk ticket for this feature to work.
+{% hint style="info" %}
+Desk ticket information is only available for conversations that have been handed off to Desk. The channel must have a linked Desk ticket for this feature to work.
+{% endhint %}
 
 This guide covers:
 - [Retrieve a Desk ticket](#retrieve-a-desk-ticket)
@@ -98,7 +100,9 @@ The `DeskTicket` class represents a Sendbird Desk ticket linked to a conversatio
 | IDLE | The customer hasn't responded back for a set amount of time since the agent's last response. |
 | CLOSED | The conversation between the agent and the customer has ended. |
 
-> ℹ️ **Note:** To learn more about ticket statuses, refer to the [Ticket status](https://sendbird.com/docs/desk/guide/v1/tickets/ticket-status) page in Sendbird Desk documentation.
+{% hint style="info" %}
+To learn more about ticket statuses, refer to the [Ticket status](https://sendbird.com/docs/desk/guide/v1/tickets/ticket-status) page in Sendbird Desk documentation.
+{% endhint %}
 
 ### DeskTicket.Priority
 
