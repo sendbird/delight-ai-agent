@@ -14,14 +14,14 @@ import { AgentProviderContainer, Conversation } from '@sendbird/ai-agent-messeng
 function App() {
   return (
     <AgentProviderContainer
-      applicationId="YOUR_APP_ID"
+      appId="YOUR_APP_ID"
       aiAgentId="YOUR_AI_AGENT_ID"
       theme={{
         palette: {
-          onLight: {
+          onlight: {
             textMidEmphasis: '#7A50F2',  // Date separator color for light mode
           },
-          onDark: {
+          ondark: {
             textMidEmphasis: '#7A50F2',  // Date separator color for dark mode
           }
         }
@@ -35,6 +35,6 @@ function App() {
 
 **Note:**
 - The date separator uses the `caption4` typography variant and `textMidEmphasis` color
-- You must configure both `onLight` and `onDark` to ensure consistent appearance across themes
+- You must configure both `onlight` and `ondark` to ensure consistent appearance across themes
 - Changing `textMidEmphasis` will affect other UI elements that use the same color token (e.g., secondary text, captions)
 - Direct component customization is not currently supported - theme palette is the only method available

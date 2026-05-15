@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.26.1 (May 15, 2026) with ChatSDK ^4.22.3
+
+
+### Patch Changes
+
+- Expose the open messenger window as a labeled modal dialog so screen readers announce it on open and restore focus to the opener on close
+- Contain keyboard focus inside the open messenger window so Tab and Shift+Tab cycle within it instead of escaping to the host page
+- Announce the conversation list as a labeled list with list-item semantics for assistive technologies
+- Move screen-reader focus to the conversation list header when entering the list, including when returning via the launcher's lazy navigator
+- Re-announce incoming messages when their bodies arrive or are enriched after the initial event
+- Restore focus correctly when a portaled dialog (such as the feedback modal) opened from inside the messenger window closes
+
+
 ## v1.26.0 (May 13, 2026) with ChatSDK ^4.22.3
 
 

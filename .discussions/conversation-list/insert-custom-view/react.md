@@ -17,7 +17,7 @@ import {
 function App() {
   return (
     <AgentProviderContainer
-      applicationId="YOUR_APP_ID"
+      appId="YOUR_APP_ID"
       aiAgentId="YOUR_AI_AGENT_ID"
     >
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -47,47 +47,40 @@ function App() {
 
 **Step 1: Create a Custom Body Component**
 
-Create a custom body component that includes custom views:
+Create a custom body component that includes custom views and keeps the SDK list behavior:
 
 ```tsx
 import { ReactNode } from 'react';
-import { useConversationListContext } from '@sendbird/ai-agent-messenger-react';
+import {
+  ConversationListLayout,
+  useConversationListContext
+} from '@sendbird/ai-agent-messenger-react';
 
 const CustomListBody = (): ReactNode => {
-  const { channels, onClickChannel } = useConversationListContext();
+  const { listSource } = useConversationListContext();
+  const DefaultBody = ConversationListLayout.defaults.components.Body;
 
   return (
-    <div style={{ flex: 1, overflowY: 'auto' }}>
-      {/* Custom promotional banner */}
-      <div style={{ margin: '16px', padding: '16px', backgroundColor: '#F0FDF4', borderRadius: '8px' }}>
-        <h4>🎉 New Feature Available!</h4>
-        <p>Try our new AI-powered quick replies feature.</p>
-      </div>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      {listSource.initialized && listSource.channels.length > 0 && (
+        <>
+          {/* Custom promotional banner */}
+          <div style={{ margin: '16px', padding: '16px', backgroundColor: '#F0FDF4', borderRadius: '8px' }}>
+            <h4>🎉 New Feature Available!</h4>
+            <p>Try our new AI-powered quick replies feature.</p>
+          </div>
 
-      {/* Separator */}
-      <div style={{ margin: '16px', textAlign: 'center', borderTop: '1px solid #E5E7EB' }}>
-        <span style={{ padding: '0 12px', backgroundColor: 'white' }}>CONVERSATIONS</span>
-      </div>
-
-      {/* Render conversation list items */}
-      {channels.map((channel) => (
-        <div
-          key={channel.url}
-          onClick={() => onClickChannel(channel)}
-          style={{ padding: '16px', borderBottom: '1px solid #E5E7EB', cursor: 'pointer' }}
-        >
-          <div>{channel.lastMessage?.message || 'No messages'}</div>
-        </div>
-      ))}
-
-      {/* Custom empty state */}
-      {channels.length === 0 && (
-        <div style={{ padding: '48px 24px', textAlign: 'center' }}>
-          <div style={{ fontSize: '48px' }}>💬</div>
-          <h3>No conversations yet</h3>
-          <p>Start a new conversation with our AI agent</p>
-        </div>
+          {/* Separator */}
+          <div style={{ margin: '16px', textAlign: 'center', borderTop: '1px solid #E5E7EB' }}>
+            <span style={{ padding: '0 12px', backgroundColor: 'white' }}>CONVERSATIONS</span>
+          </div>
+        </>
       )}
+
+      {/* Render the SDK conversation list items */}
+      <div style={{ minHeight: 0, flex: 1 }}>
+        <DefaultBody />
+      </div>
     </div>
   );
 };
@@ -105,7 +98,7 @@ import {
 function App() {
   return (
     <AgentProviderContainer
-      applicationId="YOUR_APP_ID"
+      appId="YOUR_APP_ID"
       aiAgentId="YOUR_AI_AGENT_ID"
     >
       <ConversationListLayout.Template>
