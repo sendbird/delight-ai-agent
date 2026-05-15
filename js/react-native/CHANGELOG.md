@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.14.1 (May 15, 2026) with ChatSDK ^4.22.3
+
+
+### Patch Changes
+
+- Move screen-reader focus to the conversation list header when the list becomes the active screen, including when returning to it from a conversation
+- Expose the conversation list close button and header title to screen readers with consistent header and button semantics
+
+
 ## v1.14.0 (May 13, 2026) with ChatSDK ^4.22.3
 
 
