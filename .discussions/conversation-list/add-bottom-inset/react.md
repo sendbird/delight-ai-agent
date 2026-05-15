@@ -6,15 +6,18 @@ You can add bottom padding or inset to the conversation list by customizing the 
 
 **Method 1: Using Custom Body Component with Padding**
 
-Create a custom body component with bottom padding:
+Create a custom body component that wraps the default list body with bottom padding:
 
 ```tsx
 import { ReactNode } from 'react';
+import { ConversationListLayout } from '@sendbird/ai-agent-messenger-react';
 
 const ListBodyWithInset = (): ReactNode => {
+  const DefaultBody = ConversationListLayout.defaults.components.Body;
+
   return (
-    <div style={{ flex: 1, overflowY: 'auto', paddingBottom: '80px' }}>
-      {/* List items will be rendered here by the default implementation */}
+    <div style={{ minHeight: 0, flex: 1, display: 'flex', flexDirection: 'column', paddingBottom: '80px' }}>
+      <DefaultBody />
     </div>
   );
 };
@@ -32,7 +35,7 @@ import {
 function App() {
   return (
     <AgentProviderContainer
-      applicationId="YOUR_APP_ID"
+      appId="YOUR_APP_ID"
       aiAgentId="YOUR_AI_AGENT_ID"
     >
       <ConversationListLayout.Template>
@@ -81,7 +84,7 @@ function App() {
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       <AgentProviderContainer
-        applicationId="YOUR_APP_ID"
+        appId="YOUR_APP_ID"
         aiAgentId="YOUR_AI_AGENT_ID"
       >
         <div style={{ flex: 1, paddingBottom: '60px' }}>

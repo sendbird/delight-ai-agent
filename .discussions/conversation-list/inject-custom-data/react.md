@@ -2,41 +2,40 @@
 
 ## How to inject and render custom data in the Conversation List
 
-You can inject and render custom data in the conversation list by creating a custom list item component that accesses channel metadata or custom data.
+You can render application-owned custom data in the conversation list by creating a custom list item component and matching your data to each conversation channel.
 
-**Step 1: Store Custom Data in Channel Metadata**
+**Step 1: Prepare Custom Data**
 
-First, ensure your channels have custom metadata:
+Prepare custom data in your application state or store. This example uses a static map keyed by channel URL:
 
 ```tsx
-import { useMessengerSessionContext } from '@sendbird/ai-agent-messenger-react';
+type ConversationCustomData = {
+  customerTier?: 'premium' | 'standard';
+  department?: string;
+  priority?: 'high' | 'normal';
+};
 
-// When creating a conversation, add custom data
-const { createConversation } = useMessengerSessionContext();
-
-await createConversation({
-  aiAgentId: 'YOUR_AI_AGENT_ID',
-  language: 'en-US',
-  metadata: {
+const customDataByChannelUrl: Record<string, ConversationCustomData> = {
+  'CHANNEL_URL_1': {
     customerTier: 'premium',
     department: 'Support',
-    priority: 'high'
-  }
-});
+    priority: 'high',
+  },
+};
 ```
 
 **Step 2: Create a Custom List Item that Renders Custom Data**
 
 ```tsx
-import { ConversationListItemProps } from '@sendbird/ai-agent-messenger-react';
+import type { ReactNode } from 'react';
+import type { ConversationListItemProps } from '@sendbird/ai-agent-messenger-react';
 
-const CustomDataListItem = (props: ConversationListItemProps) => {
-  const { channel, onClick } = props;
+const CustomDataListItem = (props: ConversationListItemProps): ReactNode => {
+  const { channel, channelUrl, onClick } = props;
 
-  // Access custom data from channel metadata
-  const metadata = channel.data ? JSON.parse(channel.data) : {};
-  const customerTier = metadata.customerTier || 'standard';
-  const priority = metadata.priority || 'normal';
+  const customData = customDataByChannelUrl[channelUrl] ?? {};
+  const customerTier = customData.customerTier ?? 'standard';
+  const priority = customData.priority ?? 'normal';
 
   return (
     <div
@@ -45,17 +44,15 @@ const CustomDataListItem = (props: ConversationListItemProps) => {
         flexDirection: 'column',
         padding: '16px',
         borderBottom: '1px solid #E5E7EB',
-        cursor: 'pointer'
+        cursor: 'pointer',
       }}
       onClick={() => onClick?.()}
     >
-      {/* Header with custom data badges */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
         <span style={{ fontSize: '15px', fontWeight: '600' }}>
-          Conversation
+          {'Conversation'}
         </span>
 
-        {/* Priority badge */}
         {priority === 'high' && (
           <span style={{
             padding: '2px 8px',
@@ -63,11 +60,10 @@ const CustomDataListItem = (props: ConversationListItemProps) => {
             backgroundColor: '#FEE2E2',
             color: '#DC2626',
           }}>
-            HIGH PRIORITY
+            {'HIGH PRIORITY'}
           </span>
         )}
 
-        {/* Tier badge */}
         {customerTier === 'premium' && (
           <span style={{
             padding: '2px 8px',
@@ -75,23 +71,21 @@ const CustomDataListItem = (props: ConversationListItemProps) => {
             backgroundColor: '#FEF3C7',
             color: '#D97706',
           }}>
-            ⭐ PREMIUM
+            {'PREMIUM'}
           </span>
         )}
       </div>
 
-      {/* Last message */}
       <div style={{ fontSize: '14px', color: '#6B7280' }}>
         {channel.lastMessage?.message || 'No messages yet'}
       </div>
 
-      {/* Custom data details */}
       <div style={{
         marginTop: '8px',
         fontSize: '12px',
-        color: '#9CA3AF'
+        color: '#9CA3AF',
       }}>
-        Department: {metadata.department || 'General'}
+        {'Department: '}{customData.department ?? 'General'}
       </div>
     </div>
   );
@@ -110,38 +104,22 @@ import {
 function App() {
   return (
     <AgentProviderContainer
-      applicationId="YOUR_APP_ID"
-      aiAgentId="YOUR_AI_AGENT_ID"
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
     >
       <ConversationListItemLayout.Template template={CustomDataListItem} />
 
-      <ConversationList />
+      <ConversationList
+        onOpenConversationView={(channelUrl, status) => {
+          console.log('Opening conversation:', channelUrl, status);
+        }}
+      />
     </AgentProviderContainer>
   );
 }
 ```
 
-**Alternative: Using Channel Custom Type**
-
-You can also filter and render based on channel custom type:
-
-```tsx
-const CustomDataListItem = (props: ConversationListItemProps) => {
-  const { channel } = props;
-  const isVIPChannel = channel.customType === 'vip';
-
-  return (
-    <div style={{
-      borderLeft: isVIPChannel ? '4px solid #F59E0B' : 'none'
-    }}>
-      {/* List item content */}
-    </div>
-  );
-};
-```
-
 **Notes:**
-- Channel metadata is accessible through `channel.data`
-- You can store JSON data in channel metadata
-- Custom types can be used for categorization
-- You can combine custom data with filtering using `conversationListFilter` prop
+- Use `channelUrl` to match conversation list items with data from your own application state.
+- Keep the custom data source updated when conversations are created, removed, or reloaded.
+- You can combine custom data rendering with filtering using the `conversationListFilter` prop.

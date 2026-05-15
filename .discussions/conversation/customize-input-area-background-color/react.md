@@ -20,7 +20,7 @@ function App() {
       `}</style>
 
       <AgentProviderContainer
-        applicationId="YOUR_APP_ID"
+        appId="YOUR_APP_ID"
         aiAgentId="YOUR_AI_AGENT_ID"
       >
         <Conversation />
