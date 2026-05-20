@@ -29,14 +29,21 @@ const CustomTitle = () => {
 Wrap your customizations within `AgentProviderContainer`:
 
 ```tsx
-import { AgentProviderContainer } from '@sendbird/ai-agent-messenger-react';
+import {
+  AgentProviderContainer,
+  Conversation,
+  ConversationHeaderLayout,
+} from '@sendbird/ai-agent-messenger-react';
 
 export const App = () => {
   return (
-    <AgentProviderContainer>
-      <ConversationHeaderLayout.Template>
-        <ConversationHeaderLayout.Title component={CustomTitle} />
-      </ConversationHeaderLayout.Template>
+    <AgentProviderContainer
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
+    >
+      <ConversationHeaderLayout.Title component={CustomTitle} />
+
+      <Conversation />
     </AgentProviderContainer>
   );
 };
@@ -48,7 +55,12 @@ export const App = () => {
 - `EndArea` - Right section (contains action buttons by default)
 - `MenuButton` - Menu/navigation button
 - `Title` - Conversation title
+- `MemoryIndicator` - Memory status indicator
 - `HandoffButton` - Agent handoff button
 - `ConversationCloseButton` - Close conversation button
 - `ExpandButton` - Expand/fullscreen button
 - `CloseButton` - Close widget button
+
+**Notes:**
+- Replacing `Title` means your component owns the title text. The default title dynamically renders the current conversation preview title and optional avatar.
+- Keep your custom title short or add truncation styles if it can be longer than the header width.

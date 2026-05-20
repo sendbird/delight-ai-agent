@@ -2,68 +2,26 @@
 
 ## How to customize the footer text in the Conversation List
 
-You can customize the footer button text by creating a custom `Footer` component or by using localization.
-
-**Method 1: Using Custom Footer Component**
-
-Create a custom footer with your desired text:
-
-```tsx
-import { ReactNode } from 'react';
-import { useMessengerSessionContext, useMessengerContext } from '@sendbird/ai-agent-messenger-react';
-import { ConversationStatus } from '@sendbird/chat/aiAgent';
-
-const CustomFooterText = (): ReactNode => {
-  const { createConversation, setActiveChannel, refreshActiveChannel, aiAgentInfo } = useMessengerSessionContext();
-  const { language, countryCode, context } = useMessengerContext();
-
-  const handleClick = async () => {
-    if (aiAgentInfo.isMultipleActiveConversationsEnabled) {
-      const url = await createConversation({
-        aiAgentId: aiAgentInfo.userId,
-        language,
-        country: countryCode,
-        context,
-      });
-      setActiveChannel({ url, status: ConversationStatus.OPEN });
-    } else {
-      await refreshActiveChannel();
-    }
-  };
-
-  return (
-    <div
-      style={{ backgroundColor: '#FFE5F0', padding: '16px', textAlign: 'center' }}
-      onClick={handleClick}
-    >
-      <span style={{ fontWeight: '700' }}>Start New Chat</span>
-    </div>
-  );
-};
-```
-
-**Step 2: Register the Custom Component**
+You can customize the footer button text through the localization string set. This keeps the default footer behavior that creates or opens a conversation.
 
 ```tsx
 import {
   AgentProviderContainer,
   ConversationList,
-  ConversationListLayout
 } from '@sendbird/ai-agent-messenger-react';
 
 function App() {
   return (
     <AgentProviderContainer
-      appId="YOUR_APP_ID"
-      aiAgentId="YOUR_AI_AGENT_ID"
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
+      stringSet={{
+        TALK_TO_AGENT: 'Start New Chat',
+      }}
     >
-      <ConversationListLayout.Template>
-        <ConversationListLayout.Footer component={CustomFooterText} />
-      </ConversationListLayout.Template>
-
       <ConversationList
         onOpenConversationView={(channelUrl, status) => {
-          console.log('Opening conversation:', channelUrl);
+          console.log('Opening conversation:', channelUrl, status);
         }}
       />
     </AgentProviderContainer>
@@ -71,25 +29,7 @@ function App() {
 }
 ```
 
-**Method 2: Using Localization (String Set)**
-
-Customize the footer text through the localization system:
-
-```tsx
-<AgentProviderContainer
-  appId="YOUR_APP_ID"
-  aiAgentId="YOUR_AI_AGENT_ID"
-  stringSet={{
-    TALK_TO_AGENT: 'Start New Chat'  // Your custom text
-  }}
->
-  <ConversationList />
-</AgentProviderContainer>
-```
-
 **Notes:**
-- The default text is "Talk to Agent"
-- The footer button creates a new conversation or refreshes the active conversation
-- Using localization is simpler but only changes the text
-- Using a custom component gives full control over styling and behavior
-- The string key is `TALK_TO_AGENT` in the default string set
+- The default text is `Start a conversation`.
+- The string key is `TALK_TO_AGENT` in the React string set.
+- Use a custom `Footer` component only when you need to own the full create, open, and navigation behavior yourself.

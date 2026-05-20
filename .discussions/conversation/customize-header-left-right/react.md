@@ -18,12 +18,15 @@ import { ConversationHeaderLayout } from '@sendbird/ai-agent-messenger-react';
 // Empty component to hide items
 const EmptyComponent = () => <></>;
 
-// Custom end area with selected buttons
+// Custom end area that preserves the default right-side controls
 const CustomEndArea = () => {
   const { components } = ConversationHeaderLayout.useContext();
   return (
     <div style={{ display: 'flex', gap: '10px' }}>
+      <components.MemoryIndicator />
       <components.HandoffButton />
+      <components.ConversationCloseButton />
+      <components.ExpandButton />
       <components.CloseButton />
     </div>
   );
@@ -35,23 +38,37 @@ const CustomEndArea = () => {
 Wrap your customizations within `AgentProviderContainer`:
 
 ```tsx
-import { AgentProviderContainer } from '@sendbird/ai-agent-messenger-react';
+import {
+  AgentProviderContainer,
+  Conversation,
+  ConversationHeaderLayout,
+} from '@sendbird/ai-agent-messenger-react';
 
 export const App = () => {
   return (
-    <AgentProviderContainer>
-      <ConversationHeaderLayout.Template>
-        <ConversationHeaderLayout.MenuButton component={EmptyComponent} />
-        <ConversationHeaderLayout.EndArea component={CustomEndArea} />
-      </ConversationHeaderLayout.Template>
+    <AgentProviderContainer
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
+    >
+      <ConversationHeaderLayout.MenuButton component={EmptyComponent} />
+      <ConversationHeaderLayout.EndArea component={CustomEndArea} />
+
+      <Conversation />
     </AgentProviderContainer>
   );
 };
 ```
 
 **Available Default Components:**
+
+Replacing `EndArea` replaces the entire right section. Include each default control you want to keep, and omit only the controls you intentionally want to remove.
+
+- `StartArea` - Left section (contains MenuButton by default)
+- `TitleArea` - Center section (contains Title by default)
+- `EndArea` - Right section (contains action buttons by default)
 - `MenuButton` - Opens the menu options
 - `Title` - Displays conversation title
+- `MemoryIndicator` - Shows memory status when memory is enabled
 - `HandoffButton` - Handles agent handoff functionality
 - `ConversationCloseButton` - Closes the conversation
 - `ExpandButton` - Expands to fullscreen

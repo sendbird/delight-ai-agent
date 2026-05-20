@@ -1,5 +1,26 @@
 # Changelog
 
+## v1.27.0 (May 20, 2026) with ChatSDK ^4.22.3
+
+
+### Minor Changes
+
+- Add `conversation.list.markdownImageRenderMode` config option to hide incomplete markdown images while a message is streaming in the conversation
+
+```tsx
+import { FixedMessenger } from '@sendbird/ai-agent-messenger-react';
+
+<FixedMessenger config={{ conversation: { list: { markdownImageRenderMode: 'complete-only' } } }} />;
+```
+
+- Group conversation list options under `conversation.list` (`isTalkToAgentViewEnabled`, `scrollMode`, `newMessageIndicatorEnabled`, `senderAvatarEnabled`); the legacy flat keys on `conversation` are still accepted and marked deprecated
+
+### Patch Changes
+
+- Fix message input not honoring `theme.colors.messageInput.background`, `theme.colors.messageInput.text`, and `theme.colors.messageInput.placeholderText`
+- Fix conversation list screen entry announcement to include the conversation count for screen reader users
+
+
 ## v1.26.1 (May 15, 2026) with ChatSDK ^4.22.3
 
 

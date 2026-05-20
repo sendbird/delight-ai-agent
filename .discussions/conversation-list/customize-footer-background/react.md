@@ -1,63 +1,32 @@
-[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.0.0-grey.svg?style=flat-square)]()
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.22.0-grey.svg?style=flat-square)]()
 
-## How to customize the background color of the Conversation List footer area
+## How to change the primary color used by the Conversation List footer
 
-You can customize the footer background color by creating a custom `Footer` component.
-
-**Step 1: Create a Custom Footer Component**
-
-```tsx
-import { useMessengerContext } from '@sendbird/ai-agent-messenger-react';
-
-const CustomListFooter = () => {
-  return (
-    <div
-      style={{
-        backgroundColor: '#FFE5F0',  // Your custom background color (light pink)
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '16px',
-        cursor: 'pointer'
-      }}
-      onClick={() => {
-        console.log('Start new conversation');
-      }}
-    >
-      <span style={{
-        color: '#333333',
-        fontSize: '16px',
-        fontWeight: '700'
-      }}>
-        Talk to Agent
-      </span>
-    </div>
-  );
-};
-```
-
-**Step 2: Register the Custom Component**
+The Conversation List footer uses the SDK primary color. You can change that color through `theme.colors.base.primary` while keeping the default footer behavior that creates or opens a conversation.
 
 ```tsx
 import {
   AgentProviderContainer,
   ConversationList,
-  ConversationListLayout
 } from '@sendbird/ai-agent-messenger-react';
 
 function App() {
   return (
     <AgentProviderContainer
-      appId="YOUR_APP_ID"
-      aiAgentId="YOUR_AI_AGENT_ID"
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
+      theme={{
+        colors: {
+          base: {
+            primary: '#FFE5F0',
+            primaryContrastContent: '#333333',
+          },
+        },
+      }}
     >
-      <ConversationListLayout.Template>
-        <ConversationListLayout.Footer component={CustomListFooter} />
-      </ConversationListLayout.Template>
-
       <ConversationList
         onOpenConversationView={(channelUrl, status) => {
-          console.log('Opening conversation:', channelUrl);
+          console.log('Opening conversation:', channelUrl, status);
         }}
       />
     </AgentProviderContainer>
@@ -66,6 +35,7 @@ function App() {
 ```
 
 **Notes:**
-- The default footer has the primary color background from the theme
-- The footer button text uses the primary contrast content color (white by default)
-- The footer includes a "Talk to Agent" button that creates or opens a conversation
+- The default footer uses `theme.colors.base.primary` as its background color.
+- The footer text uses `theme.colors.base.primaryContrastContent`.
+- The default footer button text is the localized `stringSet.TALK_TO_AGENT` value (English default: `Start a conversation`).
+- This is not a footer-only token. The primary color can also affect other SDK surfaces that use `theme.colors.base.primary`.

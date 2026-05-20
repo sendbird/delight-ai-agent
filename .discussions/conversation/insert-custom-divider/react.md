@@ -1,4 +1,4 @@
-[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.0.0-grey.svg?style=flat-square)]()
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.1.0-grey.svg?style=flat-square)]()
 
 ## How to insert a custom divider between the message list and input field
 
@@ -30,8 +30,8 @@ import {
 function App() {
   return (
     <AgentProviderContainer
-      appId="YOUR_APP_ID"
-      aiAgentId="YOUR_AI_AGENT_ID"
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
     >
       <ConversationLayout.Footer component={CustomFooter} />
       <Conversation />
