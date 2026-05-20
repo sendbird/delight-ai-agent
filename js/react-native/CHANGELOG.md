@@ -1,5 +1,39 @@
 # Changelog
 
+## v1.15.0 (May 20, 2026) with ChatSDK ^4.22.3
+
+
+### Minor Changes
+
+- Add `conversation.list.markdownImageRenderMode` config option to hide incomplete markdown images while a message is streaming in the conversation
+
+```tsx
+import { AIAgentProviderContainer, FixedMessenger } from '@sendbird/ai-agent-messenger-react-native';
+
+<AIAgentProviderContainer
+  appId={'YOUR_APP_ID'}
+  aiAgentId={'YOUR_AI_AGENT_ID'}
+  userSessionInfo={userSessionInfo}
+  nativeModules={nativeModules}
+  config={{ conversation: { list: { markdownImageRenderMode: 'complete-only' } } }}
+>
+  <FixedMessenger />
+</AIAgentProviderContainer>;
+```
+
+- Group conversation list options under `conversation.list` (`isTalkToAgentViewEnabled`, `scrollMode`, `newMessageIndicatorEnabled`, `senderAvatarEnabled`); the legacy flat keys on `conversation` are still accepted and marked deprecated
+
+### Patch Changes
+
+- Fix conversation list screen entry not being announced to screen readers
+- Fix accessibility labels and hints for the close-messenger button across all supported languages
+- Fix accessibility for CSAT survey rating options, follow-up inputs, and radio controls
+- Fix accessibility labels and live-region announcements in the conversation list screen
+- Fix accessibility labels and hints for conversation screen header controls (close, menu, handoff, title)
+- Fix accessibility for form error labels and text inputs
+- Fix accessibility hint for the launcher button
+
+
 ## v1.14.1 (May 15, 2026) with ChatSDK ^4.22.3
 
 

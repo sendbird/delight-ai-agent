@@ -9,11 +9,16 @@ The memory dialog supports separate color tokens for the title, markdown body, m
 ### Example
 
 ```tsx
+import { createMMKV } from 'react-native-mmkv';
 import {
   AIAgentProviderContainer,
   AnonymousSessionInfo,
   Conversation,
 } from '@sendbird/ai-agent-messenger-react-native';
+
+const nativeModules = {
+  mmkv: createMMKV(),
+};
 
 function App() {
   return (

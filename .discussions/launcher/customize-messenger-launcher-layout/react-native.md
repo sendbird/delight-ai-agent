@@ -4,6 +4,14 @@
 
 You can customize the `FixedMessenger` layout using `FixedMessenger.Style` and `windowMode` props.
 
+Before using this example, install the required peer dependencies used by the provider and storage example:
+
+```sh
+pnpm add react-native-safe-area-context react-native-mmkv
+```
+
+Attachment features require additional picker or permission modules only when you configure those native adapters.
+
 ### Configuration Options
 
 **FixedMessenger Props:**
@@ -12,7 +20,7 @@ You can customize the `FixedMessenger` layout using `FixedMessenger.Style` and `
 | -------------- | -------- | ------- | ---------------------------------------- | ------------------------------------- |
 | `entryPoint`   | `string` | `'Conversation'` | Initial screen when launcher is clicked | `'Conversation'`, `'ConversationList'` |
 | `windowMode`   | `string` | `'floating'` | Display mode for the messenger window | `'floating'`, `'fullscreen'`          |
-| `fullscreenInsets` | `object` | `{ top: 0, left: 0, right: 0, bottom: 0 }` | Insets for fullscreen mode to handle safe areas | `{ top?, left?, right?, bottom? }` in pixels |
+| `fullscreenInsets` | `object` | Device safe-area insets | Insets for fullscreen mode. Passed values override the corresponding safe-area inset. | `{ top?, left?, right?, bottom? }` in pixels |
 | `edgeToEdgeEnabled` | `boolean` | `true` | (Android only) Enable edge-to-edge display, bottom inset considered when keyboard opens | `true`, `false` |
 
 **FixedMessenger.Style Properties:**
@@ -27,18 +35,34 @@ You can customize the `FixedMessenger` layout using `FixedMessenger.Style` and `
 ### Example
 
 ```tsx
-import { FixedMessenger } from '@sendbird/ai-agent-messenger-react-native';
+import { createMMKV } from 'react-native-mmkv';
+import {
+  AIAgentProviderContainer,
+  AnonymousSessionInfo,
+  FixedMessenger,
+} from '@sendbird/ai-agent-messenger-react-native';
+
+const nativeModules = {
+  mmkv: createMMKV(),
+};
 
 function App() {
   return (
-    <FixedMessenger windowMode={'floating'}>
-      <FixedMessenger.Style
-        position={'end-bottom'}
-        launcherSize={56}
-        margin={{ start: 20, end: 20, top: 20, bottom: 20 }}
-        spacing={12}
-      />
-    </FixedMessenger>
+    <AIAgentProviderContainer
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
+      nativeModules={nativeModules}
+      userSessionInfo={new AnonymousSessionInfo()}
+    >
+      <FixedMessenger windowMode={'floating'}>
+        <FixedMessenger.Style
+          position={'end-bottom'}
+          launcherSize={56}
+          margin={{ start: 20, end: 20, top: 20, bottom: 20 }}
+          spacing={12}
+        />
+      </FixedMessenger>
+    </AIAgentProviderContainer>
   );
 }
 ```
