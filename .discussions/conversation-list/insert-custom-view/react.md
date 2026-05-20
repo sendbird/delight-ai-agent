@@ -1,4 +1,4 @@
-[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.0.0-grey.svg?style=flat-square)]()
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.3.0-grey.svg?style=flat-square)]()
 
 ## How to insert a custom view into the Conversation List
 
@@ -11,14 +11,15 @@ Insert custom content before or after the conversation list:
 ```tsx
 import {
   AgentProviderContainer,
-  ConversationList
+  ConversationList,
 } from '@sendbird/ai-agent-messenger-react';
 
 function App() {
   return (
     <AgentProviderContainer
-      appId="YOUR_APP_ID"
-      aiAgentId="YOUR_AI_AGENT_ID"
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
+      entryStyle={{ width: '100%', height: '100%' }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         {/* Custom banner above the list */}
@@ -29,7 +30,7 @@ function App() {
         {/* Conversation List */}
         <ConversationList
           onOpenConversationView={(channelUrl, status) => {
-            console.log('Opening conversation:', channelUrl);
+            console.log('Opening conversation:', channelUrl, status);
           }}
         />
 
@@ -50,10 +51,10 @@ function App() {
 Create a custom body component that includes custom views and keeps the SDK list behavior:
 
 ```tsx
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import {
   ConversationListLayout,
-  useConversationListContext
+  useConversationListContext,
 } from '@sendbird/ai-agent-messenger-react';
 
 const CustomListBody = (): ReactNode => {
@@ -92,18 +93,17 @@ const CustomListBody = (): ReactNode => {
 import {
   AgentProviderContainer,
   ConversationList,
-  ConversationListLayout
+  ConversationListLayout,
 } from '@sendbird/ai-agent-messenger-react';
 
 function App() {
   return (
     <AgentProviderContainer
-      appId="YOUR_APP_ID"
-      aiAgentId="YOUR_AI_AGENT_ID"
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
+      entryStyle={{ width: '100%', height: '100%' }}
     >
-      <ConversationListLayout.Template>
-        <ConversationListLayout.Body component={CustomListBody} />
-      </ConversationListLayout.Template>
+      <ConversationListLayout.Body component={CustomListBody} />
 
       <ConversationList />
     </AgentProviderContainer>
@@ -112,5 +112,8 @@ function App() {
 ```
 
 **Notes:**
+- Method 1 inserts content outside the SDK list body. Use it for fixed banners or footers around the list.
+- Method 2 replaces the SDK `Body` slot and calls the default body so loading, empty, pagination, and item click behavior are preserved.
+- `entryStyle` gives the provider entry element a real size. Without it, the default fit-content entry can make `height: '100%'` wrappers collapse.
 - Custom views can include banners, promotions, separators, empty states, etc.
-- You can conditionally render custom views based on application state
+- You can conditionally render custom views based on application state or `listSource`.

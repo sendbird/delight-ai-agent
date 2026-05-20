@@ -1,4 +1,4 @@
-[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.0.0-grey.svg?style=flat-square)]()
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.21.0-grey.svg?style=flat-square)]()
 
 ## How to customize the typing indicator appearance in the conversation
 
@@ -7,15 +7,26 @@ You can customize the typing indicator by replacing the `TypingIndicator` compon
 **Step 1: Create a Custom TypingIndicator Component**
 
 ```tsx
-import { IncomingMessageProps } from '@sendbird/ai-agent-messenger-react';
+import type { IncomingMessageProps } from '@sendbird/ai-agent-messenger-react';
 
-const CustomTypingIndicator = (props: IncomingMessageProps) => {
+const CustomTypingIndicator = ({ thinkingMessage }: IncomingMessageProps) => {
+  if (thinkingMessage) {
+    return (
+      <div style={{
+        padding: '12px',
+        color: '#7C3AED',
+      }}>
+        {thinkingMessage}
+      </div>
+    );
+  }
+
   return (
     <div style={{
       backgroundColor: '#F3E8FF',
       padding: '12px',
       borderRadius: '12px',
-      color: '#7C3AED'
+      color: '#7C3AED',
     }}>
       ✍️ Typing...
     </div>
@@ -29,18 +40,16 @@ const CustomTypingIndicator = (props: IncomingMessageProps) => {
 import {
   AgentProviderContainer,
   Conversation,
-  IncomingMessageLayout
+  IncomingMessageLayout,
 } from '@sendbird/ai-agent-messenger-react';
 
 function App() {
   return (
     <AgentProviderContainer
-      appId="YOUR_APP_ID"
-      aiAgentId="YOUR_AI_AGENT_ID"
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
     >
-      <IncomingMessageLayout.Template>
-        <IncomingMessageLayout.TypingIndicator component={CustomTypingIndicator} />
-      </IncomingMessageLayout.Template>
+      <IncomingMessageLayout.TypingIndicator component={CustomTypingIndicator} />
 
       <Conversation />
     </AgentProviderContainer>

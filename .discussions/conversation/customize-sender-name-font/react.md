@@ -13,17 +13,21 @@ While global typography customization is possible through the theme system, the 
 Create a custom component for precise control over sender name font styling:
 
 ```tsx
-import { type IncomingMessageProps } from '@sendbird/ai-agent-messenger-react';
+import type { IncomingMessageProps } from '@sendbird/ai-agent-messenger-react';
 
 export const CustomIncomingSenderName = ({ sender }: Pick<IncomingMessageProps, 'sender'>) => {
   return (
     <div
       style={{
         // Custom font styling
+        width: '100%',
         fontWeight: 600,
         fontSize: '14px',
         lineHeight: '18px',
         color: '#aaa',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
       }}
     >
       {sender.nickname}
@@ -41,11 +45,14 @@ import { CustomIncomingSenderName } from './components/CustomIncomingSenderName'
 function App() {
   return (
     <FixedMessenger
-      appId="YOUR_APP_ID"
-      aiAgentId="YOUR_AI_AGENT_ID"
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
     >
       <IncomingMessageLayout.SenderName component={CustomIncomingSenderName} />
     </FixedMessenger>
   );
 }
 ```
+
+**Notes:**
+- The default sender name truncates long names with ellipsis. Keep similar truncation styles in a custom component unless you intentionally want wrapping.

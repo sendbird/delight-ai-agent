@@ -297,6 +297,7 @@ ConversationHeaderLayout.components = {
   EndArea,                   // Right section (contains action buttons by default)
   MenuButton,                // Menu/navigation button
   Title,                     // Conversation title
+  MemoryIndicator,           // User memory indicator
   HandoffButton,             // Agent handoff button
   ConversationCloseButton,   // Close conversation button
   ExpandButton,              // Expand/fullscreen button

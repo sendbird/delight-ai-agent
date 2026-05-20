@@ -34,14 +34,22 @@ const CustomStartArea = () => {
 Wrap your customizations within `AgentProviderContainer`:
 
 ```tsx
-import { AgentProviderContainer } from '@sendbird/ai-agent-messenger-react';
+import {
+  AgentProviderContainer,
+  ConversationList,
+  ConversationListHeaderLayout,
+} from '@sendbird/ai-agent-messenger-react';
 
 export const App = () => {
   return (
-    <AgentProviderContainer>
-      <ConversationListHeaderLayout.Template>
-        <ConversationListHeaderLayout.StartArea component={CustomStartArea} />
-      </ConversationListHeaderLayout.Template>
+    <AgentProviderContainer
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
+      entryStyle={{ width: '100%', height: '100%' }}
+    >
+      <ConversationListHeaderLayout.StartArea component={CustomStartArea} />
+
+      <ConversationList />
     </AgentProviderContainer>
   );
 };
@@ -53,3 +61,7 @@ export const App = () => {
 - `EndArea` - Right section (contains CloseButton by default)
 - `Title` - Conversation list title
 - `CloseButton` - Close widget button
+
+**Notes:**
+- `entryStyle` makes the `AgentProviderContainer` entry element fill the host layout instead of using its default fit-content size.
+- If the list is rendered inside your own flex container, keep the container height explicit so the list body can scroll.

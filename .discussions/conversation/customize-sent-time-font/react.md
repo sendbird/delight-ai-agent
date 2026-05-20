@@ -11,28 +11,26 @@ The SentTime component is rendered as part of both outgoing and incoming message
 **Step 1: Create a Custom SentTime Component**
 
 ```tsx
-import type { OutgoingMessageProps, IncomingMessageProps } from '@sendbird/ai-agent-messenger-react';
+import type { IncomingMessageProps, OutgoingMessageProps } from '@sendbird/ai-agent-messenger-react';
+import { useLocalizationContext } from '@sendbird/ai-agent-messenger-react';
 
 type SentTimeProps = Pick<OutgoingMessageProps, 'createdAt'> | Pick<IncomingMessageProps, 'createdAt'>;
 
 export function CustomSentTime({ createdAt }: SentTimeProps) {
-  // Format the timestamp as needed
-  const timeString = new Date(createdAt).toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit'
-  });
+  const { format, stringSet } = useLocalizationContext();
+
+  if (!createdAt) return null;
 
   return (
     <div
       style={{
-        // Custom font styling
         fontFamily: 'Fira Mono, monospace',
         fontSize: '11px',
         fontWeight: 500,
         color: '#FF9500',
       }}
     >
-      {timeString}
+      {format(createdAt, stringSet.DATE_FORMAT__MESSAGE_TIMESTAMP)}
     </div>
   );
 }
@@ -48,12 +46,12 @@ import { CustomSentTime } from './components/CustomSentTime';
 function App() {
   return (
     <FixedMessenger
-      appId="YOUR_APP_ID"
-      aiAgentId="YOUR_AI_AGENT_ID"
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
     >
       <OutgoingMessageLayout.SentTime component={CustomSentTime} />
       <IncomingMessageLayout.SentTime component={CustomSentTime} />
-    </AIAgentMessenger>
+    </FixedMessenger>
   );
 }
 ```

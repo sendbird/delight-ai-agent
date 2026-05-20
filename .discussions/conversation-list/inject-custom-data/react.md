@@ -1,4 +1,4 @@
-[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.0.0-grey.svg?style=flat-square)]()
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)![React Version](https://img.shields.io/badge/1.1.0-grey.svg?style=flat-square)]()
 
 ## How to inject and render custom data in the Conversation List
 
@@ -29,9 +29,11 @@ const customDataByChannelUrl: Record<string, ConversationCustomData> = {
 ```tsx
 import type { ReactNode } from 'react';
 import type { ConversationListItemProps } from '@sendbird/ai-agent-messenger-react';
+import { ConversationListItemLayout } from '@sendbird/ai-agent-messenger-react';
 
 const CustomDataListItem = (props: ConversationListItemProps): ReactNode => {
-  const { channel, channelUrl, onClick } = props;
+  const { channelUrl } = props;
+  const DefaultListItem = ConversationListItemLayout.defaults.template;
 
   const customData = customDataByChannelUrl[channelUrl] ?? {};
   const customerTier = customData.customerTier ?? 'standard';
@@ -40,19 +42,20 @@ const CustomDataListItem = (props: ConversationListItemProps): ReactNode => {
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '16px',
         borderBottom: '1px solid #E5E7EB',
-        cursor: 'pointer',
       }}
-      onClick={() => onClick?.()}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-        <span style={{ fontSize: '15px', fontWeight: '600' }}>
-          {'Conversation'}
-        </span>
+      <DefaultListItem {...props} />
 
+      <div
+        style={{
+          display: 'flex',
+          gap: '8px',
+          padding: '0 16px 12px 72px',
+          fontSize: '12px',
+          color: '#6B7280',
+        }}
+      >
         {priority === 'high' && (
           <span style={{
             padding: '2px 8px',
@@ -74,18 +77,10 @@ const CustomDataListItem = (props: ConversationListItemProps): ReactNode => {
             {'PREMIUM'}
           </span>
         )}
-      </div>
 
-      <div style={{ fontSize: '14px', color: '#6B7280' }}>
-        {channel.lastMessage?.message || 'No messages yet'}
-      </div>
-
-      <div style={{
-        marginTop: '8px',
-        fontSize: '12px',
-        color: '#9CA3AF',
-      }}>
-        {'Department: '}{customData.department ?? 'General'}
+        <span>
+          {'Department: '}{customData.department ?? 'General'}
+        </span>
       </div>
     </div>
   );
@@ -123,3 +118,4 @@ function App() {
 - Use `channelUrl` to match conversation list items with data from your own application state.
 - Keep the custom data source updated when conversations are created, removed, or reloaded.
 - You can combine custom data rendering with filtering using the `conversationListFilter` prop.
+- Rendering `ConversationListItemLayout.defaults.template` keeps the SDK conversation preview, timestamp, click handler, unread badge, and accessibility behavior.
