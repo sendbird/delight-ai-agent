@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.16.0 (May 22, 2026) with ChatSDK ^4.22.3
+
+
+### Minor Changes
+
+- Add `handlers.onClickLink` for intercepting link navigation (markdown links, markdown image presses, admin-message URLs, citation links, CTA buttons, and non-media file-preview clicks); falls back to `Linking.openURL` when omitted
+
+```tsx
+import { Linking } from 'react-native';
+
+import { AIAgentProviderContainer } from '@sendbird/ai-agent-messenger-react-native';
+
+<AIAgentProviderContainer
+  handlers={{
+    onClickLink: ({ url }) => {
+      Linking.openURL(url);
+    },
+  }}
+/>;
+```
+
+
 ## v1.15.0 (May 20, 2026) with ChatSDK ^4.22.3
 
 
