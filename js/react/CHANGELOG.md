@@ -1,5 +1,26 @@
 # Changelog
 
+## v1.28.0 (May 22, 2026) with ChatSDK ^4.22.3
+
+
+### Minor Changes
+
+- Add `handlers.onClickLink` for intercepting link navigation (markdown links, admin-message URLs, citation links, CTA buttons, and non-media file-preview clicks); falls back to `window.open` when omitted
+
+```tsx
+import { AgentProviderContainer } from '@sendbird/ai-agent-messenger-react';
+
+<AgentProviderContainer
+  handlers={{
+    onClickLink: ({ url }) => {
+      // custom analytics or deep-link handling
+      window.open(url, '_blank');
+    },
+  }}
+/>;
+```
+
+
 ## v1.27.0 (May 20, 2026) with ChatSDK ^4.22.3
 
 
