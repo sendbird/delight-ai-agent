@@ -1,5 +1,43 @@
 # Changelog
 
+## v1.29.0 (May 27, 2026) with ChatSDK ^4.22.4
+
+
+### Minor Changes
+
+- Add `IncomingMessageLayout.Challenge` slot for customizing challenge message rendering and `onSendChallengeAction` handler for responding to challenge messages
+
+```tsx
+import { IncomingMessageLayout } from '@sendbird/ai-agent-messenger-react';
+import type { IncomingMessageProps } from '@sendbird/ai-agent-messenger-react';
+
+const MyChallenge = ({ extendedMessagePayload, onSendChallengeAction }: IncomingMessageProps) => {
+  const challenge = extendedMessagePayload?.challenge;
+  if (!challenge) return null;
+  return (
+    <button
+      onClick={() => onSendChallengeAction?.({ key: challenge.key, requestId: challenge.request_id, action: 'submit' })}
+    >
+      Submit
+    </button>
+  );
+};
+<IncomingMessageLayout.Challenge component={MyChallenge} />;
+```
+
+- Add opt-in `launcher.unreadBadgeEnabled` config that shows a red-dot badge on the closed launcher when AI agent channels have unread messages; the count is fetched on connect/reconnect (not polled)
+
+```tsx
+import { FixedMessenger } from '@sendbird/ai-agent-messenger-react';
+
+<FixedMessenger appId="YOUR_APP_ID" aiAgentId="YOUR_AI_AGENT_ID" config={{ launcher: { unreadBadgeEnabled: true } }} />;
+```
+
+### Patch Changes
+
+- Fix accessibility label for PDF files in the file viewer so screen readers announce "PDF file" instead of "Document file"
+
+
 ## v1.28.0 (May 22, 2026) with ChatSDK ^4.22.3
 
 
