@@ -109,6 +109,8 @@ function App() {
     common: { /* ... */ },
     feedback: { /* ... */ },
     handoff: { /* ... */ },
+    memory: { /* ... */ },
+    connection_delay: { /* ... */ },
   }}
 >
   <FixedMessenger />

@@ -1,5 +1,29 @@
 # Changelog
 
+## v1.17.0 (May 27, 2026) with ChatSDK ^4.22.4
+
+
+### Minor Changes
+
+- Improve accessibility for media viewer, bottom sheet, confirm dialog, and conversation screens with modal focus trapping, initial focus on open, and escape gesture support for screen reader users
+- Fix media viewer not opening when the initial file index is out of bounds
+- Add `a11y_file_selected` and `a11y_file_remove_button` to the React Native `StringSet` for customizing accessibility labels on file attachment previews
+- Add `IncomingMessageLayout.Challenge` slot for customizing challenge message rendering and `onSendChallengeAction` handler for responding to challenge messages
+- Add opt-in `launcher.unreadBadgeEnabled` config that shows a red-dot badge on the closed launcher when AI agent channels have unread messages; the count is fetched on connect/reconnect (not polled)
+
+```tsx
+import { AIAgentProviderContainer, FixedMessenger } from '@sendbird/ai-agent-messenger-react-native';
+
+<AIAgentProviderContainer
+  appId="YOUR_APP_ID"
+  aiAgentId="YOUR_AI_AGENT_ID"
+  config={{ launcher: { unreadBadgeEnabled: true } }}
+>
+  <FixedMessenger />
+</AIAgentProviderContainer>;
+```
+
+
 ## v1.16.0 (May 22, 2026) with ChatSDK ^4.22.3
 
 
