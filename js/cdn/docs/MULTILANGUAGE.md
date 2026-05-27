@@ -333,6 +333,33 @@ A11Y_HINT_OPEN_FILE: 'Opens the file',
 A11Y_HINT_OPEN_IMAGE: 'Opens the image',
 A11Y_HINT_SEND_REPLY: 'Sends this reply',
 A11Y_HINT_SELECT_RATING: 'Selects this rating',
+
+// Accessibility — received file messages
+A11Y_RECEIVED_FILE_IMAGE: 'Image file',
+A11Y_RECEIVED_FILE_VIDEO: 'Video file',
+A11Y_RECEIVED_FILE_PDF: (name) => `PDF file: ${name}`,
+A11Y_RECEIVED_FILES_IMAGE_COUNT: (count) => `${count} ${count === 1 ? 'image' : 'images'}`,
+
+// Memory feature
+MEMORY__DIALOG_TITLE: 'User memory',
+MEMORY__DESC_ON: 'Memory is **turned on**. It remembers your conversation history to provide personalized responses tailored to your previous questions and preferences.',
+MEMORY__DESC_OFF: 'Memory is **turned off**. If turned on, it will remember your conversation history to provide personalized responses tailored to your previous questions and preferences.',
+MEMORY__BUTTON_USE: 'Use',
+MEMORY__BUTTON_DONT_USE: "Don't use",
+MEMORY__BUTTON_KEEP_USING: 'Keep using',
+MEMORY__BUTTON_DISABLE: 'Disable',
+MEMORY__BUTTON_DISABLE_AND_DELETE: 'Disable & Delete memory',
+MEMORY__BUTTON_KEEP_OFF: 'Keep off',
+MEMORY__BUTTON_ENABLE: 'Enable memory',
+MEMORY__BUTTON_CANCEL: 'Cancel',
+MEMORY__ERROR_MESSAGE: 'Failed to update memory state. Please try again.',
+A11Y_MEMORY_INDICATOR_MANAGE: 'Manage memory',
+A11Y_MEMORY_INDICATOR_ON: 'Memory is on',
+A11Y_MEMORY_INDICATOR_OFF: 'Memory is off',
+
+// Connection delay
+CONNECTION_DELAY__TITLE: "Something went wrong. You'll be reconnected shortly.",
+CONNECTION_DELAY__DESCRIPTION: (formattedTime) => `Estimated waiting time: ${formattedTime}`,
 ```
 
 ---
