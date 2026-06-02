@@ -524,7 +524,7 @@ Configuration options for the `AIAgentProviderContainer` component. This compone
 | `countryCode` | string | - | Country code following ISO 3166 format (e.g., "US", "KR") |
 | `context` | Record<string, string> | - | Context object for personalized AI agent responses |
 | `queryParams` | AIAgentQueryParams | - | Global default query parameters for AI agent |
-| `config` | AIAgentConfig | - | Global default configuration for AI agent |
+| `config` | DeepPartial<AIAgentConfig> | - | Global default configuration for AI agent |
 
 ### FixedMessenger Props
 
