@@ -1,5 +1,34 @@
 # Changelog
 
+## v1.30.0 (Jun 02, 2026) with ChatSDK ^4.22.4
+
+
+### Minor Changes
+
+- Add `markdownLinkRenderMode` config option to control display of incomplete markdown links during message streaming
+
+```ts
+// In your AIAgentConfig
+{
+  conversation: {
+    list: {
+      markdownLinkRenderMode: 'complete-only', // hides partial link tokens until the link is fully streamed
+    }
+  }
+}
+```
+
+- Fix incomplete markdown image hiding when message text contains unmatched brackets before the image token
+
+### Patch Changes
+
+- Fix screen-reader focus timing in windowed dialogs so initial focus waits until the conversation title is registered
+- Fix accessibility of sender information, sent time, and message body — these are no longer incorrectly hidden from screen readers
+- Improve focus trap behavior and accessible labeling of form inputs, date separators, and the feedback comment field
+- Fix memory dialog title to display "Memory" instead of "User memory" across all supported languages
+- Fix screen reader experience for incoming markdown messages so that structured content (bold text, lists, links) is read directly instead of a flattened plain-text duplicate
+
+
 ## v1.29.0 (May 27, 2026) with ChatSDK ^4.22.4
 
 

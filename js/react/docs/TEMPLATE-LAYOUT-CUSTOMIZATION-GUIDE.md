@@ -77,6 +77,7 @@ IncomingMessageLayout.components = {
   SuggestedReplies,  // Quick reply buttons
   MessageTemplate,   // Rich message templates
   CustomMessageTemplate, // Custom message templates
+  Challenge,         // Challenge message content
   CTAButton,         // Call-to-action buttons
   Citation,          // Reference citations
   Form,              // Interactive forms
