@@ -1,5 +1,30 @@
 # Changelog
 
+## v1.18.0 (Jun 02, 2026) with ChatSDK ^4.22.4
+
+
+### Minor Changes
+
+- Add `markdownLinkRenderMode` config option to control display of incomplete markdown links during message streaming
+
+```ts
+// In your AIAgentConfig
+{
+  conversation: {
+    list: {
+      markdownLinkRenderMode: 'complete-only', // hides partial link tokens until the link is fully streamed
+    }
+  }
+}
+```
+
+- Fix incomplete markdown image hiding when message text contains unmatched brackets before the image token
+
+### Patch Changes
+
+- Fix memory dialog title to display "Memory" instead of "User memory" across all supported languages
+
+
 ## v1.17.0 (May 27, 2026) with ChatSDK ^4.22.4
 
 

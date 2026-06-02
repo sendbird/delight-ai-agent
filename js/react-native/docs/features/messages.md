@@ -167,8 +167,8 @@ interface ExtendedMessagePayload {
 |----------|------|-------------|
 | id | string | Specifies the unique ID of the custom message template. Make sure it is an exact match with the ID you've set in Delight AI agent dashboard. |
 | response.status | number | Indicates the HTTP request status. |
-| response.content | JSON string | Specifies the content of the message. |
-| error | string | Specifies the reason why the request failed if it failed. |
+| response.content | string \| null | Specifies the content of the message. |
+| error | string \| null | Specifies the reason why the request failed if it failed. |
 
 **Sample JSON payload**
 
