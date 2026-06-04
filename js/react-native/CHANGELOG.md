@@ -1,5 +1,33 @@
 # Changelog
 
+## v1.19.0 (Jun 04, 2026) with ChatSDK ^4.22.5
+
+
+### Minor Changes
+
+- Add `deferredMarkdownElements` config option to control which markdown elements are hidden during message streaming; deprecates `markdownImageRenderMode` and `markdownLinkRenderMode`
+
+```tsx
+import { AIAgentProviderContainer, FixedMessenger } from '@sendbird/ai-agent-messenger-react-native';
+
+<AIAgentProviderContainer
+  appId={'YOUR_APP_ID'}
+  aiAgentId={'YOUR_AI_AGENT_ID'}
+  userSessionInfo={userSessionInfo}
+  nativeModules={nativeModules}
+  config={{
+    conversation: {
+      list: {
+        deferredMarkdownElements: ['image', 'link'],
+      },
+    },
+  }}
+>
+  <FixedMessenger />
+</AIAgentProviderContainer>;
+```
+
+
 ## v1.18.0 (Jun 02, 2026) with ChatSDK ^4.22.4
 
 
