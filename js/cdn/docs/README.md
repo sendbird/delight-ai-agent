@@ -101,10 +101,10 @@ Manual sessions require a session token issued by your server. The SDK uses this
 
 | Callback | Required | Description |
 |----------|----------|-------------|
-| onSessionTokenRequired | Yes | Called when the SDK needs a new session token. Fetch a new token from your server and pass it to `resolve(token)`. If an error occurs, call `reject(error)`. |
-| onSessionClosed | Yes | Called when the user is logged out. This can occur when the token is revoked, the user is deactivated, or the app does not refresh the token. To recover, call `loadMessenger()` and `initialize()` again. |
+| onSessionTokenRequired | No | Called when the SDK needs a new session token. Fetch a new token from your server and pass it to `resolve(token)`. If an error occurs, call `reject(error)`. Recommended when your tokens expire, since the session is renewed only through this callback. |
+| onSessionClosed | No | Called when the user is logged out (e.g. token revoked, user deactivated, or `onSessionTokenRequired` not provided). To recover, call `loadMessenger()` and `initialize()` again. |
 | onSessionError | No | Called when an error occurs during session refresh. |
-| onSessionRefreshed | No | Called when the session token is refreshed. |
+| onSessionRefreshed | No | Called when the session token is successfully refreshed. |
 
 ```javascript
 messenger.initialize({
@@ -244,9 +244,11 @@ const messenger = await loadMessenger({
   // Use Conversation component to display only the messenger without the launcher
   customMainComponent: ({ messenger, react }) => {
     return react.forwardRef((props, ref) => {
-        return react.createElement(messenger.AgentProviderContainer, props, [
-        react.createElement(messenger.Conversation),
-      ]);
+      return react.createElement(
+        messenger.AgentProviderContainer,
+        { ...props, ref },
+        [react.createElement(messenger.Conversation)]
+      );
     });
   },
 });
