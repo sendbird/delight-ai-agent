@@ -10,6 +10,8 @@ vi.mock('@sendbird/ai-agent-messenger-react', () => ({
       Mocked FixedMessenger
     </div>
   ),
+  AnonymousSessionInfo: class AnonymousSessionInfo {},
+  ManualSessionInfo: class ManualSessionInfo {},
 }));
 
 describe('App', () => {
