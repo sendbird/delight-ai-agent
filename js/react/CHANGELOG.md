@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.31.1 (Jun 09, 2026) with ChatSDK ^4.22.5
+
+
+### Patch Changes
+
+- Fix focus ring appearing on the header menu button when the messenger window opens programmatically
+- Fix background surface stealing keyboard focus from an open modal dialog
+- Fix MediaViewer layout on mobile devices to fill the viewport and respect safe area insets (notch, home bar)
+- Fix backdrop click to close MediaViewer while the image is still loading
+- Fix placeholder text color in disabled and blocked message input to use the correct disabled color token
+
+
 ## v1.31.0 (Jun 04, 2026) with ChatSDK ^4.22.5
 
 
