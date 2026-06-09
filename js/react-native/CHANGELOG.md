@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.19.1 (Jun 09, 2026) with ChatSDK ^4.22.5
+
+
+### Patch Changes
+
+- Fix modal content rendering outside the messenger context boundary, which prevented messenger context hooks from being accessible inside modals
+- Fix date separator rendering order in inverted message list
+
+
 ## v1.19.0 (Jun 04, 2026) with ChatSDK ^4.22.5
 
 
