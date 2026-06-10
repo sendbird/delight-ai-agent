@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.32.0 (Jun 10, 2026) with ChatSDK ^4.22.5
+
+
+### Minor Changes
+
+- Add `FixedMessenger.Conversation` and `FixedMessenger.ConversationList` for replacing the default conversation and conversation-list views with custom components
+
+```tsx
+import { type ConversationListProps, type ConversationProps, FixedMessenger } from '@sendbird/ai-agent-messenger-react';
+
+const CustomConversation = (props: ConversationProps) => <MyConversation {...props} />;
+const CustomConversationList = (props: ConversationListProps) => <MyConversationList {...props} />;
+<FixedMessenger appId={'APP_ID'} aiAgentId={'AGENT_ID'}>
+  <FixedMessenger.Conversation component={CustomConversation} />
+  <FixedMessenger.ConversationList component={CustomConversationList} />
+</FixedMessenger>;
+```
+
+### Patch Changes
+
+- Fix focus not returning to the launcher button when closing the messenger window
+
+
 ## v1.31.1 (Jun 09, 2026) with ChatSDK ^4.22.5
 
 
