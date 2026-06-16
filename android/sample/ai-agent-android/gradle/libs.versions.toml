@@ -10,6 +10,7 @@ appcompat = "1.6.1"
 material = "1.5.0"
 lifecycleViewModelKtx = "2.5.1"
 lifecycleRuntimeKtx = "2.5.1"
+lifecycleProcess = "2.5.1"
 activityKtx = "1.6.1"
 fragmentKtx = "1.5.5"
 sdkKtlint = "0.50.0"
@@ -30,7 +31,7 @@ viewpager2 = "1.0.0"
 markwon = "4.6.2"
 kotlinBom = "1.8.0"
 sdkUikit = "3.23.0"
-sdkAiAgentMessenger = "1.14.0"
+sdkAiAgentMessenger = "1.15.0"
 sdkDesk = "1.1.6"
 sdkMockk = "1.13.4"
 sdkMockkAndroid = "1.13.3"
@@ -67,6 +68,7 @@ androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", ve
 androidx-fragment-testing = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragmentKtx" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewModelKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }

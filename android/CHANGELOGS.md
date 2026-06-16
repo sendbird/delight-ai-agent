@@ -1,5 +1,49 @@
 # Changelog
 
+## v1.15.0 (Jun 16, 2026) with Chat SDK `v4.36.2`
+
+### Features
+
+#### Launcher unread badge
+
+Added an optional unread red-dot badge on the messenger launcher that appears while the launcher is closed and there are unread messages.
+
+- Added `MessengerLauncherConfig` with `unreadBadgeEnabled: Boolean` (defaults to `false`)
+- Added `launcher: MessengerLauncherConfig` property in `AIAgentConfig`
+- Added `UnreadMessageCountParams` to customize how the badge's unread count is fetched
+    - `aiAgentChannelFilter: AIAgentChannelFilter`
+    - `aiAgentIds: List<String>`
+    - `aiAgentConversationStatusFilter: List<ConversationStatus>?`
+    - `deskChannelFilter: DeskChannelFilter`
+    - `pinnedChannelUrls: List<String>`
+- Added `unreadMessageCountParams: UnreadMessageCountParams` property in `LauncherSettingsParams`
+```kotlin
+// Enable the unread badge before attaching the launcher
+AIAgentMessenger.config.launcher.unreadBadgeEnabled = true
+
+// Optionally customize how the unread count is fetched
+val params = LauncherSettingsParams(
+    unreadMessageCountParams = UnreadMessageCountParams(
+        aiAgentChannelFilter = AIAgentChannelFilter.INCLUDE,
+        aiAgentConversationStatusFilter = listOf(ConversationStatus.OPEN, ConversationStatus.CLOSED),
+    ),
+)
+```
+
+#### Markdown deferred-element render mode
+
+Added a render mode that hides incomplete markdown tokens during bot message streaming until the token fully closes, so half-written markdown is not briefly exposed.
+
+- Added `DeferredMarkdownElement` enum with `IMAGE` and `LINK` options
+- Added `deferredMarkdownElements: Set<DeferredMarkdownElement>` property in `ConversationConfig.List` (defaults to an empty set, rendering all elements as-is immediately)
+```kotlin
+// Defer incomplete image and link tokens while streaming
+AIAgentMessenger.config.conversation.list.deferredMarkdownElements =
+    setOf(DeferredMarkdownElement.IMAGE, DeferredMarkdownElement.LINK)
+```
+
+---
+
 ## v1.14.0 (May 14, 2026) with Chat SDK `v4.36.2`
 
 ### Features

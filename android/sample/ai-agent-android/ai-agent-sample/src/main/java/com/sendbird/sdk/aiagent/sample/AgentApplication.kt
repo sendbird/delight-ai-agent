@@ -35,6 +35,7 @@ class AgentApplication : Application(), MessengerInitResultHandler {
             wsHost = appInfo.region.wsHost(),
             loggerLevel = LoggerLevel.VERBOSE
         ))
+        AIAgentMessenger.config.launcher.unreadBadgeEnabled = true
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
