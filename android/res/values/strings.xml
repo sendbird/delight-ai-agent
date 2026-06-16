@@ -78,6 +78,7 @@
     <string name="aa_text_feedback_remove">Remove feedback</string>
     <string name="aa_text_feedback_cancel">Cancel</string>
     <string name="aa_text_feedback_submit">Submit</string>
+    <string name="aa_text_feedback_rating_required">Select a rating to submit feedback.</string>
     <string name="aa_text_new_message">New message</string>
     <string name="aa_text_max_upload_file_count_limit_exceeded">Select up to %d photos</string>
     <string name="aa_text_multiple_files_count">%d photos</string>
@@ -99,7 +100,7 @@
     <string name="aa_text_connection_delayed_description">Estimated waiting time: %1$s</string>
 
     <!--  User memory  -->
-    <string name="aa_text_user_memory_dialog_title">User memory</string>
+    <string name="aa_text_user_memory_dialog_title">Memory</string>
     <string name="aa_text_user_memory_status_dialog_title">User memory usage status</string>
     <string name="aa_text_user_memory_on_description"><![CDATA[Memory is <b>turned on</b>.\nIt remembers your conversation history to provide personalized responses tailored to your previous questions and preferences.]]></string>
     <string name="aa_text_user_memory_off_description"><![CDATA[Memory is <b>turned off</b>.\nIf turned on, it will remember your conversation history to provide personalized responses tailored to your previous questions and preferences.]]></string>
