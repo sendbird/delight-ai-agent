@@ -298,6 +298,7 @@ Configuration options for the `FixedMessenger` component.
 | `config` | AIAgentConfig | - | Global default configuration for AI agent. |
 | `theme` | object | - | Theme customization for palette and typography. |
 | `stringSet` | Partial<StringSet> | - | Localization string set for the messenger. |
+| `icons` | IconRegistry | - | Custom icon registry for the AI agent client. |
 | `logLevel` | LogLevel | LogLevel.WARN | Log level for the AI agent client. |
 | `dir` | 'ltr' \| 'rtl' | - | Text direction for the widget. |
 | `entryStyle` | CSSProperties | - | Custom CSS styles for the entry container element. |

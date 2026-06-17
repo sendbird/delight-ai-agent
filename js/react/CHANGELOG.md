@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.33.0 (Jun 17, 2026) with ChatSDK ^4.22.5
+
+
+### Minor Changes
+
+- Add `conversationStatsEnabled` prop to `Conversation` for controlling stats collection when building custom conversation navigation
+- Add `conversationListStatsEnabled` prop to `ConversationList` for controlling stats collection when building custom conversation list navigation
+
+### Patch Changes
+
+- Fix date dividers so consecutive welcome messages spanning multiple days stay grouped with one divider.
+- Fix auto scroll losing bottom pin when message content resizes (e.g., streaming text or image load) in auto mode
+- Fix avatar and channel cover images not falling back to the placeholder icon when the image URL fails to load
+- Fix date dividers so consecutive welcome messages spanning multiple days stay grouped with one divider.
+
+
 ## v1.32.0 (Jun 10, 2026) with ChatSDK ^4.22.5
 
 
