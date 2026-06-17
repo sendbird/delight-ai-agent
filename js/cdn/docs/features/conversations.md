@@ -235,9 +235,15 @@ messenger.updateConfig({
   countryCode: 'KR',
   theme: {
     palette: {
-      primary: '#6210CC'
-    }
-  }
+      primary: {
+        extraDark: '#3A0A7A',
+        dark: '#4E0FAA',
+        main: '#6210CC',
+        light: '#8B4DDB',
+        extraLight: '#C3A6ED',
+      },
+    },
+  },
 });
 ```
 
