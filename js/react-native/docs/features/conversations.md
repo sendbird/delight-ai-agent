@@ -525,6 +525,8 @@ Configuration options for the `AIAgentProviderContainer` component. This compone
 | `context` | Record<string, string> | - | Context object for personalized AI agent responses |
 | `queryParams` | AIAgentQueryParams | - | Global default query parameters for AI agent |
 | `config` | DeepPartial<AIAgentConfig> | - | Global default configuration for AI agent |
+| `handlers` | AgentClientHandlers | - | Event handlers for the AI agent client |
+| `icons` | IconRegistry | - | Custom icon registry for the AI agent client |
 
 ### FixedMessenger Props
 
