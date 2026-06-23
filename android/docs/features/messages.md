@@ -367,6 +367,170 @@ try {
 {% endtab %}
 {% endtabs %}
 
+#### Challenge
+
+Challenge enables in-chat secure form flows such as identity verification. When the AI agent needs the user to complete a verification step, the Delight AI agent server attaches challenge data to a message and the client renders its own form. After the user submits or cancels, the client reports the result to the server through a dedicated action API. The SDK does not render any default challenge UI.
+
+##### Core features
+
+- **Data delivery**: Challenge arrives as a `challenge` object in the message's `extendedMessagePayload`. The client handles UI rendering.
+- **Action API**: Submit and cancel results are reported with `AIAgentMessenger.awaitSendChallengeAction`. The server verifies the result and updates the challenge status.
+- **Status updates**: The server updates the challenge `status` on the same message (for example `pending` → `succeeded`). The SDK re-invokes your handler so you can reflect the new state.
+
+##### Data structure
+
+The `Challenge` model and `ChallengeStatus` enum:
+
+```kotlin
+data class Challenge(
+    val key: String,             // Challenge identifier; decides which form to render
+    val requestId: String,       // Server-side request identifier, paired with the submitted data during verification
+    val status: ChallengeStatus  // Current status of the challenge
+)
+
+enum class ChallengeStatus {
+    PENDING,    // Form is exposed and waiting for user input
+    SUCCEEDED,  // Server-side verification succeeded
+    FAILED,     // Server-side verification failed
+    CANCELED,   // User canceled the form
+    UNKNOWN     // Unrecognized status delivered by a newer server version
+}
+```
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `key` | String | Challenge identifier configured by the customer. The application decides which form to render based on this value. |
+| `requestId` | String | Server-side request identifier, paired with the submitted data during verification. |
+| `status` | ChallengeStatus | Current status of the challenge. An unrecognized value decodes to `UNKNOWN`. |
+
+**Sample JSON payload**
+
+The client receives a `challenge` object in `extendedMessagePayload` like below:
+
+```json
+{
+  "challenge": {
+    "key": "bjs-cpa",
+    "request_id": "req-123456",
+    "status": "pending"
+  }
+}
+```
+
+##### Implementation steps
+
+**1. Understand the message layout**
+
+The challenge form renders in a dedicated slot within the message structure, below the custom message template slot.
+
+```
+┌──────────────────────────────────────────────────────────┐
+│                   <MessageTemplate>                      │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│            <CustomMessageTemplateSlot>                   │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                   <ChallengeSlot>                        │
+│             (Place challenge form here)                  │
+└──────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                      <Feedback>                          │
+└──────────────────────────────────────────────────────────┘
+```
+
+**2. Register challenge handler**
+
+Implement `ChallengeViewHandler` and set it in `ConversationMessageListUIParams`. Render the form only while the status is `PENDING`; do not call the callback for challenge keys you do not handle.
+
+```kotlin
+class MyChallengeHandler : ChallengeViewHandler {
+    override fun onCreateChallengeView(
+        context: Context,
+        message: BaseMessage,
+        challenge: Challenge,
+        callback: ChallengeViewCallback
+    ) {
+        if (challenge.status != ChallengeStatus.PENDING) {
+            // Reflect a resolved state (succeeded / failed / canceled) instead of the form.
+            callback.onViewReady(createStatusView(context, challenge.status))
+            return
+        }
+        val view = when (challenge.key) {
+            "identity_verification" -> createVerificationForm(context, message, challenge)
+            else -> return // Render nothing for unknown keys
+        }
+        callback.onViewReady(view)
+    }
+}
+
+// Register handler
+AIAgentAdapterProviders.conversation =
+    ConversationAdapterProvider { channel, uiParams, containerGenerator ->
+        uiParams.challengeViewHandler = MyChallengeHandler()
+        ConversationMessageListAdapter(
+            channel,
+            uiParams,
+            containerGenerator
+        )
+    }
+```
+
+{% hint style="info" %}
+The SDK calls `onCreateChallengeView` every time the message or its challenge content changes (for example a `pending` → `succeeded` status update), so by default a new form view is built on each invocation. The SDK does not cache the view on your behalf — identical challenge values may still warrant a different presentation depending on your app's own state, so the caching policy is left to you. If repeated view creation is a performance concern, cache and reuse your own views in the handler (for example, keyed by `requestId` and `status`) and return the cached instance instead of rebuilding it.
+{% endhint %}
+
+**3. Process challenge data**
+
+Access the parsed challenge from the message:
+
+```kotlin
+val challenge = message.extendedMessagePayload["challenge"]
+// The SDK automatically parses this to a Challenge object for the handler.
+```
+
+**4. Send the action result**
+
+When the user submits or cancels the form, report the result with `AIAgentMessenger.awaitSendChallengeAction`. `data` is required for `ChallengeAction.SUBMIT` and may be omitted for `ChallengeAction.CANCEL`. The call suspends until the server acknowledges and returns no payload; the resulting status arrives as a later update to the message.
+
+`data` is an arbitrary `Map<String, Any>` whose contents are defined by your verification flow and the server — the SDK does not interpret it. The `authorization_code` key below is only an example; use whatever fields your server expects for the given challenge.
+
+```kotlin
+// On submit
+scope.launch {
+    try {
+        AIAgentMessenger.awaitSendChallengeAction(
+            SendChallengeActionParams(
+                channelUrl = message.channelUrl,
+                key = challenge.key,
+                requestId = challenge.requestId,
+                action = ChallengeAction.SUBMIT,
+                // Keys are defined by your verification flow; this is just an example.
+                data = mapOf("authorization_code" to authorizationCode)
+            )
+        )
+    } catch (e: SendbirdException) {
+        // Handle the failure (for example, show a retry affordance).
+    }
+}
+
+// On cancel (no data)
+scope.launch {
+    AIAgentMessenger.awaitSendChallengeAction(
+        SendChallengeActionParams(
+            channelUrl = message.channelUrl,
+            key = challenge.key,
+            requestId = challenge.requestId,
+            action = ChallengeAction.CANCEL
+        )
+    )
+}
+```
+
+{% hint style="info" %}
+The SDK does not retry automatically and does not disable input on its own — the application decides whether to re-show the form. Because the message list recycles views, your handler may be invoked again for the same challenge; preserve any in-progress input outside the view (for example, keyed by `requestId`) if it must survive scrolling. The application owns the accessibility semantics of the form it creates.
+{% endhint %}
+
 ---
 
 ## Key features

@@ -1,5 +1,57 @@
 # Changelog
 
+## v1.16.0 (Jun 23, 2026) with Chat SDK `v4.36.3`
+
+### Features
+
+#### In-chat challenge (AMT) support
+
+Added support for in-chat challenges, which let the AI agent ask the end user to complete a secure in-chat form (for example, identity verification) without leaving the conversation. The SDK does not render any default challenge UI; the application owns the form View and submits the result back to the server.
+
+- Added `Challenge` model representing a challenge attached to a message
+    - `key: String`, `requestId: String`, `status: ChallengeStatus`
+- Added `ChallengeStatus` enum with `PENDING`, `SUCCEEDED`, `FAILED`, `CANCELED`, and `UNKNOWN`
+- Added `ChallengeViewHandler` interface for the application to create the challenge form View
+    - `fun onCreateChallengeView(Context, BaseMessage, Challenge, ChallengeViewCallback)`
+- Added `ChallengeViewCallback` interface to deliver the created View back to the SDK
+    - `fun onViewReady(View)`
+- Added `challengeViewHandler: ChallengeViewHandler?` property in `ConversationMessageListUIParams` (defaults to `null`, in which case the challenge slot renders nothing)
+- Added `suspend fun awaitSendChallengeAction(SendChallengeActionParams)` in `AIAgentMessenger`
+- Added `SendChallengeActionParams` to submit or cancel a challenge result
+    - `channelUrl: String`, `key: String`, `requestId: String`, `action: ChallengeAction`, `data: Map<String, Any>?`
+- Added `ChallengeAction` enum with `SUBMIT` and `CANCEL`
+```kotlin
+// 1. Provide a custom View for incoming challenges
+params.challengeViewHandler = object : ChallengeViewHandler {
+    override fun onCreateChallengeView(
+        context: Context,
+        message: BaseMessage,
+        challenge: Challenge,
+        callback: ChallengeViewCallback,
+    ) {
+        val formView = buildFormView(context, challenge)
+        callback.onViewReady(formView)
+    }
+}
+
+// 2. Submit the form result back to the server
+AIAgentMessenger.awaitSendChallengeAction(
+    SendChallengeActionParams(
+        channelUrl = channelUrl,
+        key = challenge.key,
+        requestId = challenge.requestId,
+        action = ChallengeAction.SUBMIT,
+        data = mapOf("code" to "123456"),
+    ),
+)
+```
+
+### Bug Fixes
+
+- Fixed a potential crash where async connection and permission callbacks could access the fragment's `viewLifecycleOwner` after the view had been destroyed.
+
+---
+
 ## v1.15.0 (Jun 16, 2026) with Chat SDK `v4.36.2`
 
 ### Features
