@@ -15,6 +15,7 @@ In Delight AI agent messenger, AI agent and users can exchange various types of 
         - [Suggested replies](#suggested-replies)
       - [CSAT message](#csat-message)
       - [Custom message template](#custom-message-template)
+      - [Challenge](#challenge)
     - [Key features](#key-features)
       - [Citation](#citation)
       - [Special notice](#special-notice)
@@ -125,7 +126,7 @@ Delight AI agent messenger supports various message types to provide comprehensi
 
 Custom message templates enable Delight AI agent server to send structured data that clients can render with their own UI components. Unlike pre-defined message templates, clients must implement and register components beforehand, enabling business-specific UIs such as coupons, product lists, and reservations.
 
-#### How it works
+##### How it works
 
 **Raw response delivery**
 
@@ -144,7 +145,7 @@ Custom message templates enable Delight AI agent server to send structured data 
 * If client app receives an unregistered template ID, render a fallback UI in the custom component.
 * If you don't register a custom component at all, this template slot renders nothing by default.
 
-#### Data structure
+##### Data structure
 
 The interface for `custom_message_templates` is defined as `CustomMessageTemplateData`.
 
@@ -197,7 +198,7 @@ The client app will receive a JSON payload of `custom_message_templates` like be
 }
 ```
 
-#### How to implement
+##### How to implement
 
 To render a custom message template, you must:
 
@@ -272,7 +273,7 @@ const MyCustomMessageTemplate = ({ extendedMessagePayload }: Props) => {
 };
 ```
 
-#### How to handle a fallback and an error
+##### How to handle a fallback and an error
 
 Refer to the snippets in the following sections in the case of exceptions such as:
 
@@ -336,6 +337,191 @@ const RequestErrorUI = () => (
 **c) Runtime error handling**
 
 Wrap your custom template renderer with your app's error boundary to avoid breaking the message list when the template payload changes unexpectedly.
+
+#### Challenge
+
+Challenge enables in-chat secure form flows such as identity verification. When the Delight AI agent server attaches challenge data to a message, the client app renders its own UI and reports the user's submit or cancel action through the challenge action handler. The SDK doesn't render any default challenge UI.
+
+##### How it works
+
+**Data delivery**
+
+* Challenge data is delivered as a `challenge` object in `extendedMessagePayload`.
+* Client app is responsible for rendering the UI.
+* The SDK renders the registered `IncomingMessageLayout.Challenge` component only when the message has challenge data.
+
+**Action handler**
+
+* Your challenge component receives `onSendChallengeAction` through `IncomingMessageProps`.
+* Call `onSendChallengeAction` with `key`, `requestId`, `action`, and optional `data` to report the result.
+* The action handler sends the result to the AI agent server through the SDK.
+
+**Status-driven rendering**
+
+* The challenge `status` indicates the current state of the challenge.
+* Render the form while the status is `pending`.
+* If the message is updated with `succeeded`, `failed`, `canceled`, or another status, render the resolved state or nothing.
+
+##### Data structure
+
+The interface for `challenge` is defined as `ChallengeInfo`. The action handler uses `ChallengeActionParams`.
+
+```typescript
+interface ChallengeInfo {
+  key: string;
+  request_id: string;
+  status: 'pending' | 'succeeded' | 'failed' | 'canceled' | (string & {});
+}
+
+type ChallengeActionParams = {
+  key: string;
+  requestId: string;
+  action: 'submit' | 'cancel';
+  data?: Record<string, unknown>;
+};
+
+interface ExtendedMessagePayload {
+  // ... other fields
+  challenge?: ChallengeInfo;
+}
+```
+
+| Property | Type | Description |
+|----------|------|-------------|
+| key | string | Specifies the challenge identifier configured by the customer. Use this value to decide which form to render. |
+| request_id | string | Specifies the server-side request identifier. Pass this value as `requestId` when reporting an action. |
+| status | 'pending' \| 'succeeded' \| 'failed' \| 'canceled' \| string | Indicates the current status of the challenge. Unrecognized values are preserved as strings. |
+
+**Sample JSON payload**
+
+The client app will receive a JSON payload of `challenge` like below:
+
+```json
+{
+  "challenge": {
+    "key": "identity_verification",
+    "request_id": "req-123456",
+    "status": "pending"
+  }
+}
+```
+
+##### How to implement
+
+To render and process a challenge, you must:
+
+1. understand message component layout;
+2. register a challenge component;
+3. render the challenge data and send action results.
+
+**1) Message component layout**
+
+Challenges are rendered in a dedicated slot below the custom message template slot:
+
+```xml
+<MessageTemplate />
+
+<CustomMessageTemplateSlot />
+
+<!-- Place Challenge here -->
+<ChallengeSlot />
+
+<Form />
+<Feedback />
+<SuggestedReplies />
+```
+
+**2) Register a challenge component**
+
+Register your challenge component as `IncomingMessageLayout.Challenge` under `AIAgentProviderContainer`. In the following snippet, you'll register `MyChallenge` as a component.
+
+> ℹ️ If you don't register a challenge component, this slot renders nothing by default.
+
+```typescript
+import {
+  AIAgentProviderContainer,
+  IncomingMessageLayout,
+} from '@sendbird/ai-agent-messenger-react-native';
+
+<AIAgentProviderContainer {...props}>
+  <IncomingMessageLayout.Challenge component={MyChallenge} />
+</AIAgentProviderContainer>;
+```
+
+**3) Render with `ChallengeInfo` and send actions**
+
+Your challenge component receives `extendedMessagePayload.challenge` and `onSendChallengeAction`. Return `null` for challenge keys your app doesn't handle.
+
+```typescript
+import { useState } from 'react';
+import { Button, Text, TextInput, View } from 'react-native';
+
+import type { ChallengeActionParams, IncomingMessageProps } from '@sendbird/ai-agent-messenger-react-native';
+
+const MyChallenge = ({ extendedMessagePayload, onSendChallengeAction }: IncomingMessageProps) => {
+  const challenge = extendedMessagePayload?.challenge;
+  const [authorizationCode, setAuthorizationCode] = useState('');
+
+  if (!challenge) return null;
+
+  const sendChallengeAction = async (params: ChallengeActionParams) => {
+    try {
+      await onSendChallengeAction?.(params);
+    } catch {
+      // Show a retry UI or keep the form available.
+    }
+  };
+
+  if (challenge.key !== 'identity_verification') {
+    return null;
+  }
+
+  if (challenge.status !== 'pending') {
+    return (
+      <View>
+        <Text>{`Verification ${challenge.status}`}</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View>
+      <TextInput
+        value={authorizationCode}
+        onChangeText={setAuthorizationCode}
+        accessibilityLabel={'Authorization code'}
+      />
+      <Button
+        title={'Submit'}
+        onPress={() => {
+          void sendChallengeAction({
+            key: challenge.key,
+            requestId: challenge.request_id,
+            action: 'submit',
+            data: { authorization_code: authorizationCode },
+          });
+        }}
+      />
+      <Button
+        title={'Cancel'}
+        onPress={() => {
+          void sendChallengeAction({
+            key: challenge.key,
+            requestId: challenge.request_id,
+            action: 'cancel',
+          });
+        }}
+      />
+    </View>
+  );
+};
+```
+
+##### How to handle state and errors
+
+* The SDK doesn't retry challenge actions automatically. Handle rejected `onSendChallengeAction` promises in your component.
+* The SDK doesn't disable inputs or persist in-progress form values for you. Store temporary input in app state if it must survive message updates or component unmounts.
+* The application owns the accessibility semantics of the challenge form it renders.
 
 ---
 
