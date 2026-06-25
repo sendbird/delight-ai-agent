@@ -1,5 +1,31 @@
 # Changelog
 
+## v1.34.0 (Jun 25, 2026) with ChatSDK ^4.22.5
+
+
+### Minor Changes
+
+- Export `LiveMetric` type for typing the `onLiveMetric` handler payload in real-time SDK analytics
+
+```tsx
+import { AgentProviderContainer, Conversation, type LiveMetric } from '@sendbird/ai-agent-messenger-react';
+
+<AgentProviderContainer
+  handlers={{
+    onLiveMetric: (metric: LiveMetric) => {
+      console.log(metric.category, metric.metricKey, metric.data);
+    },
+  }}
+>
+  <Conversation />
+</AgentProviderContainer>;
+```
+
+### Patch Changes
+
+- Fix streaming animation for non-last bubbles in multi-bubble responses, showing full text immediately when the stream ends instead of leaving them partially animated
+
+
 ## v1.33.0 (Jun 17, 2026) with ChatSDK ^4.22.5
 
 
