@@ -39,6 +39,8 @@ extension AIAgentStarterKit {
     }
 
     /// The current context objects that will be sent with AI Agent requests.
+    /// Left empty by default so the SDK falls back to the device locale; override via
+    /// ``updateContextObjects(language:countryCode:context:)`` when an explicit value is needed.
     public static var contextObjects = ContextObjects()
 
     /// Updates the context objects for AI Agent conversations.

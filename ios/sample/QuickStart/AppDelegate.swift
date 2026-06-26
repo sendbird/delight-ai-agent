@@ -25,10 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if INTERNAL_TEST
         setupInternalTest()
         #endif
-        
+
         setupPushNotifications()
         initializeAIAgentSDK()
-        
+
         return true
     }
 
@@ -72,8 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let error = error {
                     debugPrint("[AppDelegate] ❌ Initialization failed - \(error.localizedDescription)")
                 }
-                
-                AIAgentStarterKit.updateContextObjects(language: "en", countryCode: "US", context: [:])
             }
         )
     }

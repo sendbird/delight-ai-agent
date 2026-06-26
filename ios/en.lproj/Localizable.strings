@@ -149,6 +149,7 @@
 // MARK: - ACCESSIBILITY - LAUNCHER
 "SBA_Accessibility_Launcher_openChat" = "Open conversation";
 "SBA_Accessibility_Launcher_closeChat" = "Close conversation";
+"SBA_Accessibility_Launcher_newMessagesAvailable" = "New messages available";
 
 // MARK: - ACCESSIBILITY - HEADER
 "SBA_Accessibility_Header_closeConversation" = "Close conversation";
