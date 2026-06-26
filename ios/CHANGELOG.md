@@ -1,5 +1,45 @@
 # Changelog
 
+## v1.15.0 (Jun 26, 2026) with Chat SDK v4.39.6
+
+### Features
+
+- Added launcher unread badge support (#566)
+  - Shows a red-dot badge on the closed launcher when unread messages are available
+  - Refreshes unread state after launcher authentication and when the app becomes active
+  - Exposes unread state to VoiceOver through the launcher button accessibility value
+  - New interfaces for this feature:
+    - `AIAgentMessenger.config.launcher`: Added launcher behavior configuration
+    - `SBAConfig.Launcher`: Added `unreadBadgeEnabled`
+    - `SBALauncherOptions`: Added `unreadBadge`
+    - `SBALauncherOptions.UnreadBadge`: Added unread count filter options
+    - `SBATheme.Launcher`: Added `unreadBadgeColor`
+- Added `deferredMarkdownElements` option to hide incomplete markdown image / link tokens during message streaming (#558, #562)
+  - Prevents raw image URLs and link destinations from briefly appearing in the message bubble while `![alt](destination` or `[label](destination` is still being streamed
+  - Image and link deferral can be toggled independently via a single OptionSet
+  - New interfaces for this feature:
+    - `SBADeferredMarkdownElement`: New `OptionSet` (`.image`, `.link`, `.all`)
+    - `SBAConfig.Conversation.List.deferredMarkdownElements`: New `public var` (type: `SBADeferredMarkdownElement`, default: `[]`); set to `.all`, `[.image]`, or `[.link]` to suppress the corresponding unterminated tokens until the closing delimiter arrives
+
+### Improvements
+
+- Reworked the streaming message manager to support multiple concurrent streams (#564)
+  - Each in-flight message tracks its own state and timer keyed by message ID, so concurrent streams no longer freeze each other
+  - Added `forceFinalize()` / `forceFinalize(messageId:)` for callers that need to flush in-flight animations explicitly
+- Sequential streaming illusion across multi-stream turns (#572)
+  - Only the last message of a turn animates with the typewriter cursor; earlier messages flush immediately so the cursor frees up for the next slot
+  - Streaming cells reconfigured during animation now keep the latest animated text instead of briefly falling back to the raw payload
+- Tightened file message uploads when no caption is provided (#568)
+  - `sendFileMessage` / `sendMultipleFilesMessage` now omit the `message` field when the caption is empty or whitespace-only, preventing the LLM pipeline from rejecting the request with `text content blocks must be non-empty`
+- Expanded internal telemetry coverage for connection, send, streaming, and render paths (#560)
+  - No public API change
+
+### Fixes
+
+- Fixed the user memory popup running destructive handlers when the user dismissed the alert via background tap or Escape gesture (#561)
+- Reduced vertical padding on handoff admin message cells from 16pt to 4pt; horizontal padding remains at 16pt (#571)
+- Fixed stale streaming message snapshot rendering and added fallback recovery for stalled streams (#575)
+
 ## v1.14.0 (May 14, 2026) with Chat SDK v4.39.4
 
 ### Features
