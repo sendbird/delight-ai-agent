@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.34.1 (Jun 29, 2026) with ChatSDK ^4.22.6
+
+
+### Patch Changes
+
+- Fix link buttons in rich message templates to route through `handlers.onClickLink` instead of always opening a new browser tab
+
+
 ## v1.34.0 (Jun 25, 2026) with ChatSDK ^4.22.5
 
 
