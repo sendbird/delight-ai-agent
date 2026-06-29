@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.22.1 (Jun 29, 2026) with ChatSDK ^4.22.6
+
+
+### Patch Changes
+
+- Fix typing indicator scroll crash when the message list is empty
+
+
 ## v1.22.0 (Jun 25, 2026) with ChatSDK ^4.22.5
 
 
