@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.34.2 (Jul 01, 2026) with ChatSDK ^4.22.6
+
+
+### Patch Changes
+
+- Fix connection failures when the default Chat host is temporarily unreachable by automatically retrying through an alternate host
+
+
 ## v1.34.1 (Jun 29, 2026) with ChatSDK ^4.22.6
 
 
