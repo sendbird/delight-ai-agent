@@ -1,5 +1,44 @@
 # Changelog
 
+## v1.23.1 (Jul 01, 2026) with ChatSDK ^4.22.6
+
+
+### Minor Changes
+
+- Export `MessengerSessionRef` type for typing the ref attached to `AIAgentProviderContainer`
+
+### Patch Changes
+
+- Fixed an issue in fixed scroll mode where the latest user message could lose its anchored position during keyboard transitions, streaming updates, or conversation-close state changes
+- Fix connection failures when the default Chat host is temporarily unreachable by automatically retrying through an alternate host
+
+```tsx
+import { useRef } from 'react';
+
+import {
+  AIAgentProviderContainer,
+  AnonymousSessionInfo,
+  type MessengerSessionRef,
+} from '@sendbird/ai-agent-messenger-react-native';
+
+function App() {
+  const messengerRef = useRef<MessengerSessionRef>(null);
+  async function updateContext() {
+    await messengerRef.current?.updateContext({ membership: 'gold' });
+  }
+  return (
+    <AIAgentProviderContainer
+      ref={messengerRef}
+      appId={'YOUR_APP_ID'}
+      aiAgentId={'YOUR_AI_AGENT_ID'}
+      nativeModules={nativeModules}
+      userSessionInfo={new AnonymousSessionInfo()}
+    />
+  );
+}
+```
+
+
 ## v1.22.1 (Jun 29, 2026) with ChatSDK ^4.22.6
 
 
