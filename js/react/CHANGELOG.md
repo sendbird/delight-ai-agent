@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.34.3 (Jul 03, 2026) with ChatSDK ^4.22.6
+
+
+### Patch Changes
+
+- Fix CTA and citation content rendering outside a custom `MessageBody` component by passing them as its children instead of wrapping them separately
+
+
 ## v1.34.2 (Jul 01, 2026) with ChatSDK ^4.22.6
 
 

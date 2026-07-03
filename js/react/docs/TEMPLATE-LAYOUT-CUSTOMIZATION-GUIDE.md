@@ -98,6 +98,8 @@ const CustomMessageBody = (props: IncomingMessageProps) => {
   return (
     <div style={{ backgroundColor: '#f0f0f0', padding: '12px' }}>
       {props.message}
+      {/* Inline components (CTA, citations, etc.) are passed in as children */}
+      {props.children}
     </div>
   );
 };
