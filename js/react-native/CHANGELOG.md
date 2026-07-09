@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.24.0 (Jul 09, 2026) with ChatSDK ^4.22.6
+
+
+### Minor Changes
+
+- Updated the host to delight.ai
+
+
 ## v1.23.1 (Jul 01, 2026) with ChatSDK ^4.22.6
 
 
