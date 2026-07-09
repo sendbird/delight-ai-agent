@@ -1,5 +1,33 @@
 # Changelog
 
+## v1.16.0 (Jul 09, 2026) with Chat SDK v4.39.6
+
+### Features
+
+- Added Challenge AMT support for in-chat verification (#574)
+  - Host apps can render custom challenge forms with `SBAChallengeView`
+  - Added APIs to submit or cancel challenge actions from the conversation UI
+  - Challenge action failures can be handled by custom views through `sendEvent(action:data:errorHandler:)`
+  - Challenge status updates are delivered through message payload updates
+  - New interfaces for this feature:
+    - `SBAChallenge`
+    - `SBAChallengeStatus`
+    - `SBAChallengeAction`
+    - `SBAChallengeView`
+    - `SBAConversationModule.List.Cell.ChallengeView`
+    - `AIAgentMessenger.sendChallengeAction(channelUrl:key:requestId:action:data:completionHandler:)`
+
+### Improvements
+
+- Updated the default host to `delight.ai` (#584)
+- Improved the initial rendering of streaming AI responses (#581)
+
+### Fixes
+
+- Fixed the context object of an existing conversation being overwritten when it was opened from the conversation list or via an explicit channel URL (#580, AA-15064)
+  - Messenger settings are now requested against the channel actually being entered, instead of the cached active channel URL
+  - The carried-over context is no longer sent when opening an existing conversation, so its stored context object is preserved; new conversations still send the context so product scoping applies
+
 ## v1.15.0 (Jun 26, 2026) with Chat SDK v4.39.6
 
 ### Features
