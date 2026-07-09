@@ -28,6 +28,7 @@
 		7C71E7DA9216F9F86D741BB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA91801860324BF877C2336 /* AppDelegate.swift */; };
 		812695A5C4C90FF7E4A3AB9B /* AIAgentStarterKit+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7036E74B93599B2C6902A6 /* AIAgentStarterKit+Utils.swift */; };
 		86EC93CA51BEB68AF7312F70 /* ExtendedSDKBridge+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4615C5A09D614DDB39BE743B /* ExtendedSDKBridge+UIKit.swift */; };
+		921633D7532773429A4DB727 /* SampleChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7364AF3DC11DA83E37DA6077 /* SampleChallengeView.swift */; };
 		9331D74D58AAE3D87671E277 /* AIAgentStarterKit+ContextObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400936DD2629BF7A9B19CDAF /* AIAgentStarterKit+ContextObjects.swift */; };
 		98C3A8A1B63E371298A14DE9 /* MockServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61137371A0076FA6EA43F31 /* MockServer.swift */; };
 		A41581E47D6F1E1336A9CF7E /* Splash in Frameworks */ = {isa = PBXBuildFile; productRef = BD5090BE228A912E78D3193F /* Splash */; };
@@ -64,6 +65,7 @@
 		6D8BFB011EB64C4DE076D77E /* ExtendedSDKBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedSDKBridge.swift; sourceTree = "<group>"; };
 		6FFDD842AD864B7F6DE5843E /* AIAgentStarterKit+SessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIAgentStarterKit+SessionDelegate.swift"; sourceTree = "<group>"; };
 		719F51EBA1C512624FC93843 /* AIAgentStarterKit+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIAgentStarterKit+Theme.swift"; sourceTree = "<group>"; };
+		7364AF3DC11DA83E37DA6077 /* SampleChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleChallengeView.swift; sourceTree = "<group>"; };
 		761048F31C03BD9BCCBCFE6A /* AIAgentStarterKit+Concurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIAgentStarterKit+Concurrency.swift"; sourceTree = "<group>"; };
 		8C60F8E6393C98AB92CE0EFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		998EE27EB94A089093396237 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				23798B2BC3AD576E8475EAE2 /* AIAgentStarterKit+Customize.swift */,
+				7364AF3DC11DA83E37DA6077 /* SampleChallengeView.swift */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				4F9F59A911F25919484445F0 /* Logger.swift in Sources */,
 				98C3A8A1B63E371298A14DE9 /* MockServer.swift in Sources */,
 				A9C5AB9BFBD4689F43A508B6 /* Readme.snippets.swift in Sources */,
+				921633D7532773429A4DB727 /* SampleChallengeView.swift in Sources */,
 				2D26141E21A5C4269E7ECA09 /* SampleConfiguration.swift in Sources */,
 				53770D2014115671DDAE141A /* UIImage+TintColor.swift in Sources */,
 				1F04F2DF6D87D1B0F8818CF5 /* UIViewController+Extension.swift in Sources */,
@@ -449,7 +453,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.15.0;
+				MARKETING_VERSION = 1.16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -489,14 +493,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.15.0;
+				MARKETING_VERSION = 1.16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "-DDEBUG -DINTERNAL_SAMPLE_CHALLENGE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.aiagent.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL_SAMPLE_CHALLENGE";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.10;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -644,7 +648,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.15.0;
+				MARKETING_VERSION = 1.16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -685,14 +689,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.15.0;
+				MARKETING_VERSION = 1.16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "-DDEBUG -DINTERNAL_SAMPLE_CHALLENGE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.aiagent.sample.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG INTERNAL_SAMPLE_CHALLENGE";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.10;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -739,7 +743,7 @@
 			repositoryURL = "https://github.com/sendbird/delight-ai-agent-messenger-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.15.0;
+				minimumVersion = 1.16.0;
 			};
 		};
 		675F8C38FD2AE3D8230AF692 /* XCRemoteSwiftPackageReference "Splash" */ = {

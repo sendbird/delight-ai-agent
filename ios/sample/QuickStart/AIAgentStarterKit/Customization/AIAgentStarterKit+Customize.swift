@@ -29,9 +29,25 @@ extension AIAgentStarterKit {
     /// - `contextObjectsBuilder`: Context object configurations
     static func applyCustomizations() {
         Self.applyIconCustomizations()
+        Self.applySampleModules()
         Self.globalConfigCustomizationBuilder?()
         Self.moduleSetCustomizationBuilder?()
         Self.contextObjectsBuilder?()
+    }
+
+    // MARK: - Sample Modules
+
+    /// Registers sample subclasses (e.g. `SampleChallengeView`) into the shared module set so
+    /// the QuickStart shows the reference implementations by default. Host apps override any of
+    /// these later via `moduleSetCustomizationBuilder`.
+    ///
+    /// Gated behind `INTERNAL_SAMPLE_CHALLENGE` so the public-quickstart target (which builds
+    /// against the released SPM package) is not forced to reference symbols that only exist on
+    /// this branch.
+    private static func applySampleModules() {
+        #if INTERNAL_SAMPLE_CHALLENGE
+        SBAConversationModule.List.Cell.ChallengeView = SampleChallengeView.self
+        #endif
     }
 
     // MARK: - Icon
