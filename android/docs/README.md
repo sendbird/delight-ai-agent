@@ -383,6 +383,10 @@ To add the `MessengerLauncher` to your screen, call the `attach()` function of `
 MessengerLauncher(context, "YOUR_AI_AGENT_ID").attach()
 ```
 
+{% hint style="warning" %}
+Call `attach()` in your activity's `onCreate()`. The launcher hosts its messenger screens in a fragment inside the host activity's `FragmentManager`. When the activity is recreated (for example, on rotation or a theme change), Android restores that fragment, and `attach()` cleans it up before it tries to rebuild its view. If `attach()` is skipped or deferred past `onCreate()`, the restored fragment cannot find its container view and the activity crashes on start with a "No view found for id" error.
+{% endhint %}
+
 - **`entryPoint`**: Controls which screen is displayed first when the MessengerLauncher is clicked:
 
 ```kotlin

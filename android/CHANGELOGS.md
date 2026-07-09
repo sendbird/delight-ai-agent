@@ -1,5 +1,36 @@
 # Changelog
 
+## v1.17.0 (Jul 9, 2026) with Chat SDK `v4.36.3`
+
+### Features
+
+- Added an optional `LauncherSettingsParams` argument to `MessengerLauncher.openConversation()`, so callers can pass context, country, and language when opening a specific conversation.
+    - `fun openConversation(String?, LauncherSettingsParams?)`
+```kotlin
+// Open a specific conversation with explicit params
+messengerLauncher.openConversation(
+    channelUrl = channelUrl,
+    params = LauncherSettingsParams(context = mapOf("key" to "value")),
+)
+```
+
+### Improvements
+
+- Isolated the `MessengerLauncher` back stack and system back handling inside the launcher's own child `FragmentManager` and `OnBackPressedCallback`, so launcher navigation no longer interferes with the host activity's primary navigation.
+- Added `knownChannelUrl` to `MessengerParams` (and its implementations `ConversationCreateParams`, `ConversationListViewParams`, `ConversationSettingsParams`, `LauncherSettingsParams`) to keep a specific conversation's context from overwriting the cached active channel context.
+- Updated the host to `delight.ai`
+
+### Bug Fixes
+
+- Fixed context object cross-contamination in messenger settings, where the launcher's global context could leak into a specific opened conversation.
+- Fixed `openConversation()` reusing a stale conversation screen when explicit params targeted a different channel; the requested channel's screen is now rebuilt.
+- Fixed the launcher being unable to close while its open animation was still running.
+- Fixed a launcher open request being processed after the host activity state was already saved.
+- Fixed the handoff confirmation dialog not being restored in the conversation screen.
+- Fixed markdown inline images being forced to a fixed size; they now render at their intended size.
+
+---
+
 ## v1.16.0 (Jun 23, 2026) with Chat SDK `v4.36.3`
 
 ### Features

@@ -43,6 +43,10 @@ val launcher = MessengerLauncher(this, "YOUR_AI_AGENT_ID")
 launcher.attach()
 ```
 
+{% hint style="warning" %}
+Call `attach()` in your activity's `onCreate()`. The launcher hosts its messenger screens in a fragment inside the host activity's `FragmentManager`. When the activity is recreated (for example, on rotation or a theme change), Android restores that fragment, and `attach()` cleans it up before it tries to rebuild its view. If `attach()` is skipped or deferred past `onCreate()`, the restored fragment cannot find its container view and the activity crashes on start with a "No view found for id" error.
+{% endhint %}
+
 ### Start a conversation and customize the entry point
 
 `LauncherSettingsParams.entryPoint` allows you to customize the entry point from the launcher. The code snippet below demonstrates a `CONVERSATION` entry point: a conversation automatically opens when the launcher is clicked.
@@ -312,7 +316,7 @@ val customMargin = LauncherMargin(
 
 | Method Name          | Parameters                 | Description                                                                                                         | Return Type |
 | -------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `attach`             | None                       | Attaches the `MessengerLauncher` to the current `FragmentActivity`. This must be called from the main thread.                 | `Unit`      |
+| `attach`             | None                       | Attaches the `MessengerLauncher` to the current `FragmentActivity`. This must be called from the main thread, in the activity's `onCreate()`.                 | `Unit`      |
 | `detach`             | None                       | Removes the launcher from the current activity. This can be called multiple times.                                        | `Unit`      |
 | `openConversation`   | `channelUrl: String? = null` | Opens a specific conversation with its channel URL. If `channelUrl` is null, it opens the default channel.          | `Unit`      |
 | `openConversationList` | None                     | Opens the conversation list view, showing all user conversations.                                                   | `Unit`      |

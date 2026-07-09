@@ -55,8 +55,8 @@ class SelectAppInfoActivity : BaseSampleActivity() {
                 val aiAgentId = etAIAgentId.text.toString()
                 val appId = etAppId.text.toString()
                 val context = this@SelectAppInfoActivity
-                val apiHost = appInfo.region.apiHost() ?: "https://api-$appId.sendbird.com"
-                val wsHost = appInfo.region.wsHost() ?: "wss://ws-$appId.sendbird.com"
+                val apiHost = appInfo.region.apiHost() ?: "https://api-$appId.app.delight.ai"
+                val wsHost = appInfo.region.wsHost() ?: "wss://ws-$appId.app.delight.ai"
 
                 lifecycleScope.launch(Dispatchers.Default) {
                     runCatching {
