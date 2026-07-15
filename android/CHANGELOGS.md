@@ -1,5 +1,34 @@
 # Changelog
 
+## v1.17.1 (Jul 15, 2026) with Chat SDK `v4.36.3`
+
+### Features
+
+- Added support for clickable markdown images inside text messages. Tapping an image rendered from markdown image syntax (`![alt](url)`) now opens it in the built-in photo viewer by default, with paging across every markdown image in the message.
+    - Added `MARKDOWN_IMAGE` value to `MessageClickTarget`
+    - Added `MarkdownImage` model representing an image rendered from markdown image syntax
+        - `url: String`, `altText: String`
+    - Added `MarkdownImageClickData` model delivered when a markdown image is clicked
+        - `message: BaseMessage`, `images: List<MarkdownImage>`, `currentIndex: Int`
+    - Added `onMarkdownImageClickListener: OnMessageClickListener?` in `MessageEventListener` so the application can override the default photo-viewer behavior
+```kotlin
+// Override the default markdown image click behavior
+messageListComponent.messageEventListener.onMarkdownImageClickListener =
+    OnMessageClickListener { _, data, type ->
+        if (type == MessageClickTarget.MARKDOWN_IMAGE) {
+            val clicked = data.images[data.currentIndex]
+            // handle clicked.url / clicked.altText
+        }
+    }
+```
+
+### Improvements
+
+- Rendered markdown tables in agent messages, including horizontal navigation for tables wider than the message bubble.
+- Rendered soft line breaks so single newlines in markdown are preserved in the message text.
+- Kept markdown images that appear in list items and other indented blocks within the message bubble instead of overflowing it.
+- Enforced the markdown reference-link blocklist so reference-style links (`[text][ref]`, `[ref][]`, `[ref]`, `[ref]: url`) render as literal text, while inline links (`[text](url)`) — including links inside tables and links whose label contains brackets — stay clickable.
+
 ## v1.17.0 (Jul 9, 2026) with Chat SDK `v4.36.3`
 
 ### Features
