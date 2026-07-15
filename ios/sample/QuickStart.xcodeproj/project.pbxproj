@@ -453,7 +453,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.16.0;
+				MARKETING_VERSION = 1.17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -493,7 +493,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.16.0;
+				MARKETING_VERSION = 1.17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG -DINTERNAL_SAMPLE_CHALLENGE";
@@ -648,7 +648,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.16.0;
+				MARKETING_VERSION = 1.17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -689,7 +689,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.16.0;
+				MARKETING_VERSION = 1.17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG -DINTERNAL_SAMPLE_CHALLENGE";
@@ -743,7 +743,7 @@
 			repositoryURL = "https://github.com/sendbird/delight-ai-agent-messenger-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.16.0;
+				minimumVersion = 1.17.0;
 			};
 		};
 		675F8C38FD2AE3D8230AF692 /* XCRemoteSwiftPackageReference "Splash" */ = {
