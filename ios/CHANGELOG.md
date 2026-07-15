@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.17.0 (Jul 15, 2026) with Chat SDK v4.39.6
+
+### Features
+
+- Added markdown image click support: tapping a markdown image (`![alt](url)`) in a bot message opens a fullscreen QuickLook viewer with a pager for every clickable image in the message (#588, AA-15745)
+  - Images wrapped in a markdown link (`[![alt](img)](link)`) keep their link behavior
+  - The viewer opens as soon as the tapped image is loaded; the remaining images are prefetched progressively and in-flight downloads are cancelled when the viewer is dismissed
+  - Markdown images are exposed as VoiceOver custom actions on the message bubble
+  - Host apps can intercept the tap by overriding the conversation view controller, the same way as message links
+  - New interfaces for this feature:
+    - `SBAMarkdownImage`
+    - `DelegateEvent.didTapMarkdownImage(message:images:currentIndex:)`
+- Added an optional close button to the conversation list header (#587, AA-15792)
+  - Enable it with `AIAgentMessenger.config.conversationList.header.isCloseButtonEnabled` (default: `false`)
+
+### Notes
+
+- `DelegateEvent` gained a new public case (`didTapMarkdownImage`). Host apps that exhaustively `switch` over `DelegateEvent` need to handle the new case (or add a `default` clause) when updating
+
 ## v1.16.0 (Jul 09, 2026) with Chat SDK v4.39.6
 
 ### Features

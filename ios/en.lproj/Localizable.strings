@@ -200,6 +200,7 @@
 "SBA_Accessibility_ImageViewer_previousImage" = "Previous image";
 "SBA_Accessibility_ImageViewer_nextImage" = "Next image";
 "SBA_Accessibility_ImageViewer_viewerFormat" = "Image viewer, %2$d of %1$d";
+"SBA_Accessibility_ImageViewer_viewImage" = "View image";
 
 // MARK: - ACCESSIBILITY - SCROLL INDICATOR
 "SBA_Accessibility_ScrollIndicator_scrollToBottom" = "Scroll to bottom";
