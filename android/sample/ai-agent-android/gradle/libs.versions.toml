@@ -32,7 +32,7 @@ viewpager2 = "1.0.0"
 markwon = "4.6.2"
 kotlinBom = "2.2.21"
 sdkUikit = "3.23.0"
-sdkAiAgentMessenger = "1.17.0"
+sdkAiAgentMessenger = "1.17.1"
 sdkDesk = "1.1.6"
 sdkMockk = "1.13.4"
 sdkMockkAndroid = "1.13.3"
@@ -55,6 +55,7 @@ sdk-sendbird-aiagent-messenger = { group = "com.sendbird.sdk", name = "ai-agent-
 sdk-sendbird-desk = { group = "com.sendbird.sdk", name = "sendbird-desk-android-sdk", version.ref = "sdkDesk" }
 noties-markwon = { group = "io.noties.markwon", name = "core", version.ref = "markwon" }
 noties-markwon-image-glide = { module = "io.noties.markwon:image-glide", version.ref = "markwon" }
+noties-markwon-ext-tables = { module = "io.noties.markwon:ext-tables", version.ref = "markwon" }
 sdk-pinterest-ktlint = { group = "com.pinterest", name = "ktlint", version.ref = "sdkKtlint" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
