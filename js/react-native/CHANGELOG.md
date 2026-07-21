@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.24.2 (Jul 21, 2026) with ChatSDK ^4.22.8
+
+
+### Patch Changes
+
+- `onSendChallengeAction` now accepts `'fail'` as a challenge `action`, alongside `'submit'` and `'cancel'`
+- Fix conversation list item accessible names so screen readers no longer read raw line breaks or extra whitespace from the last-message preview
+
+
 ## v1.24.1 (Jul 13, 2026) with ChatSDK ^4.22.6
 
 
