@@ -370,7 +370,7 @@ const ComponentErrorUI = () => <div>Sorry, please contact Admin</div>;
 
 #### Challenge
 
-Challenge enables in-chat secure form flows such as identity verification. When the Delight AI agent server attaches challenge data to a message, the client app renders its own UI and reports the user's submit or cancel action through the challenge action handler. The SDK doesn't render any default challenge UI.
+Challenge enables in-chat secure form flows such as identity verification. When the Delight AI agent server attaches challenge data to a message, the client app renders its own UI and reports the outcome — submit, fail, or cancel — through the challenge action handler. The SDK doesn't render any default challenge UI.
 
 ##### How it works
 
@@ -406,7 +406,7 @@ interface ChallengeInfo {
 type ChallengeActionParams = {
   key: string;
   requestId: string;
-  action: 'submit' | 'cancel';
+  action: 'submit' | 'cancel' | 'fail';
   data?: Record<string, unknown>;
 };
 
