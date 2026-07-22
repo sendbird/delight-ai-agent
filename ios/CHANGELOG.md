@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.17.1 (Jul 22, 2026) with Chat SDK v4.39.8
+
+### Fixes
+
+- Fixed the typing indicator not being sent and scoped typing checks to the active channel (#595)
+- Fixed `<br/>` tags appearing as literal text in UserMemory descriptions (#602)
+
 ## v1.17.0 (Jul 15, 2026) with Chat SDK v4.39.6
 
 ### Features

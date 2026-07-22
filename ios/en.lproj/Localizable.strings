@@ -65,8 +65,8 @@
 
 // MARK: - CONVERSATION USER MEMORY
 "SBA_Conversation_UserMemory_alertTitleState" = "Memory";
-"SBA_Conversation_UserMemory_descriptionOn" = "Memory is **turned on**.<br/>It remembers your conversation history to provide personalized responses tailored to your previous questions and preferences.";
-"SBA_Conversation_UserMemory_descriptionOff" = "Memory is **turned off**.<br/>If turned on, it will remember your conversation history to provide personalized responses tailored to your previous questions and preferences.";
+"SBA_Conversation_UserMemory_descriptionOn" = "Memory is **turned on**.\nIt remembers your conversation history to provide personalized responses tailored to your previous questions and preferences.";
+"SBA_Conversation_UserMemory_descriptionOff" = "Memory is **turned off**.\nIf turned on, it will remember your conversation history to provide personalized responses tailored to your previous questions and preferences.";
 "SBA_Conversation_UserMemory_use" = "Use";
 "SBA_Conversation_UserMemory_dontUse" = "Don't use";
 "SBA_Conversation_UserMemory_keepUsing" = "Keep using";
