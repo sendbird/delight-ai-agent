@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.17.2 (Jul 23, 2026) with Chat SDK v4.39.8
+
+### Fixes
+
+- Fixed a memory leak in the image attachment picker (#592)
+- Improved image rendering performance when sending images (#592)
+
 ## v1.17.1 (Jul 22, 2026) with Chat SDK v4.39.8
 
 ### Fixes
