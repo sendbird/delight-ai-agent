@@ -1,5 +1,38 @@
 # Changelog
 
+## v1.25.0 (Jul 27, 2026) with ChatSDK ^4.22.9
+
+
+### Minor Changes
+
+- Show a loading skeleton for the conversation header avatar while the AI agent/user identity or profile image is still resolving, instead of a default icon or blank avatar
+- Fix the header avatar so a late image load/error response for a previous channel can no longer override the currently displayed avatar
+- Add `conversation.headerProfileSkeleton` for customizing the skeleton color
+
+```tsx
+import { AIAgentProviderContainer } from '@sendbird/ai-agent-messenger-react-native';
+
+<AIAgentProviderContainer theme={{ colors: { conversation: { headerProfileSkeleton: '#F1F1F1' } } }}>
+  {children}
+</AIAgentProviderContainer>;
+```
+
+- Add `requestNudgeMessage` to the messenger ref for requesting a proactive nudge message (agent cue) that shows above the launcher; tapping it starts a new conversation with the callback message
+- Add `initialUserMessage` prop to `ConversationContext` for sending a first user message when the conversation is initialized on the server
+
+```tsx
+import { useRef } from 'react';
+
+import { AIAgentProviderContainer, type MessengerSessionRef } from '@sendbird/ai-agent-messenger-react-native';
+
+const messengerRef = useRef<MessengerSessionRef>(null);
+const notifyCartAbandoned = () => {
+  messengerRef.current?.requestNudgeMessage({ key: 'cart_abandoned' });
+};
+<AIAgentProviderContainer ref={messengerRef} />;
+```
+
+
 ## v1.24.2 (Jul 21, 2026) with ChatSDK ^4.22.8
 
 
