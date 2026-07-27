@@ -1,5 +1,33 @@
 # Changelog
 
+## v1.37.0 (Jul 27, 2026) with ChatSDK ^4.22.9
+
+
+### Minor Changes
+
+- Add `requestNudgeMessage` to the messenger host for requesting a proactive nudge message (agent cue) to display above the launcher
+- Add `onAuthenticated` to the messenger host for registering a handler called once a user session is established; methods that require a session, such as `requestNudgeMessage` and the context methods, are safe to call from there. Register it before `initialize()`
+
+```javascript
+import { loadMessenger } from 'https://aiagent.delight.ai/orgs/default/index.js';
+
+const messenger = await loadMessenger();
+messenger.onAuthenticated(({ userId }) => {
+  messenger.requestNudgeMessage({ key: 'cart_abandoned' });
+});
+messenger.initialize({
+  appId: 'YOUR_APP_ID',
+  aiAgentId: 'YOUR_AI_AGENT_ID',
+  userSessionInfo: new messenger.AnonymousSessionInfo(),
+});
+```
+
+### Patch Changes
+
+- Updated dependencies
+  - @sendbird/ai-agent-messenger-react@1.37.0
+
+
 ## v1.36.0 (Jul 21, 2026) with ChatSDK ^4.22.8
 
 
