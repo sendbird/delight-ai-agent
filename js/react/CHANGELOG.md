@@ -1,5 +1,32 @@
 # Changelog
 
+## v1.38.0 (Jul 29, 2026) with ChatSDK ^4.22.9
+
+
+### Minor Changes
+
+- Add `cpaAuthorizationCodes` to `AgentProviderContainer` to submit customer-provided authorization (CPA) codes automatically after the session connects
+- Add `submitCPAAuthorizationCodes` to `useMessengerSessionContext` for submitting CPA codes on demand
+
+```tsx
+import { AgentProviderContainer, Conversation } from '@sendbird/ai-agent-messenger-react';
+
+<AgentProviderContainer
+  appId="YOUR_APP_ID"
+  aiAgentId="YOUR_AI_AGENT_ID"
+  cpaAuthorizationCodes={[{ key: 'zendesk', code: authCode }]}
+>
+  <Conversation />
+</AgentProviderContainer>;
+```
+
+### Patch Changes
+
+- Fix a brief flash of a partial word when a streamed reply begins, keeping the typing indicator visible until there's enough text to reveal smoothly
+- Fix the typing indicator staying visible alongside the first characters of a streamed reply, including its screen reader announcement, so only one indicator shows while the reply is still gated
+- Improve typing indicator behavior while the AI agent is responding
+
+
 ## v1.37.0 (Jul 27, 2026) with ChatSDK ^4.22.9
 
 
