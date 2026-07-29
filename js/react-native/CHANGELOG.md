@@ -1,5 +1,34 @@
 # Changelog
 
+## v1.26.0 (Jul 29, 2026) with ChatSDK ^4.22.9
+
+
+### Minor Changes
+
+- Add `cpaAuthorizationCodes` to `AIAgentProviderContainer` to submit customer-provided authorization (CPA) codes automatically after the session connects
+- Add `submitCPAAuthorizationCodes` to `useMessengerSessionContext` for submitting CPA codes on demand
+
+```tsx
+import { AIAgentProviderContainer, Conversation } from '@sendbird/ai-agent-messenger-react-native';
+
+<AIAgentProviderContainer
+  appId="YOUR_APP_ID"
+  aiAgentId="YOUR_AI_AGENT_ID"
+  cpaAuthorizationCodes={[{ key: 'zendesk', code: authCode }]}
+>
+  <Conversation />
+</AIAgentProviderContainer>;
+```
+
+### Patch Changes
+
+- Fix a brief flash of a partial word when a streamed reply begins, keeping the typing indicator visible until there's enough text to reveal smoothly
+- Fix the typing indicator staying visible alongside the first characters of a streamed reply, including its screen reader announcement, so only one indicator shows while the reply is still gated
+- Improve typing indicator behavior while the AI agent is responding
+- Fix markdown bullet and numbered list items rendering with no visible text in shrink-to-fit hosts, such as special notices and message bubbles
+- Remove the workaround that stretched markdown text bodies over 50 characters to full width, so short bubbles keep hugging their content
+
+
 ## v1.25.0 (Jul 27, 2026) with ChatSDK ^4.22.9
 
 
