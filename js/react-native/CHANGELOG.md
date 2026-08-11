@@ -1,5 +1,31 @@
 # Changelog
 
+## v1.27.0 (Aug 11, 2026) with ChatSDK ^4.22.9
+
+
+### Minor Changes
+
+- Add an optional `title` prop to the default conversation header `Title` component for overriding the channel-derived title
+
+```tsx
+import { ConversationHeaderLayout } from '@sendbird/ai-agent-messenger-react-native';
+
+const CustomTitle = () => {
+  const DefaultTitle = ConversationHeaderLayout.defaults.components.Title;
+  return <DefaultTitle title={'Support Chat'} />;
+};
+<ConversationHeaderLayout.Title component={CustomTitle} />;
+```
+
+- Report memory dialog interactions (shown, confirm, cancel, dismiss) through `onLiveMetric` when the user manages memory from the conversation header
+
+### Patch Changes
+
+- Fix markdown rendering to match the web SDK: emphasis, thematic breaks, code spans, task-list markers, and square brackets are escaped correctly, and typographic substitution (smart quotes, dashes) is disabled to match web
+- Fix markdown image taps to open the media viewer (`onClickMediaFiles`/`onClickMedia`) instead of firing the link handler, and restore focus to the tapped image after the viewer closes
+- Fix a crash on Android when a message's accessibility state changes while it's still streaming
+
+
 ## v1.26.0 (Jul 29, 2026) with ChatSDK ^4.22.9
 
 
