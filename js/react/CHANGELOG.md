@@ -1,5 +1,34 @@
 # Changelog
 
+## v1.39.0 (Aug 11, 2026) with ChatSDK ^4.22.9
+
+
+### Minor Changes
+
+- Add an optional `title` prop to the default conversation header `Title` component for overriding the channel-derived title
+
+```tsx
+import { ConversationHeaderLayout } from '@sendbird/ai-agent-messenger-react';
+
+const CustomTitle = () => {
+  const DefaultTitle = ConversationHeaderLayout.defaults.components.Title;
+  return <DefaultTitle title={'Support Chat'} />;
+};
+<ConversationHeaderLayout.Title component={CustomTitle} />;
+```
+
+- Report memory dialog interactions (shown, confirm, cancel, dismiss) through `onLiveMetric` when the user manages memory from the conversation header
+
+### Patch Changes
+
+- Fix markdown rendering to match react-native: emphasis, thematic breaks, code spans, task-list markers, and square brackets are escaped correctly
+- Bare URLs, inline HTML, task-list checkboxes (`- [ ]`), and reference definitions (`[ref]: url`) are no longer rendered as markup and now stay literal — use `[text](url)` or `<https://x.com>` for a link
+- Fix markdown images to render at full width instead of inline
+- Fix markdown image taps to support the multi-file `onClickMediaFiles` handler, falling back to `onClickMedia`
+- Fix the conversation message list announcing a multiple-files message's server auto-filled, comma-joined file names as its accessible label instead of falling back to the file count
+- Fix the conversation message list announcing a received file message with the file-attachment wording instead of the received-file wording, matching react-native
+
+
 ## v1.38.0 (Jul 29, 2026) with ChatSDK ^4.22.9
 
 
