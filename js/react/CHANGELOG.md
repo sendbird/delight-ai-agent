@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.39.1 (Aug 13, 2026) with ChatSDK ^4.22.9
+
+
+### Patch Changes
+
+- Improve SDK usage logging
+
+
 ## v1.39.0 (Aug 11, 2026) with ChatSDK ^4.22.9
 
 
