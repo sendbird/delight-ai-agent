@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.28.0 (Aug 16, 2026) with ChatSDK ^4.22.9
+
+
+### Minor Changes
+
+- Add confirm/decline suggested replies so customers can respond to a Desk ticket closure inquiry directly from the conversation
+
+
 ## v1.27.0 (Aug 11, 2026) with ChatSDK ^4.22.9
 
 
