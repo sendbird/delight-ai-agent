@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.40.0 (Aug 16, 2026) with ChatSDK ^4.22.9
+
+
+### Minor Changes
+
+- Add confirm/decline suggested replies so customers can respond to a Desk ticket closure inquiry directly from the conversation
+
+### Patch Changes
+
+- Fix outgoing message text so characters that look like HTML (e.g. `<script>`, `<b>`) always render literally instead of being parsed or stripped as markup
+- Fix form inputs overflowing their container on narrow widths by correcting box-sizing
+- Fix incoming extended message content (e.g. forms) not stretching to fill the full width of the message row
+
+
 ## v1.39.1 (Aug 13, 2026) with ChatSDK ^4.22.9
 
 
