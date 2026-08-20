@@ -7,12 +7,14 @@
     "🎨 iOS",
     "🎨 Android",
     "🎨 React",
-    "🎨 Message"
+    "🎨 Message",
+    "🎨 React-Native"
   ],
   "platforms": [
     "ios",
     "android",
-    "react"
+    "react",
+    "react-native"
   ],
   "html_url": "https://github.com/sendbird/delight-ai-agent/discussions/136"
 }
