@@ -36,6 +36,7 @@
 		A68B136953B2D88138DD66AC /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998EE27EB94A089093396237 /* GradientBackgroundView.swift */; };
 		A9C5AB9BFBD4689F43A508B6 /* Readme.snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B528870525B52F7BE84E1 /* Readme.snippets.swift */; };
 		AC4538A44EA556845DBA06E5 /* AsyncHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5B1DEDF93F3AC4A3618877 /* AsyncHelpers.swift */; };
+		AC622F585BBB6EBC5C4D9FD2 /* MenuSuggestedReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B733EFF87A762166633DC7 /* MenuSuggestedReplyView.swift */; };
 		C1761DEEDB4CB13BBDA9D9F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD615656F26260F609F3E19B /* ViewController.swift */; };
 		C581975C7374E2A1BD0B1454 /* AIAgentStarterKit+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1798A611AB211E8CA7BE732F /* AIAgentStarterKit+Configuration.swift */; };
 		D4B97F9327A71E13897506D3 /* AIAgentStarterKit+SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFDD842AD864B7F6DE5843E /* AIAgentStarterKit+SessionDelegate.swift */; };
@@ -68,6 +69,7 @@
 		7364AF3DC11DA83E37DA6077 /* SampleChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleChallengeView.swift; sourceTree = "<group>"; };
 		761048F31C03BD9BCCBCFE6A /* AIAgentStarterKit+Concurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIAgentStarterKit+Concurrency.swift"; sourceTree = "<group>"; };
 		8C60F8E6393C98AB92CE0EFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		91B733EFF87A762166633DC7 /* MenuSuggestedReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSuggestedReplyView.swift; sourceTree = "<group>"; };
 		998EE27EB94A089093396237 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		A1E34AFFACDC0DC121B4FF23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2B6689974C44EA060F592DE /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				23798B2BC3AD576E8475EAE2 /* AIAgentStarterKit+Customize.swift */,
+				91B733EFF87A762166633DC7 /* MenuSuggestedReplyView.swift */,
 				7364AF3DC11DA83E37DA6077 /* SampleChallengeView.swift */,
 			);
 			path = Customization;
@@ -398,6 +401,7 @@
 				A5B4456ED545348FC3E7A084 /* ExtendedSDKBridge.swift in Sources */,
 				A68B136953B2D88138DD66AC /* GradientBackgroundView.swift in Sources */,
 				4F9F59A911F25919484445F0 /* Logger.swift in Sources */,
+				AC622F585BBB6EBC5C4D9FD2 /* MenuSuggestedReplyView.swift in Sources */,
 				98C3A8A1B63E371298A14DE9 /* MockServer.swift in Sources */,
 				A9C5AB9BFBD4689F43A508B6 /* Readme.snippets.swift in Sources */,
 				921633D7532773429A4DB727 /* SampleChallengeView.swift in Sources */,
@@ -453,7 +457,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.18.0;
+				MARKETING_VERSION = 1.19.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -493,7 +497,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.18.0;
+				MARKETING_VERSION = 1.19.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG -DINTERNAL_SAMPLE_CHALLENGE";
@@ -648,7 +652,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.18.0;
+				MARKETING_VERSION = 1.19.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -689,7 +693,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.18.0;
+				MARKETING_VERSION = 1.19.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG -DINTERNAL_SAMPLE_CHALLENGE";
@@ -743,7 +747,7 @@
 			repositoryURL = "https://github.com/sendbird/delight-ai-agent-messenger-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.18.0;
+				minimumVersion = 1.19.0;
 			};
 		};
 		675F8C38FD2AE3D8230AF692 /* XCRemoteSwiftPackageReference "Splash" */ = {

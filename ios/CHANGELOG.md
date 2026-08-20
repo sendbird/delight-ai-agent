@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.19.0 (Aug 20, 2026) with Chat SDK v4.39.9
+
+### Features
+
+- Added suggested replies UI customization. Subclass `SBASuggestedReplyView` and register it on `SBAConversationModule.List.Cell.SuggestedReplyView` to replace the default chips. (#656, AA-17014)
+
 ## v1.18.0 (Aug 06, 2026) with Chat SDK v4.39.9
 
 ### Features

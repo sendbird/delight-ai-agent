@@ -20,6 +20,12 @@ extension AIAgentStarterKit {
     /// Closure to customize context objects used throughout the agent.
     public static var contextObjectsBuilder: (() -> Void)?
 
+    /// Renders suggested replies with ``MenuSuggestedReplyView`` instead of the default chips.
+    ///
+    /// Off by default, so QuickStart shows the SDK default. Flip it here, or from anywhere before
+    /// the conversation screen is created, to try the sample.
+    static var usesSuggestedReplyMenuSample = false
+
     /// Applies all custom configurations including global settings, module customizations, and context objects.
     ///
     /// This method should be called before presenting UI to ensure all customizations are applied.
@@ -47,6 +53,12 @@ extension AIAgentStarterKit {
     private static func applySampleModules() {
         #if INTERNAL_SAMPLE_CHALLENGE
         SBAConversationModule.List.Cell.ChallengeView = SampleChallengeView.self
+        #endif
+
+        #if INTERNAL_SAMPLE_SUGGESTED_REPLY
+        if Self.usesSuggestedReplyMenuSample {
+            SBAConversationModule.List.Cell.SuggestedReplyView = MenuSuggestedReplyView.self
+        }
         #endif
     }
 
