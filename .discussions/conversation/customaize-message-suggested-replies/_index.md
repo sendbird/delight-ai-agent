@@ -11,4 +11,6 @@ _No response_
 
 ### Screenshots
 
-_No response_
+| As-is | To-be |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/sendbird/delight-ai-agent/main/.discussions/conversation/customaize-message-suggested-replies/assets/ios-as-is.png" width="320" alt="Default suggested replies chips" /> | <img src="https://raw.githubusercontent.com/sendbird/delight-ai-agent/main/.discussions/conversation/customaize-message-suggested-replies/assets/ios-to-be.png" width="320" alt="Suggested replies as full-width menu rows" /> |
