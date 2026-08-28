@@ -251,7 +251,6 @@ FAILED_MESSAGE_REMOVE: 'Remove',
 A11Y_MESSAGE_LIST: 'Chat messages',
 A11Y_SCROLL_TO_BOTTOM: 'Scroll to bottom',
 A11Y_SCROLL_TO_NEW_MESSAGES: 'Scroll to new messages',
-A11Y_OPEN_CONVERSATION_LIST: 'Open conversation list',
 A11Y_IMAGE_VIEWER_CLOSE: 'Close image viewer',
 A11Y_IMAGE_VIEWER_PREVIOUS: 'Previous image',
 A11Y_IMAGE_VIEWER_NEXT: 'Next image',
@@ -358,6 +357,11 @@ MEMORY__ERROR_MESSAGE: 'Failed to update memory state. Please try again.',
 A11Y_MEMORY_INDICATOR_MANAGE: 'Manage memory',
 A11Y_MEMORY_INDICATOR_ON: 'Memory is on',
 A11Y_MEMORY_INDICATOR_OFF: 'Memory is off',
+
+// Desk
+DESK__TICKET_CLOSURE_CONFIRM: "Yes, it's resolved",
+DESK__TICKET_CLOSURE_DECLINE: 'No, I still need help',
+DESK__TICKET_CLOSURE_ERROR_MESSAGE: 'Failed to update the resolution status. Please try again.',
 
 // Connection delay
 CONNECTION_DELAY__TITLE: "Something went wrong. You'll be reconnected shortly.",
