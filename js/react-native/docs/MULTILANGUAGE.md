@@ -111,6 +111,7 @@ function App() {
     handoff: { /* ... */ },
     memory: { /* ... */ },
     connection_delay: { /* ... */ },
+    desk: { /* ... */ },
   }}
 >
   <FixedMessenger />
