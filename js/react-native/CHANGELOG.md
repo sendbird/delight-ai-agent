@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.29.0 (Aug 28, 2026) with ChatSDK ^4.22.11
+
+
+### Minor Changes
+
+- Render admin messages with full markdown formatting instead of only bold text and links
+
+### Patch Changes
+
+- Reduced unnecessary re-renders in the conversation view: memoized layout and conversation-scope context values, stable message-cell memo inputs, and stable streaming payload identity
+- Fix outgoing image previews flickering or reloading after a message finishes sending
+- Fix outgoing multi-file previews losing images when a sequential upload partially fails
+
+
 ## v1.28.0 (Aug 16, 2026) with ChatSDK ^4.22.9
 
 
