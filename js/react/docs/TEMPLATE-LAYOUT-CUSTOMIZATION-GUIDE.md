@@ -83,6 +83,7 @@ IncomingMessageLayout.components = {
   Form,              // Interactive forms
   Feedback,          // Message feedback
   MessageLogs,       // Debug/log information
+  Prechecks,         // Consent precheck pills
 }
 ```
 

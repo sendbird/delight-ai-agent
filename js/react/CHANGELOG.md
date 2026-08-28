@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.41.0 (Aug 28, 2026) with ChatSDK ^4.22.11
+
+
+### Minor Changes
+
+- Render admin messages with full markdown formatting instead of only bold text and links
+
+### Patch Changes
+
+- Improve image attachment sending performance by measuring aspect ratio metadata while the file is selected instead of waiting until send
+- Fix message sending getting stuck when an attached image can't be decoded
+- Fix outgoing image previews flickering or reloading after a message finishes sending
+- Fix outgoing multi-file previews losing images when a sequential upload partially fails
+- Fix the special notice failing to render on React 17's legacy `ReactDOM.render` while its markdown content loads
+
+
 ## v1.40.1 (Aug 16, 2026) with ChatSDK ^4.22.9
 
 
