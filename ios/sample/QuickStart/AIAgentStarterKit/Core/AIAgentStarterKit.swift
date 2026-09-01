@@ -69,6 +69,10 @@ extension AIAgentStarterKit {
 
                 #if INTERNAL_TEST
                 InternalTestManager.updateHost(SampleConfiguration.productionServer)
+                // 실행 인자로 켠 assertion 장애 연출 스위치를 SDK 에 반영한다.
+                // 앱 정보 설정 화면을 지나는 경로는 그 화면이 반영하지만(`AppInfoSettingViewController`),
+                // 저장된 앱 정보로 바로 시작하는 이 경로에는 반영할 자리가 여기뿐이다.
+                InternalTestManager.applyStatOverridesIfNeeded()
                 #endif
 
                 Thread.executeOnMain {
