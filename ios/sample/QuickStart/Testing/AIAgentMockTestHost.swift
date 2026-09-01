@@ -17,6 +17,8 @@ final class AIAgentMockTestHost {
 
     func install(on window: UIWindow) {
         applySampleConfiguration()
+        applyFontFamily()
+        applyAccessibilityTreeExposure()
 
         let rootViewController = AIAgentMockRootViewController(
             configuration: configuration,
@@ -35,6 +37,61 @@ final class AIAgentMockTestHost {
         SampleConfiguration.sessionToken = configuration.sessionToken
         SampleConfiguration.sessionInfoType = .manual
         SampleConfiguration.productionServer = nil
+    }
+
+    /// Applies the suite's custom font family before any SDK view is built.
+    /// `SBAFontSet` resolves fonts lazily per access, but cells cache the
+    /// resolved font at layout time — setting this after presentation would
+    /// leave already-laid-out text on the previous family.
+    private func applyFontFamily() {
+        guard let fontFamily = configuration.fontFamily else { return }
+
+        registerBundledTestFonts()
+
+        guard UIFont.familyNames.contains(fontFamily) else {
+            // Fail loud in the host log rather than silently snapshotting the
+            // system font: a missing font would look like a passing test.
+            assertionFailure("Font family '\(fontFamily)' is not registered in this build.")
+            return
+        }
+
+        SBAFontSet.fontFamily = fontFamily
+    }
+
+    /// Lets the suite read message cells from the accessibility tree.
+    ///
+    /// The SDK gates that tree on VoiceOver, which XCUITest never turns on, so
+    /// without this a UI test cannot see any message. The SDK exposes the switch
+    /// only under `TESTCASE`, which the test-running projects define; anywhere
+    /// else the flag does not exist and this is a no-op.
+    private func applyAccessibilityTreeExposure() {
+        guard configuration.exposesAccessibilityTree else { return }
+
+        #if TESTCASE
+        AIAgentMessenger.exposesAccessibilityElementsWithoutVoiceOver = true
+        #else
+        assertionFailure("SBA_AIAGENT_EXPOSE_A11Y_TREE has no effect unless the app is built with TESTCASE.")
+        #endif
+    }
+
+    /// Registers the `.ttf` files bundled under `QuickStart/Testing/Fonts`.
+    ///
+    /// Deliberately runtime registration rather than an `Info.plist`
+    /// `UIAppFonts` entry: this way the fonts load only on a mock UI test
+    /// launch that asked for a family, never on an ordinary QuickStart run.
+    /// Release builds do not carry the files at all (see the directory's
+    /// README), so "not found" is the expected outcome there.
+    private func registerBundledTestFonts() {
+        let urls = Bundle.main.urls(forResourcesWithExtension: "ttf", subdirectory: nil) ?? []
+
+        for url in urls {
+            var error: Unmanaged<CFError>?
+            if CTFontManagerRegisterFontsForURL(url as CFURL, .process, &error) == false {
+                // Already-registered is benign; anything else is worth seeing
+                // in the host log while debugging a snapshot mismatch.
+                print("[MockTestHost] Font registration skipped for \(url.lastPathComponent): \(String(describing: error?.takeUnretainedValue()))")
+            }
+        }
     }
 
     private func start(on parent: UIViewController) {
@@ -66,6 +123,16 @@ final class AIAgentMockTestHost {
                     params.deskAPIHost = self.configuration.restBaseURL
                         .appendingPathComponent("sapi")
                         .absoluteString
+                } else {
+                    // Record mode normally relies on the SDK's default routing
+                    // for the app id. Applications hosted elsewhere have to say
+                    // so — otherwise the connection fails at DNS.
+                    if let liveAPIHost = self.configuration.liveAPIHost {
+                        params.apiHost = liveAPIHost
+                    }
+                    if let liveWSHost = self.configuration.liveWSHost {
+                        params.wsHost = liveWSHost
+                    }
                 }
             },
             completionHandler: { [weak self, weak parent] result in

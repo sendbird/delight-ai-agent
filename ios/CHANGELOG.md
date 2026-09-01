@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.20.0 (Sep 01, 2026) with Chat SDK v4.39.10
+
+### Features
+
+- Added the public `SBATypingIndicatorInfo.preferredTypingUser` property to expose the typing user selected for the indicator's profile and thinking message.
+- Opened SBAConversationViewModel.handle(with:) with a curated HandleEvent, so a host can drive the conversation the same way the built-in components do. Nine cases: four sends, two edits, three attachment staging.
+- Added custom message template interaction APIs. SBACustomMessageTemplateView can now send a user message with sendUserMessage(_:), ask the cell to re-measure with invalidateContentSize(), key state that survives cell reuse on messageId, and hold the message width with expandsToFullWidth.
+
+### Fixes
+
+- Fixed the message input staying blocked after a send failed. The composer is now released as soon as the current user's latest send fails, and a stale failed message no longer clears the cooldown of a newer successful send.
+- Fixed the message input reopening while a message was still on its way out. The composer now stays blocked until the send completes, so a message waiting on the network cannot overlap the next one.
+
 ## v1.19.0 (Aug 20, 2026) with Chat SDK v4.39.9
 
 ### Features

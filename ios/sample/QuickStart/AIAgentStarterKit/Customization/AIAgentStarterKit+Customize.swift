@@ -26,6 +26,19 @@ extension AIAgentStarterKit {
     /// the conversation screen is created, to try the sample.
     static var usesSuggestedReplyMenuSample = false
 
+    /// Renders `custom` agent message templates with ``SampleASTemplateView``, which routes
+    /// the AS selector (template 1) and the AS guide (template 2) by template id.
+    ///
+    /// On by default: an unregistered custom template renders nothing on iOS, so the sample is
+    /// what makes the card visible at all once the dashboard sends the template.
+    static var usesASSelectorSample = true
+
+    /// Feeds the selector a local case catalog instead of calling the customer API.
+    ///
+    /// On by default because there is no endpoint to point at yet. Turn it off once a real
+    /// catalog address is configured in the dashboard template payload.
+    static var usesASSelectorTaxonomyStub = true
+
     /// Applies all custom configurations including global settings, module customizations, and context objects.
     ///
     /// This method should be called before presenting UI to ensure all customizations are applied.
@@ -58,6 +71,19 @@ extension AIAgentStarterKit {
         #if INTERNAL_SAMPLE_SUGGESTED_REPLY
         if Self.usesSuggestedReplyMenuSample {
             SBAConversationModule.List.Cell.SuggestedReplyView = MenuSuggestedReplyView.self
+        }
+        #endif
+
+        #if INTERNAL_SAMPLE_CUSTOM_TEMPLATE
+        if Self.usesASSelectorSample {
+            // One slot, two templates. The view dispatches on the template id, and it sends
+            // the picked path itself through `sendUserMessage(_:)`, so no conversation view
+            // controller subclass is needed.
+            SBAConversationModule.List.Cell.CustomMessageTemplateView = SampleASTemplateView.self
+
+            if Self.usesASSelectorTaxonomyStub {
+                SampleASCatalogLoader.stubJSON = SampleASCatalogLoader.debugStubJSON
+            }
         }
         #endif
     }

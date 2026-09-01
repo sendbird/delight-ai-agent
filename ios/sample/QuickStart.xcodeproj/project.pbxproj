@@ -13,6 +13,7 @@
 		23804AAB036F8F0D9A5A9FB9 /* ViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE64D160C8A720C93AA40F /* ViewController+UI.swift */; };
 		2C480B8C3A3AF9409ED816A8 /* AIAgentStarterKit+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719F51EBA1C512624FC93843 /* AIAgentStarterKit+Theme.swift */; };
 		2D26141E21A5C4269E7ECA09 /* SampleConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13EC501A4B33EC471FC66E9 /* SampleConfiguration.swift */; };
+		36512622F4CFDB05BCE29388 /* SampleASSelectorCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D55358F6C9668BA04CD904A /* SampleASSelectorCardView.swift */; };
 		3816E55E2430D6172FA671CB /* ExtendedSDKBridge+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7ABA0DE26D4AE60EBB708 /* ExtendedSDKBridge+Common.swift */; };
 		3935460ED22DFA8F656B1E07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD4E20B9C1F1ED5A41FF3054 /* Assets.xcassets */; };
 		39EF0CD2F50947634B127732 /* AIAgentStarterKit+Customize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23798B2BC3AD576E8475EAE2 /* AIAgentStarterKit+Customize.swift */; };
@@ -22,11 +23,13 @@
 		53770D2014115671DDAE141A /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9391445918D2C1C6B273C4 /* UIImage+TintColor.swift */; };
 		55C96D076773E3FA90E89C53 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 448603A06B4A9154A0E9817A /* README.md */; };
 		6070A3E658A7A9FA041847B4 /* ExtendedSDKBridge+DeskSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F9619256C952A79374176D /* ExtendedSDKBridge+DeskSDK.swift */; };
+		6082560C0121FCEE275039A4 /* SampleASGuideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D4F7FFA08B7BCEAE28B5D /* SampleASGuideCardView.swift */; };
 		65E10E247671B01F7A401155 /* AIAgentStarterKit+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0CCFF76ADE1E2034BAFF25 /* AIAgentStarterKit+Push.swift */; };
 		67EEFCB3685189CA91447B1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C95882B9025D2EC6E3A6F68 /* Main.storyboard */; };
 		7B81B3F39800009FB2F9A6D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD25C27DBD40C011BE5FA1A3 /* LaunchScreen.storyboard */; };
 		7C71E7DA9216F9F86D741BB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA91801860324BF877C2336 /* AppDelegate.swift */; };
 		812695A5C4C90FF7E4A3AB9B /* AIAgentStarterKit+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7036E74B93599B2C6902A6 /* AIAgentStarterKit+Utils.swift */; };
+		81A63878399EDBC781AFBA7E /* SampleASTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A6B35B3A4B625BDA78C86B /* SampleASTemplateView.swift */; };
 		86EC93CA51BEB68AF7312F70 /* ExtendedSDKBridge+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4615C5A09D614DDB39BE743B /* ExtendedSDKBridge+UIKit.swift */; };
 		921633D7532773429A4DB727 /* SampleChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7364AF3DC11DA83E37DA6077 /* SampleChallengeView.swift */; };
 		9331D74D58AAE3D87671E277 /* AIAgentStarterKit+ContextObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400936DD2629BF7A9B19CDAF /* AIAgentStarterKit+ContextObjects.swift */; };
@@ -37,6 +40,7 @@
 		A9C5AB9BFBD4689F43A508B6 /* Readme.snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B528870525B52F7BE84E1 /* Readme.snippets.swift */; };
 		AC4538A44EA556845DBA06E5 /* AsyncHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5B1DEDF93F3AC4A3618877 /* AsyncHelpers.swift */; };
 		AC622F585BBB6EBC5C4D9FD2 /* MenuSuggestedReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B733EFF87A762166633DC7 /* MenuSuggestedReplyView.swift */; };
+		B67E41BAAE70306B488659AD /* SampleASCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7753AAA3034F968A380A8D2 /* SampleASCatalog.swift */; };
 		C1761DEEDB4CB13BBDA9D9F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD615656F26260F609F3E19B /* ViewController.swift */; };
 		C581975C7374E2A1BD0B1454 /* AIAgentStarterKit+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1798A611AB211E8CA7BE732F /* AIAgentStarterKit+Configuration.swift */; };
 		D4B97F9327A71E13897506D3 /* AIAgentStarterKit+SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFDD842AD864B7F6DE5843E /* AIAgentStarterKit+SessionDelegate.swift */; };
@@ -49,6 +53,7 @@
 		0A5B1DEDF93F3AC4A3618877 /* AsyncHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncHelpers.swift; sourceTree = "<group>"; };
 		1798A611AB211E8CA7BE732F /* AIAgentStarterKit+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIAgentStarterKit+Configuration.swift"; sourceTree = "<group>"; };
 		1A9391445918D2C1C6B273C4 /* UIImage+TintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TintColor.swift"; sourceTree = "<group>"; };
+		1D55358F6C9668BA04CD904A /* SampleASSelectorCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleASSelectorCardView.swift; sourceTree = "<group>"; };
 		23798B2BC3AD576E8475EAE2 /* AIAgentStarterKit+Customize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIAgentStarterKit+Customize.swift"; sourceTree = "<group>"; };
 		26F15FDAB2EA2301931B3EB6 /* NotificationService.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7036E74B93599B2C6902A6 /* AIAgentStarterKit+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIAgentStarterKit+Utils.swift"; sourceTree = "<group>"; };
@@ -68,6 +73,7 @@
 		719F51EBA1C512624FC93843 /* AIAgentStarterKit+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIAgentStarterKit+Theme.swift"; sourceTree = "<group>"; };
 		7364AF3DC11DA83E37DA6077 /* SampleChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleChallengeView.swift; sourceTree = "<group>"; };
 		761048F31C03BD9BCCBCFE6A /* AIAgentStarterKit+Concurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIAgentStarterKit+Concurrency.swift"; sourceTree = "<group>"; };
+		805D4F7FFA08B7BCEAE28B5D /* SampleASGuideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleASGuideCardView.swift; sourceTree = "<group>"; };
 		8C60F8E6393C98AB92CE0EFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		91B733EFF87A762166633DC7 /* MenuSuggestedReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSuggestedReplyView.swift; sourceTree = "<group>"; };
 		998EE27EB94A089093396237 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
@@ -82,6 +88,8 @@
 		CB9B528870525B52F7BE84E1 /* Readme.snippets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Readme.snippets.swift; sourceTree = "<group>"; };
 		CE063DDC7D9B81FE0ABF9B62 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		D13EC501A4B33EC471FC66E9 /* SampleConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleConfiguration.swift; sourceTree = "<group>"; };
+		D4A6B35B3A4B625BDA78C86B /* SampleASTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleASTemplateView.swift; sourceTree = "<group>"; };
+		F7753AAA3034F968A380A8D2 /* SampleASCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleASCatalog.swift; sourceTree = "<group>"; };
 		FAEE64D160C8A720C93AA40F /* ViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UI.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -254,6 +262,10 @@
 			children = (
 				23798B2BC3AD576E8475EAE2 /* AIAgentStarterKit+Customize.swift */,
 				91B733EFF87A762166633DC7 /* MenuSuggestedReplyView.swift */,
+				F7753AAA3034F968A380A8D2 /* SampleASCatalog.swift */,
+				805D4F7FFA08B7BCEAE28B5D /* SampleASGuideCardView.swift */,
+				1D55358F6C9668BA04CD904A /* SampleASSelectorCardView.swift */,
+				D4A6B35B3A4B625BDA78C86B /* SampleASTemplateView.swift */,
 				7364AF3DC11DA83E37DA6077 /* SampleChallengeView.swift */,
 			);
 			path = Customization;
@@ -404,6 +416,10 @@
 				AC622F585BBB6EBC5C4D9FD2 /* MenuSuggestedReplyView.swift in Sources */,
 				98C3A8A1B63E371298A14DE9 /* MockServer.swift in Sources */,
 				A9C5AB9BFBD4689F43A508B6 /* Readme.snippets.swift in Sources */,
+				B67E41BAAE70306B488659AD /* SampleASCatalog.swift in Sources */,
+				6082560C0121FCEE275039A4 /* SampleASGuideCardView.swift in Sources */,
+				36512622F4CFDB05BCE29388 /* SampleASSelectorCardView.swift in Sources */,
+				81A63878399EDBC781AFBA7E /* SampleASTemplateView.swift in Sources */,
 				921633D7532773429A4DB727 /* SampleChallengeView.swift in Sources */,
 				2D26141E21A5C4269E7ECA09 /* SampleConfiguration.swift in Sources */,
 				53770D2014115671DDAE141A /* UIImage+TintColor.swift in Sources */,
@@ -457,7 +473,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.19.0;
+				MARKETING_VERSION = 1.20.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -497,7 +513,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.19.0;
+				MARKETING_VERSION = 1.20.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG -DINTERNAL_SAMPLE_CHALLENGE";
@@ -652,7 +668,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.19.0;
+				MARKETING_VERSION = 1.20.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -693,7 +709,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.19.0;
+				MARKETING_VERSION = 1.20.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG -DINTERNAL_SAMPLE_CHALLENGE";
@@ -747,7 +763,7 @@
 			repositoryURL = "https://github.com/sendbird/delight-ai-agent-messenger-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.19.0;
+				minimumVersion = 1.20.0;
 			};
 		};
 		675F8C38FD2AE3D8230AF692 /* XCRemoteSwiftPackageReference "Splash" */ = {

@@ -50,6 +50,23 @@ struct AIAgentMockLaunchConfiguration {
     // app's launch environment so this file can read them via `ProcessInfo`.
     static let presentationKey = "SBA_SUITE_PRESENTATION"
 
+    /// Optional. When set, the host assigns it to `SBAFontSet.fontFamily`
+    /// before presenting, so a suite can render under a custom font family
+    /// (TC-CPE-15 checks Japanese glyph forms under one). Absent or empty
+    /// leaves the SDK on the system font.
+    static let fontFamilyKey = "SBA_AIAGENT_FONT_FAMILY"
+
+    /// Optional. Host overrides used by record-mode launches whose application
+    /// does not live on the SDK's default hosts. Playback ignores these — it
+    /// always routes at the mock server.
+    static let liveAPIHostKey = "SBA_AIAGENT_LIVE_API_HOST"
+    static let liveWSHostKey = "SBA_AIAGENT_LIVE_WS_HOST"
+
+    /// Optional. `"1"` asks the SDK to publish message cells to the
+    /// accessibility tree without VoiceOver, so a UI test can read message
+    /// text. Debug builds only — see `SBAAccessibilityHelper`.
+    static let exposeAccessibilityTreeKey = "SBA_AIAGENT_EXPOSE_A11Y_TREE"
+
     let runMode: RunMode
     let presentation: PresentationKind
     let appId: String
@@ -60,6 +77,10 @@ struct AIAgentMockLaunchConfiguration {
     let restBaseURL: URL
     let webSocketURL: URL
     let scenario: String
+    let fontFamily: String?
+    let liveAPIHost: String?
+    let liveWSHost: String?
+    let exposesAccessibilityTree: Bool
 
     static func load(
         from environment: [String: String] = ProcessInfo.processInfo.environment
@@ -96,7 +117,11 @@ struct AIAgentMockLaunchConfiguration {
                 in: environment,
                 expectedSchemes: ["ws", "wss"]
             ),
-            scenario: scenario
+            scenario: scenario,
+            fontFamily: nonEmptyValue(for: fontFamilyKey, in: environment),
+            liveAPIHost: nonEmptyValue(for: liveAPIHostKey, in: environment),
+            liveWSHost: nonEmptyValue(for: liveWSHostKey, in: environment),
+            exposesAccessibilityTree: nonEmptyValue(for: exposeAccessibilityTreeKey, in: environment) == "1"
         )
     }
 
