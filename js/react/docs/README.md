@@ -32,7 +32,7 @@ You can find it under the **Channels** > **Messenger** menu on the Delight AI da
 
 * React >=18.0.0
 * React DOM >=18.0.0
-* @sendbird/chat ^4.22.9
+* @sendbird/chat ^4.22.11
 * styled-components >=5.0.0
 
 > **Note:** React 17 is not officially supported. For a proof-of-concept workaround only, see [Using the messenger on React 17 (unsupported)](react-17-support.md).
