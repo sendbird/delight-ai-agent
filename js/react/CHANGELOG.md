@@ -1,5 +1,31 @@
 # Changelog
 
+## v1.42.0 (Sep 07, 2026) with ChatSDK ^4.22.11
+
+
+### Minor Changes
+
+- Add `FixedMessenger.Launcher` and `FixedMessenger.NudgeMessage` for replacing the default launcher button and nudge bubble with a custom component
+- Fix the default messenger showing a full-screen window and an expand button on mobile
+
+```tsx
+import { type FixedLauncherProps, FixedMessenger } from '@sendbird/ai-agent-messenger-react';
+
+const CustomLauncher = ({ opened, setOpened, style }: FixedLauncherProps) => (
+  <button style={style} onClick={() => setOpened(!opened)}>
+    {opened ? 'Close' : 'Chat'}
+  </button>
+);
+<FixedMessenger>
+  <FixedMessenger.Launcher component={CustomLauncher} />
+</FixedMessenger>;
+```
+
+### Patch Changes
+
+- Fix an unhandled rejection when sending a typing indicator event while disconnected
+
+
 ## v1.41.0 (Aug 28, 2026) with ChatSDK ^4.22.11
 
 
