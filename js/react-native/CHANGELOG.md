@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.30.0 (Sep 07, 2026) with ChatSDK ^4.22.11
+
+
+### Minor Changes
+
+- Add `FixedMessenger.Launcher` and `FixedMessenger.NudgeMessage` for replacing the default launcher button and nudge bubble with a custom component
+
+```tsx
+import { type FixedLauncherProps, FixedMessenger } from '@sendbird/ai-agent-messenger-react-native';
+
+const CustomLauncher = ({ opened, setOpened }: FixedLauncherProps) => (
+  <MyLauncherButton opened={opened} onPress={() => setOpened(!opened)} />
+);
+<FixedMessenger>
+  <FixedMessenger.Launcher component={CustomLauncher} />
+</FixedMessenger>;
+```
+
+
 ## v1.29.0 (Aug 28, 2026) with ChatSDK ^4.22.11
 
 
