@@ -1,33 +1,23 @@
 package com.sendbird.sdk.aiagent.sample.consts
 
-import com.sendbird.sdk.aiagent.sample.R
-
-enum class Region(val value: Int) {
-    PRODUCTION(R.string.sample_region_production),
-    PREPROD(R.string.sample_region_preprod),
-    NO1(R.string.sample_region_no1),
-    NO2(R.string.sample_region_no2),
-    NO3(R.string.sample_region_no3),
-    NO4(R.string.sample_region_no4),
-    NO5(R.string.sample_region_no5),
-    NO6(R.string.sample_region_no6),
-    A11Y(R.string.sample_region_a11y)
+enum class Region {
+    PRODUCTION,
+    PREPROD,
+    A11Y,
+    CO_A,
+    CO_B,
+    CO_C,
+    CO_D,
+    CO_E
     ;
 
     companion object {
-        fun fromValue(value: Int): Region {
-            return when (value) {
-                R.string.sample_region_production -> PRODUCTION
-                R.string.sample_region_preprod -> PREPROD
-                R.string.sample_region_no1 -> NO1
-                R.string.sample_region_no2 -> NO2
-                R.string.sample_region_no3 -> NO3
-                R.string.sample_region_no4 -> NO4
-                R.string.sample_region_no5 -> NO5
-                R.string.sample_region_no6 -> NO6
-                R.string.sample_region_a11y -> A11Y
-                else -> PRODUCTION
-            }
+        // Persisted as the stable enum name. Older installs may have persisted a
+        // name that no longer exists (e.g. the retired NO1-NO6 test regions), so
+        // callers must treat a null result as "no saved app info" rather than
+        // silently defaulting to a region.
+        fun fromNameOrNull(name: String): Region? {
+            return runCatching { valueOf(name) }.getOrNull()
         }
     }
 }

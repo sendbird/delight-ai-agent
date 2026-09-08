@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.18.1 (Sep 8, 2026) with Chat SDK `v4.36.4`
+
+### Improvements
+
+- Held the message input for as long as the user's message is actually pending, instead of for a fixed window.
+    - `ConversationViewModel.messageSending` now stays `true` while a user message is sending or uploading — including an automatic resend — with no time-based upper bound, and resets once the message resolves or fails. A 30-second timeout previously reopened the input mid-upload, letting the user send a second message that the server drops while the agent is generating its reply.
+    - `ConversationViewModel.botSending` now stays `true` while the agent is typing, while the latest message is streaming, or for up to 30 seconds after the user's message is delivered and a reply may still be inbound. A stale user message shown on screen re-entry no longer re-locks the input.
+    - `ConversationViewModel.messageSending`, `ConversationViewModel.botSending`, and `ConversationViewModel.userInputDisabledBy` are now all cleared when the conversation is handed off or when the channel no longer belongs to an AI agent, so the input is no longer left blocked while messaging a human agent.
+- Reinstalled the conversation list cell's accessibility role and hint on every bind. `RecyclerView` replaces a cell's accessibility delegate when its holder enters the recycled pool, so a row recycled while no screen reader was running previously lost its button role and "open conversation" hint.
+
+### Bug Fixes
+
+- Fixed the attachment upload size limit exceeding the conversation's own cap. The effective limit is now the smaller of the per-MIME-type limit and the messenger's default upload size limit, falling back to the application-level limit when the server sends no upload restriction. A per-type limit larger than the cap previously let an oversized file be picked and then rejected on upload.
+- Fixed a streaming message losing text it had already shown. The server can deliver stream updates out of order, so a shorter payload could land after the final one and take characters back off an answer the user had already read. Such an update is now dropped, and the finalized body is restored on a message view that had not rendered it yet (for example a recycled bubble). Whether an update went backwards is judged on the server's own body rather than on what it renders to, so markdown that collapses when it closes (`**bold` becoming bold) is still applied instead of leaving the syntax on screen.
+- Fixed a crash when a conversation list cell was bound while `RecyclerView` had it flagged hidden from accessibility during an item animation. Applying accessibility semantics to a hidden view now logs a warning instead of throwing.
+- Fixed the message input staying locked after a multiple-files message failed before its upload started, and after a send flow was cancelled before completing.
+
 ## v1.18.0 (Aug 11, 2026) with Chat SDK `v4.36.4`
 
 ### Features

@@ -21,7 +21,7 @@ internal object PreferenceUtils {
         set(value) = if (value == null) pref.remove(PREFERENCE_KEY_MANUAL_USER_INFO) else pref.putString(PREFERENCE_KEY_MANUAL_USER_INFO, value.toJson().toString())
 
     var sampleAppInfo: SampleAppInfo?
-        get() = pref.getString(PREFERENCE_KEY_SAMPLE_APP_INFO)?.let { SampleAppInfo(it) }
+        get() = pref.getString(PREFERENCE_KEY_SAMPLE_APP_INFO)?.let { SampleAppInfo.fromJsonOrNull(it) }
         set(value) = if (value == null) pref.remove(PREFERENCE_KEY_SAMPLE_APP_INFO) else pref.putString(PREFERENCE_KEY_SAMPLE_APP_INFO, value.toJson().toString())
 
     var pinnedChannelUrls: List<String>

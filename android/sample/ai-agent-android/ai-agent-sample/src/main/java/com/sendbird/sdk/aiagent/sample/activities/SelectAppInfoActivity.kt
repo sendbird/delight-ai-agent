@@ -12,14 +12,13 @@ import com.sendbird.sdk.aiagent.sample.R
 import com.sendbird.sdk.aiagent.sample.consts.Region
 import com.sendbird.sdk.aiagent.sample.databinding.SampleLayoutSelectAppInfoBinding
 import com.sendbird.sdk.aiagent.sample.model.SampleAppInfo
-import com.sendbird.sdk.aiagent.sample.model.no1
 import com.sendbird.sdk.aiagent.sample.model.preprod
-import com.sendbird.sdk.aiagent.sample.model.no2
-import com.sendbird.sdk.aiagent.sample.model.no3
-import com.sendbird.sdk.aiagent.sample.model.no4
-import com.sendbird.sdk.aiagent.sample.model.no5
-import com.sendbird.sdk.aiagent.sample.model.no6
 import com.sendbird.sdk.aiagent.sample.model.a11y
+import com.sendbird.sdk.aiagent.sample.model.coA
+import com.sendbird.sdk.aiagent.sample.model.coB
+import com.sendbird.sdk.aiagent.sample.model.coC
+import com.sendbird.sdk.aiagent.sample.model.coD
+import com.sendbird.sdk.aiagent.sample.model.coE
 import com.sendbird.sdk.aiagent.sample.model.us3
 import com.sendbird.sdk.aiagent.sample.utils.PreferenceUtils
 import com.sendbird.sdk.aiagent.sample.utils.apiHost
@@ -73,7 +72,9 @@ class SelectAppInfoActivity : BaseSampleActivity() {
                             finish()
                         }
                     }.onFailure {
-                        Toast.makeText(context, "Error: ${it.message}", Toast.LENGTH_SHORT).show()
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "Error: ${it.message}", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }
@@ -93,13 +94,12 @@ class SelectAppInfoActivity : BaseSampleActivity() {
         return when (region) {
             Region.PRODUCTION -> us3
             Region.PREPROD -> preprod
-            Region.NO1 -> no1
-            Region.NO2 -> no2
-            Region.NO3 -> no3
-            Region.NO4 -> no4
-            Region.NO5 -> no5
-            Region.NO6 -> no6
             Region.A11Y -> a11y
+            Region.CO_A -> coA
+            Region.CO_B -> coB
+            Region.CO_C -> coC
+            Region.CO_D -> coD
+            Region.CO_E -> coE
         }
     }
 }

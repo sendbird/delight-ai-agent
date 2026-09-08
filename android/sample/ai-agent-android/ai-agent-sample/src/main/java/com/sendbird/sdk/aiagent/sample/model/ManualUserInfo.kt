@@ -33,37 +33,32 @@ internal val userPreprod = ManualUserInfo(
     authToken = "",
 )
 
-internal val userNo1 = ManualUserInfo(
-    userId = "",
-    authToken = "",
-)
-
-internal val userNo2 = ManualUserInfo(
-    userId = "",
-    authToken = "",
-)
-
 internal val userA11y = ManualUserInfo(
     userId = "",
     authToken = "",
 )
 
-internal val userNo3 = ManualUserInfo(
+internal val userCoA = ManualUserInfo(
     userId = "",
     authToken = "",
 )
 
-internal val userNo4 = ManualUserInfo(
+internal val userCoB = ManualUserInfo(
     userId = "",
     authToken = "",
 )
 
-internal val userNo5 = ManualUserInfo(
+internal val userCoC = ManualUserInfo(
     userId = "",
     authToken = "",
 )
 
-internal val userNo6 = ManualUserInfo(
+internal val userCoD = ManualUserInfo(
+    userId = "",
+    authToken = "",
+)
+
+internal val userCoE = ManualUserInfo(
     userId = "",
     authToken = "",
 )

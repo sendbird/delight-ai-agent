@@ -23,11 +23,10 @@
     <string name="sample_text_powered_by">Powered by Delight.ai</string>
     <string name="sample_region_production">PRODUCTION</string>
     <string name="sample_region_preprod">PREPROD</string>
-    <string name="sample_region_no1">NO1</string>
-    <string name="sample_region_no2">NO2</string>
-    <string name="sample_region_no3">NO3</string>
-    <string name="sample_region_no4">NO4</string>
-    <string name="sample_region_no5">NO5</string>
-    <string name="sample_region_no6">NO6</string>
-    <string name="sample_region_a11y">A11Y (NO2)</string>
+    <string name="sample_region_a11y">A11Y (CO-B)</string>
+    <string name="sample_region_co_a">CO-A</string>
+    <string name="sample_region_co_b">CO-B</string>
+    <string name="sample_region_co_c">CO-C</string>
+    <string name="sample_region_co_d">CO-D</string>
+    <string name="sample_region_co_e">CO-E</string>
 </resources>
