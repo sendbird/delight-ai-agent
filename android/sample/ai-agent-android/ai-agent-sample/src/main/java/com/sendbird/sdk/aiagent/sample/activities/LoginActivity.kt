@@ -13,13 +13,12 @@ import com.sendbird.sdk.aiagent.sample.model.ManualUserInfo
 import com.sendbird.sdk.aiagent.sample.model.SampleAppInfo
 import com.sendbird.sdk.aiagent.sample.model.us3
 import com.sendbird.sdk.aiagent.sample.model.userA11y
-import com.sendbird.sdk.aiagent.sample.model.userNo1
 import com.sendbird.sdk.aiagent.sample.model.userPreprod
-import com.sendbird.sdk.aiagent.sample.model.userNo2
-import com.sendbird.sdk.aiagent.sample.model.userNo3
-import com.sendbird.sdk.aiagent.sample.model.userNo4
-import com.sendbird.sdk.aiagent.sample.model.userNo5
-import com.sendbird.sdk.aiagent.sample.model.userNo6
+import com.sendbird.sdk.aiagent.sample.model.userCoA
+import com.sendbird.sdk.aiagent.sample.model.userCoB
+import com.sendbird.sdk.aiagent.sample.model.userCoC
+import com.sendbird.sdk.aiagent.sample.model.userCoD
+import com.sendbird.sdk.aiagent.sample.model.userCoE
 import com.sendbird.sdk.aiagent.sample.model.userUs3
 import com.sendbird.sdk.aiagent.sample.utils.AbstractSessionHandler
 import com.sendbird.sdk.aiagent.sample.utils.PreferenceUtils
@@ -90,13 +89,12 @@ class LoginActivity : BaseSampleActivity() {
         return when (region) {
             Region.PRODUCTION -> userUs3
             Region.PREPROD -> userPreprod
-            Region.NO1 -> userNo1
-            Region.NO2 -> userNo2
-            Region.NO3 -> userNo3
-            Region.NO4 -> userNo4
-            Region.NO5 -> userNo5
-            Region.NO6 -> userNo6
             Region.A11Y -> userA11y
+            Region.CO_A -> userCoA
+            Region.CO_B -> userCoB
+            Region.CO_C -> userCoC
+            Region.CO_D -> userCoD
+            Region.CO_E -> userCoE
         }
     }
 }

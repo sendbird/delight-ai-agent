@@ -3,12 +3,11 @@
     <string-array name="sb_regions">
         <item>@string/sample_region_production</item>
         <item>@string/sample_region_preprod</item>
-        <item>@string/sample_region_no1</item>
-        <item>@string/sample_region_no2</item>
-        <item>@string/sample_region_no3</item>
-        <item>@string/sample_region_no4</item>
-        <item>@string/sample_region_no5</item>
-        <item>@string/sample_region_no6</item>
         <item>@string/sample_region_a11y</item>
+        <item>@string/sample_region_co_a</item>
+        <item>@string/sample_region_co_b</item>
+        <item>@string/sample_region_co_c</item>
+        <item>@string/sample_region_co_d</item>
+        <item>@string/sample_region_co_e</item>
     </string-array>
 </resources>

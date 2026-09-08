@@ -9,19 +9,24 @@ internal data class SampleAppInfo(
     val appId: String,
     val aiAgentId: String
 ) {
-    constructor(json: JSONObject): this(
-        region = Region.fromValue(json.getInt(KeySet.region)),
-        appId = json.getString(KeySet.appId),
-        aiAgentId = json.getString(KeySet.aiAgentId)
-    )
-
-    constructor(jsonString: String): this(JSONObject(jsonString))
-
     fun toJson(): JSONObject {
         return JSONObject().apply {
-            put(KeySet.region, region.value)
+            put(KeySet.region, region.name)
             put(KeySet.appId, appId)
             put(KeySet.aiAgentId, aiAgentId)
+        }
+    }
+
+    companion object {
+        fun fromJsonOrNull(jsonString: String): SampleAppInfo? {
+            val json = runCatching { JSONObject(jsonString) }.getOrNull() ?: return null
+            val region = Region.fromNameOrNull(json.optString(KeySet.region)) ?: return null
+            if (!json.has(KeySet.appId) || !json.has(KeySet.aiAgentId)) return null
+            return SampleAppInfo(
+                region = region,
+                appId = json.getString(KeySet.appId),
+                aiAgentId = json.getString(KeySet.aiAgentId)
+            )
         }
     }
 }
@@ -40,44 +45,38 @@ internal val preprod = SampleAppInfo(
     aiAgentId = ""
 )
 
-internal val no1 = SampleAppInfo(
-    region = Region.NO1,
-    appId = "",
-    aiAgentId = ""
-)
-
-internal val no2 = SampleAppInfo(
-    region = Region.NO2,
-    appId = "",
-    aiAgentId = ""
-)
-
 internal val a11y = SampleAppInfo(
     region = Region.A11Y,
     appId = "",
     aiAgentId = ""
 )
 
-internal val no3 = SampleAppInfo(
-    region = Region.NO3,
+internal val coA = SampleAppInfo(
+    region = Region.CO_A,
     appId = "",
     aiAgentId = ""
 )
 
-internal val no4 = SampleAppInfo(
-    region = Region.NO4,
+internal val coB = SampleAppInfo(
+    region = Region.CO_B,
     appId = "",
     aiAgentId = ""
 )
 
-internal val no5 = SampleAppInfo(
-    region = Region.NO5,
+internal val coC = SampleAppInfo(
+    region = Region.CO_C,
     appId = "",
     aiAgentId = ""
 )
 
-internal val no6 = SampleAppInfo(
-    region = Region.NO6,
+internal val coD = SampleAppInfo(
+    region = Region.CO_D,
+    appId = "",
+    aiAgentId = ""
+)
+
+internal val coE = SampleAppInfo(
+    region = Region.CO_E,
     appId = "",
     aiAgentId = ""
 )
