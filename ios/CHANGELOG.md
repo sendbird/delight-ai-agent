@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.21.0 (Sep 15, 2026) with Chat SDK v4.39.11
+
+### Features
+
+- Added an `initialUserMessage` parameter to `AIAgentMessenger.presentConversation()` and `SBAConversationViewController.InitParams` for sending a first user message when the conversation is initialized on the server.
+  - Ignored when the conversation being opened already exists — always the case when the AI agent runs in single conversation mode, and typically the case when `channelURL` names an existing conversation. 
+  - When `channelURL` is `nil`, the message is posted only if the current active channel has no conversation yet; create a conversation first and pass its `channelURL` to guarantee delivery.
+- Added the public `SBATheme.conversation.header.title.profileSkeletonColor` property to color the conversation header's profile skeleton while the channel or profile image is loading.
+- Added the `memory` live metric category. `AIAgentMessenger.LiveMetric.Category.memory` and `MemoryLiveMetric` report what the user chose on a memory dialog — `shown`, `keep`, `enable`, `disable`, or `dismiss` — together with the connected user's ID. Three dialogs emit it: `MemoryLiveMetric.Consent`, `.On` (which also carries `deleteOnOff`), and `.Off`. The metric fires on the user's choice, not after the state change succeeds.
+
+### Fixes
+
+- Fixed the conversation header profile icon flashing before the profile image finished loading. The header now shows the skeleton through the download instead of the fallback icon.
+- Fixed custom `SBATheme` colors being overwritten by messenger settings updates and color scheme changes. Added `SBAThemeColor.resetToDefault()` and `isCustomized`.
+- Fixed Desk's internal admin messages appearing in the conversation. Messages carrying the Desk admin `custom_type`, and the server notice sent when a channel's `custom_type` changes, are now dropped before they reach the display list, so they no longer affect date separators, grouping, or the new-message badge. Customer-facing admin notifications — welcome, away, auto-closed, CSAT — stay visible.
+
 ## v1.20.0 (Sep 01, 2026) with Chat SDK v4.39.10
 
 ### Features
