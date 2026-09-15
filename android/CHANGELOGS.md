@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.19.0 (Sep 15, 2026) with Chat SDK `v4.36.5`
+
+### Features
+
+- Added an `initialUserMessage` parameter to `ConversationFragment.withArguments()` and `MessengerActivity.newIntentForConversation()` for sending a first user message when the conversation is initialized on the server.
+
 ## v1.18.1 (Sep 8, 2026) with Chat SDK `v4.36.4`
 
 ### Improvements

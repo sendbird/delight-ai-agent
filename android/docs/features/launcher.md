@@ -202,7 +202,7 @@ How the two arguments combine:
 
 | `channelUrl` | `params` | Result |
 | ------------ | -------- | ------ |
-| Specified    | Specified | The co~~~~~~~~nversation is opened fresh with the given settings, so a new or updated context takes effect even when the same conversation is reopened. |
+| Specified    | Specified | The conversation is opened fresh with the given settings, so a new or updated context takes effect even when the same conversation is reopened. |
 | Specified    | `null`    | The conversation is opened with the launcher's current settings, but the context is sent empty so that the channel's stored context isn't overwritten. |
 | `null`       | Specified | The last opened or default conversation is reopened as is. **The new context isn't applied.** To set a context, target the conversation explicitly with `channelUrl`. |
 | `null`       | `null`    | The last opened or default conversation is reopened as is. |

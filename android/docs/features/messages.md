@@ -334,10 +334,14 @@ override fun onCreateCustomMessageTemplateView(
 Return fallback UI for unknown template IDs:
 
 ```kotlin
-val templateData = data.firstOrNull() ?: return createFallbackView(context)
+val templateData = data.firstOrNull()
+if (templateData == null) {
+    callback.onViewReady(createFallbackView(context))
+    return
+}
 when (templateData.id) {
-    "known_template" -> createKnownTemplate(context, templateData)
-    else -> createFallbackView(context)
+    "known_template" -> callback.onViewReady(createKnownTemplate(context, templateData))
+    else -> callback.onViewReady(createFallbackView(context))
 }
 ```
 {% endtab %}
@@ -347,9 +351,19 @@ when (templateData.id) {
 Check response status and error field:
 
 ```kotlin
-val templateData = data.firstOrNull() ?: return createErrorView(context, "No template data")
-if (templateData.error != null) return createErrorView(context, templateData.error)
-if (templateData.response.status != 200) return createErrorView(context, "API error")
+val templateData = data.firstOrNull()
+if (templateData == null) {
+    callback.onViewReady(createErrorView(context, "No template data"))
+    return
+}
+if (templateData.error != null) {
+    callback.onViewReady(createErrorView(context, templateData.error))
+    return
+}
+if (templateData.response.status != 200) {
+    callback.onViewReady(createErrorView(context, "API error"))
+    return
+}
 ```
 {% endtab %}
 {% tab title="Runtime error" %}

@@ -72,7 +72,7 @@ messengerLauncher.openConversationList()
 
 ### With `MessengerActivity`
 
-`MessengerActivity` provides a full-screen approach for launching the messenger and starting a conversation. Like `MessengerLauncher`, you can lead the user to either a conversation view or a conversation list view. What differentiates the two is the `conversationChannelUrl` parameter. When creating a new `intent` instance, if you don't use the parameter, it leads the user to their conversation list. If the `conversationChannelUrl` is `null`, it creates a new conversation. If the URL is specified, it opens the existing channel.
+`MessengerActivity` provides a full-screen approach for launching the messenger and starting a conversation. Like `MessengerLauncher`, you can lead the user to either a conversation view or a conversation list view. Which of the two you get is determined by the method you call: `newIntentForConversation` opens a conversation, and `newIntentForConversationList` opens the conversation list. Within `newIntentForConversation`, the `conversationChannelUrl` parameter decides which conversation opens. If you omit it or pass `null`, it creates a new conversation. If the URL is specified, it opens the existing channel.
 
 #### Launch a conversation
 
@@ -97,6 +97,17 @@ val existingConversationIntent = MessengerActivity.newIntentForConversation(
     )
 )
 startActivity(existingConversationIntent)
+
+// Start a new conversation with an initial user message.
+// The server posts it as the conversation's first user message in place of the welcome message.
+val nudgeIntent = MessengerActivity.newIntentForConversation(
+    context = this,
+    aiAgentId = "YOUR_AI_AGENT_ID",
+    conversationChannelUrl = null,
+    conversationSettingsParams = ConversationSettingsParams(),
+    initialUserMessage = "I need help with my order."
+)
+startActivity(nudgeIntent)
 ```
 
 #### Launch a conversation list
@@ -295,5 +306,5 @@ The following table lists the static methods for creating intents to launch `Mes
 
 | Method                         | Parameters                                                                                                          | Description                                                                 |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `newIntentForConversation`     | context: Context, aiAgentId: String, conversationChannelUrl: String?, conversationSettingsParams: ConversationSettingsParams | Creates intent for opening specific conversation or starting new one. Return type is `intent`. |
+| `newIntentForConversation`     | context: Context, aiAgentId: String, conversationChannelUrl: String?, conversationSettingsParams: ConversationSettingsParams, initialUserMessage: String? | Creates intent for opening specific conversation or starting new one. Return type is `intent`. `initialUserMessage` defaults to `null`. When set, the server posts it as the conversation's first user message in place of the welcome message, and only when the conversation is newly created. It applies to that screen only and is ignored by a conversation that already exists. Requires Chat SDK `4.36.5` or later. |
 | `newIntentForConversationList` | context: Context, aiAgentId: String, conversationSettingsParams: ConversationSettingsParams                   | Creates intent for displaying conversation list. Return type is `intent`.   |
