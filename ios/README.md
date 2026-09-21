@@ -186,7 +186,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        AIAgentMessenger.initialize(appId: appId) { result in
+        AIAgentMessenger.initialize(
+            appId: appId,
+            paramsBuilder: { params in
+                // Set optional parameters if needed
+            }
+        ) { result in
             switch result {
             case .success:
                 // Check if user credentials exist in your app's secure storage
@@ -217,7 +222,12 @@ Set up anonymous session immediately after SDK initialization or when starting a
 
 ```swift
 // No authentication required - set up immediately
-AIAgentMessenger.initialize(appId: appId) { result in
+AIAgentMessenger.initialize(
+    appId: appId,
+    paramsBuilder: { params in
+        // Set optional parameters if needed
+    }
+) { result in
     switch result {
     case .success:
         AIAgentMessenger.updateSessionInfo(with: .anonymous())
