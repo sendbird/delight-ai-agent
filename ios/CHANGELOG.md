@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.22.0 (Sep 21, 2026) with Chat SDK v4.39.11
+
+### Build Environment
+
+- Fixed archive failures in apps built with Xcode 27 that integrate the SDK through Swift Package Manager. `SendbirdAIAgentMessenger`, `SendbirdMarkdownUI`, `SendbirdNetworkImage`, and `Splash` now ship as prebuilt binary frameworks. The minimum supported version stays iOS 14.0 and the public API is unchanged.
+
+> **Notes**
+> If your app declares a direct dependency on `JohnSundell/Splash`, remove it. `Splash` now ships with the SDK as a binary target of the same name, so Swift Package Manager reports a duplicate target. No source changes are needed.
+>
+> This release does not change the CocoaPods distribution. Apps that integrate through CocoaPods are unaffected.
+
 ## v1.21.0 (Sep 15, 2026) with Chat SDK v4.39.11
 
 ### Features

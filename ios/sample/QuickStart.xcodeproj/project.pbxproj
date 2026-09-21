@@ -34,7 +34,6 @@
 		921633D7532773429A4DB727 /* SampleChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7364AF3DC11DA83E37DA6077 /* SampleChallengeView.swift */; };
 		9331D74D58AAE3D87671E277 /* AIAgentStarterKit+ContextObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400936DD2629BF7A9B19CDAF /* AIAgentStarterKit+ContextObjects.swift */; };
 		98C3A8A1B63E371298A14DE9 /* MockServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61137371A0076FA6EA43F31 /* MockServer.swift */; };
-		A41581E47D6F1E1336A9CF7E /* Splash in Frameworks */ = {isa = PBXBuildFile; productRef = BD5090BE228A912E78D3193F /* Splash */; };
 		A5B4456ED545348FC3E7A084 /* ExtendedSDKBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BFB011EB64C4DE076D77E /* ExtendedSDKBridge.swift */; };
 		A68B136953B2D88138DD66AC /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998EE27EB94A089093396237 /* GradientBackgroundView.swift */; };
 		A9C5AB9BFBD4689F43A508B6 /* Readme.snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B528870525B52F7BE84E1 /* Readme.snippets.swift */; };
@@ -99,7 +98,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				05EF3B883F179441278AD591 /* SendbirdAIAgentMessenger in Frameworks */,
-				A41581E47D6F1E1336A9CF7E /* Splash in Frameworks */,
 				E9134545B3A6C96D0326C579 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,7 +299,6 @@
 			name = QuickStart;
 			packageProductDependencies = (
 				691283789AB5ADF115CAE086 /* SendbirdAIAgentMessenger */,
-				BD5090BE228A912E78D3193F /* Splash */,
 			);
 			productName = QuickStart;
 			productReference = 504F1132070E1B91DFDF8DBA /* AIAgent.app */;
@@ -355,7 +352,6 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				5F95696957171A13C9E77609 /* XCRemoteSwiftPackageReference "delight-ai-agent-messenger-ios" */,
-				675F8C38FD2AE3D8230AF692 /* XCRemoteSwiftPackageReference "Splash" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1B0653278AD1D8CFF0B5B8F6 /* Products */;
@@ -473,7 +469,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.21.0;
+				MARKETING_VERSION = 1.22.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -513,7 +509,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.21.0;
+				MARKETING_VERSION = 1.22.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG -DINTERNAL_SAMPLE_CHALLENGE";
@@ -668,7 +664,7 @@
 					"@loader_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.21.0;
+				MARKETING_VERSION = 1.22.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -no-serialize-debugging-options";
@@ -709,7 +705,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.21.0;
+				MARKETING_VERSION = 1.22.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG -DINTERNAL_SAMPLE_CHALLENGE";
@@ -763,15 +759,7 @@
 			repositoryURL = "https://github.com/sendbird/delight-ai-agent-messenger-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.21.0;
-			};
-		};
-		675F8C38FD2AE3D8230AF692 /* XCRemoteSwiftPackageReference "Splash" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/JohnSundell/Splash";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.16.0;
+				minimumVersion = 1.22.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -781,11 +769,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5F95696957171A13C9E77609 /* XCRemoteSwiftPackageReference "delight-ai-agent-messenger-ios" */;
 			productName = SendbirdAIAgentMessenger;
-		};
-		BD5090BE228A912E78D3193F /* Splash */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 675F8C38FD2AE3D8230AF692 /* XCRemoteSwiftPackageReference "Splash" */;
-			productName = Splash;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
