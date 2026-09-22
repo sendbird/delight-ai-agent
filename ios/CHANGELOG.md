@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.23.0 (Sep 22, 2026) with Chat SDK v4.39.11
+
+### Fixes
+
+- Fixed `duplicate symbol` linker errors in apps that pass `-ObjC`, `-all_load`, or `-force_load` to the linker. `SendbirdAIAgentMessenger` shipped as a static binary framework in v1.22.0, and that archive also contained a copy of `SendbirdChatSDKWrapper`, which Swift Package Manager builds separately for the app. Those flags force every archive member to load, so both copies reached the link and collided. `SendbirdAIAgentMessenger` now ships as a source target again. The minimum supported version stays iOS 14.0 and the public API is unchanged.
+
+> **Notes**
+> Apps built with Xcode 27 are still supported. The Xcode 27 fix comes from `SendbirdAIAgentCore`, `Splash`, `SendbirdMarkdownUI`, and `SendbirdNetworkImage`, which continue to ship as prebuilt binary frameworks. Only `SendbirdAIAgentMessenger` returns to source.
+>
+> If your app is on v1.22.0 and passes any of those linker flags, update to v1.23.0. There is no workaround on v1.22.0.
+>
+> This release does not change the CocoaPods distribution. Apps that integrate through CocoaPods are unaffected.
+
 ## v1.22.0 (Sep 21, 2026) with Chat SDK v4.39.11
 
 ### Build Environment
