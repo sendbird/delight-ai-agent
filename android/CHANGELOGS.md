@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.19.1 (Sep 22, 2026) with Chat SDK `v4.36.5`
+
+### Improvements
+
+- Improved typing indicator animator cleanup so the conversation screen is released once it closes.
+
 ## v1.19.0 (Sep 15, 2026) with Chat SDK `v4.36.5`
 
 ### Features
