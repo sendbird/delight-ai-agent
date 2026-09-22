@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.23.1 (Sep 22, 2026) with Chat SDK v4.39.11
+
+### Improvements
+
+- Raised the minimum `SendbirdUIKit` version to 3.36.2.
+- Added `CFBundleShortVersionString` to the `SendbirdMarkdownUI`, `SendbirdNetworkImage`, and `Splash` frameworks.
+
+> **Notes**
+> This release does not change the CocoaPods distribution. Apps that integrate through CocoaPods are unaffected.
+
 ## v1.23.0 (Sep 22, 2026) with Chat SDK v4.39.11
 
 ### Fixes
