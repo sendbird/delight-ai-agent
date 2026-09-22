@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.23.2 (Sep 22, 2026) with Chat SDK v4.39.11
+
+### Improvements
+
+- `SendbirdMarkdownUI`, `SendbirdNetworkImage`, and `Splash` now ship as dynamic frameworks with dSYMs.
+
+> **Notes**
+> This release does not change the CocoaPods distribution. Apps that integrate through CocoaPods are unaffected.
+
 ## v1.23.1 (Sep 22, 2026) with Chat SDK v4.39.11
 
 ### Improvements
