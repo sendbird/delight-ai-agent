@@ -1,5 +1,34 @@
 # Changelog
 
+## v1.43.0 (Sep 30, 2026) with ChatSDK ^4.22.13
+
+
+### Minor Changes
+
+- Add `external-handoff-changed` to `onCustomEvent` so handlers can detect when a channel's handoff to an external service starts or ends
+
+```tsx
+import { AgentProviderContainer, DefaultMessenger } from '@sendbird/ai-agent-messenger-react';
+
+<AgentProviderContainer
+  handlers={{
+    onCustomEvent: (event) => {
+      if (event.type === 'external-handoff-changed') {
+        console.log(event.data.externalServiceType, event.data.endedAt);
+      }
+    },
+  }}
+>
+  <DefaultMessenger />
+</AgentProviderContainer>;
+```
+
+### Patch Changes
+
+- Fix the conversation header, channel list preview, and connected-agent banner showing an outdated agent name and avatar after a handed-off AI Agent conversation is reassigned to a different agent
+- Fix a regenerated AI reply under the same message ID getting stuck mid-typing or dropped during streaming
+
+
 ## v1.42.0 (Sep 07, 2026) with ChatSDK ^4.22.11
 
 
