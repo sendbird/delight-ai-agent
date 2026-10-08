@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.43.1 (Oct 08, 2026) with ChatSDK ^4.22.13
+
+
+### Patch Changes
+
+- Fix keyboard focus trap so Shift+Tab wraps to a trailing iframe that has no `tabindex`
+
+
 ## v1.43.0 (Sep 30, 2026) with ChatSDK ^4.22.13
 
 
