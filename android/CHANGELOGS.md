@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.19.2 (Oct 13, 2026) with Chat SDK `v4.36.5`
+
+### Improvements
+
+- Reduced memory usage when rendering markdown images.
+
+### Bug Fixes
+
+- Fixed crashes when rendering markdown images, including images inside tables.
+- Fixed `AIAgentMessenger.createConversation()` succeeding with cached settings when the request failed; it now returns the error.
+- Fixed app crashes caused by external launches of the `TemplatePlaygroundActivity`.
+
 ## v1.19.1 (Sep 22, 2026) with Chat SDK `v4.36.5`
 
 ### Improvements
