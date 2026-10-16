@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.43.3 (Oct 16, 2026) with ChatSDK ^4.22.13
+
+
+### Patch Changes
+
+- Fix message input losing the typed draft when the connection is lost and restored
+
+
 ## v1.43.1 (Oct 08, 2026) with ChatSDK ^4.22.13
 
 
