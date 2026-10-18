@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.43.4 (Oct 18, 2026) with ChatSDK ^4.22.13
+
+
+### Patch Changes
+
+- Fix the conversation close notice, CSAT, and "start new conversation" button appearing before the last AI reply finishes typing out
+
+
 ## v1.43.3 (Oct 16, 2026) with ChatSDK ^4.22.13
 
 
