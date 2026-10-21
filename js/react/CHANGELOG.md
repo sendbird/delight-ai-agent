@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.43.6 (Oct 21, 2026) with ChatSDK ^4.22.13
+
+
+### Patch Changes
+
+- Fix screen reader live announcements not being read while the messenger window is open, by keeping the live region inside the active dialog instead of outside it
+- Fix the close notice, CSAT, and new conversation button appearing before the last reply finishes typing out when a conversation closes during streaming
+
+
 ## v1.43.4 (Oct 18, 2026) with ChatSDK ^4.22.13
 
 
