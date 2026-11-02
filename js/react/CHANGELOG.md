@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.44.0 (Nov 02, 2026) with ChatSDK ^4.22.15
+
+
+### Minor Changes
+
+- Show every CSAT follow-up question that matches the selected score, with 16px spacing between survey items
+- Fix CSAT follow-up errors so each one stays visible until its own question is answered
+- Fix CSAT answers being editable while the submission is in progress
+
+### Patch Changes
+
+- Fix raw markdown syntax (such as `**`, `#`, and link brackets) briefly appearing in messages, system notices, and memory descriptions while the markdown renderer loads or if it fails to load
+- Fix markdown content not inheriting the customer's configured font
+- Fix the close notice, CSAT, and new conversation button staying hidden after a conversation closes when no reply is actually being typed out
+- Fix a visible background-colored rim at the circular edge of avatar images
+
+
 ## v1.43.6 (Oct 21, 2026) with ChatSDK ^4.22.13
 
 
