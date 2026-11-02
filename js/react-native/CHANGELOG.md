@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.32.0 (Nov 02, 2026) with ChatSDK ^4.22.15
+
+
+### Minor Changes
+
+- Show every CSAT follow-up question that matches the selected score, with 16px spacing between survey items
+- Fix CSAT follow-up errors so each one stays visible until its own question is answered
+- Fix CSAT answers being editable while the submission is in progress
+
+
 ## v1.31.0 (Sep 30, 2026) with ChatSDK ^4.22.13
 
 
