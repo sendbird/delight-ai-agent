@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.20.0 (Nov 3, 2026) with Chat SDK `v4.36.6`
+
+### Features
+
+- Added support for multiple CSAT follow-up questions.
+    - All follow-up questions that match the selected score are now shown, and each answer is submitted.
+    - Added `CSATSubmitData.followUp` and `CSATSubmitData.isRequiredFollowUpMissing`.
+    - Added `CSATSubmitData.toCSATSubmitParams()`. Use it to submit CSAT from your own `onCSATSubmitListener` so the follow-up answers are included.
+
+### Bug Fixes
+
+- Fixed a crash when rendering a table in a streaming message.
+- Fixed UI issues in the conversation screen and the launcher.
+
 ## v1.19.2 (Oct 13, 2026) with Chat SDK `v4.36.5`
 
 ### Improvements

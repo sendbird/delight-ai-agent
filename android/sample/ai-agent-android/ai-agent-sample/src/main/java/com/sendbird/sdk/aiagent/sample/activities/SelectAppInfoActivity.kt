@@ -52,6 +52,8 @@ class SelectAppInfoActivity : BaseSampleActivity() {
                 override fun onNothingSelected(parent: AdapterView<*>) {}
             }
             btnSave.setOnClickListener {
+                // A second tap before this screen finishes would open the main screen twice.
+                btnSave.isEnabled = false
                 val aiAgentId = etAIAgentId.text.toString()
                 val appId = etAppId.text.toString()
                 val context = this@SelectAppInfoActivity
@@ -73,6 +75,7 @@ class SelectAppInfoActivity : BaseSampleActivity() {
                         }
                     }.onFailure {
                         withContext(Dispatchers.Main) {
+                            btnSave.isEnabled = true
                             Toast.makeText(context, "Error: ${it.message}", Toast.LENGTH_SHORT).show()
                         }
                     }
