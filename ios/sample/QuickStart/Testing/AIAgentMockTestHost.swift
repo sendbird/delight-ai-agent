@@ -46,9 +46,9 @@ final class AIAgentMockTestHost {
     private func applyFontFamily() {
         guard let fontFamily = configuration.fontFamily else { return }
 
-        registerBundledTestFonts()
+        TestFontRegistry.registerBundledFonts()
 
-        guard UIFont.familyNames.contains(fontFamily) else {
+        guard TestFontRegistry.isAvailable(fontFamily) else {
             // Fail loud in the host log rather than silently snapshotting the
             // system font: a missing font would look like a passing test.
             assertionFailure("Font family '\(fontFamily)' is not registered in this build.")
@@ -72,26 +72,6 @@ final class AIAgentMockTestHost {
         #else
         assertionFailure("SBA_AIAGENT_EXPOSE_A11Y_TREE has no effect unless the app is built with TESTCASE.")
         #endif
-    }
-
-    /// Registers the `.ttf` files bundled under `QuickStart/Testing/Fonts`.
-    ///
-    /// Deliberately runtime registration rather than an `Info.plist`
-    /// `UIAppFonts` entry: this way the fonts load only on a mock UI test
-    /// launch that asked for a family, never on an ordinary QuickStart run.
-    /// Release builds do not carry the files at all (see the directory's
-    /// README), so "not found" is the expected outcome there.
-    private func registerBundledTestFonts() {
-        let urls = Bundle.main.urls(forResourcesWithExtension: "ttf", subdirectory: nil) ?? []
-
-        for url in urls {
-            var error: Unmanaged<CFError>?
-            if CTFontManagerRegisterFontsForURL(url as CFURL, .process, &error) == false {
-                // Already-registered is benign; anything else is worth seeing
-                // in the host log while debugging a snapshot mismatch.
-                print("[MockTestHost] Font registration skipped for \(url.lastPathComponent): \(String(describing: error?.takeUnretainedValue()))")
-            }
-        }
     }
 
     private func start(on parent: UIViewController) {

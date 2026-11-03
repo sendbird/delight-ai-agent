@@ -148,9 +148,15 @@ extension AIAgentStarterKit {
         }
 
         // Auto-detect the topmost view controller
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = windowScene.windows.first(where: { $0.isKeyWindow }),
-           let rootViewController = window.rootViewController {
+        // `connectedScenes` is an unordered set, so look at the foreground-active scene first.
+        let windowScenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+        let orderedScenes = windowScenes.filter { $0.activationState == .foregroundActive }
+            + windowScenes.filter { $0.activationState != .foregroundActive }
+        let keyWindow = orderedScenes.lazy
+            .compactMap { windowScene in windowScene.windows.first(where: { $0.isKeyWindow }) }
+            .first
+
+        if let rootViewController = keyWindow?.rootViewController {
 
             var topController = rootViewController
             while let presentedVC = topController.presentedViewController {

@@ -1,5 +1,35 @@
 # Changelog
 
+## v1.24.0 (Nov 03, 2026) with Chat SDK v4.39.12
+
+### Features
+
+- Added support for multiple CSAT follow-up questions.
+  - All follow-up questions that match the selected score are now shown, and the answer to each one is submitted.
+
+### Improvements
+
+- Raised the minimum `SendbirdChatSDK` version to 4.39.12.
+- Raised the minimum `SendbirdUIKit` version to 3.36.3.
+- Fixed the duplicate `SendbirdChatWrapper` class warning shown when the app links other Sendbird SDKs.
+
+### Fixes
+
+- Fixed a crash when the conversation screen was closed while scrolled up and the typing indicator appeared or disappeared.
+- Fixed crashes that could occur when the Chat SDK updated a channel while the conversation screen was reading it.
+- Fixed Korean alert titles being cut off at smaller text sizes.
+- Fixed the typing indicator staying on screen after the app returned from the background.
+- Fixed carousel card buttons not responding after the app returned from the background.
+- Fixed the reading position moving while a reply streamed after the user scrolled up.
+- Fixed the user's message not staying pinned in fixed scroll mode when the agent sent more than one message.
+- Fixed CTA buttons, markdown lines, and unsupported message text being hard to see on light agent message bubbles.
+- Fixed CTA message text not being leading-aligned when the button was wider than the text.
+- Fixed a bubble-colored box appearing behind text on striped rows of markdown tables.
+- Fixed the title and buttons of a long consent popup being pushed off screen. The content now scrolls.
+
+> **Notes**
+> This release does not change the CocoaPods distribution. Apps that integrate through CocoaPods are unaffected.
+
 ## v1.23.2 (Sep 22, 2026) with Chat SDK v4.39.11
 
 ### Improvements
