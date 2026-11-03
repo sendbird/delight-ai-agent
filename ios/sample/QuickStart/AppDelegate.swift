@@ -10,7 +10,6 @@ import SendbirdAIAgentMessenger
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
-    var window: UIWindow?
     #if INTERNAL_TEST
     private var mockTestHost: AIAgentMockTestHost?
     #endif
@@ -22,24 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         #if INTERNAL_TEST
         setupInternalTest()
-        if installMockTestHostIfNeeded() {
+        if prepareMockTestHostIfNeeded() {
             return true
         }
         #endif
-
-        let mainVC = ViewController()
-        let navigationController = UINavigationController(rootViewController: mainVC)
-        self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
 
         setupPushNotifications()
         initializeAIAgentSDK()
 
         return true
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        application.applicationIconBadgeNumber = 0
     }
 
     // MARK: - Setup
@@ -53,18 +43,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     #if INTERNAL_TEST
-    private func installMockTestHostIfNeeded() -> Bool {
+    /// The window arrives later from `SceneDelegate`, which installs the host via `configure(window:)`.
+    private func prepareMockTestHostIfNeeded() -> Bool {
         do {
             guard let configuration = try AIAgentMockLaunchConfiguration.load() else {
                 return false
             }
 
-            let targetWindow = self.window ?? UIWindow(frame: UIScreen.main.bounds)
-            self.window = targetWindow
-
-            let mockTestHost = AIAgentMockTestHost(configuration: configuration)
-            self.mockTestHost = mockTestHost
-            mockTestHost.install(on: targetWindow)
+            self.mockTestHost = AIAgentMockTestHost(configuration: configuration)
             return true
         } catch {
             fatalError("[AppDelegate] Invalid AI Agent mock launch configuration: \(error.localizedDescription)")
@@ -108,6 +94,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
         AIAgentStarterKit.registerPush(deviceToken: deviceToken)
+    }
+}
+
+// MARK: - SceneWindowConfiguring
+extension AppDelegate: SceneWindowConfiguring {
+    func configure(window: UIWindow) {
+        #if INTERNAL_TEST
+        if let mockTestHost = self.mockTestHost {
+            mockTestHost.install(on: window)
+            return
+        }
+        #endif
+
+        let mainVC = ViewController()
+        let navigationController = UINavigationController(rootViewController: mainVC)
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
     }
 }
 
