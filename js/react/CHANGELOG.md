@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.44.1 (Nov 03, 2026) with ChatSDK ^4.22.15
+
+
+### Patch Changes
+
+- Keep streaming replies following the bottom when the typing indicator hands off to the first streamed message in iOS WebView
+
+
 ## v1.44.0 (Nov 02, 2026) with ChatSDK ^4.22.15
 
 
