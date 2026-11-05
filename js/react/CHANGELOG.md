@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.45.0 (Nov 05, 2026) with ChatSDK ^4.22.15
+
+
+### Minor Changes
+
+- Add `config.launcher.preConnectionDisplayEnabled` to show the fixed messenger launcher before the chat connection completes; opening it earlier shows a loading window. Until the connection completes, the launcher uses the default position and size, so a customized launcher can move or change once it completes
+
+
 ## v1.44.1 (Nov 03, 2026) with ChatSDK ^4.22.15
 
 
