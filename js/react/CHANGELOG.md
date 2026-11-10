@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.45.1 (Nov 10, 2026) with ChatSDK ^4.22.15
+
+
+### Patch Changes
+
+- Fix the on-screen keyboard staying open on iOS while the AI is responding
+- Fix focus leaving the messenger on iOS when a new conversation's input is waiting for the AI response to finish
+- Fix the full-screen messenger window's header scrolling off screen and its input hiding under the keyboard when the mobile keyboard opens on iOS
+- Fix the latest messages being pushed out of view when the message list height changes, such as when the mobile keyboard opens or closes or the window is resized
+- Fix the sent message not staying pinned at the top in fixed scroll mode when the message list grows after sending
+- Fix smooth scrolls after sending a message or following new messages being interrupted when the message list resizes
+- Fix form text inputs, such as the CSAT textarea, rendering incorrectly on iOS Safari after the messenger window is closed and reopened
+
+
 ## v1.45.0 (Nov 05, 2026) with ChatSDK ^4.22.15
 
 
