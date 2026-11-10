@@ -12,7 +12,10 @@ import SendbirdAIAgentMessenger
 extension AIAgentStarterKit {
     /// Initializes the AIAgentMessenger.
     ///
+    /// Runs on the main actor because the SDK reads UIKit state while it sets up.
+    ///
     /// - Throws: An error if initialization fails.
+    @MainActor
     static func initialize(
         applicationId: String,
         migrationHandler: VoidHandler? = nil
