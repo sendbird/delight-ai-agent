@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.46.0 (Nov 10, 2026) with ChatSDK ^4.22.15
+
+
+### Minor Changes
+
+- Add support for displaying Covista's department suggested replies as a persistent option list, while retaining the existing department-list template as a fallback.
+
+### Patch Changes
+
+- Updated dependencies
+  - @sendbird/ai-agent-messenger-react@1.46.0
+
+
 ## v1.45.1 (Nov 10, 2026) with ChatSDK ^4.22.15
 
 
