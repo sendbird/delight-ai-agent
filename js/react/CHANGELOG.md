@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.46.0 (Nov 10, 2026) with ChatSDK ^4.22.15
+
+
+### Patch Changes
+
+- Align the package version with the Covista CDN release; no React API or behavior changes.
+
+
 ## v1.45.1 (Nov 10, 2026) with ChatSDK ^4.22.15
 
 
