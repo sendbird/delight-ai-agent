@@ -1,5 +1,37 @@
 # Changelog
 
+## v1.24.1 (Nov 10, 2026) with Chat SDK v4.39.13
+
+### Improvements
+
+- Raised the minimum `SendbirdChatSDK` version to 4.39.13.
+- Raised the minimum `SendbirdUIKit` version to 3.36.4.
+- Updated `SendbirdMarkdownUI` to fix crashes on irregular HTML tables and on deeply nested or very wide Markdown.
+- Code blocks that are very large, or that have a very long line or token, are now shown without syntax highlighting instead of slowing down or crashing the screen.
+- Replaced console prints with SDK logs, and stopped logs from printing the session token and custom event data as is.
+
+### Fixes
+
+- Fixed crashes that could occur when the conversation screen was updated from more than one thread.
+- Fixed a crash in the conversation title layout.
+- Fixed crashes when decoding images, resetting the image cache, and using the camera.
+- Fixed a crash when an animated GIF had a frame that could not be decoded.
+- Fixed a crash when an image's aspect ratio was not a finite number. The image is now shown as a square.
+- Fixed crashes in the attachment list and photo library when their contents changed before the list reloaded.
+- Fixed a crash when no rows were visible while the message list recovered from a large gap.
+- Fixed a crash when the BUSY countdown exceeded the largest supported number.
+- Fixed a crash when the cached SDK version contained a number too large to compare.
+- Fixed a crash when an extended message payload value was not a JSON object or array.
+- Fixed a crash in the image viewer when an image that failed to load was removed from the preview list.
+- Fixed the chat input staying disabled when the agent sent an empty list of suggested replies.
+- Fixed citations without a link not being shown, which left an empty Sources heading.
+- Fixed CSAT rating labels being clipped on a narrow messenger, and the rating row not updating when the number of scores changed.
+- Fixed the code block text color changing when highlighting was skipped.
+- Fixed footnote text colors in Markdown on iOS 14.
+
+> **Notes**
+> This release does not change the CocoaPods distribution. Apps that integrate through CocoaPods are unaffected.
+
 ## v1.24.0 (Nov 03, 2026) with Chat SDK v4.39.12
 
 ### Features
