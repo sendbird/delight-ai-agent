@@ -12,6 +12,7 @@ import com.sendbird.sdk.aiagent.messenger.model.SessionInfo
 import com.sendbird.sdk.aiagent.sample.consts.InitState
 import com.sendbird.sdk.aiagent.sample.model.SampleAppInfo
 import com.sendbird.sdk.aiagent.sample.model.us3
+import com.sendbird.sdk.aiagent.sample.push.SamplePushHandler
 import com.sendbird.sdk.aiagent.sample.utils.AbstractSessionHandler
 import com.sendbird.sdk.aiagent.sample.utils.PreferenceUtils
 import com.sendbird.sdk.aiagent.sample.utils.apiHost
@@ -55,6 +56,8 @@ class AgentApplication : Application(), MessengerInitResultHandler {
             SessionInfo.AnonymousSessionInfo()
         }
         AIAgentMessenger.updateSessionInfo(sessionInfo)
+        // The handler does not outlive the process, so every start registers it again.
+        SamplePushHandler.register()
         initState.value = InitState.SUCCEED
     }
 

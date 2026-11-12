@@ -3,6 +3,9 @@
     <string name="sample_text_manual">Manual</string>
     <string name="sample_text_auto">Auto</string>
     <string name="sample_text_logout">Log out</string>
+    <string name="sample_text_push_unregister_failed" translatable="false">This device could not stop receiving this user\'s push notifications.</string>
+    <string name="sample_text_logout_anyway" translatable="false">Log out anyway</string>
+    <string name="sample_text_cancel" translatable="false">Cancel</string>
     <string name="sample_text_login">Sign In</string>
     <string name="sample_text_save">Save</string>
     <string name="sample_text_sign_in_with_user_id">Sign in with User ID</string>

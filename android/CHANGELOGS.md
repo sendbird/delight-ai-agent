@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.20.1 (Nov 12, 2026) with Chat SDK `v4.36.6`
+
+### Improvements
+
+- `AIAgentMessenger.initialize()` now succeeds when the Chat SDK fails to open its local cache and keeps running without it, matching iOS and JS.
+- When the user picks multiple images and some cannot be read, the readable images are now attached and a notice says that some files were excluded, instead of dropping the whole selection.
+
+### Bug Fixes
+
+- Fixed `MessengerInitParams.initResultHandler`'s `onInitFailure()` not being called when `AIAgentMessenger.initialize()` failed.
+- Fixed crashes when screens were restored by the system before `AIAgentMessenger.initialize()` was called. Those screens now stay empty, and `MessengerLauncher.attach()`, `openConversation()`, `openConversationList()`, and `openMessenger()` are ignored until the messenger is initialized.
+- Fixed `ConversationRepository.awaitGetContextObject()`, `awaitUpdateContext()`, and `awaitPatchContext()` failing when the server sends `language` as null or omits it. `ContextObject.language` is now an empty string in that case.
+- Fixed `AIAgentMessenger.awaitSetUserMemoryState(SetUserMemoryStateParams)` throwing a non-`SendbirdException` error when the response could not be decoded; it now throws `SendbirdException`.
+- Fixed a crash when a CSAT survey has a score count other than five. Such a CSAT message is now hidden, since the score row has exactly five buttons and could otherwise submit scores the survey does not define.
+- Fixed `CSATRadioGroup.setSelectPosition(Int)` crashing on an out-of-range position; such a position is now ignored and the current selection is kept.
+- Fixed a crash (`UninitializedPropertyAccessException` in `PermissionFragment`) when returning from the app settings screen after the conversation screen was recreated while the user was away, for example after the system killed the app process.
+- Fixed crashes caused by:
+    - Cached messenger settings, message templates, or anonymous user data that could no longer be decoded.
+    - Out-of-range server data, such as invalid image ratios, empty color strings, and blank dialog titles.
+    - Host themes that do not extend AppCompat, and devices without a file picker, camera app, or browser.
+    - Oversized markdown images.
+
 ## v1.20.0 (Nov 3, 2026) with Chat SDK `v4.36.6`
 
 ### Features

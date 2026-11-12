@@ -26,6 +26,7 @@ import com.sendbird.sdk.aiagent.messenger.ui.activity.MessengerActivity
 import com.sendbird.sdk.aiagent.sample.R
 import com.sendbird.sdk.aiagent.sample.databinding.ActivityViewMainBinding
 import com.sendbird.sdk.aiagent.sample.model.us3
+import com.sendbird.sdk.aiagent.sample.push.unregisterPushToken
 import com.sendbird.sdk.aiagent.sample.sendbird.CustomConversationListRepository
 import com.sendbird.sdk.aiagent.sample.sendbird.CustomConversationListAdapter
 import com.sendbird.sdk.aiagent.sample.utils.PreferenceUtils
@@ -93,19 +94,36 @@ class ViewMainActivity : BaseSampleActivity() {
     private fun initView() {
         lifecycleScope.launch {
             binding.btnLogout.setOnClickListener {
-                lifecycleScope.launch(Dispatchers.IO) {
-                    PreferenceUtils.clearAll()
-                    AIAgentMessenger.deauthenticate()
-                    withContext(Dispatchers.Main) {
-                        finishAffinity()
-                        startActivity(Intent(this@ViewMainActivity, SelectAppInfoActivity::class.java))
-                    }
-                }
+                // Unregistering takes a request or two: a second tap would log out twice.
+                it.isEnabled = false
+                logout()
             }
             binding.btnSetPinnedChannels.setOnClickListener {
                 showPinnedChannelDialog()
             }
         }
+    }
+
+    private fun logout() {
+        val aiAgentId = aiAgentId ?: return
+        // Before deauthenticate and before the saved user is cleared: the request needs this user's
+        // connection, and this device must stop receiving this user's pushes.
+        lifecycleScope.launch {
+            if (unregisterPushToken(aiAgentId, confirmOnFailure = true)) {
+                finishLogout()
+            } else {
+                binding.btnLogout.isEnabled = true
+            }
+        }
+    }
+
+    private suspend fun finishLogout() {
+        withContext(Dispatchers.IO) {
+            PreferenceUtils.clearAll()
+            AIAgentMessenger.deauthenticate()
+        }
+        finishAffinity()
+        startActivity(Intent(this@ViewMainActivity, SelectAppInfoActivity::class.java))
     }
 
     private fun registerProviders() {
