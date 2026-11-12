@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.sendbird.sdk.aiagent.common.utils.Logger
+import com.sendbird.sdk.aiagent.messenger.ui.activity.MessengerActivity
 import com.sendbird.sdk.aiagent.messenger.ui.widget.WaitingDialog
 import com.sendbird.sdk.aiagent.sample.AgentApplication
 import com.sendbird.sdk.aiagent.sample.consts.InitState
@@ -76,12 +77,18 @@ class SplashActivity : BaseSampleActivity() {
     private fun proceedToNextStep() {
         Logger.d(">> Proceeding to next step")
         val appInfo = PreferenceUtils.sampleAppInfo
-        val intent = if (appInfo == null) {
-            Intent(this, SelectAppInfoActivity::class.java)
-        } else {
-            ViewMainActivity.newIntent(this, aiAgentId = appInfo.aiAgentId)
+        val notifiedChannelUrl = intent.getStringExtra(KEY_CHANNEL_URL)
+        when {
+            appInfo == null -> startActivity(Intent(this, SelectAppInfoActivity::class.java))
+            // Home goes underneath, so backing out of the notified conversation lands where a normal start would.
+            notifiedChannelUrl != null -> startActivities(
+                arrayOf(
+                    ViewMainActivity.newIntent(this, aiAgentId = appInfo.aiAgentId),
+                    MessengerActivity.newIntentForConversation(this, appInfo.aiAgentId, conversationChannelUrl = notifiedChannelUrl),
+                )
+            )
+            else -> startActivity(ViewMainActivity.newIntent(this, aiAgentId = appInfo.aiAgentId))
         }
-        startActivity(intent)
         finish()
     }
 
@@ -98,5 +105,21 @@ class SplashActivity : BaseSampleActivity() {
             }
         }
         return true
+    }
+
+    companion object {
+        private const val KEY_CHANNEL_URL = "KEY_CHANNEL_URL"
+
+        /**
+         * The intent a push notification opens: a fresh task through the splash, so the SDK is
+         * initialized and the session set before [channelUrl]'s conversation opens, whether or not
+         * the process was still alive. A null [channelUrl] starts the app as the launcher does.
+         */
+        internal fun newIntentForConversation(context: Context, channelUrl: String?): Intent {
+            return Intent(context, SplashActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                channelUrl?.let { putExtra(KEY_CHANNEL_URL, it) }
+            }
+        }
     }
 }

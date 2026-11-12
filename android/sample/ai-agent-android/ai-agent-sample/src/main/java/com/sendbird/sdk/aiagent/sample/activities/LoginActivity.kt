@@ -20,6 +20,8 @@ import com.sendbird.sdk.aiagent.sample.model.userCoC
 import com.sendbird.sdk.aiagent.sample.model.userCoD
 import com.sendbird.sdk.aiagent.sample.model.userCoE
 import com.sendbird.sdk.aiagent.sample.model.userUs3
+import com.sendbird.sdk.aiagent.sample.push.SamplePushHandler
+import com.sendbird.sdk.aiagent.sample.push.unregisterPushToken
 import com.sendbird.sdk.aiagent.sample.utils.AbstractSessionHandler
 import com.sendbird.sdk.aiagent.sample.utils.PreferenceUtils
 import com.sendbird.sdk.aiagent.sample.utils.apiHost
@@ -38,13 +40,26 @@ class LoginActivity : BaseSampleActivity() {
             setContentView(root)
             setDefaultInformation(this@with, manualUserInfo)
             btnSignIn.setOnClickListener {
+                val userId = etUserId.text.toString()
+                val authToken = etAuthToken.text.toString()
+                val context = this@LoginActivity
+                // Whoever is signed in now (the anonymous user, at first) holds this device's token, and
+                // signing someone else in does not take it off them: it goes first, or the device
+                // receives both users' pushes. Unregistering takes a request or two, so a second tap
+                // waits.
+                btnSignIn.isEnabled = false
                 lifecycleScope.launch {
-                    val userId = etUserId.text.toString()
-                    val authToken = etAuthToken.text.toString()
-                    val context = this@LoginActivity
+                    // No confirmation: the user replaced is mostly the anonymous one, who may never have
+                    // registered here, or, with an agent in Copilot mode, cannot be authenticated to
+                    // unregister at all; asking would stop most first sign-ins for nothing.
+                    unregisterPushToken(appInfo.aiAgentId, confirmOnFailure = false)
                     runCatching {
                         authenticate(userId, authToken)
                     }.onFailure {
+                        // The previous user is still the one signed in, and unregistering took the handler down:
+                        // register it again, and the helper holds it until that user connects.
+                        SamplePushHandler.register()
+                        binding.btnSignIn.isEnabled = true
                         Toast.makeText(context, "Error: ${it.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -58,7 +73,8 @@ class LoginActivity : BaseSampleActivity() {
         val wsHost = userInfo.region.wsHost()
         SendbirdChat.connect(userId, authToken, apiHost, wsHost) { _, e ->
             if (e != null) {
-                // Handle error
+                SamplePushHandler.register()
+                binding.btnSignIn.isEnabled = true
                 Toast.makeText(this@LoginActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                 return@connect
             } else {
@@ -71,6 +87,8 @@ class LoginActivity : BaseSampleActivity() {
                     sessionToken = authToken,
                     sessionHandler = AbstractSessionHandler()
                 ))
+                // Unregistering took the handler down with the previous user's token.
+                SamplePushHandler.register()
                 finish()
             }
         }

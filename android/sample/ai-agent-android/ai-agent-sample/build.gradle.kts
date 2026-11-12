@@ -77,4 +77,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
+    // FCM: the Chat SDK's push helper takes the token from it and hands the pushes to the sample.
+    implementation(libs.firebase.messaging.ktx)
 }
