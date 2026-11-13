@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.46.1 (Nov 13, 2026) with ChatSDK ^4.22.15
+
+
+### Patch Changes
+
+- Fix a repeated `loadMessenger()` call (for example, recovering from `onSessionClosed`) rendering a second messenger in the same container; the new messenger now replaces the previous one
+- Keep the running messenger in place when a replacement fails Shadow DOM setup
+- Keep CSS added through `appendStyleSheet()` when a later `loadMessenger()` replaces the messenger in the same container
+- Updated dependencies
+  - @sendbird/ai-agent-messenger-react@1.46.1
+
+
 ## v1.46.0 (Nov 10, 2026) with ChatSDK ^4.22.15
 
 
