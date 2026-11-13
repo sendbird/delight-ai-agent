@@ -1,5 +1,30 @@
 # Changelog
 
+## v1.24.2 (Nov 13, 2026) with Chat SDK v4.39.13
+
+### Improvements
+
+- Image and file downloads now reuse one URLSession instead of creating a new one per request.
+
+### Fixes
+
+- Fixed the conversation list stopping after the first 20 conversations on some screen sizes. The list now loads the next page when its last row is shown.
+- Fixed an issue where a code block in a message showed only its first line.
+- Fixed the memory consent alert cutting off button titles in languages with long labels such as German, French and Dutch.
+- Fixed the interactive pop gesture beginning on the root screen after leaving the conversation screen, in apps that set their own navigation controller delegate. On iOS 17 and earlier this could freeze the next screen transition. The gesture no longer begins on the root screen or during a transition.
+- Fixed a crash when `pinnedChannelURLs` contained the same channel URL more than once. Each pinned conversation is now shown once, at its first position.
+- Fixed a crash, and an unrelated message being removed, when a message deletion event listed the same message more than once.
+- Fixed a reused message cell briefly showing the profile image or file thumbnail of the message it showed before.
+- Fixed a crash that could occur when AI Agent stats were recorded from more than one thread at the same time.
+- Fixed a possible crash when AI Agent live metrics were recorded from multiple threads at the same time.
+- Fixed a possible crash when a Desk ticket was fetched or refreshed while the user signed in or out, or while the app read the ticket from another thread.
+- Fixed the app freezing when the color scheme was updated while the SDK was clearing its data or creating a messenger for another AI agent.
+- Fixed an issue where attachments picked after a video stopped reaching the message input when iOS could not provide the video file.
+- Fixed an issue where picking multiple files that included an item that is neither an image nor a GIF stopped later attachments from reaching the message input.
+- Fixed an issue where an attachment that finished loading at the same moment the attachment queue started it could stop later attachments from reaching the message input.
+- Fixed the markdown image viewer switching to another image when an earlier image failed to load.
+- Fixed a crash when a custom conversation header, list, or input, a custom conversation list header, or a custom conversation list cell declared its own stored properties, such as `@LayoutSlot` views. Their `init(frame:)` and `init(style:reuseIdentifier:)` initializers are now public and required so that app subclasses inherit them. Rebuild the app with this version for the fix to apply. A subclass that declares any designated initializer of its own, including one that overrides only `init?(coder:)`, must now implement `init(frame:)` or `init(style:reuseIdentifier:)`; the compiler reports the missing initializer.
+
 ## v1.24.1 (Nov 10, 2026) with Chat SDK v4.39.13
 
 ### Improvements

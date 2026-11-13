@@ -61,6 +61,7 @@ struct AIAgentMockLaunchConfiguration {
     /// always routes at the mock server.
     static let liveAPIHostKey = "SBA_AIAGENT_LIVE_API_HOST"
     static let liveWSHostKey = "SBA_AIAGENT_LIVE_WS_HOST"
+    static let liveDeskAPIHostKey = "SBA_AIAGENT_LIVE_DESK_API_HOST"
 
     /// Optional. `"1"` asks the SDK to publish message cells to the
     /// accessibility tree without VoiceOver, so a UI test can read message
@@ -80,6 +81,7 @@ struct AIAgentMockLaunchConfiguration {
     let fontFamily: String?
     let liveAPIHost: String?
     let liveWSHost: String?
+    let liveDeskAPIHost: String?
     let exposesAccessibilityTree: Bool
 
     static func load(
@@ -121,6 +123,7 @@ struct AIAgentMockLaunchConfiguration {
             fontFamily: nonEmptyValue(for: fontFamilyKey, in: environment),
             liveAPIHost: nonEmptyValue(for: liveAPIHostKey, in: environment),
             liveWSHost: nonEmptyValue(for: liveWSHostKey, in: environment),
+            liveDeskAPIHost: nonEmptyValue(for: liveDeskAPIHostKey, in: environment),
             exposesAccessibilityTree: nonEmptyValue(for: exposeAccessibilityTreeKey, in: environment) == "1"
         )
     }

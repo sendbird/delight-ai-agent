@@ -113,6 +113,9 @@ final class AIAgentMockTestHost {
                     if let liveWSHost = self.configuration.liveWSHost {
                         params.wsHost = liveWSHost
                     }
+                    if let liveDeskAPIHost = self.configuration.liveDeskAPIHost {
+                        params.deskAPIHost = liveDeskAPIHost
+                    }
                 }
             },
             completionHandler: { [weak self, weak parent] result in
