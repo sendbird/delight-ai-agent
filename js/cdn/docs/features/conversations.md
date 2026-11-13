@@ -300,7 +300,13 @@ messenger.destroy();
 
 ### loadMessenger()
 
-Loads the AI Agent Messenger module. It returns `Promise<AIAgentLoader>`.
+Loads the AI Agent Messenger module. It returns `Promise<AIAgentLoader>`. Calling it again replaces the messenger an earlier call rendered into the same container.
+
+To run multiple messengers, use a different `containerId` for each.
+
+If a replacement changes `useShadowDOM` from `true` to `false`, the container element is replaced with a copy in the same position. Refresh any references to the old element and reattach event listeners registered on it.
+
+CSS added through `appendStyleSheet()` stays with the replacing messenger in the same container, so there is no need to add it again. It is removed when a replacement changes `useShadowDOM` or when the messenger is destroyed.
 
 ```javascript
 await loadMessenger(config)
@@ -308,12 +314,13 @@ await loadMessenger(config)
 
 | Parameter            | Type     | Default | Description                                                               |
 | -------------------- | -------- | ------- | ------------------------------------------------------------------------- |
+| `containerId`        | string   | 'sendbird-ai-agent-container' | ID of the container element; use distinct IDs for multiple messengers |
 | `useShadowDOM`       | boolean  | true    | Use Shadow DOM for style encapsulation (set to `false` to disable)        |
 | `customMainComponent` | function | -       | Custom main component function for advanced customization                 |
 
 ### messenger.initialize()
 
-Initializes the AI Agent Messenger with configuration.
+Initializes the AI Agent Messenger with configuration. Call it once per loader; a later call does not apply its configuration. To change the configuration later, use `updateConfig()` or `updateUserSession()`, and to start over, call `loadMessenger()` again.
 
 ```javascript
 messenger.initialize(config)
