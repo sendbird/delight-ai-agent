@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.46.1 (Nov 13, 2026) with ChatSDK ^4.22.15
+
+
+### Patch Changes
+
+- Fix the conversation list preview line ending early, leaving blank space before the unread badge, when the host page sets `word-break: keep-all` (e.g. for Korean text)
+
+
 ## v1.46.0 (Nov 10, 2026) with ChatSDK ^4.22.15
 
 
