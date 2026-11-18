@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.24.3 (Nov 18, 2026) with Chat SDK v4.39.13
+
+### Fixes
+
+- Fixed a crash that could occur right after the messenger connected.
+
 ## v1.24.2 (Nov 13, 2026) with Chat SDK v4.39.13
 
 ### Improvements
