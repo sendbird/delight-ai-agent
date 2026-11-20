@@ -250,6 +250,7 @@
 "SBA_Accessibility_Action_deleteMessage" = "Delete message";
 "SBA_Accessibility_Action_removeFileFormat" = "Remove %@";
 "SBA_Accessibility_Action_removeFile" = "Remove";
+"SBA_Accessibility_Action_cancelTasks" = "Cancel tasks";
 
 
 // MARK: - ACCESSIBILITY - CONVERSATION
