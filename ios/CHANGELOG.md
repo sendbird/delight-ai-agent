@@ -1,5 +1,36 @@
 # Changelog
 
+## v1.24.4 (Nov 20, 2026) with Chat SDK v4.39.15
+
+### Improvements
+
+- Raised the minimum `SendbirdChatSDK` version to 4.39.15.
+- Raised the minimum `SendbirdUIKit` version to 3.36.5.
+- Updated `SendbirdMarkdownUI` to 1.1.2 and `SendbirdNetworkImage` to 1.0.2.
+  - Markdown images now have a download size limit and are decoded at the size they are shown.
+  - A Markdown document draws at most 1,000 blocks, and a Markdown table draws at most 1,000 cells.
+  - Fixed slow rendering of HTML tables and of messages that reuse one attribute definition many times.
+  - Kept the text of `^[text](key: value)` inline attributes in Markdown.
+- Reduced main thread work and memory use in the limited-access photo picker and when converting large HEIC photos.
+- Reduced memory use when opening large GIF images.
+- A message now draws at most 30 citations and 20 vertical suggested replies, so a message with hundreds of them no longer freezes the screen.
+- A streaming reply is now updated at most once per frame and keeps a steady speed, so long replies no longer slow down.
+
+### Fixes
+
+- Fixed a crash when opening the camera or photo library with no allowed media types, or when the app's Info.plist has no camera or photo library usage description. Video capture is no longer offered in the camera when the app's Info.plist has no microphone usage description.
+- Fixed the conversation list requesting the next page over and over when a pinned conversation URL could not be loaded.
+- Fixed `searchConversation` requesting pages without end when the server kept returning a next page token. The search now stops after 100 pages and returns the conversations found so far.
+- Fixed an issue where changing a `SearchConversationParams` object while `searchConversation` was running could crash the app.
+- Fixed an issue where `AIAgentMessenger.unregisterPushToken(completionHandler:)` and `AIAgentMessenger.unregisterAllPushToken(completionHandler:)` did not unregister the push token and never called the completion handler.
+- Fixed an issue where a session token refresh that finished after logout or a user switch replaced the new user's token.
+- Fixed a possible crash when the conversation list was closed while channel changes were being applied.
+- Fixed a possible crash when the SDK was re-initialized, or the user signed in or out, while other threads read the current user or init state.
+- Fixed VoiceOver not reaching the text, tasks, and stop button of a steward card, which kept VoiceOver users from canceling a pending steward request.
+- Fixed VoiceOver taking a long time to read messages with many links or underscores.
+- Fixed an issue where confirm alert button titles broke in the middle of a word at the largest accessibility text sizes.
+- Fixed an issue where a conversation closed while it was open could still show an unread badge in the conversation list.
+
 ## v1.24.3 (Nov 18, 2026) with Chat SDK v4.39.13
 
 ### Fixes
