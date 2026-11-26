@@ -351,7 +351,7 @@ const App = () => {
 
 #### Deauthentication
 
-To log out the current user, call `deauthenticate()`. This disconnects the user session and clears the authentication state.
+To log out the current user, call `deauthenticate()`. This disconnects the user session and clears the authentication state. The state is cleared even if signing out fails, and the returned promise then rejects with the error.
 
 ```tsx
 import { useMessengerSessionContext } from '@sendbird/ai-agent-messenger-react-native';
