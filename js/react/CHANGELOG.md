@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.47.1 (Nov 26, 2026) with ChatSDK ^4.22.17
+
+
+### Patch Changes
+
+- Fix the typing indicator, including thinking mode, flickering when the device clock is ahead of the server; now requires `@sendbird/chat` `^4.22.17`
+- Add `config.conversation.fileViewer.imageDownloadMode` (`'url' | 'blob'`, default `'url'`) for media viewer downloads; `'blob'` saves cross-origin images under their file names and falls back to the original link when the file host does not allow CORS
+- Fix session handling: an expired anonymous session now recovers without reloading the host page, session and conversation state no longer carry over when the user changes, and keyboard focus returns to the launcher after recovery and to the previously focused element when the messenger closes
+- Fix multiple-file messages: attachments other than images and videos open as links, mixed image and video attachments keep a consistent grid, and switching videos in the media viewer keeps keyboard focus
+
 ## v1.46.1 (Nov 13, 2026) with ChatSDK ^4.22.15
 
 
@@ -1381,4 +1391,3 @@ import { FixedMessenger } from '@sendbird/ai-agent-messenger-react';
 
 - **📚 Public Documentation**: [https://github.com/sendbird/delight-ai-agent/blob/main/react/](https://github.com/sendbird/delight-ai-agent/blob/main/react/)
 - **🚀 Live Example**: [https://ai-agent-messenger-sample.netlify.app/react](https://ai-agent-messenger-sample.netlify.app/react)
-

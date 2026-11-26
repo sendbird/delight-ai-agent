@@ -277,6 +277,8 @@ function CreateConversationButton() {
 </FixedMessenger>
 ```
 
+>__Note__: The conversation is created for the user signed in when `createConversation()` is called. If a different user is signed in (or no one is) when it completes, the promise still resolves with its channel URL, but the conversation is not kept as the signed-in user's active conversation. If the user can change meanwhile, compare the latest `sdkUser?.userId` with the one at the call before opening the URL. The promise rejects if no user is signed in at the call or the request fails.
+
 ---
 
 ## API references
@@ -303,7 +305,7 @@ Configuration options for the `FixedMessenger` component.
 | `dir` | 'ltr' \| 'rtl' | - | Text direction for the widget. |
 | `entryStyle` | CSSProperties | - | Custom CSS styles for the entry container element. |
 | `rootElement` | HTMLElement | document.body | Root HTML element to which the messenger will be appended. |
-| `initialChannelUrl` | string | - | The URL of the channel to open initially when the messenger is first loaded. |
+| `initialChannelUrl` | string | - | The URL of the channel to open initially when the messenger is first loaded, and again when the session user changes to a different user. Only the value given at mount is used. |
 | `state` | { opened?: boolean; setOpened?: (value: boolean) => void; expanded?: boolean; setExpanded?: (value: boolean) => void; } | - | Custom state management for opened/expanded states. |
 
 ### FixedMessenger.Style Props
@@ -342,10 +344,10 @@ Access to messenger session context and conversation management functions.
 
 | Method | Parameters | Return Type | Description |
 |--------|------------|-------------|-------------|
-| `createConversation` | params: ConversationCreateParams | Promise<string> | Creates a new conversation and returns the channel URL. |
+| `createConversation` | params: ConversationCreateParams | Promise<string> | Creates a new conversation for the user signed in at call time and returns its channel URL. |
 | `refreshActiveChannel` | - | Promise<string> | Refreshes the active channel and returns URL. |
 | `authenticate` | - | Promise<MessengerSettingsResponse> | Authenticates the user session. |
-| `deauthenticate` | - | Promise<void> | Deauthenticates the user session. |
+| `deauthenticate` | - | Promise<void> | Deauthenticates the user session. The session state is cleared even if signing out fails, and the promise then rejects with the error. |
 
 ### ConversationCreateParams
 

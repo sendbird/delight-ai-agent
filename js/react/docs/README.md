@@ -224,6 +224,14 @@ import { AnonymousSessionInfo } from '@sendbird/ai-agent-messenger-react';
 />
 ```
 
+**Session expiry:** When an anonymous user's session can no longer be refreshed, the messenger shows a "Session timed out" alert. Pressing OK signs out the expired user, closes the messenger window (calling `state.setOpened(false)` if the host controls `state`), and creates a new anonymous user in place without reloading the page. If the host requests a signed-in user through `userSessionInfo` before OK is pressed, the alert is dropped and that user is signed in instead.
+
+**Switching users:** A conversation the user opened from the conversation list, a proactive conversation they were added to, or one started from a nudge belongs to that user. When the session user changes (the host signs in a different user, or a new anonymous user replaces an expired one), the conversation view uses `initialChannelUrl` as given at mount, or the new user's own active conversation if none was given, and a nudge conversation the previous user started is not continued. Switching back to the previous user does not restore their earlier selection; the same user signing in again keeps it, and keeps the current screen unless they were signed out in between. A different user starts again from `entryPoint`, whichever screen the previous user left open, unless they were added to a proactive conversation while signing in: that conversation opens instead.
+
+To open a specific conversation for the new user instead, remount the messenger with that conversation's `initialChannelUrl` by changing its `key` together with `userSessionInfo`, once the current sign-in has completed (an instance unmounted mid-sign-in keeps its resources until the page unloads). Remounting re-initializes the messenger: its screen state resets, focus inside it is lost, and its open state resets unless the host controls `state`.
+
+**Auto-open:** When the launcher's auto-open is enabled in the dashboard, the messenger opens on desktop shortly after it signs in the `userSessionInfo` user, on mount or when `appId`, `aiAgentId` or the `userSessionInfo` user changes. Calling `authenticate()` yourself does not auto-open, and neither does a new anonymous user that replaces an expired one. A pending auto-open is skipped if the messenger unmounts or one of those values changes again first. The earlier sign-in itself is not cancelled.
+
 The messenger view can be programmatically controlled using the `state` prop:
 
 ```tsx
@@ -233,6 +241,8 @@ function App() {
   return <FixedMessenger appId="YOUR_APP_ID" aiAgentId="YOUR_AI_AGENT_ID" state={{ opened, setOpened }} />;
 }
 ```
+
+When the window closes, focus returns to the element that was focused when it opened, unless focus has moved elsewhere on the page or that element is no longer shown. An element on the host page is focused without scrolling the page.
 
 ---
 
