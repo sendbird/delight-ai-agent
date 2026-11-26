@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.33.0 (Nov 26, 2026) with ChatSDK ^4.22.17
+
+
+### Minor Changes
+
+- Add stable `testID`s to the message input, send button, attach button, Files option, and staged-file remove button so UI automation tools can target them (`sb-message-input`, `sb-send-button`, `sb-add-attachment-button`, `sb-attachment-document`, `sb-file-preview-remove-button`)
+
 ## v1.32.0 (Nov 02, 2026) with ChatSDK ^4.22.15
 
 
@@ -846,4 +853,3 @@ const ConversationListScreen = () => {
 - **Theming**: Light/Dark mode with customizable styling
 - **CSAT Feedback**: Built-in customer satisfaction survey support
 - **Markdown Rendering**: Rich text display with code syntax highlighting
-
