@@ -159,6 +159,14 @@ const newManualSessionInfo = new messenger.ManualSessionInfo({
 messenger.updateUserSession(newManualSessionInfo);
 ```
 
+When an anonymous user's session can no longer be refreshed, the messenger shows a "Session timed out" alert. Pressing OK signs out the expired user, closes the messenger, and creates a new anonymous user in place without reloading the page. If `updateUserSession()` signs in a user with `ManualSessionInfo` first, the alert is dropped and that user is signed in instead.
+
+When the session user changes to a different user (through `updateUserSession()`, or a new anonymous user replacing an expired one), a conversation the previous user opened from the conversation list, a proactive conversation, or one started from a nudge is not carried over: the conversation view uses `initialChannelUrl`, or the new user's own active conversation if none was given. Switching back to the previous user does not restore their earlier selection; calling `updateUserSession()` again for the same user (for example, to refresh the token) keeps both it and the current screen. A different user starts again from `entryPoint`, whichever screen the previous user left open, unless they were added to a proactive conversation while signing in: that conversation opens instead.
+
+To open a specific conversation for the new user instead, call `destroy()` once the current sign-in has completed (an instance destroyed mid-sign-in keeps its resources until the page unloads). Then create a new messenger with `loadMessenger()`, passing the same loader options, and use the object it returns: register `onLoad()` and `onAuthenticated()` on it again, call `initialize()` with all options, including the new `userSessionInfo` and `initialChannelUrl`, and repeat later calls such as `updateConfig()`, `setPosition()` or `open()`. Focus inside the old messenger is lost.
+
+When the launcher's auto-open is enabled in the dashboard, the messenger opens on desktop shortly after it signs in the user given to `initialize()` or to `updateUserSession()` with a different user, or after `updateConfig()` changes `appId` or `aiAgentId`. A new anonymous user that replaces an expired one does not auto-open. A pending auto-open is skipped if the messenger is destroyed or one of those changes happens again first. The earlier sign-in itself is not cancelled.
+
 ### Launch the messenger
 
 ![](https://sendbird-files.s3.ap-northeast-1.amazonaws.com/docs/da-web-launcher.png)
@@ -190,6 +198,8 @@ messenger.onLoad(() => {
 // Close the messenger view by clicking a button
 <button onClick={() => messenger.close()}>Close</button>;
 ```
+
+When the messenger closes, it can restore focus to the previously focused visible element within the same DOM root. With the default `useShadowDOM: true`, this covers elements inside the messenger's shadow root; a host-page element outside it is not captured for restoration. With `useShadowDOM: false`, an eligible host-page target is focused without scrolling the page. Restoration may be skipped if its target is no longer visible or focus has moved to another element in the same root.
 
 The `messenger.setPosition` method allows you to customize its appearance and positioning:
 
@@ -266,6 +276,8 @@ The messenger provides two different methods for cleanup:
 ```javascript
 messenger.deauthenticate();
 ```
+
+If signing out fails, the session is still cleared.
 
 2. Use `destroy()` to completely remove the messenger nodes from the DOM:
 
