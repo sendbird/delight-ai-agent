@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.47.2 (Nov 27, 2026) with ChatSDK ^4.22.17
+
+
+### Patch Changes
+
+- Fix the brief input block after sending a message so it lasts a full 30 seconds even when the device clock differs from the server, after a slow file upload, or when a failed message is resent
+
 ## v1.47.1 (Nov 26, 2026) with ChatSDK ^4.22.17
 
 
